@@ -16,10 +16,12 @@ includes:
 
 search: true
 ---
+# Bem Vindo ao SuperPay
+Tudo que você precisa para se integrar ao nosso Gateway.
 
 # Introdução
 
-Bem vindo ao SuperPay!
+
 
 # Authentication
 
