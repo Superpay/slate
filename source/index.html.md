@@ -2,26 +2,56 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+  - XML
+  - JSON
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='#'>Documentação API SuperPay</a>
+
 
 includes:
   - errors
 
 search: true
 ---
-# Bem Vindo ao SuperPay
+# Bem vindo ao SuperPay
 Tudo que você precisa para se integrar ao nosso Gateway.
 
-# Introdução
+## Introdução
 
+Gateway de pagamento é uma solução tecnológica, que permite, facilmente, que quaisquer sistemas que possam se comunicar via WebService, realizem cobranças via boleto, cartão e transferências bancárias.
+Uma vez integrado ao SuperPay, seu sistema estará pronto para disponibilizar diversas Formas de Pagamento.
 
+## Glossário
+Principais termos utilizados no meio eCommerce:
+
+Termo | Descrição 
+------| -------
+Autorização | A etapa inicial do processo, onde a operadora financeira é acionada pelo SuperPay. Essa etapa verifica a condição de crédito do cliente, ou seja, verifica se o mesmo possui crédito suficiente para realizar a compra. Em caso positivo, aquele valor é sensibilizado no limite do cartão.
+Autenticação | Processo onde o portador é encaminhado para a página do banco emissor, afim de assegurar que é o portador legítimo do cartão. 
+Captura | A confirmação da transação. Nesta etapa o SuperPay aciona a operadora financeira para confirmar uma transação previamente autorizada. Somente nessa etapa em que o cliente será realmente cobrado.
+Cancelamento | Cancelamento de uma compra realizada com cartão.
+One Click | Através desta funcionalidade é possível o cadastro dos cartões dos consumidores para serem utilizados em compras futuras.
+Recorrência | Agendamento de cobranças. O Gateway é responsável por realizar as cobranças de acordo com o a data agendada pelo eCommerce.
+
+# Fluxo de Comunicação
+
+A comunicação com o SuperPay ocorrerá após a finalização do pagamento no Checkout do Ecommerce, de forma transparente para o consumidor.
+Ao ser finalizado o pagamento dentro da loja, o Ecommerce deverá consumir os serviços WebServices do SuperPay encaminhando as informações da compra de acordo com a estrutura que será apresentada nesta documentação.
+
+# Credencias de acesso
+## Sandbox
+O SuperPay disponibiliza um ambiente totalmente gratuito para sua equipe de desenvolvimento realizar testes. Basta solicitar seu ambiente para nossa equipe comercial através do email [comercial@superpay.com.br] com as seguintes informações:
+  - Nome da Loja;
+  - CNPJ;
+  - Email para criação do cadastro.
+  
+## Produção
+Para receber suas credenciais do nosso ambiente de produção, basta acessar nosso site e realizar a contratação de um de nossos planos: http://www.superpay.com.br/planos
+Caso tenha dúvidas sobre, por gentileza entrar em contato com nossa equipe comercial através do email [comercial@superpay.com.br] ou pelo telefone 11 3544-0678
+
+# Autenticação
+Para autenticação conosco, é preciso enviar o usuário e senha WS de seu estabelecimento. Caso ainda não o possua, por gentileza enviar solicitação para nossa equipe de Suporte através do email [servicedesk@superpay.com.br].
 
 # Authentication
 
