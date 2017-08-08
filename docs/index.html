@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;XML&quot;,&quot;JSON&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,10 +211,8 @@
     <div class="toc-wrapper">
       <img src="images/logosp.png" class="logo" alt="Logosp" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="XML">XML</a>
+              <a href="#" data-language-name="JSON">JSON</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -222,10 +220,32 @@
         <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
-            <a href="#bem-vindo-ao-superpay" class="toc-h1 toc-link" data-title="Bem Vindo ao SuperPay">Bem Vindo ao SuperPay</a>
+            <a href="#bem-vindo-ao-superpay" class="toc-h1 toc-link" data-title="Bem vindo ao SuperPay">Bem vindo ao SuperPay</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#introducao" class="toc-h2 toc-link" data-title="Bem vindo ao SuperPay">Introdução</a>
+                  </li>
+                  <li>
+                    <a href="#glossario" class="toc-h2 toc-link" data-title="Bem vindo ao SuperPay">Glossário</a>
+                  </li>
+              </ul>
           </li>
           <li>
-            <a href="#introducao" class="toc-h1 toc-link" data-title="Introdução">Introdução</a>
+            <a href="#fluxo-de-comunicacao" class="toc-h1 toc-link" data-title="Fluxo de Comunicação">Fluxo de Comunicação</a>
+          </li>
+          <li>
+            <a href="#credencias-de-acesso" class="toc-h1 toc-link" data-title="Credencias de acesso">Credencias de acesso</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#sandbox" class="toc-h2 toc-link" data-title="Credencias de acesso">Sandbox</a>
+                  </li>
+                  <li>
+                    <a href="#producao" class="toc-h2 toc-link" data-title="Credencias de acesso">Produção</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#autenticacao" class="toc-h1 toc-link" data-title="Autenticação">Autenticação</a>
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
@@ -249,16 +269,65 @@
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='#'>Documentação API SuperPay</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='bem-vindo-ao-superpay'>Bem Vindo ao SuperPay</h1>
+        <h1 id='bem-vindo-ao-superpay'>Bem vindo ao SuperPay</h1>
 <p>Tudo que você precisa para se integrar ao nosso Gateway.</p>
-<h1 id='introducao'>Introdução</h1><h1 id='authentication'>Authentication</h1>
+<h2 id='introducao'>Introdução</h2>
+<p>Gateway de pagamento é uma solução tecnológica, que permite, facilmente, que quaisquer sistemas que possam se comunicar via WebService, realizem cobranças via boleto, cartão e transferências bancárias.
+Uma vez integrado ao SuperPay, seu sistema estará pronto para disponibilizar diversas Formas de Pagamento.</p>
+<h2 id='glossario'>Glossário</h2>
+<p>Principais termos utilizados no meio eCommerce:</p>
+
+<table><thead>
+<tr>
+<th>Termo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Autorização</td>
+<td>A etapa inicial do processo, onde a operadora financeira é acionada pelo SuperPay. Essa etapa verifica a condição de crédito do cliente, ou seja, verifica se o mesmo possui crédito suficiente para realizar a compra. Em caso positivo, aquele valor é sensibilizado no limite do cartão.</td>
+</tr>
+<tr>
+<td>Autenticação</td>
+<td>Processo onde o portador é encaminhado para a página do banco emissor, afim de assegurar que é o portador legítimo do cartão.</td>
+</tr>
+<tr>
+<td>Captura</td>
+<td>A confirmação da transação. Nesta etapa o SuperPay aciona a operadora financeira para confirmar uma transação previamente autorizada. Somente nessa etapa em que o cliente será realmente cobrado.</td>
+</tr>
+<tr>
+<td>Cancelamento</td>
+<td>Cancelamento de uma compra realizada com cartão.</td>
+</tr>
+<tr>
+<td>One Click</td>
+<td>Através desta funcionalidade é possível o cadastro dos cartões dos consumidores para serem utilizados em compras futuras.</td>
+</tr>
+<tr>
+<td>Recorrência</td>
+<td>Agendamento de cobranças. O Gateway é responsável por realizar as cobranças de acordo com o a data agendada pelo eCommerce.</td>
+</tr>
+</tbody></table>
+<h1 id='fluxo-de-comunicacao'>Fluxo de Comunicação</h1>
+<p>A comunicação com o SuperPay ocorrerá após a finalização do pagamento no Checkout do Ecommerce, de forma transparente para o consumidor.
+Ao ser finalizado o pagamento dentro da loja, o Ecommerce deverá consumir os serviços WebServices do SuperPay encaminhando as informações da compra de acordo com a estrutura que será apresentada nesta documentação.</p>
+<h1 id='credencias-de-acesso'>Credencias de acesso</h1><h2 id='sandbox'>Sandbox</h2>
+<p>O SuperPay disponibiliza um ambiente totalmente gratuito para sua equipe de desenvolvimento realizar testes. Basta solicitar seu ambiente para nossa equipe comercial através do email [comercial@superpay.com.br] com as seguintes informações:
+  - Nome da Loja;
+  - CNPJ;
+  - Email para criação do cadastro.</p>
+<h2 id='producao'>Produção</h2>
+<p>Para receber suas credenciais do nosso ambiente de produção, basta acessar nosso site e realizar a contratação de um de nossos planos: http://www.superpay.com.br/planos
+Caso tenha dúvidas sobre, por gentileza entrar em contato com nossa equipe comercial através do email [comercial@superpay.com.br] ou pelo telefone 11 3544-0678</p>
+<h1 id='autenticacao'>Autenticação</h1>
+<p>Para autenticação conosco, é preciso enviar o usuário e senha WS de seu estabelecimento. Caso ainda não o possua, por gentileza enviar solicitação para nossa equipe de Suporte através do email [servicedesk@superpay.com.br].</p>
+<h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
@@ -491,10 +560,8 @@ Remember — a happy kitten is an authenticated kitten!
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="XML">XML</a>
+                <a href="#" data-language-name="JSON">JSON</a>
           </div>
       </div>
     </div>
