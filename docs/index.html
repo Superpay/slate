@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;XML&quot;,&quot;JSON&quot;]">
+  <body class="index" data-languages="[&quot;XML&quot;,&quot;JSON&quot;,&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -213,6 +213,7 @@
         <div class="lang-selector">
               <a href="#" data-language-name="XML">XML</a>
               <a href="#" data-language-name="JSON">JSON</a>
+              <a href="#" data-language-name="shell">shell</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -335,6 +336,9 @@ Caso tenha dúvidas sobre, por gentileza entrar em contato com nossa equipe come
 </code></pre><pre class="highlight plaintext"><code>{"usuario":
    {"login": "login", "senha": "senha" }
 }
+</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"api_endpoint_here"</span>
+  -H <span class="s2">"Authorization: meowmeowmeow"</span>
 </code></pre><h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
@@ -570,6 +574,7 @@ Remember — a happy kitten is an authenticated kitten!
           <div class="lang-selector">
                 <a href="#" data-language-name="XML">XML</a>
                 <a href="#" data-language-name="JSON">JSON</a>
+                <a href="#" data-language-name="shell">shell</a>
           </div>
       </div>
     </div>

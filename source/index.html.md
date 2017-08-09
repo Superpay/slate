@@ -4,6 +4,7 @@ title: API Reference
 language_tabs: # must be one of https://git.io/vQNgJ
   - XML
   - JSON
+  - shell
 
 toc_footers:
   - <a href='#'>Documentação API SuperPay</a>
@@ -65,6 +66,11 @@ Teste XMl
 }
 ```
 
+```shell
+# With shell, you can just pass the correct header with each request
+curl "api_endpoint_here"
+  -H "Authorization: meowmeowmeow"
+```
 
 # Authentication
 
