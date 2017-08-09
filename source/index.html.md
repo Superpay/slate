@@ -56,18 +56,7 @@ Para autenticação conosco, é preciso enviar o usuário e senha WS de seu esta
 > Exemplo para autenticação:
 
 ```XML
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
- <soapenv:Header/>
-  <soapenv:Body>
-   <pag:pagamentoTransacaoCompleta>
-     <usuario>testesuperpay</usuario>
-     <senha>testesuperpay</senha>
-     .
-     . 
-     .
-    </pag:pagamentoTransacaoCompleta>
-  </soapenv:Body>
-</soapenv:Envelope>
+Teste XMl
 ```
 
 ```JSON
