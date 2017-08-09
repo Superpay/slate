@@ -53,6 +53,22 @@ Caso tenha dúvidas sobre, por gentileza entrar em contato com nossa equipe come
 # Autenticação
 Para autenticação conosco, é preciso enviar o usuário e senha WS de seu estabelecimento. Caso ainda não o possua, por gentileza enviar solicitação para nossa equipe de Suporte através do email [servicedesk@superpay.com.br].
 
+> Exemplo para autenticação:
+
+```XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
+ <soapenv:Header/>
+  <soapenv:Body>
+   <pag:pagamentoTransacaoCompleta>
+     <usuario>testesuperpay</usuario>
+     <senha>testesuperpay</senha>
+     .
+     . 
+     .
+    </pag:pagamentoTransacaoCompleta>
+  </soapenv:Body>
+</soapenv:Envelope>
+
 # Authentication
 
 > To authorize, use this code:
