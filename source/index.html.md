@@ -32,7 +32,7 @@ Autenticação | Processo onde o portador é encaminhado para a página do banco
 Captura | A confirmação da transação. Nesta etapa o SuperPay aciona a operadora financeira para confirmar uma transação previamente autorizada. Somente nessa etapa em que o cliente será realmente cobrado.
 Cancelamento | Cancelamento de uma compra realizada com cartão.
 One Click | Através desta funcionalidade é possível o cadastro dos cartões dos consumidores para serem utilizados em compras futuras.
-Recorrência | Agendamento de cobranças. O Gateway é responsável por realizar as cobranças de acordo com o a data agendada pelo eCommerce.
+Recorrência | Agendamento de cobranças. O Gateway é responsável por realizar as cobranças de acordo com a data agendada pelo eCommerce.
 
 # Fluxo de Comunicação
 
@@ -47,7 +47,7 @@ O SuperPay disponibiliza um ambiente totalmente gratuito para sua equipe de dese
   - Email para criação do cadastro.
   
 ## Produção
-Para receber suas credenciais do nosso ambiente de produção, basta acessar nosso site e realizar a contratação de um de nossos planos: http://www.superpay.com.br/planos
+Para receber suas credenciais do nosso ambiente de produção, basta acessar nosso site e realizar a contratação de um de nossos planos: [Planos SuperPay](http://www.superpay.com.br/planos)
 Caso tenha dúvidas sobre, por gentileza entrar em contato com nossa equipe comercial através do email [comercial@superpay.com.br] ou pelo telefone 11 3544-0678
 
 # Autenticação
