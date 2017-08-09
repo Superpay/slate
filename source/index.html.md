@@ -68,6 +68,14 @@ Para autenticação conosco, é preciso enviar o usuário e senha WS de seu esta
     </pag:pagamentoTransacaoCompleta>
   </soapenv:Body>
 </soapenv:Envelope>
+```
+
+```JSON
+{"usuario":
+   {"login": "login", "senha": "senha" }
+}
+```
+
 
 # Authentication
 
