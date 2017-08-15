@@ -102,8 +102,8 @@ Para autenticação conosco, é preciso enviar o usuário e senha WS de seu esta
      <parcelas>1</parcelas>
      <valor>200</valor>
      </transacao>
-     <usuario>testesuperpay</usuario>
-     <senha>testesuperpay</senha>
+     <usuario>superpay</usuario>
+     <senha>superpay</senha>
     </pag:pagamentoTransacaoCompleta>
   </soapenv:Body>
 </soapenv:Envelope>
