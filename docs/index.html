@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;XML&quot;,&quot;JSON&quot;,&quot;shell&quot;]">
+  <body class="index" data-languages="[&quot;xml&quot;,&quot;json&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,9 +211,8 @@
     <div class="toc-wrapper">
       <img src="images/logosp.png" class="logo" alt="Logosp" />
         <div class="lang-selector">
-              <a href="#" data-language-name="XML">XML</a>
-              <a href="#" data-language-name="JSON">JSON</a>
-              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="xml">xml</a>
+              <a href="#" data-language-name="json">json</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -247,6 +246,14 @@
           </li>
           <li>
             <a href="#autenticacao" class="toc-h1 toc-link" data-title="Autenticação">Autenticação</a>
+          </li>
+          <li>
+            <a href="#pagamentos-com-cartao-de-credito-soap" class="toc-h1 toc-link" data-title="Pagamentos com cartão de crédito - SOAP">Pagamentos com cartão de crédito - SOAP</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#criando-uma-transacao-simplificada" class="toc-h2 toc-link" data-title="Pagamentos com cartão de crédito - SOAP">Criando uma transação simplificada</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
@@ -330,16 +337,27 @@ Caso tenha dúvidas sobre, por gentileza entrar em contato com nossa equipe come
 <p>Para autenticação conosco, é preciso enviar o usuário e senha WS de seu estabelecimento. Caso ainda não o possua, por gentileza enviar solicitação para nossa equipe de Suporte através do email [servicedesk@superpay.com.br].</p>
 
 <blockquote>
-<p>Exemplo para autenticação:</p>
+<p>Exemplo para autenticação SOAP:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>Teste XMl
-</code></pre><pre class="highlight plaintext"><code>{"usuario":
-   {"login": "login", "senha": "senha" }
-}
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><h1 id='authentication'>Authentication</h1>
+<pre class="highlight xml tab-xml"><code>Teste XMl
+</code></pre>
+<blockquote>
+<p>Exemplo para autenticação REST:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"usuario"</span><span class="p">:</span><span class="w">
+   </span><span class="p">{</span><span class="s2">"login"</span><span class="p">:</span><span class="w"> </span><span class="s2">"login"</span><span class="p">,</span><span class="w"> </span><span class="s2">"senha"</span><span class="p">:</span><span class="w"> </span><span class="s2">"senha"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='pagamentos-com-cartao-de-credito-soap'>Pagamentos com cartão de crédito - SOAP</h1><h2 id='criando-uma-transacao-simplificada'>Criando uma transação simplificada</h2>
+<p>Estrutura e exemplo de uma transação simples para cartão de crédito. As funcionalidades, como Análise de Fraude, Recorrência, OneClick e demais formas de pagamento precisam de uma estrutura mais completa para um perfeito funcionamento. Consulte as demais estruturas e exemplos desta documentação.</p>
+
+<p><code>Endpoint Sandbox: https://homologacao.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl</code></p>
+
+<p><code>Endpoint Produção: https://superpay2.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl</code></p>
+
+<aside class="notice">
+Para enviar a transação, acione o método <code>PagamentoTransacaoCompleta</code>
+</aside>
+<h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
@@ -572,9 +590,8 @@ Remember — a happy kitten is an authenticated kitten!
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="XML">XML</a>
-                <a href="#" data-language-name="JSON">JSON</a>
-                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="xml">xml</a>
+                <a href="#" data-language-name="json">json</a>
           </div>
       </div>
     </div>

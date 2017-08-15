@@ -2,9 +2,8 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - XML
-  - JSON
-  - shell
+  - xml
+  - json
 
 toc_footers:
   - <a href='#'>Documentação API SuperPay</a>
@@ -46,6 +45,7 @@ O SuperPay disponibiliza um ambiente totalmente gratuito para sua equipe de dese
   - Nome da Loja;
   - CNPJ;
   - Email para criação do cadastro.
+
   
 ## Produção
 Para receber suas credenciais do nosso ambiente de produção, basta acessar nosso site e realizar a contratação de um de nossos planos: [Planos SuperPay](http://www.superpay.com.br/planos)
@@ -54,23 +54,35 @@ Caso tenha dúvidas sobre, por gentileza entrar em contato com nossa equipe come
 # Autenticação
 Para autenticação conosco, é preciso enviar o usuário e senha WS de seu estabelecimento. Caso ainda não o possua, por gentileza enviar solicitação para nossa equipe de Suporte através do email [servicedesk@superpay.com.br].
 
-> Exemplo para autenticação:
+> Exemplo para autenticação SOAP:
 
-```XML
+```xml
 Teste XMl
 ```
 
-```JSON
+> Exemplo para autenticação REST:
+
+```json
 {"usuario":
    {"login": "login", "senha": "senha" }
 }
 ```
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+# Pagamentos com cartão de crédito - SOAP
+## Criando uma transação simplificada
+Estrutura e exemplo de uma transação simples para cartão de crédito. As funcionalidades, como Análise de Fraude, Recorrência, OneClick e demais formas de pagamento precisam de uma estrutura mais completa para um perfeito funcionamento. Consulte as demais estruturas e exemplos desta documentação.
+
+`Endpoint Sandbox: https://homologacao.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl`
+
+`Endpoint Produção: https://superpay2.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl`
+
+<aside class="notice">
+Para enviar a transação, acione o método <code>PagamentoTransacaoCompleta</code>
+</aside>
+
+
+
+
 
 # Authentication
 
