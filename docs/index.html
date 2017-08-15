@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;xml&quot;,&quot;json&quot;]">
+  <body class="index" data-languages="[&quot;xml&quot;,&quot;json&quot;,&quot;request&quot;,&quot;response&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -213,6 +213,8 @@
         <div class="lang-selector">
               <a href="#" data-language-name="xml">xml</a>
               <a href="#" data-language-name="json">json</a>
+              <a href="#" data-language-name="request">request</a>
+              <a href="#" data-language-name="response">response</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -337,26 +339,309 @@ Caso tenha dúvidas sobre, por gentileza entrar em contato com nossa equipe come
 <p>Para autenticação conosco, é preciso enviar o usuário e senha WS de seu estabelecimento. Caso ainda não o possua, por gentileza enviar solicitação para nossa equipe de Suporte através do email [servicedesk@superpay.com.br].</p>
 
 <blockquote>
-<p>Exemplo para autenticação SOAP:</p>
+<p>Exemplo para autenticação:</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code>Teste XMl
-</code></pre>
-<blockquote>
-<p>Exemplo para autenticação REST:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"usuario"</span><span class="p">:</span><span class="w">
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;soapenv:Header/&gt;</span>
+  <span class="nt">&lt;soapenv:Body&gt;</span>
+   <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
+     <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+     <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+   <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
+  <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"usuario"</span><span class="p">:</span><span class="w">
    </span><span class="p">{</span><span class="s2">"login"</span><span class="p">:</span><span class="w"> </span><span class="s2">"login"</span><span class="p">,</span><span class="w"> </span><span class="s2">"senha"</span><span class="p">:</span><span class="w"> </span><span class="s2">"senha"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='pagamentos-com-cartao-de-credito-soap'>Pagamentos com cartão de crédito - SOAP</h1><h2 id='criando-uma-transacao-simplificada'>Criando uma transação simplificada</h2>
+<blockquote>
+<p>Exemplo criação transação:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/"&gt;
+ &lt;soapenv:Header/&gt;
+  &lt;soapenv:Body&gt;
+   &lt;pag:pagamentoTransacaoCompleta&gt;
+     &lt;transacao&gt;
+     &lt;codigoEstabelecimento&gt;1000000000000&lt;/codigoEstabelecimento&gt;
+     &lt;codigoFormaPagamento&gt;170&lt;/codigoFormaPagamento&gt;
+     &lt;numeroTransacao&gt;1&lt;/numeroTransacao&gt;
+     &lt;dadosUsuarioTransacao&gt;
+      &lt;documentoComprador&gt;12312312312&lt;/documentoComprador&gt;
+      &lt;nomeComprador&gt;Teste SuperPay&lt;/nomeComprador&gt;
+     &lt;/dadosUsuarioTransacao&gt;
+     &lt;dataValidadeCartao&gt;12/2026&lt;/dataValidadeCartao&gt;
+     &lt;nomeTitularCartaoCredito&gt;teste superpay&lt;/nomeTitularCartaoCredito&gt;
+     &lt;numeroCartaoCredito&gt;4444333322221111&lt;/numeroCartaoCredito&gt;
+     &lt;codigoSeguranca&gt;123&lt;/codigoSeguranca&gt;
+     &lt;parcelas&gt;1&lt;/parcelas&gt;
+     &lt;valor&gt;200&lt;/valor&gt;
+     &lt;/transacao&gt;
+     &lt;usuario&gt;testesuperpay&lt;/usuario&gt;
+     &lt;senha&gt;testesuperpay&lt;/senha&gt;
+    &lt;/pag:pagamentoTransacaoCompleta&gt;
+  &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;
+</code></pre><pre class="highlight plaintext"><code>&lt;soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:body&gt;
+      &lt;ns2:pagamentoTransacaoCompletaResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/"&gt;
+         &lt;return&gt;
+            &lt;autorizacao&gt;123456&lt;/autorizacao&gt;
+            &lt;codigoEstabelecimento&gt;1000000000000&lt;/codigoEstabelecimento&gt;
+            &lt;codigoFormaPagamento&gt;170&lt;/codigoFormaPagamento&gt;
+            &lt;codigoTransacaoOperadora&gt;0&lt;/codigoTransacaoOperadora&gt;
+            &lt;dataAprovacaoOperadora&gt;24/05/2017&lt;/dataAprovacaOperadora&gt;
+            &lt;mensagemVenda&gt;Transacao capturada com sucesso&lt;/mensagemVenda&gt;
+            &lt;numeroComprovanteVenda&gt;1006993069181F841001&lt;/numeroComprovanteVenda&gt;
+            &lt;numeroTransacao&gt;1&lt;/numeroTransacao&gt;
+            &lt;parcelas&gt;1&lt;/parcelas&gt;
+            &lt;statusTransacao&gt;1&lt;/statusTransacao&gt;
+            &lt;taxaEmbarque&gt;0&lt;/taxaEmbarque&gt;
+            &lt;urlPagamento&gt;14132971582229c00506d-e84d-4526-b902-92190d5aa808&lt;urlpagamento&gt;&lt;/urlpagamento&gt;
+            &lt;valor&gt;200&lt;/valor&gt;
+            &lt;valorDesconto&gt;0&lt;/valorDesconto&gt;
+         &lt;/return&gt;
+      &lt;/ns2:pagamentoTransacaoCompletaResponse&gt;
+   &lt;/soap:body&gt;
+&lt;/soap:envelope&gt;
+</code></pre>
 <p>Estrutura e exemplo de uma transação simples para cartão de crédito. As funcionalidades, como Análise de Fraude, Recorrência, OneClick e demais formas de pagamento precisam de uma estrutura mais completa para um perfeito funcionamento. Consulte as demais estruturas e exemplos desta documentação.</p>
 
-<p><code>Endpoint Sandbox: https://homologacao.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl</code></p>
+<p>Endpoint Sandbox: <code>https://homologacao.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl</code></p>
 
-<p><code>Endpoint Produção: https://superpay2.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl</code></p>
+<p>Endpoint Produção: <code>https://superpay2.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl</code></p>
+
+<p>REQUISIÇÃO</p>
 
 <aside class="notice">
-Para enviar a transação, acione o método <code>PagamentoTransacaoCompleta</code>
+Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</code>
 </aside>
+
+<p>TransacaoCompletaWS</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 19 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td>Código da forma de pagamento</td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação. Deve ser enviado sem pontos ou vírgulas</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>nomeTitularCartaoCredito</td>
+<td>Nome do titular do cartão de crédito (Exatamente como escrito no cartão)</td>
+<td>Alfa Numérico</td>
+<td>Até 16 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>numeroCartaoCredito</td>
+<td>Numero do cartão de crédito, sem espaços ou traços</td>
+<td>Numérico</td>
+<td>Até 22 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoSeguranca</td>
+<td>Código de segurança do cartão (campo não é armazenado pelo SuperPay)</td>
+<td>Numérico</td>
+<td>Até 4 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>dataValidadeCartao</td>
+<td>Data de validade do cartão. Formato mm/yyyy</td>
+<td>Alfa Numérico</td>
+<td>7 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>urlCampainha</td>
+<td>URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha</td>
+<td>Alfa Numérico</td>
+<td>Até 250 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>urlRedirecionamentoPago</td>
+<td>Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação aprovada</td>
+<td>Alfa Numérico</td>
+<td>Até 250 caracteres</td>
+<td>Para pagamentos redirecionáveis é obrigatório</td>
+</tr>
+<tr>
+<td>urlRedirecionamentoPago</td>
+<td>Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação negada</td>
+<td>Alfa Numérico</td>
+<td>Até 250 caracteres</td>
+<td>Para pagamentos redirecionáveis é obrigatório</td>
+</tr>
+<tr>
+<td>dadosUsuarioTransacao</td>
+<td>Array dados do comprador</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<p>DadosUsuarioTransacao</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nomeComprador</td>
+<td>Nome do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 100 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>documentoComprador</td>
+<td>Documento principal do comprado</td>
+<td>Alfa Numérico</td>
+<td>30 caracteres</td>
+<td>Não</td>
+</tr>
+</tbody></table>
+
+<p>RESPOSTA</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 19 dígitos</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td>Código da forma de pagamento</td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação.</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>valorDesconto</td>
+<td>Valor desconto</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>taxaEmbarque</td>
+<td>Valor taxa embarque</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>urlPagamento</td>
+<td>Para o modelo redirect. Essa será a URL de redirecionamento da operação</td>
+<td>Alfa Numérico</td>
+<td>Até 500 caracteres</td>
+</tr>
+<tr>
+<td>statusTransacao</td>
+<td>Status atual da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>autorizacao</td>
+<td>Código de autorização da operadora/intermediário financeiro</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>codigoTransacaoOperadora</td>
+<td>Código da transação na operadora/intermediário financeiro</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>dataAprovacaoOperadora</td>
+<td>Data de aprovação na operadora</td>
+<td>Alfa Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>numeroComprovanteVenda</td>
+<td>Número do comprovante de venda</td>
+<td>Alfa Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>mensagemVenda</td>
+<td>Mensagem de retorno da operadora</td>
+<td>Alfa Numérico</td>
+<td>Até 50 dígitos</td>
+</tr>
+</tbody></table>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
@@ -592,6 +877,8 @@ Remember — a happy kitten is an authenticated kitten!
           <div class="lang-selector">
                 <a href="#" data-language-name="xml">xml</a>
                 <a href="#" data-language-name="json">json</a>
+                <a href="#" data-language-name="request">request</a>
+                <a href="#" data-language-name="response">response</a>
           </div>
       </div>
     </div>

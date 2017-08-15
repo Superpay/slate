@@ -4,6 +4,8 @@ title: API Reference
 language_tabs: # must be one of https://git.io/vQNgJ
   - xml
   - json
+  - request
+  - response
 
 toc_footers:
   - <a href='#'>Documentação API SuperPay</a>
@@ -54,13 +56,20 @@ Caso tenha dúvidas sobre, por gentileza entrar em contato com nossa equipe come
 # Autenticação
 Para autenticação conosco, é preciso enviar o usuário e senha WS de seu estabelecimento. Caso ainda não o possua, por gentileza enviar solicitação para nossa equipe de Suporte através do email [servicedesk@superpay.com.br].
 
-> Exemplo para autenticação SOAP:
+> Exemplo para autenticação:
 
 ```xml
-Teste XMl
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
+ <soapenv:Header/>
+  <soapenv:Body>
+   <pag:pagamentoTransacaoCompleta>
+     <usuario>superpay</usuario>
+     <senha>superpay</senha>
+   </pag:pagamentoTransacaoCompleta>
+  </soapenv:Body>
+</soapenv:Envelope>
 ```
 
-> Exemplo para autenticação REST:
 
 ```json
 {"usuario":
@@ -70,18 +79,118 @@ Teste XMl
 
 # Pagamentos com cartão de crédito - SOAP
 ## Criando uma transação simplificada
+
+> Exemplo criação transação:
+
+```request
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
+ <soapenv:Header/>
+  <soapenv:Body>
+   <pag:pagamentoTransacaoCompleta>
+     <transacao>
+     <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
+     <codigoFormaPagamento>170</codigoFormaPagamento>
+     <numeroTransacao>1</numeroTransacao>
+     <dadosUsuarioTransacao>
+      <documentoComprador>12312312312</documentoComprador>
+      <nomeComprador>Teste SuperPay</nomeComprador>
+     </dadosUsuarioTransacao>
+     <dataValidadeCartao>12/2026</dataValidadeCartao>
+     <nomeTitularCartaoCredito>teste superpay</nomeTitularCartaoCredito>
+     <numeroCartaoCredito>4444333322221111</numeroCartaoCredito>
+     <codigoSeguranca>123</codigoSeguranca>
+     <parcelas>1</parcelas>
+     <valor>200</valor>
+     </transacao>
+     <usuario>testesuperpay</usuario>
+     <senha>testesuperpay</senha>
+    </pag:pagamentoTransacaoCompleta>
+  </soapenv:Body>
+</soapenv:Envelope>
+```
+
+```response
+<soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:body>
+      <ns2:pagamentoTransacaoCompletaResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
+         <return>
+            <autorizacao>123456</autorizacao>
+            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
+            <codigoFormaPagamento>170</codigoFormaPagamento>
+            <codigoTransacaoOperadora>0</codigoTransacaoOperadora>
+            <dataAprovacaoOperadora>24/05/2017</dataAprovacaOperadora>
+            <mensagemVenda>Transacao capturada com sucesso</mensagemVenda>
+            <numeroComprovanteVenda>1006993069181F841001</numeroComprovanteVenda>
+            <numeroTransacao>1</numeroTransacao>
+            <parcelas>1</parcelas>
+            <statusTransacao>1</statusTransacao>
+            <taxaEmbarque>0</taxaEmbarque>
+            <urlPagamento>14132971582229c00506d-e84d-4526-b902-92190d5aa808<urlpagamento></urlpagamento>
+            <valor>200</valor>
+            <valorDesconto>0</valorDesconto>
+         </return>
+      </ns2:pagamentoTransacaoCompletaResponse>
+   </soap:body>
+</soap:envelope>
+```
+
 Estrutura e exemplo de uma transação simples para cartão de crédito. As funcionalidades, como Análise de Fraude, Recorrência, OneClick e demais formas de pagamento precisam de uma estrutura mais completa para um perfeito funcionamento. Consulte as demais estruturas e exemplos desta documentação.
 
-`Endpoint Sandbox: https://homologacao.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl`
+Endpoint Sandbox: `https://homologacao.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl`
 
-`Endpoint Produção: https://superpay2.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl`
+Endpoint Produção: `https://superpay2.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl`
+
+REQUISIÇÃO
 
 <aside class="notice">
-Para enviar a transação, acione o método <code>PagamentoTransacaoCompleta</code>
+Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</code>
 </aside>
 
+TransacaoCompletaWS
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos | Sim
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
+codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
+valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas | Numérico | Até 10 dígitos | Sim
+parcelas | Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento | Numérico | Até 2 dígitos | Sim
+nomeTitularCartaoCredito | Nome do titular do cartão de crédito (Exatamente como escrito no cartão) | Alfa Numérico | Até 16 dígitos | Sim
+numeroCartaoCredito | Numero do cartão de crédito, sem espaços ou traços | Numérico | Até 22 caracteres | Sim
+codigoSeguranca | Código de segurança do cartão (campo não é armazenado pelo SuperPay) | Numérico | Até 4 caracteres | Sim
+dataValidadeCartao | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres | Sim
+urlCampainha | URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha | Alfa Numérico | Até 250 caracteres | Não
+urlRedirecionamentoPago | Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação aprovada | Alfa Numérico | Até 250 caracteres | Para pagamentos redirecionáveis é obrigatório
+urlRedirecionamentoPago | Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação negada | Alfa Numérico | Até 250 caracteres | Para pagamentos redirecionáveis é obrigatório
+dadosUsuarioTransacao | Array dados do comprador | - | - | -
+
+DadosUsuarioTransacao
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+nomeComprador | Nome do comprador| Alfa Numérico | Até 100 caracteres | Não
+documentoComprador | Documento principal do comprado| Alfa Numérico | 30 caracteres | Não
 
 
+
+RESPOSTA
+
+Campo | Descrição | Tipo | Tamanho 
+------| ----------|------| --------
+numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay | Numérico | 13 dígitos
+codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos
+valor | Valor da transação.| Numérico | Até 10 dígitos
+valorDesconto | Valor desconto | Numérico | Até 10 dígitos
+taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
+parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
+urlPagamento | Para o modelo redirect. Essa será a URL de redirecionamento da operação |Alfa Numérico | Até 500 caracteres 
+statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+autorizacao | Código de autorização da operadora/intermediário financeiro | Numérico | Até 20 dígitos
+codigoTransacaoOperadora | Código da transação na operadora/intermediário financeiro | Numérico | Até 20 dígitos
+dataAprovacaoOperadora | Data de aprovação na operadora |Alfa Numérico | Até 10 dígitos
+numeroComprovanteVenda | Número do comprovante de venda |Alfa Numérico | Até 20 dígitos
+mensagemVenda | Mensagem de retorno da operadora |Alfa Numérico | Até 50 dígitos
 
 
 # Authentication
