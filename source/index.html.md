@@ -92,6 +92,7 @@ Endpoint Produção: `https://superpay2.superpay.com.br/checkout/servicosPagamen
 </soapenv:Envelope>
 ```
 
+> Exemplo retorno transação:
 
 ```response
 <soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
@@ -263,6 +264,8 @@ mensagemVenda | Mensagem de retorno da operadora |Alfa Numérico | Até 50 dígi
    </soapenv:body>
 </soapenv:envelope>
 ```
+
+> Exemplo retorno transação:
 
 ```response
 <soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
