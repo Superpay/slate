@@ -1,9 +1,9 @@
 ---
-title: API Reference
+title: API SuperPay
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - request
-  - response
+  - xml
+  - json
 
 toc_footers:
   - <a href='#'>Documentação API SuperPay</a>
@@ -42,9 +42,9 @@ Ao ser finalizado o pagamento dentro da loja, o Ecommerce deverá consumir os se
 # Credencias de acesso
 ## Sandbox
 O SuperPay disponibiliza um ambiente totalmente gratuito para sua equipe de desenvolvimento realizar testes. Basta solicitar seu ambiente para nossa equipe comercial através do email [comercial@superpay.com.br] com as seguintes informações:
-  - Nome da Loja;
-  - CNPJ;
-  - Email para criação do cadastro.
+  * Nome da Loja;
+  * CNPJ;
+  * Email para criação do cadastro.
 
   
 ## Produção
@@ -65,7 +65,7 @@ Endpoint Produção: `https://superpay2.superpay.com.br/checkout/servicosPagamen
 
 > Exemplo criação transação:
 
-```request
+```xml
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
  <soapenv:Header/>
   <soapenv:Body>
@@ -94,7 +94,7 @@ Endpoint Produção: `https://superpay2.superpay.com.br/checkout/servicosPagamen
 
 > Exemplo retorno transação:
 
-```response
+```json
 <soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
    <soap:body>
       <ns2:pagamentoTransacaoCompletaResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
@@ -187,7 +187,7 @@ mensagemVenda | Mensagem de retorno da operadora |Alfa Numérico | Até 50 dígi
 
 > Exemplo criação transação:
 
-```request
+```xml
 <soapenv:envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
    <soapenv:header></soapenv:header>
    <soapenv:body>
@@ -267,7 +267,7 @@ mensagemVenda | Mensagem de retorno da operadora |Alfa Numérico | Até 50 dígi
 
 > Exemplo retorno transação:
 
-```response
+```xml
 <soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
    <soap:body>
       <ns2:pagamentoTransacaoCompletaResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
@@ -365,7 +365,7 @@ estadoEnderecoComprador|	Estado do comprador|	Alfa Numérico|	Até 2 caracteres|
 cepEnderecoComprador|	CEP do comprador. Enviar sem traços ou espaços|	Alfa Numérico|	Até 10 caracteres|	Sim
 enderecoEntrega| Logradouro de entrega|	Alfa Numérico	|Até 100 caracteres|	Não
 numeroEnderecoEntrega|	Número do logradouro de entrega|	Alfa Numérico|	Até 10 caracteres|	Não
-bairroEnderecoEntrega	Bairro do logradouro de entrega	Alfa Numérico	Até 50 caracteres	Não
+bairroEnderecoEntrega|	Bairro do logradouro de entrega|	Alfa Numérico|	Até 50 caracteres|	Não
 complementoEnderecoEntrega|	Complemento do endereço de entrega|	Alfa Numérico	|Até 50 caracteres|	Não
 cidadeEnderecoEntrega|	Cidade de entrega|	Alfa Numérico|	Até 50 caracteres|	Não
 estadoEnderecoEntrega|	Estado de entrega|	Alfa Numérico|	2 caracteres|	Não
@@ -410,216 +410,13 @@ dataAprovacaoOperadora | Data de aprovação na operadora |Alfa Numérico | Até
 numeroComprovanteVenda | Número do comprovante de venda |Alfa Numérico | Até 20 dígitos
 mensagemVenda | Mensagem de retorno da operadora |Alfa Numérico | Até 50 dígitos
 
+## Criando uma transação com múltiplos cartões
+Esta estrutura permite o envio de dois ou mais cartões em uma mesma requisição, permitindo ao consumidor dividir o valor total da venda entre os seus cartões de crédito.
 
-# Authentication
+**Particulariedades**
 
-> To authorize, use this code:
+* Disponível apenas no plano Corporativo;
+* Disponível apenas para cartões de crédito modalidade WebService;
+* Não disponível no fluxo de Antifraude.
 
-```request
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```response
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
 

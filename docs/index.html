@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>API SuperPay</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;request&quot;,&quot;response&quot;]">
+  <body class="index" data-languages="[&quot;xml&quot;,&quot;json&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,8 +211,8 @@
     <div class="toc-wrapper">
       <img src="images/logosp.png" class="logo" alt="Logosp" />
         <div class="lang-selector">
-              <a href="#" data-language-name="request">request</a>
-              <a href="#" data-language-name="response">response</a>
+              <a href="#" data-language-name="xml">xml</a>
+              <a href="#" data-language-name="json">json</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -256,22 +256,8 @@
                   <li>
                     <a href="#criando-uma-transacao-com-analise-de-fraude" class="toc-h2 toc-link" data-title="Pagamentos com cartão de crédito - SOAP">Criando uma transação com Análise de Fraude</a>
                   </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
-              <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Kittens">Get All Kittens</a>
-                  </li>
-                  <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Kittens">Get a Specific Kitten</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Kittens">Delete a Specific Kitten</a>
+                    <a href="#criando-uma-transacao-com-multiplos-cartoes" class="toc-h2 toc-link" data-title="Pagamentos com cartão de crédito - SOAP">Criando uma transação com múltiplos cartões</a>
                   </li>
               </ul>
           </li>
@@ -330,9 +316,9 @@ Uma vez integrado ao SuperPay, seu sistema estará pronto para disponibilizar di
 Ao ser finalizado o pagamento dentro da loja, o Ecommerce deverá consumir os serviços WebServices do SuperPay encaminhando as informações da compra de acordo com a estrutura que será apresentada nesta documentação.</p>
 <h1 id='credencias-de-acesso'>Credencias de acesso</h1><h2 id='sandbox'>Sandbox</h2>
 <p>O SuperPay disponibiliza um ambiente totalmente gratuito para sua equipe de desenvolvimento realizar testes. Basta solicitar seu ambiente para nossa equipe comercial através do email [comercial@superpay.com.br] com as seguintes informações:
-  - Nome da Loja;
-  - CNPJ;
-  - Email para criação do cadastro.</p>
+  * Nome da Loja;
+  * CNPJ;
+  * Email para criação do cadastro.</p>
 <h2 id='producao'>Produção</h2>
 <p>Para receber suas credenciais do nosso ambiente de produção, basta acessar nosso site e realizar a contratação de um de nossos planos: <a href="http://www.superpay.com.br/planos">Planos SuperPay</a>
 Caso tenha dúvidas sobre, por gentileza entrar em contato com nossa equipe comercial através do email [comercial@superpay.com.br] ou pelo telefone 11 3544-0678</p>
@@ -346,57 +332,57 @@ Caso tenha dúvidas sobre, por gentileza entrar em contato com nossa equipe come
 <blockquote>
 <p>Exemplo criação transação:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/"&gt;
- &lt;soapenv:Header/&gt;
-  &lt;soapenv:Body&gt;
-   &lt;pag:pagamentoTransacaoCompleta&gt;
-     &lt;transacao&gt;
-     &lt;codigoEstabelecimento&gt;1000000000000&lt;/codigoEstabelecimento&gt;
-     &lt;codigoFormaPagamento&gt;170&lt;/codigoFormaPagamento&gt;
-     &lt;numeroTransacao&gt;1&lt;/numeroTransacao&gt;
-     &lt;dadosUsuarioTransacao&gt;
-      &lt;documentoComprador&gt;12312312312&lt;/documentoComprador&gt;
-      &lt;nomeComprador&gt;Teste SuperPay&lt;/nomeComprador&gt;
-     &lt;/dadosUsuarioTransacao&gt;
-     &lt;dataValidadeCartao&gt;12/2026&lt;/dataValidadeCartao&gt;
-     &lt;nomeTitularCartaoCredito&gt;teste superpay&lt;/nomeTitularCartaoCredito&gt;
-     &lt;numeroCartaoCredito&gt;4444333322221111&lt;/numeroCartaoCredito&gt;
-     &lt;codigoSeguranca&gt;123&lt;/codigoSeguranca&gt;
-     &lt;parcelas&gt;1&lt;/parcelas&gt;
-     &lt;valor&gt;200&lt;/valor&gt;
-     &lt;/transacao&gt;
-     &lt;usuario&gt;superpay&lt;/usuario&gt;
-     &lt;senha&gt;superpay&lt;/senha&gt;
-    &lt;/pag:pagamentoTransacaoCompleta&gt;
-  &lt;/soapenv:Body&gt;
-&lt;/soapenv:Envelope&gt;
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;soapenv:Header/&gt;</span>
+  <span class="nt">&lt;soapenv:Body&gt;</span>
+   <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
+     <span class="nt">&lt;transacao&gt;</span>
+     <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+     <span class="nt">&lt;codigoFormaPagamento&gt;</span>170<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+     <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+     <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+      <span class="nt">&lt;documentoComprador&gt;</span>12312312312<span class="nt">&lt;/documentoComprador&gt;</span>
+      <span class="nt">&lt;nomeComprador&gt;</span>Teste SuperPay<span class="nt">&lt;/nomeComprador&gt;</span>
+     <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+     <span class="nt">&lt;dataValidadeCartao&gt;</span>12/2026<span class="nt">&lt;/dataValidadeCartao&gt;</span>
+     <span class="nt">&lt;nomeTitularCartaoCredito&gt;</span>teste superpay<span class="nt">&lt;/nomeTitularCartaoCredito&gt;</span>
+     <span class="nt">&lt;numeroCartaoCredito&gt;</span>4444333322221111<span class="nt">&lt;/numeroCartaoCredito&gt;</span>
+     <span class="nt">&lt;codigoSeguranca&gt;</span>123<span class="nt">&lt;/codigoSeguranca&gt;</span>
+     <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+     <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
+     <span class="nt">&lt;/transacao&gt;</span>
+     <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+     <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+    <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
+  <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
 </code></pre>
 <blockquote>
 <p>Exemplo retorno transação:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>&lt;soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
-   &lt;soap:body&gt;
-      &lt;ns2:pagamentoTransacaoCompletaResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/"&gt;
-         &lt;return&gt;
-            &lt;autorizacao&gt;123456&lt;/autorizacao&gt;
-            &lt;codigoEstabelecimento&gt;1000000000000&lt;/codigoEstabelecimento&gt;
-            &lt;codigoFormaPagamento&gt;170&lt;/codigoFormaPagamento&gt;
-            &lt;codigoTransacaoOperadora&gt;0&lt;/codigoTransacaoOperadora&gt;
-            &lt;dataAprovacaoOperadora&gt;24/05/2017&lt;/dataAprovacaOperadora&gt;
-            &lt;mensagemVenda&gt;Transacao capturada com sucesso&lt;/mensagemVenda&gt;
-            &lt;numeroComprovanteVenda&gt;1006993069181F841001&lt;/numeroComprovanteVenda&gt;
-            &lt;numeroTransacao&gt;1&lt;/numeroTransacao&gt;
-            &lt;parcelas&gt;1&lt;/parcelas&gt;
-            &lt;statusTransacao&gt;1&lt;/statusTransacao&gt;
-            &lt;taxaEmbarque&gt;0&lt;/taxaEmbarque&gt;
-            &lt;urlPagamento&gt;14132971582229c00506d-e84d-4526-b902-92190d5aa808&lt;urlpagamento&gt;&lt;/urlpagamento&gt;
-            &lt;valor&gt;200&lt;/valor&gt;
-            &lt;valorDesconto&gt;0&lt;/valorDesconto&gt;
-         &lt;/return&gt;
-      &lt;/ns2:pagamentoTransacaoCompletaResponse&gt;
-   &lt;/soap:body&gt;
-&lt;/soap:envelope&gt;
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="err">&lt;soap</span><span class="p">:</span><span class="err">envelope</span><span class="w"> </span><span class="err">xmlns</span><span class="p">:</span><span class="err">soap=</span><span class="s2">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="err">&gt;</span><span class="w">
+   </span><span class="err">&lt;soap</span><span class="p">:</span><span class="err">body&gt;</span><span class="w">
+      </span><span class="err">&lt;ns</span><span class="mi">2</span><span class="p">:</span><span class="err">pagamentoTransacaoCompletaResponse</span><span class="w"> </span><span class="err">xmlns</span><span class="p">:</span><span class="err">ns</span><span class="mi">2</span><span class="err">=</span><span class="s2">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="err">&gt;</span><span class="w">
+         </span><span class="err">&lt;return&gt;</span><span class="w">
+            </span><span class="err">&lt;autorizacao&gt;</span><span class="mi">123456</span><span class="err">&lt;/autorizacao&gt;</span><span class="w">
+            </span><span class="err">&lt;codigoEstabelecimento&gt;</span><span class="mi">1000000000000</span><span class="err">&lt;/codigoEstabelecimento&gt;</span><span class="w">
+            </span><span class="err">&lt;codigoFormaPagamento&gt;</span><span class="mi">170</span><span class="err">&lt;/codigoFormaPagamento&gt;</span><span class="w">
+            </span><span class="err">&lt;codigoTransacaoOperadora&gt;</span><span class="mi">0</span><span class="err">&lt;/codigoTransacaoOperadora&gt;</span><span class="w">
+            </span><span class="err">&lt;dataAprovacaoOperadora&gt;</span><span class="mi">24</span><span class="err">/</span><span class="mi">05</span><span class="err">/</span><span class="mi">2017</span><span class="err">&lt;/dataAprovacaOperadora&gt;</span><span class="w">
+            </span><span class="err">&lt;mensagemVenda&gt;Transacao</span><span class="w"> </span><span class="err">capturada</span><span class="w"> </span><span class="err">com</span><span class="w"> </span><span class="err">sucesso&lt;/mensagemVenda&gt;</span><span class="w">
+            </span><span class="err">&lt;numeroComprovanteVenda&gt;</span><span class="mi">1006993069181</span><span class="err">F</span><span class="mi">841001</span><span class="err">&lt;/numeroComprovanteVenda&gt;</span><span class="w">
+            </span><span class="err">&lt;numeroTransacao&gt;</span><span class="mi">1</span><span class="err">&lt;/numeroTransacao&gt;</span><span class="w">
+            </span><span class="err">&lt;parcelas&gt;</span><span class="mi">1</span><span class="err">&lt;/parcelas&gt;</span><span class="w">
+            </span><span class="err">&lt;statusTransacao&gt;</span><span class="mi">1</span><span class="err">&lt;/statusTransacao&gt;</span><span class="w">
+            </span><span class="err">&lt;taxaEmbarque&gt;</span><span class="mi">0</span><span class="err">&lt;/taxaEmbarque&gt;</span><span class="w">
+            </span><span class="err">&lt;urlPagamento&gt;</span><span class="mi">14132971582229</span><span class="err">c</span><span class="mi">00506</span><span class="err">d-e</span><span class="mi">84</span><span class="err">d</span><span class="mi">-4526</span><span class="err">-b</span><span class="mi">902-92190</span><span class="err">d</span><span class="mi">5</span><span class="err">aa</span><span class="mi">808</span><span class="err">&lt;urlpagamento&gt;&lt;/urlpagamento&gt;</span><span class="w">
+            </span><span class="err">&lt;valor&gt;</span><span class="mi">200</span><span class="err">&lt;/valor&gt;</span><span class="w">
+            </span><span class="err">&lt;valorDesconto&gt;</span><span class="mi">0</span><span class="err">&lt;/valorDesconto&gt;</span><span class="w">
+         </span><span class="err">&lt;/return&gt;</span><span class="w">
+      </span><span class="err">&lt;/ns</span><span class="mi">2</span><span class="p">:</span><span class="err">pagamentoTransacaoCompletaResponse&gt;</span><span class="w">
+   </span><span class="err">&lt;/soap</span><span class="p">:</span><span class="err">body&gt;</span><span class="w">
+</span><span class="err">&lt;/soap</span><span class="p">:</span><span class="err">envelope&gt;</span><span class="w">
+</span></code></pre>
 <p>Estrutura e exemplo de uma transação simples para cartão de crédito. As funcionalidades, como Análise de Fraude, Recorrência, OneClick e demais formas de pagamento precisam de uma estrutura mais completa para um perfeito funcionamento. Consulte as demais estruturas e exemplos desta documentação.</p>
 
 <p>REQUISIÇÃO</p>
@@ -651,107 +637,107 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 <blockquote>
 <p>Exemplo criação transação:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>&lt;soapenv:envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/"&gt;
-   &lt;soapenv:header&gt;&lt;/soapenv:header&gt;
-   &lt;soapenv:body&gt;
-      &lt;pag:pagamentoTransacaoCompleta&gt;
-         &lt;transacao&gt;
-            &lt;campoLivre1&gt;&lt;/campoLivre1&gt;
-            &lt;campoLivre2&gt;&lt;/campoLivre2&gt;
-            &lt;campoLivre3&gt;&lt;/campoLivre3&gt;
-            &lt;campoLivre4&gt;&lt;/campoLivre4&gt;
-            &lt;campoLivre5&gt;&lt;/campoLivre5&gt;
-            &lt;codigoEstabelecimento&gt;1000000000000&lt;/codigoEstabelecimento&gt;
-            &lt;codigoFormaPagamento&gt;170&lt;/codigoFormaPagamento&gt;
-            &lt;codigoSeguranca&gt;123&lt;/codigoSeguranca&gt;
-            &lt;dadosUsuarioTransacao&gt;
-               &lt;bairroEnderecoComprador&gt;Vila&lt;/bairroEnderecoComprador&gt;
-               &lt;bairroEnderecoEntrega&gt;centro&lt;/bairroEnderecoEntrega&gt;
-               &lt;cepEnderecoComprador&gt;05707001&lt;/cepEnderecoComprador&gt;
-               &lt;cepEnderecoEntrega&gt;05707001&lt;/cepEnderecoEntrega&gt;
-               &lt;cidadeEnderecoComprador&gt;Sao Paulo&lt;/cidadeEnderecoComprador&gt;
-               &lt;cidadeEnderecoEntrega&gt;Sao Paulo&lt;/cidadeEnderecoEntrega&gt;
-               &lt;codigoCliente&gt;1&lt;/codigoCliente&gt;
-               &lt;codigoTipoTelefoneComprador&gt;1&lt;/codigoTipoTelefoneComprador&gt;
-               &lt;codigoTipoTelefoneEntrega&gt;1&lt;/codigoTipoTelefoneEntrega&gt;
-               &lt;complementoEndereCocomprador&gt;&lt;/complementoEnderecoComprador&gt;
-               &lt;complementoEnderecoEntrega&gt;&lt;/complementoEnderecoEntrega&gt;
-               &lt;dataNascimentoComprador&gt;10/01/1980&lt;/dataNascimentoComprador&gt;
-               &lt;dddComprador&gt;11&lt;/dddComprador&gt;
-               &lt;dddEntrega&gt;11&lt;/dddEntrega&gt;
-               &lt;ddiComprador&gt;55&lt;/ddiComprador&gt;
-               &lt;ddiEntrega&gt;55&lt;/ddiEntrega&gt;
-               &lt;documento2Comprador&gt;&lt;/documento2Comprador&gt;
-               &lt;documentoComprador&gt;12345678919&lt;/documentoComprador&gt;
-               &lt;emailComprador&gt;superpay@superpay.com.br&lt;/emailComprador&gt;
-               &lt;enderecoComprador&gt;Rua do Comprador&lt;/enderecoComprador&gt;
-               &lt;enderecoEntrega&gt;Rua do Comprador&lt;/enderecoEntrega&gt;
-               &lt;estadoEnderecoComprador&gt;SP&lt;/estadoEnderecoComprador&gt;
-               &lt;estadoEnderecoEntrega&gt;SP&lt;/estadoEnderecoEntrega&gt;
-               &lt;nomeComprador&gt;Testes de integracao Cartão&lt;/nomeComprador&gt;
-               &lt;numeroEnderecoComprador&gt;123&lt;/numeroEnderecoComprador&gt;
-               &lt;numeroEnderecoEntrega&gt;123&lt;/numeroEnderecoEntrega&gt;
-               &lt;paisComprador&gt;BR&lt;/paisComprador&gt;
-               &lt;paisEntrega&gt;BR&lt;/paisEntrega&gt;
-               &lt;sexoComprador&gt;M&lt;/sexoComprador&gt;
-               &lt;telefoneComprador&gt;1234123123&lt;/telefoneComprador&gt;
-               &lt;telefoneEntrega&gt;1234123123&lt;/telefoneEntrega&gt;
-               &lt;tipoCliente&gt;1&lt;/tipoCliente&gt;
-            &lt;/dadosUsuarioTransacao&gt;
-           &lt;dataDalidadeCartao&gt;10/2017&lt;/dataValidadeCartao&gt;
-            &lt;IP&gt;10.100.1.12&lt;/IP&gt;
-            &lt;idioma&gt;1&lt;/idioma&gt;
-            &lt;itensDoPedido&gt;
-               &lt;codigoCategoria&gt;1&lt;/codigoCategoria&gt;
-               &lt;codigoProduto&gt;1&lt;/codigoProduto&gt;
-               &lt;nomeCategoria&gt;Roupa&lt;/nomeCategoria&gt;
-               &lt;nomeProduto&gt;Camiseta&lt;/nomeProduto&gt;
-               &lt;quantidaDeProduto&gt;1&lt;/quantidaDeProduto&gt;
-               &lt;valorUnitarioProduto&gt;200&lt;/valorUnitarioProduto&gt;
-            &lt;/itensDoPedido&gt;
-            &lt;nomeTitularCartaoCredito&gt;Teste Integracao&lt;/nomeTitularCartaoCredito&gt;
-            &lt;numeroCartaoCredito&gt;4444333322221111&lt;/numeroCartaoCredito&gt;
-            &lt;numeroTransacao&gt;1&lt;/numeroTransacao&gt;
-            &lt;origemTransacao&gt;1&lt;/origemTransacao&gt;
-            &lt;parcelas&gt;1&lt;/parcelas&gt;
-            &lt;taxaEmbarque&gt;0&lt;/taxaEmbarque&gt;
-            &lt;urlCampainha&gt;http://www.sualoja.campainha.com.br&lt;/urlCampainha&gt;
-            &lt;urlRedirecionamentoNaoPago&gt;http://www.google.com.br&lt;/urlRedirecionamentoNaoPago&gt;
-            &lt;urlRedirecionamentoPago&gt;http://www.google.com.br&lt;/urlRedirecionamentoPago&gt;
-            &lt;valor&gt;200&lt;/valor&gt;
-            &lt;valorDesconto&gt;0&lt;/valorDesconto&gt;
-         &lt;/transacao&gt;
-         &lt;usuario&gt;superpay&lt;/usuario&gt;
-         &lt;senha&gt;superpay&lt;/senha&gt;
-      &lt;/pag:pagamentoTransacaoCompleta&gt;
-   &lt;/soapenv:body&gt;
-&lt;/soapenv:envelope&gt;
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:header&gt;&lt;/soapenv:header&gt;</span>
+   <span class="nt">&lt;soapenv:body&gt;</span>
+      <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
+         <span class="nt">&lt;transacao&gt;</span>
+            <span class="nt">&lt;campoLivre1&gt;&lt;/campoLivre1&gt;</span>
+            <span class="nt">&lt;campoLivre2&gt;&lt;/campoLivre2&gt;</span>
+            <span class="nt">&lt;campoLivre3&gt;&lt;/campoLivre3&gt;</span>
+            <span class="nt">&lt;campoLivre4&gt;&lt;/campoLivre4&gt;</span>
+            <span class="nt">&lt;campoLivre5&gt;&lt;/campoLivre5&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>170<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;codigoSeguranca&gt;</span>123<span class="nt">&lt;/codigoSeguranca&gt;</span>
+            <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+               <span class="nt">&lt;bairroEnderecoComprador&gt;</span>Vila<span class="nt">&lt;/bairroEnderecoComprador&gt;</span>
+               <span class="nt">&lt;bairroEnderecoEntrega&gt;</span>centro<span class="nt">&lt;/bairroEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;cepEnderecoComprador&gt;</span>05707001<span class="nt">&lt;/cepEnderecoComprador&gt;</span>
+               <span class="nt">&lt;cepEnderecoEntrega&gt;</span>05707001<span class="nt">&lt;/cepEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;cidadeEnderecoComprador&gt;</span>Sao Paulo<span class="nt">&lt;/cidadeEnderecoComprador&gt;</span>
+               <span class="nt">&lt;cidadeEnderecoEntrega&gt;</span>Sao Paulo<span class="nt">&lt;/cidadeEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;codigoCliente&gt;</span>1<span class="nt">&lt;/codigoCliente&gt;</span>
+               <span class="nt">&lt;codigoTipoTelefoneComprador&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneComprador&gt;</span>
+               <span class="nt">&lt;codigoTipoTelefoneEntrega&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneEntrega&gt;</span>
+               <span class="nt">&lt;complementoEndereCocomprador&gt;&lt;/complementoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;complementoEnderecoEntrega&gt;&lt;/complementoEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;dataNascimentoComprador&gt;</span>10/01/1980<span class="nt">&lt;/dataNascimentoComprador&gt;</span>
+               <span class="nt">&lt;dddComprador&gt;</span>11<span class="nt">&lt;/dddComprador&gt;</span>
+               <span class="nt">&lt;dddEntrega&gt;</span>11<span class="nt">&lt;/dddEntrega&gt;</span>
+               <span class="nt">&lt;ddiComprador&gt;</span>55<span class="nt">&lt;/ddiComprador&gt;</span>
+               <span class="nt">&lt;ddiEntrega&gt;</span>55<span class="nt">&lt;/ddiEntrega&gt;</span>
+               <span class="nt">&lt;documento2Comprador&gt;&lt;/documento2Comprador&gt;</span>
+               <span class="nt">&lt;documentoComprador&gt;</span>12345678919<span class="nt">&lt;/documentoComprador&gt;</span>
+               <span class="nt">&lt;emailComprador&gt;</span>superpay@superpay.com.br<span class="nt">&lt;/emailComprador&gt;</span>
+               <span class="nt">&lt;enderecoComprador&gt;</span>Rua do Comprador<span class="nt">&lt;/enderecoComprador&gt;</span>
+               <span class="nt">&lt;enderecoEntrega&gt;</span>Rua do Comprador<span class="nt">&lt;/enderecoEntrega&gt;</span>
+               <span class="nt">&lt;estadoEnderecoComprador&gt;</span>SP<span class="nt">&lt;/estadoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;estadoEnderecoEntrega&gt;</span>SP<span class="nt">&lt;/estadoEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;nomeComprador&gt;</span>Testes de integracao Cartão<span class="nt">&lt;/nomeComprador&gt;</span>
+               <span class="nt">&lt;numeroEnderecoComprador&gt;</span>123<span class="nt">&lt;/numeroEnderecoComprador&gt;</span>
+               <span class="nt">&lt;numeroEnderecoEntrega&gt;</span>123<span class="nt">&lt;/numeroEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;paisComprador&gt;</span>BR<span class="nt">&lt;/paisComprador&gt;</span>
+               <span class="nt">&lt;paisEntrega&gt;</span>BR<span class="nt">&lt;/paisEntrega&gt;</span>
+               <span class="nt">&lt;sexoComprador&gt;</span>M<span class="nt">&lt;/sexoComprador&gt;</span>
+               <span class="nt">&lt;telefoneComprador&gt;</span>1234123123<span class="nt">&lt;/telefoneComprador&gt;</span>
+               <span class="nt">&lt;telefoneEntrega&gt;</span>1234123123<span class="nt">&lt;/telefoneEntrega&gt;</span>
+               <span class="nt">&lt;tipoCliente&gt;</span>1<span class="nt">&lt;/tipoCliente&gt;</span>
+            <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+           <span class="nt">&lt;dataDalidadeCartao&gt;</span>10/2017<span class="nt">&lt;/dataValidadeCartao&gt;</span>
+            <span class="nt">&lt;IP&gt;</span>10.100.1.12<span class="nt">&lt;/IP&gt;</span>
+            <span class="nt">&lt;idioma&gt;</span>1<span class="nt">&lt;/idioma&gt;</span>
+            <span class="nt">&lt;itensDoPedido&gt;</span>
+               <span class="nt">&lt;codigoCategoria&gt;</span>1<span class="nt">&lt;/codigoCategoria&gt;</span>
+               <span class="nt">&lt;codigoProduto&gt;</span>1<span class="nt">&lt;/codigoProduto&gt;</span>
+               <span class="nt">&lt;nomeCategoria&gt;</span>Roupa<span class="nt">&lt;/nomeCategoria&gt;</span>
+               <span class="nt">&lt;nomeProduto&gt;</span>Camiseta<span class="nt">&lt;/nomeProduto&gt;</span>
+               <span class="nt">&lt;quantidaDeProduto&gt;</span>1<span class="nt">&lt;/quantidaDeProduto&gt;</span>
+               <span class="nt">&lt;valorUnitarioProduto&gt;</span>200<span class="nt">&lt;/valorUnitarioProduto&gt;</span>
+            <span class="nt">&lt;/itensDoPedido&gt;</span>
+            <span class="nt">&lt;nomeTitularCartaoCredito&gt;</span>Teste Integracao<span class="nt">&lt;/nomeTitularCartaoCredito&gt;</span>
+            <span class="nt">&lt;numeroCartaoCredito&gt;</span>4444333322221111<span class="nt">&lt;/numeroCartaoCredito&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;origemTransacao&gt;</span>1<span class="nt">&lt;/origemTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlCampainha&gt;</span>http://www.sualoja.campainha.com.br<span class="nt">&lt;/urlCampainha&gt;</span>
+            <span class="nt">&lt;urlRedirecionamentoNaoPago&gt;</span>http://www.google.com.br<span class="nt">&lt;/urlRedirecionamentoNaoPago&gt;</span>
+            <span class="nt">&lt;urlRedirecionamentoPago&gt;</span>http://www.google.com.br<span class="nt">&lt;/urlRedirecionamentoPago&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/transacao&gt;</span>
+         <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+         <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+      <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
+   <span class="nt">&lt;/soapenv:body&gt;</span>
+<span class="nt">&lt;/soapenv:envelope&gt;</span>
 </code></pre>
 <blockquote>
 <p>Exemplo retorno transação:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>&lt;soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
-   &lt;soap:body&gt;
-      &lt;ns2:pagamentoTransacaoCompletaResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/"&gt;
-         &lt;return&gt;
-            &lt;autorizacao&gt;123456&lt;/autorizacao&gt;
-            &lt;codigoEstabelecimento&gt;1000000000000&lt;/codigoEstabelecimento&gt;
-            &lt;codigoFormaPagamento&gt;170&lt;/codigoFormaPagamento&gt;
-            &lt;codigoTransacaoOperadora&gt;0&lt;/codigoTransacaoOperadora&gt;
-            &lt;dataAprovacaoOperadora&gt;24/05/2017&lt;/dataAprovacaOperadora&gt;
-            &lt;mensagemVenda&gt;Transacao autorizada&lt;/mensagemVenda&gt;
-            &lt;numeroComprovanteVenda&gt;1006993069181F841001&lt;/numeroComprovanteVenda&gt;
-            &lt;numeroTransacao&gt;1&lt;/numeroTransacao&gt;
-            &lt;parcelas&gt;1&lt;/parcelas&gt;
-            &lt;statusTransacao&gt;15&lt;/statusTransacao&gt;
-            &lt;taxaEmbarque&gt;0&lt;/taxaEmbarque&gt;
-            &lt;urlPagamento&gt;14132971582229c00506d-e84d-4526-b902-92190d5aa808&lt;urlpagamento&gt;&lt;/urlpagamento&gt;
-            &lt;valor&gt;200&lt;/valor&gt;
-            &lt;valorDesconto&gt;0&lt;/valorDesconto&gt;
-         &lt;/return&gt;
-      &lt;/ns2:pagamentoTransacaoCompletaResponse&gt;
-   &lt;/soap:body&gt;
-&lt;/soap:envelope&gt;
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;</span>123456<span class="nt">&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>170<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;</span>24/05/2017<span class="nt">&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;</span>Transacao autorizada<span class="nt">&lt;/mensagemVenda&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;</span>1006993069181F841001<span class="nt">&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>15<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>14132971582229c00506d-e84d-4526-b902-92190d5aa808<span class="nt">&lt;urlpagamento&gt;&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
 </code></pre>
 <p>A utilização desta estrutura é indicada para envio de pedidos com a forma de pagamento cartão de crédito, onde o estabelecimento possui contratação de umas das empresas de análise de risco integradas pelo SuperPay, sendo elas ClearSale (modalidades: Total/Total Garantido, Application, ID e Start) e FControl (modalidade Fila).</p>
 
@@ -1132,21 +1118,98 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 <td>Até 10 caracteres</td>
 <td>Não</td>
 </tr>
+<tr>
+<td>bairroEnderecoEntrega</td>
+<td>Bairro do logradouro de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>complementoEnderecoEntrega</td>
+<td>Complemento do endereço de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>cidadeEnderecoEntrega</td>
+<td>Cidade de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>estadoEnderecoEntrega</td>
+<td>Estado de entrega</td>
+<td>Alfa Numérico</td>
+<td>2 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>cepEnderecoEntrega</td>
+<td>CEP de entrega. Enviar sem traços ou espaços</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>telefoneEntrega</td>
+<td>Telefone de entrega. Sem espaços ou traços</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>dddEntrega</td>
+<td>DDD do telefone de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 3 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>ddiEntrega</td>
+<td>DDI do telefone de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 3 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>codigoTipoTelefoneEntrega</td>
+<td>1 - Outros 2 - Residencial 3 - Comercial</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>telefoneAdicionalEntrega</td>
+<td>Telefone adicional de entrega. Sem espaços ou traços</td>
+<td>Alfa Numérico</td>
+<td>Até 3 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>dddAdicionalEntrega</td>
+<td>DDD do telefone adicional de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 3 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>ddiAdicionalEntrega</td>
+<td>DDI do telefone adicional de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 3 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>codigoTipoTelefoneAdicionalEntrega</td>
+<td>1 - Outros 2 - Residencial 3 - Comercial</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+<td>Sim</td>
+</tr>
 </tbody></table>
-
-<p>bairroEnderecoEntrega   Bairro do logradouro de entrega Alfa Numérico  Até 50 caracteres  Não
-complementoEnderecoEntrega| Complemento do endereço de entrega|    Alfa Numérico  |Até 50 caracteres|    Não
-cidadeEnderecoEntrega|  Cidade de entrega|  Alfa Numérico| Até 50 caracteres| Não
-estadoEnderecoEntrega|  Estado de entrega|  Alfa Numérico| 2 caracteres|   Não
-cepEnderecoEntrega| CEP de entrega. Enviar sem traços ou espaços| Alfa Numérico| Até 10 caracteres| Não
-telefoneEntrega|    Telefone de entrega. Sem espaços ou traços|   Alfa Numérico| Até 10 caracteres| Não
-dddEntrega| DDD do telefone de entrega| Alfa Numérico| Até 3 caracteres|  Não
-ddiEntrega| DDI do telefone de entrega| Alfa Numérico| Até 3 caracteres|  Não
-codigoTipoTelefoneEntrega|  1 - Outros 2 - Residencial 3 - Comercial |  Numérico|  1 dígito|  Sim
-telefoneAdicionalEntrega|   Telefone adicional de entrega. Sem espaços ou traços| Alfa Numérico| Até 3 caracteres|  Não
-dddAdicionalEntrega|    DDD do telefone adicional de entrega    |Alfa Numérico |Até 3 caracteres| Não
-ddiAdicionalEntrega|    DDI do telefone adicional de entrega|   Alfa Numérico  |Até 3 caracteres| Não
-codigoTipoTelefoneAdicionalEntrega| 1 - Outros 2 - Residencial 3 - Comercial |  Numérico|  1 dígito|  Sim</p>
 
 <p>itemPedidoTransacaoWS</p>
 
@@ -1298,179 +1361,16 @@ codigoTipoTelefoneAdicionalEntrega| 1 - Outros 2 - Residencial 3 - Comercial |  
 <td>Até 50 dígitos</td>
 </tr>
 </tbody></table>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight plaintext"><code>require 'kittn'
+<h2 id='criando-uma-transacao-com-multiplos-cartoes'>Criando uma transação com múltiplos cartões</h2>
+<p>Esta estrutura permite o envio de dois ou mais cartões em uma mesma requisição, permitindo ao consumidor dividir o valor total da venda entre os seus cartões de crédito.</p>
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-</code></pre><pre class="highlight plaintext"><code>import kittn
+<p><strong>Particulariedades</strong></p>
 
-api = kittn.authorize('meowmeowmeow')
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
+<ul>
+<li>Disponível apenas no plano Corporativo;</li>
+<li>Disponível apenas para cartões de crédito modalidade WebService;</li>
+<li>Não disponível no fluxo de Antifraude.</li>
+</ul>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
 
@@ -1531,8 +1431,8 @@ Remember — a happy kitten is an authenticated kitten!
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="request">request</a>
-                <a href="#" data-language-name="response">response</a>
+                <a href="#" data-language-name="xml">xml</a>
+                <a href="#" data-language-name="json">json</a>
           </div>
       </div>
     </div>
