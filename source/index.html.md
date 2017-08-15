@@ -415,13 +415,13 @@ mensagemVenda | Mensagem de retorno da operadora |Alfa Numérico | Até 50 dígi
 
 > To authorize, use this code:
 
-```ruby
+```request
 require 'kittn'
 
 api = Kittn::APIClient.authorize!('meowmeowmeow')
 ```
 
-```python
+```response
 import kittn
 
 api = kittn.authorize('meowmeowmeow')
