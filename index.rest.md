@@ -52,13 +52,14 @@ Para autenticação conosco, é preciso enviar o usuário e senha WS de seu esta
 
 # EndPoint
 ## Sandbox
-`https://homologacao.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl`
+
 
 
 # Pagamentos com cartão de crédito
 
 Abaixo URL dos ambientes:
 
+Endpoint Sandbox: `https://homologacao.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl`
 
 Endpoint Produção: `https://superpay2.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl`
 
