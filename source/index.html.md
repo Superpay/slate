@@ -9,9 +9,6 @@ toc_footers:
   - <a href='#'>Documentação API SuperPay</a>
 
 
-includes:
-  - errors
-
 search: true
 ---
 # Bem vindo ao SuperPay
@@ -42,9 +39,9 @@ Ao ser finalizado o pagamento dentro da loja, o Ecommerce deverá consumir os se
 # Credencias de acesso
 ## Sandbox
 O SuperPay disponibiliza um ambiente totalmente gratuito para sua equipe de desenvolvimento realizar testes. Basta solicitar seu ambiente para nossa equipe comercial através do email [comercial@superpay.com.br] com as seguintes informações:
-  * Nome da Loja;
-  * CNPJ;
-  * Email para criação do cadastro.
+* Nome da Loja;
+* CNPJ;
+* Email para criação do cadastro.
 
   
 ## Produção
@@ -56,6 +53,8 @@ Para autenticação conosco, é preciso enviar o usuário e senha WS de seu esta
 
 
 # Pagamentos com cartão de crédito - SOAP
+
+Abaixo URL dos ambientes:
 
 Endpoint Sandbox: `https://homologacao.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl`
 
@@ -94,7 +93,7 @@ Endpoint Produção: `https://superpay2.superpay.com.br/checkout/servicosPagamen
 
 > Exemplo retorno transação:
 
-```json
+```xml
 <soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
    <soap:body>
       <ns2:pagamentoTransacaoCompletaResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
@@ -123,7 +122,7 @@ Estrutura e exemplo de uma transação simples para cartão de crédito. As func
 
 
 
-REQUISIÇÃO
+**REQUISIÇÃO**
 
 <aside class="notice">
 Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</code>
@@ -134,7 +133,7 @@ Campo | Descrição
 usuario | Login do estabelecimento
 senha | Senha do estabelecimento
 
-TransacaoCompletaWS
+*transacaoCompletaWS*
 
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
@@ -152,7 +151,7 @@ urlRedirecionamentoPago | Para o modelo de pagamento redirect, O SuperPay redire
 urlRedirecionamentoPago | Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação negada | Alfa Numérico | Até 250 caracteres | Para pagamentos redirecionáveis é obrigatório
 dadosUsuarioTransacao | Array dados do comprador | - | - | -
 
-DadosUsuarioTransacao
+*dadosUsuarioTransacao*
 
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
@@ -162,7 +161,7 @@ documentoComprador | Documento principal do comprado| Alfa Numérico | 30 caract
 
 
 
-RESPOSTA
+**RESPOSTA**
 
 
 Campo | Descrição | Tipo | Tamanho 
@@ -176,11 +175,11 @@ taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Para o modelo redirect. Essa será a URL de redirecionamento da operação |Alfa Numérico | Até 500 caracteres 
 statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
-autorizacao | Código de autorização da operadora/intermediário financeiro | Numérico | Até 20 dígitos
-codigoTransacaoOperadora | Código da transação na operadora/intermediário financeiro | Numérico | Até 20 dígitos
-dataAprovacaoOperadora | Data de aprovação na operadora |Alfa Numérico | Até 10 dígitos
+autorizacao | Código de autorização da adquirente/intermediário financeiro | Numérico | Até 20 dígitos
+codigoTransacaoOperadora | Código da transação na adquirente/intermediário financeiro | Numérico | Até 20 dígitos
+dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | Até 10 dígitos
 numeroComprovanteVenda | Número do comprovante de venda |Alfa Numérico | Até 20 dígitos
-mensagemVenda | Mensagem de retorno da operadora |Alfa Numérico | Até 50 dígitos
+mensagemVenda | Mensagem de retorno da adquirente |Alfa Numérico | Até 50 dígitos
 
 
 ## Criando uma transação com Análise de Fraude
@@ -297,7 +296,7 @@ A utilização desta estrutura é indicada para envio de pedidos com a forma de 
 <aside class="warning">Contratação a parte com as empresas ClearSale e FControl</aside>
 
 
-REQUISIÇÃO
+**REQUISIÇÃO**
 
 <aside class="notice">
 Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</code>
@@ -309,7 +308,7 @@ usuario | Login do estabelecimento
 senha | Senha do estabelecimento
 
 
-TransacaoCompletaWS
+*transacaoCompletaWS*
 
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
@@ -336,7 +335,7 @@ campoLivre5 |	Campo Livre 5 |	Alfa Numérico |	Até 16 caracteres| Não
 dadosUsuarioTransacao | Array dados do comprador | - | - | -
 itensDoPedido | Lista itens do pedido | - | - | -
 
-dadosUsuarioTransacao
+*dadosUsuarioTransacao*
 
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
@@ -379,7 +378,7 @@ dddAdicionalEntrega|	DDD do telefone adicional de entrega	|Alfa Numérico	|Até 
 ddiAdicionalEntrega|	DDI do telefone adicional de entrega|	Alfa Numérico	|Até 3 caracteres|	Não
 codigoTipoTelefoneAdicionalEntrega|	1 - Outros 2 - Residencial 3 - Comercial |	Numérico|	1 dígito|	Sim
 
-itemPedidoTransacaoWS
+*itemPedidoTransacaoWS*
 
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
@@ -391,7 +390,7 @@ valorUnitarioProduto|	Valor unitário do produto. Deve ser enviado sem pontos ou
 nomeCategoria|	Nome da categoria do produto	|Alfa Numérico|	100 caracteres|	Sim
 
 
-RESPOSTA
+**RESPOSTA**
 
 Campo | Descrição | Tipo | Tamanho 
 ------| ----------|------| --------
@@ -404,14 +403,15 @@ taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Para o modelo redirect. Essa será a URL de redirecionamento da operação |Alfa Numérico | Até 500 caracteres 
 statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
-autorizacao | Código de autorização da operadora/intermediário financeiro | Numérico | Até 20 dígitos
-codigoTransacaoOperadora | Código da transação na operadora/intermediário financeiro | Numérico | Até 20 dígitos
-dataAprovacaoOperadora | Data de aprovação na operadora |Alfa Numérico | Até 10 dígitos
+autorizacao | Código de autorização da adquirente | Numérico | Até 20 dígitos
+codigoTransacaoOperadora | Código da transação na adquirente | Numérico | Até 20 dígitos
+dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | Até 10 dígitos
 numeroComprovanteVenda | Número do comprovante de venda |Alfa Numérico | Até 20 dígitos
-mensagemVenda | Mensagem de retorno da operadora |Alfa Numérico | Até 50 dígitos
+mensagemVenda | Mensagem de retorno da adquirente |Alfa Numérico | Até 50 dígitos
 
 ## Criando uma transação com múltiplos cartões
 Esta estrutura permite o envio de dois ou mais cartões em uma mesma requisição, permitindo ao consumidor dividir o valor total da venda entre os seus cartões de crédito.
+A venda só será finalizada com sucesso, se todos os cartões forem aprovados.
 
 **Particulariedades**
 
@@ -419,4 +419,149 @@ Esta estrutura permite o envio de dois ou mais cartões em uma mesma requisiçã
 * Disponível apenas para cartões de crédito modalidade WebService;
 * Não disponível no fluxo de Antifraude.
 
+> Exemplo criação transação:
+
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
+ <soapenv:Header/>
+  <soapenv:Body>
+   <pag:pagamentoTransacaoCompletaMaisCartoesCredito>
+     <transacao>
+       <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
+       <!--enviar o array dadosCartoesCredito de acordo com a quantidade de cartões-->
+       <dadosCartoesCredito>
+         <codigoFormaPagamento>170</codigoFormaPagamento>
+         <codigoSeguranca>123</codigoSeguranca>
+         <dataValidadeCartao>12/2016</dataValidadeCartao>
+         <nomeTitularCartaoCredito>Teste</nomeTitularCartaoCredito>
+         <numeroCartaoCredito>4444333322221111</numeroCartaoCredito>
+         <parcelas>1</parcelas>
+         <valor>100</valor>
+       </dadosCartoesCredito>
+       <dadosCartoesCredito>
+         <codigoFormaPagamento>171</codigoFormaPagamento>
+         <codigoSeguranca>123</codigoSeguranca>
+         <dataValidadeCartao>12/2016</dataValidadeCartao>
+         <nomeTitularCartaoCredito>Teste</nomeTitularCartaoCredito>
+         <numeroCartaoCredito>4444333322221111</numeroCartaoCredito>
+         <parcelas>1</parcelas>
+         <valor>100</valor>
+       </dadosCartoesCredito>
+       <dadosUsuarioTransacao>
+         <documentoComprador>12312312312</documentoComprador>
+         <nomeComprador>Teste SuperPay</nomeComprador>
+       </dadosUsuarioTransacao>
+       <idioma>1</idioma>
+       <numeroTransacao>10</numeroTransacao>
+       <urlCampainha></urlCampainha>
+     </transacao>
+     <usuario>superpay</usuario>
+     <senha>superpay</senha>
+    </pag:pagamentoTransacaoCompletaMaisCartoesCredito>
+  </soapenv:Body>
+</soapenv:Envelope>
+```
+
+> Exemplo retorno transação:
+
+```xml
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <ns2:pagamentoTransacaoCompletaMaisCartoesCreditoResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
+         <return>
+            <codigoEstabelecimento>1318336765212</codigoEstabelecimento>
+            <detalhesFormaPagamentoMultiplosCartoes>
+               <autorizacao>123456</autorizacao>
+               <codigoFormaPagamento>170</codigoFormaPagamento>
+               <codigoTransacaoOperadora>0</codigoTransacaoOperadora>
+               <dataAprovacaoOperadora>24/05/2017</dataAprovacaoOperadora>
+               <mensagemVenda>Transação autorizada</mensagemVenda>
+               <numeroComprovanteVenda>10069930690009F2530A</numeroComprovanteVenda>
+               <parcelas>1</parcelas>
+               <taxaEmbarque>0</taxaEmbarque>
+               <valor>100</valor>
+               <valorDesconto>0</valorDesconto>
+            </detalhesFormaPagamentoMultiplosCartoes>
+            <detalhesFormaPagamentoMultiplosCartoes>
+               <autorizacao>0</autorizacao>
+               <codigoFormaPagamento>171</codigoFormaPagamento>
+               <codigoTransacaoOperadora>0</codigoTransacaoOperadora>
+               <dataAprovacaoOperadora>24/05/2017</dataAprovacaoOperadora>
+               <mensagemVenda>Transação autorizada</mensagemVenda>
+               <numeroComprovanteVenda>10069930690009F2531A</numeroComprovanteVenda>
+               <parcelas>1</parcelas>
+               <taxaEmbarque>0</taxaEmbarque>
+               <valor>200</valor>
+               <valorDesconto>0</valorDesconto>
+            </detalhesFormaPagamentoMultiplosCartoes>
+            <numeroTransacao>10</numeroTransacao>
+            <statusTransacao>1</statusTransacao>
+         </return>
+      </ns2:pagamentoTransacaoCompletaMaisCartoesCreditoResponse>
+   </soap:Body>
+</soap:Envelope>
+```
+
+**REQUISIÇÃO**
+
+Abaixo seguem os campos mínimos para finalizar com sucesso uma transação com Múltiplos Cartões.
+
+<aside class="notice">
+Para enviar a transação, acione o método <code>pagamentoTransacaoCompletaMaisCartoesCredito</code>
+</aside>
+
+Campo | Descrição 
+------| ----------
+usuario | Login do estabelecimento
+senha | Senha do estabelecimento
+
+*transacaoCompletaWS*
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos | Sim
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
+urlCampainha | URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha | Alfa Numérico | Até 250 caracteres | Não
+idioma | 1 - Português 2 - Inglês 3 - Espanhol | Numérico | 1 dígito | Sim
+dadosUsuarioTransacao | Array dados do comprador | - | - | -
+dadosCartoesCredito | Lista com informações dos cartões de créditos | - | - | -
+
+*dadosUsuarioTransacao*
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+nomeComprador | Nome do comprador| Alfa Numérico | Até 100 caracteres | Não
+documentoComprador | Documento principal do comprado| Alfa Numérico | 30 caracteres | Não
+
+*dadosCartaoCredito*
+O array com os dados abaixo devem ser repetidos de acordo com a qauntidade de cartão a ser enviada.
+
+codigoFormaPagamento |	Código da forma de pagamento |	Numérico |  2 dígitos	| Sim
+valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas |	Numérico |	Até 10 dígitos | Sim
+parcelas |	Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento |Numérico |	Até 2 dígitos|	Sim
+nomeTitularCartaoCredito|	Nome do titular do cartão de crédito (Exatamente como escrito no cartão)|	Alfa Numérico|	Até 16 caracteres|	Sim
+numeroCartaoCredito|	Numero do cartão de crédito, sem espaços ou traços|	Numérico|	Até 22 caracteres|	Sim
+codigoSeguranca|	Código de segurança do cartão (campo não é armazenado pelo SuperPay)|	Numérico|	Até 4 caracteres|	Sim
+dataValidadeCartao|	Data de validade do cartão. Formato mm/yyyy|	Alfa Numérico|	7 caracteres|	Sim
+
+**RESPOSTA**
+
+Campo | Descrição | Tipo | Tamanho 
+------| ----------|------| --------
+numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay | Numérico | 13 dígitos
+statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+detalhesFormaPagamentoMultiplosCartoesWS|	Lista com informações dos cartões de créditos|-|-|-
+
+*detalhesFormaPagamentoMultiplosCartoesWS*
+
+valor|	Valor da transação|	Numérico	|Até 10 dígitos
+valorDesconto|	Valor do desconto da transação|	Numérico|	Até 10 dígitos
+taxaEmbarque|	Valor da taxa de embarque|	Numérico|	Até 10 dígitos
+parcelas|	Quantidade de parcelas da transação|	Numérico|	Até 2 dígitos
+autorizacao	|Código de autorização da adquirente|	Numérico|	Até 20 dígitos
+codigoTransacaoOperadora|	Código da transação na adquirente |	Numérico|	Até 20 dígitos
+dataAprovacaoOperadora|	Data de aprovação na adquirente|	Alfa Numérico	|Até 10 caracteres
+numeroComprovanteVenda	|Número do comprovante de venda	|Alfa Numérico|	Até 20 caracteres
+mensagemVenda|	Mensagem de retorno da adquirente|	Alfa Numérico|	Até 50 caracteres
 
