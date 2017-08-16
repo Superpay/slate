@@ -2,7 +2,7 @@
 title: API SuperPay
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - xml
+  - json
 
 toc_footers:
   - <a href='#'>Documentação API SuperPay</a>

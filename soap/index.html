@@ -1,0 +1,1746 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API SuperPay</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;xml&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logosp.png" class="logo" alt="Logosp" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="xml">xml</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc" class="toc-list-h1">
+          <li>
+            <a href="#bem-vindo-ao-superpay" class="toc-h1 toc-link" data-title="Bem vindo ao SuperPay">Bem vindo ao SuperPay</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#introducao" class="toc-h2 toc-link" data-title="Bem vindo ao SuperPay">Introdução</a>
+                  </li>
+                  <li>
+                    <a href="#glossario" class="toc-h2 toc-link" data-title="Bem vindo ao SuperPay">Glossário</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#fluxo-de-comunicacao" class="toc-h1 toc-link" data-title="Fluxo de Comunicação">Fluxo de Comunicação</a>
+          </li>
+          <li>
+            <a href="#credencias-de-acesso" class="toc-h1 toc-link" data-title="Credencias de acesso">Credencias de acesso</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#sandbox" class="toc-h2 toc-link" data-title="Credencias de acesso">Sandbox</a>
+                  </li>
+                  <li>
+                    <a href="#producao" class="toc-h2 toc-link" data-title="Credencias de acesso">Produção</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#autenticacao" class="toc-h1 toc-link" data-title="Autenticação">Autenticação</a>
+          </li>
+          <li>
+            <a href="#endpoint" class="toc-h1 toc-link" data-title="EndPoint">EndPoint</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#sandbox-2" class="toc-h2 toc-link" data-title="EndPoint">Sandbox</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#pagamentos-com-cartao-de-credito" class="toc-h1 toc-link" data-title="Pagamentos com cartão de crédito">Pagamentos com cartão de crédito</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#criando-uma-transacao-simplificada" class="toc-h2 toc-link" data-title="Pagamentos com cartão de crédito">Criando uma transação simplificada</a>
+                  </li>
+                  <li>
+                    <a href="#criando-uma-transacao-com-analise-de-fraude" class="toc-h2 toc-link" data-title="Pagamentos com cartão de crédito">Criando uma transação com Análise de Fraude</a>
+                  </li>
+                  <li>
+                    <a href="#criando-uma-transacao-com-multiplos-cartoes" class="toc-h2 toc-link" data-title="Pagamentos com cartão de crédito">Criando uma transação com múltiplos cartões</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#pagamentos-com-cartao-de-debito" class="toc-h1 toc-link" data-title="Pagamentos com cartão de débito">Pagamentos com cartão de débito</a>
+          </li>
+      </div>
+        <ul class="toc-footer">
+            <li><a href='#'>Documentação API SuperPay</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='bem-vindo-ao-superpay'>Bem vindo ao SuperPay</h1>
+<p>Tudo que você precisa para se integrar ao nosso Gateway.</p>
+<h2 id='introducao'>Introdução</h2>
+<p>Gateway de pagamento é uma solução tecnológica, que permite, facilmente, que quaisquer sistemas que possam se comunicar via WebService, realizem cobranças via boleto, cartão e transferências bancárias.
+Uma vez integrado ao SuperPay, seu sistema estará pronto para disponibilizar diversas Formas de Pagamento.</p>
+<h2 id='glossario'>Glossário</h2>
+<p>Principais termos utilizados no meio eCommerce:</p>
+
+<table><thead>
+<tr>
+<th>Termo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Autorização</td>
+<td>A etapa inicial do processo, onde a operadora financeira é acionada pelo SuperPay. Essa etapa verifica a condição de crédito do cliente, ou seja, verifica se o mesmo possui crédito suficiente para realizar a compra. Em caso positivo, aquele valor é sensibilizado no limite do cartão.</td>
+</tr>
+<tr>
+<td>Autenticação</td>
+<td>Processo onde o portador é encaminhado para a página do banco emissor, afim de assegurar que é o portador legítimo do cartão.</td>
+</tr>
+<tr>
+<td>Captura</td>
+<td>A confirmação da transação. Nesta etapa o SuperPay aciona a operadora financeira para confirmar uma transação previamente autorizada. Somente nessa etapa em que o cliente será realmente cobrado.</td>
+</tr>
+<tr>
+<td>Cancelamento</td>
+<td>Cancelamento de uma compra realizada com cartão.</td>
+</tr>
+<tr>
+<td>One Click</td>
+<td>Através desta funcionalidade é possível o cadastro dos cartões dos consumidores para serem utilizados em compras futuras.</td>
+</tr>
+<tr>
+<td>Recorrência</td>
+<td>Agendamento de cobranças. O Gateway é responsável por realizar as cobranças de acordo com a data agendada pelo eCommerce.</td>
+</tr>
+</tbody></table>
+<h1 id='fluxo-de-comunicacao'>Fluxo de Comunicação</h1>
+<p>A comunicação com o SuperPay ocorrerá após a finalização do pagamento no Checkout do Ecommerce, de forma transparente para o consumidor.
+Ao ser finalizado o pagamento dentro da loja, o Ecommerce deverá consumir os serviços WebServices do SuperPay encaminhando as informações da compra de acordo com a estrutura que será apresentada nesta documentação.</p>
+<h1 id='credencias-de-acesso'>Credencias de acesso</h1><h2 id='sandbox'>Sandbox</h2>
+<p>O SuperPay disponibiliza um ambiente totalmente gratuito para sua equipe de desenvolvimento realizar testes. Basta solicitar seu ambiente para nossa equipe comercial através do email [comercial@superpay.com.br] com as seguintes informações:
+* Nome da Loja;
+* CNPJ;
+* Email para criação do cadastro.</p>
+<h2 id='producao'>Produção</h2>
+<p>Para receber suas credenciais do nosso ambiente de produção, basta acessar nosso site e realizar a contratação de um de nossos planos: <a href="http://www.superpay.com.br/planos">Planos SuperPay</a>
+Caso tenha dúvidas sobre, por gentileza entrar em contato com nossa equipe comercial através do email [comercial@superpay.com.br] ou pelo telefone 11 3544-0678</p>
+<h1 id='autenticacao'>Autenticação</h1>
+<p>Para autenticação conosco, é preciso enviar o usuário e senha WS de seu estabelecimento. Caso ainda não o possua, por gentileza enviar solicitação para nossa equipe de Suporte através do email [servicedesk@superpay.com.br].</p>
+<h1 id='endpoint'>EndPoint</h1><h2 id='sandbox-2'>Sandbox</h2>
+<p><code>https://homologacao.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl</code></p>
+<h1 id='pagamentos-com-cartao-de-credito'>Pagamentos com cartão de crédito</h1>
+<p>Abaixo URL dos ambientes:</p>
+
+<p>Endpoint Produção: <code>https://superpay2.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl</code></p>
+<h2 id='criando-uma-transacao-simplificada'>Criando uma transação simplificada</h2>
+<blockquote>
+<p>Exemplo criação transação:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;soapenv:Header/&gt;</span>
+  <span class="nt">&lt;soapenv:Body&gt;</span>
+   <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
+     <span class="nt">&lt;transacao&gt;</span>
+     <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+     <span class="nt">&lt;codigoFormaPagamento&gt;</span>170<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+     <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+     <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+      <span class="nt">&lt;documentoComprador&gt;</span>12312312312<span class="nt">&lt;/documentoComprador&gt;</span>
+      <span class="nt">&lt;nomeComprador&gt;</span>Teste SuperPay<span class="nt">&lt;/nomeComprador&gt;</span>
+     <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+     <span class="nt">&lt;dataValidadeCartao&gt;</span>12/2026<span class="nt">&lt;/dataValidadeCartao&gt;</span>
+     <span class="nt">&lt;nomeTitularCartaoCredito&gt;</span>teste superpay<span class="nt">&lt;/nomeTitularCartaoCredito&gt;</span>
+     <span class="nt">&lt;numeroCartaoCredito&gt;</span>4444333322221111<span class="nt">&lt;/numeroCartaoCredito&gt;</span>
+     <span class="nt">&lt;codigoSeguranca&gt;</span>123<span class="nt">&lt;/codigoSeguranca&gt;</span>
+     <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+     <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
+     <span class="nt">&lt;/transacao&gt;</span>
+     <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+     <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+    <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
+  <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<blockquote>
+<p>Exemplo retorno transação:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;</span>123456<span class="nt">&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>170<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;</span>24/05/2017<span class="nt">&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;</span>Transacao capturada com sucesso<span class="nt">&lt;/mensagemVenda&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;</span>1006993069181F841001<span class="nt">&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>1<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>14132971582229c00506d-e84d-4526-b902-92190d5aa808<span class="nt">&lt;urlpagamento&gt;&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+</code></pre>
+<p>Estrutura e exemplo de uma transação simples para cartão de crédito. As funcionalidades, como Análise de Fraude, Recorrência, OneClick e demais formas de pagamento precisam de uma estrutura mais completa para um perfeito funcionamento. Consulte as demais estruturas e exemplos desta documentação.</p>
+
+<p><strong>REQUISIÇÃO</strong></p>
+
+<aside class="notice">
+Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</code>
+</aside>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Login do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
+
+<p><em>transacaoCompletaWS</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 19 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td>Código da forma de pagamento</td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação. Deve ser enviado sem pontos ou vírgulas</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>nomeTitularCartaoCredito</td>
+<td>Nome do titular do cartão de crédito (Exatamente como escrito no cartão)</td>
+<td>Alfa Numérico</td>
+<td>Até 16 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>numeroCartaoCredito</td>
+<td>Numero do cartão de crédito, sem espaços ou traços</td>
+<td>Numérico</td>
+<td>Até 22 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoSeguranca</td>
+<td>Código de segurança do cartão (campo não é armazenado pelo SuperPay)</td>
+<td>Numérico</td>
+<td>Até 4 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>dataValidadeCartao</td>
+<td>Data de validade do cartão. Formato mm/yyyy</td>
+<td>Alfa Numérico</td>
+<td>7 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>urlCampainha</td>
+<td>URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha</td>
+<td>Alfa Numérico</td>
+<td>Até 250 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>urlRedirecionamentoPago</td>
+<td>Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação aprovada</td>
+<td>Alfa Numérico</td>
+<td>Até 250 caracteres</td>
+<td>Para pagamentos redirecionáveis é obrigatório</td>
+</tr>
+<tr>
+<td>urlRedirecionamentoPago</td>
+<td>Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação negada</td>
+<td>Alfa Numérico</td>
+<td>Até 250 caracteres</td>
+<td>Para pagamentos redirecionáveis é obrigatório</td>
+</tr>
+<tr>
+<td>dadosUsuarioTransacao</td>
+<td>Array dados do comprador</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<p><em>dadosUsuarioTransacao</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nomeComprador</td>
+<td>Nome do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 100 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>documentoComprador</td>
+<td>Documento principal do comprado</td>
+<td>Alfa Numérico</td>
+<td>30 caracteres</td>
+<td>Não</td>
+</tr>
+</tbody></table>
+
+<p><strong>RESPOSTA</strong></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 19 dígitos</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td>Código da forma de pagamento</td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação.</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>valorDesconto</td>
+<td>Valor desconto</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>taxaEmbarque</td>
+<td>Valor taxa embarque</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>urlPagamento</td>
+<td>Para o modelo redirect. Essa será a URL de redirecionamento da operação</td>
+<td>Alfa Numérico</td>
+<td>Até 500 caracteres</td>
+</tr>
+<tr>
+<td>statusTransacao</td>
+<td>Status atual da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>autorizacao</td>
+<td>Código de autorização da adquirente/intermediário financeiro</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>codigoTransacaoOperadora</td>
+<td>Código da transação na adquirente/intermediário financeiro</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>dataAprovacaoOperadora</td>
+<td>Data de aprovação na adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>numeroComprovanteVenda</td>
+<td>Número do comprovante de venda</td>
+<td>Alfa Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>mensagemVenda</td>
+<td>Mensagem de retorno da adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 50 dígitos</td>
+</tr>
+</tbody></table>
+<h2 id='criando-uma-transacao-com-analise-de-fraude'>Criando uma transação com Análise de Fraude</h2>
+<blockquote>
+<p>Exemplo criação transação:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:header&gt;&lt;/soapenv:header&gt;</span>
+   <span class="nt">&lt;soapenv:body&gt;</span>
+      <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
+         <span class="nt">&lt;transacao&gt;</span>
+            <span class="nt">&lt;campoLivre1&gt;&lt;/campoLivre1&gt;</span>
+            <span class="nt">&lt;campoLivre2&gt;&lt;/campoLivre2&gt;</span>
+            <span class="nt">&lt;campoLivre3&gt;&lt;/campoLivre3&gt;</span>
+            <span class="nt">&lt;campoLivre4&gt;&lt;/campoLivre4&gt;</span>
+            <span class="nt">&lt;campoLivre5&gt;&lt;/campoLivre5&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>170<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;codigoSeguranca&gt;</span>123<span class="nt">&lt;/codigoSeguranca&gt;</span>
+            <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+               <span class="nt">&lt;bairroEnderecoComprador&gt;</span>Vila<span class="nt">&lt;/bairroEnderecoComprador&gt;</span>
+               <span class="nt">&lt;bairroEnderecoEntrega&gt;</span>centro<span class="nt">&lt;/bairroEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;cepEnderecoComprador&gt;</span>05707001<span class="nt">&lt;/cepEnderecoComprador&gt;</span>
+               <span class="nt">&lt;cepEnderecoEntrega&gt;</span>05707001<span class="nt">&lt;/cepEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;cidadeEnderecoComprador&gt;</span>Sao Paulo<span class="nt">&lt;/cidadeEnderecoComprador&gt;</span>
+               <span class="nt">&lt;cidadeEnderecoEntrega&gt;</span>Sao Paulo<span class="nt">&lt;/cidadeEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;codigoCliente&gt;</span>1<span class="nt">&lt;/codigoCliente&gt;</span>
+               <span class="nt">&lt;codigoTipoTelefoneComprador&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneComprador&gt;</span>
+               <span class="nt">&lt;codigoTipoTelefoneEntrega&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneEntrega&gt;</span>
+               <span class="nt">&lt;complementoEndereCocomprador&gt;&lt;/complementoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;complementoEnderecoEntrega&gt;&lt;/complementoEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;dataNascimentoComprador&gt;</span>10/01/1980<span class="nt">&lt;/dataNascimentoComprador&gt;</span>
+               <span class="nt">&lt;dddComprador&gt;</span>11<span class="nt">&lt;/dddComprador&gt;</span>
+               <span class="nt">&lt;dddEntrega&gt;</span>11<span class="nt">&lt;/dddEntrega&gt;</span>
+               <span class="nt">&lt;ddiComprador&gt;</span>55<span class="nt">&lt;/ddiComprador&gt;</span>
+               <span class="nt">&lt;ddiEntrega&gt;</span>55<span class="nt">&lt;/ddiEntrega&gt;</span>
+               <span class="nt">&lt;documento2Comprador&gt;&lt;/documento2Comprador&gt;</span>
+               <span class="nt">&lt;documentoComprador&gt;</span>12345678919<span class="nt">&lt;/documentoComprador&gt;</span>
+               <span class="nt">&lt;emailComprador&gt;</span>superpay@superpay.com.br<span class="nt">&lt;/emailComprador&gt;</span>
+               <span class="nt">&lt;enderecoComprador&gt;</span>Rua do Comprador<span class="nt">&lt;/enderecoComprador&gt;</span>
+               <span class="nt">&lt;enderecoEntrega&gt;</span>Rua do Comprador<span class="nt">&lt;/enderecoEntrega&gt;</span>
+               <span class="nt">&lt;estadoEnderecoComprador&gt;</span>SP<span class="nt">&lt;/estadoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;estadoEnderecoEntrega&gt;</span>SP<span class="nt">&lt;/estadoEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;nomeComprador&gt;</span>Testes de integracao Cartão<span class="nt">&lt;/nomeComprador&gt;</span>
+               <span class="nt">&lt;numeroEnderecoComprador&gt;</span>123<span class="nt">&lt;/numeroEnderecoComprador&gt;</span>
+               <span class="nt">&lt;numeroEnderecoEntrega&gt;</span>123<span class="nt">&lt;/numeroEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;paisComprador&gt;</span>BR<span class="nt">&lt;/paisComprador&gt;</span>
+               <span class="nt">&lt;paisEntrega&gt;</span>BR<span class="nt">&lt;/paisEntrega&gt;</span>
+               <span class="nt">&lt;sexoComprador&gt;</span>M<span class="nt">&lt;/sexoComprador&gt;</span>
+               <span class="nt">&lt;telefoneComprador&gt;</span>1234123123<span class="nt">&lt;/telefoneComprador&gt;</span>
+               <span class="nt">&lt;telefoneEntrega&gt;</span>1234123123<span class="nt">&lt;/telefoneEntrega&gt;</span>
+               <span class="nt">&lt;tipoCliente&gt;</span>1<span class="nt">&lt;/tipoCliente&gt;</span>
+            <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+           <span class="nt">&lt;dataDalidadeCartao&gt;</span>10/2017<span class="nt">&lt;/dataValidadeCartao&gt;</span>
+            <span class="nt">&lt;IP&gt;</span>10.100.1.12<span class="nt">&lt;/IP&gt;</span>
+            <span class="nt">&lt;idioma&gt;</span>1<span class="nt">&lt;/idioma&gt;</span>
+            <span class="nt">&lt;itensDoPedido&gt;</span>
+               <span class="nt">&lt;codigoCategoria&gt;</span>1<span class="nt">&lt;/codigoCategoria&gt;</span>
+               <span class="nt">&lt;codigoProduto&gt;</span>1<span class="nt">&lt;/codigoProduto&gt;</span>
+               <span class="nt">&lt;nomeCategoria&gt;</span>Roupa<span class="nt">&lt;/nomeCategoria&gt;</span>
+               <span class="nt">&lt;nomeProduto&gt;</span>Camiseta<span class="nt">&lt;/nomeProduto&gt;</span>
+               <span class="nt">&lt;quantidaDeProduto&gt;</span>1<span class="nt">&lt;/quantidaDeProduto&gt;</span>
+               <span class="nt">&lt;valorUnitarioProduto&gt;</span>200<span class="nt">&lt;/valorUnitarioProduto&gt;</span>
+            <span class="nt">&lt;/itensDoPedido&gt;</span>
+            <span class="nt">&lt;nomeTitularCartaoCredito&gt;</span>Teste Integracao<span class="nt">&lt;/nomeTitularCartaoCredito&gt;</span>
+            <span class="nt">&lt;numeroCartaoCredito&gt;</span>4444333322221111<span class="nt">&lt;/numeroCartaoCredito&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;origemTransacao&gt;</span>1<span class="nt">&lt;/origemTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlCampainha&gt;</span>http://www.sualoja.campainha.com.br<span class="nt">&lt;/urlCampainha&gt;</span>
+            <span class="nt">&lt;urlRedirecionamentoNaoPago&gt;</span>http://www.google.com.br<span class="nt">&lt;/urlRedirecionamentoNaoPago&gt;</span>
+            <span class="nt">&lt;urlRedirecionamentoPago&gt;</span>http://www.google.com.br<span class="nt">&lt;/urlRedirecionamentoPago&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/transacao&gt;</span>
+         <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+         <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+      <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
+   <span class="nt">&lt;/soapenv:body&gt;</span>
+<span class="nt">&lt;/soapenv:envelope&gt;</span>
+</code></pre>
+<blockquote>
+<p>Exemplo retorno transação:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;</span>123456<span class="nt">&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>170<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;</span>24/05/2017<span class="nt">&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;</span>Transacao autorizada<span class="nt">&lt;/mensagemVenda&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;</span>1006993069181F841001<span class="nt">&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>15<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>14132971582229c00506d-e84d-4526-b902-92190d5aa808<span class="nt">&lt;urlpagamento&gt;&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+</code></pre>
+<p>A utilização desta estrutura é indicada para envio de pedidos com a forma de pagamento cartão de crédito, onde o estabelecimento possui contratação de umas das empresas de análise de risco integradas pelo SuperPay, sendo elas ClearSale (modalidades: Total/Total Garantido, Application, ID e Start) e FControl (modalidade Fila).</p>
+
+<aside class="warning">Contratação a parte com as empresas ClearSale e FControl</aside>
+
+<p><strong>REQUISIÇÃO</strong></p>
+
+<aside class="notice">
+Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</code>
+</aside>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Login do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
+
+<p><em>transacaoCompletaWS</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 19 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td>Código da forma de pagamento</td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação. Deve ser enviado sem pontos ou vírgulas</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>nomeTitularCartaoCredito</td>
+<td>Nome do titular do cartão de crédito (Exatamente como escrito no cartão)</td>
+<td>Alfa Numérico</td>
+<td>Até 16 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>numeroCartaoCredito</td>
+<td>Numero do cartão de crédito, sem espaços ou traços</td>
+<td>Numérico</td>
+<td>Até 22 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoSeguranca</td>
+<td>Código de segurança do cartão (campo não é armazenado pelo SuperPay)</td>
+<td>Numérico</td>
+<td>Até 4 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>dataValidadeCartao</td>
+<td>Data de validade do cartão. Formato mm/yyyy</td>
+<td>Alfa Numérico</td>
+<td>7 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>urlCampainha</td>
+<td>URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha</td>
+<td>Alfa Numérico</td>
+<td>Até 250 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>urlRedirecionamentoPago</td>
+<td>Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação aprovada</td>
+<td>Alfa Numérico</td>
+<td>Até 250 caracteres</td>
+<td>Para pagamentos redirecionáveis é obrigatório</td>
+</tr>
+<tr>
+<td>urlRedirecionamentoPago</td>
+<td>Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação negada</td>
+<td>Alfa Numérico</td>
+<td>Até 250 caracteres</td>
+<td>Para pagamentos redirecionáveis é obrigatório</td>
+</tr>
+<tr>
+<td>ip</td>
+<td>Número do IP de origem. Formato xxx.xxx.xxx.xxx</td>
+<td>Alfa Numérico</td>
+<td>Até 15 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>idioma</td>
+<td>1 - Português 2 - Inglês 3 - Espanhol</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>origemTransacao</td>
+<td>1 - eCommerce 2 - Mobile 3 - URA</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>campoLivre1</td>
+<td>Campo Livre 1</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre2</td>
+<td>Campo Livre 2 (Envio do FingerPrint ClearSale)</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre3</td>
+<td>Campo Livre 3 (Envio do canal de venda ClearSale Total/Total Garantido e Application - solicitar ativação para Suporte SuperPay)</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre4</td>
+<td>Campo Livre 4</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre5</td>
+<td>Campo Livre 5</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>dadosUsuarioTransacao</td>
+<td>Array dados do comprador</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>itensDoPedido</td>
+<td>Lista itens do pedido</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<p><em>dadosUsuarioTransacao</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoCliente</td>
+<td>Código que identifica o cliente no estabelecimento</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>tipoCliente</td>
+<td>1 - Pessoa Física 2 - Pessoa Jurídica</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>nomeComprador</td>
+<td>Nome do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 100 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>documentoComprador</td>
+<td>Documento principal do comprador</td>
+<td>Alfa Numérico</td>
+<td>30 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>documento2Comprador</td>
+<td>Documento complementar do comprador</td>
+<td>Alfa Numérico</td>
+<td>30 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>sexoComprador</td>
+<td>M – Masculino / F – Feminino</td>
+<td>Alfa Numérico</td>
+<td>1 caracter</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>dataNascimentoComprador</td>
+<td>Data de nascimento do comprador. Formato dd/mm/yyyy</td>
+<td>Alfa Numérico</td>
+<td>10 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>telefoneComprador</td>
+<td>Telefone do comprador sem espaços ou traços</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>dddComprador</td>
+<td>DDD do telefone do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 3 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>ddiComprador</td>
+<td>DDI do telefone do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 3 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoTipoTelefoneComprador</td>
+<td>1 - Outros 2 - Residencial 3 - Comercial</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>telefoneAdicionalComprador</td>
+<td>Telefone adicional do comprador. Sem espaços ou traços</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>dddAdicionalComprador</td>
+<td>DDD do telefone adicional do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 3 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>ddiAdicionalComprador</td>
+<td>DDI do telefone adicional do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 3 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>codigoTipoTelefoneAdicionalComprador</td>
+<td>1 - Outros 2 - Residencial 3 - Comercial</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>emailComprador</td>
+<td>E-mail do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 100 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>enderecoComprador</td>
+<td>Logradouro do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 100 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>numeroEnderecoComprador</td>
+<td>Número do logradouro do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>bairroEnderecoComprador</td>
+<td>Bairro comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>complementoEnderecoComprador</td>
+<td>Complemento do endereço comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>cidadeEnderecoComprador</td>
+<td>Cidade do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>estadoEnderecoComprador</td>
+<td>Estado do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 2 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>cepEnderecoComprador</td>
+<td>CEP do comprador. Enviar sem traços ou espaços</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>enderecoEntrega</td>
+<td>Logradouro de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 100 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>numeroEnderecoEntrega</td>
+<td>Número do logradouro de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>bairroEnderecoEntrega</td>
+<td>Bairro do logradouro de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>complementoEnderecoEntrega</td>
+<td>Complemento do endereço de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>cidadeEnderecoEntrega</td>
+<td>Cidade de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>estadoEnderecoEntrega</td>
+<td>Estado de entrega</td>
+<td>Alfa Numérico</td>
+<td>2 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>cepEnderecoEntrega</td>
+<td>CEP de entrega. Enviar sem traços ou espaços</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>telefoneEntrega</td>
+<td>Telefone de entrega. Sem espaços ou traços</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>dddEntrega</td>
+<td>DDD do telefone de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 3 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>ddiEntrega</td>
+<td>DDI do telefone de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 3 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>codigoTipoTelefoneEntrega</td>
+<td>1 - Outros 2 - Residencial 3 - Comercial</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>telefoneAdicionalEntrega</td>
+<td>Telefone adicional de entrega. Sem espaços ou traços</td>
+<td>Alfa Numérico</td>
+<td>Até 3 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>dddAdicionalEntrega</td>
+<td>DDD do telefone adicional de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 3 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>ddiAdicionalEntrega</td>
+<td>DDI do telefone adicional de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 3 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>codigoTipoTelefoneAdicionalEntrega</td>
+<td>1 - Outros 2 - Residencial 3 - Comercial</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
+
+<p><em>itemPedidoTransacaoWS</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoProduto</td>
+<td>Código único que identifica cada produto</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoCategoria</td>
+<td>Código que identifica categoria do produto</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>nomeProduto</td>
+<td>Nome do Produto Alfa Numérico</td>
+<td>100 caracteres</td>
+<td>Sim</td>
+<td></td>
+</tr>
+<tr>
+<td>quantidadeProduto</td>
+<td>Quantidade comprada do produto</td>
+<td>Numérico</td>
+<td>Até 8 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valorUnitarioProduto</td>
+<td>Valor unitário do produto. Deve ser enviado sem pontos ou vírgulas</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>nomeCategoria</td>
+<td>Nome da categoria do produto</td>
+<td>Alfa Numérico</td>
+<td>100 caracteres</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
+
+<p><strong>RESPOSTA</strong></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 19 dígitos</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td>Código da forma de pagamento</td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação.</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>valorDesconto</td>
+<td>Valor desconto</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>taxaEmbarque</td>
+<td>Valor taxa embarque</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>urlPagamento</td>
+<td>Para o modelo redirect. Essa será a URL de redirecionamento da operação</td>
+<td>Alfa Numérico</td>
+<td>Até 500 caracteres</td>
+</tr>
+<tr>
+<td>statusTransacao</td>
+<td>Status atual da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>autorizacao</td>
+<td>Código de autorização da adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>codigoTransacaoOperadora</td>
+<td>Código da transação na adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>dataAprovacaoOperadora</td>
+<td>Data de aprovação na adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>numeroComprovanteVenda</td>
+<td>Número do comprovante de venda</td>
+<td>Alfa Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>mensagemVenda</td>
+<td>Mensagem de retorno da adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 50 dígitos</td>
+</tr>
+</tbody></table>
+<h2 id='criando-uma-transacao-com-multiplos-cartoes'>Criando uma transação com múltiplos cartões</h2>
+<p>Esta estrutura permite o envio de dois ou mais cartões em uma mesma requisição, permitindo ao consumidor dividir o valor total da venda entre os seus cartões de crédito.
+A venda só será finalizada com sucesso, se todos os cartões forem aprovados.</p>
+
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li>Disponível apenas no plano Corporativo;</li>
+<li>Disponível apenas para cartões de crédito modalidade WebService;</li>
+<li>Não disponível no fluxo de Antifraude.</li>
+</ul>
+
+<blockquote>
+<p>Exemplo criação transação:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;soapenv:Header/&gt;</span>
+  <span class="nt">&lt;soapenv:Body&gt;</span>
+   <span class="nt">&lt;pag:pagamentoTransacaoCompletaMaisCartoesCredito&gt;</span>
+     <span class="nt">&lt;transacao&gt;</span>
+       <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+       <span class="c">&lt;!--enviar o array dadosCartoesCredito de acordo com a quantidade de cartões--&gt;</span>
+       <span class="nt">&lt;dadosCartoesCredito&gt;</span>
+         <span class="nt">&lt;codigoFormaPagamento&gt;</span>170<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+         <span class="nt">&lt;codigoSeguranca&gt;</span>123<span class="nt">&lt;/codigoSeguranca&gt;</span>
+         <span class="nt">&lt;dataValidadeCartao&gt;</span>12/2016<span class="nt">&lt;/dataValidadeCartao&gt;</span>
+         <span class="nt">&lt;nomeTitularCartaoCredito&gt;</span>Teste<span class="nt">&lt;/nomeTitularCartaoCredito&gt;</span>
+         <span class="nt">&lt;numeroCartaoCredito&gt;</span>4444333322221111<span class="nt">&lt;/numeroCartaoCredito&gt;</span>
+         <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+         <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+       <span class="nt">&lt;/dadosCartoesCredito&gt;</span>
+       <span class="nt">&lt;dadosCartoesCredito&gt;</span>
+         <span class="nt">&lt;codigoFormaPagamento&gt;</span>171<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+         <span class="nt">&lt;codigoSeguranca&gt;</span>123<span class="nt">&lt;/codigoSeguranca&gt;</span>
+         <span class="nt">&lt;dataValidadeCartao&gt;</span>12/2016<span class="nt">&lt;/dataValidadeCartao&gt;</span>
+         <span class="nt">&lt;nomeTitularCartaoCredito&gt;</span>Teste<span class="nt">&lt;/nomeTitularCartaoCredito&gt;</span>
+         <span class="nt">&lt;numeroCartaoCredito&gt;</span>4444333322221111<span class="nt">&lt;/numeroCartaoCredito&gt;</span>
+         <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+         <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+       <span class="nt">&lt;/dadosCartoesCredito&gt;</span>
+       <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+         <span class="nt">&lt;documentoComprador&gt;</span>12312312312<span class="nt">&lt;/documentoComprador&gt;</span>
+         <span class="nt">&lt;nomeComprador&gt;</span>Teste SuperPay<span class="nt">&lt;/nomeComprador&gt;</span>
+       <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+       <span class="nt">&lt;idioma&gt;</span>1<span class="nt">&lt;/idioma&gt;</span>
+       <span class="nt">&lt;numeroTransacao&gt;</span>10<span class="nt">&lt;/numeroTransacao&gt;</span>
+       <span class="nt">&lt;urlCampainha&gt;&lt;/urlCampainha&gt;</span>
+     <span class="nt">&lt;/transacao&gt;</span>
+     <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+     <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+    <span class="nt">&lt;/pag:pagamentoTransacaoCompletaMaisCartoesCredito&gt;</span>
+  <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<blockquote>
+<p>Exemplo retorno transação:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaMaisCartoesCreditoResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1318336765212<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;detalhesFormaPagamentoMultiplosCartoes&gt;</span>
+               <span class="nt">&lt;autorizacao&gt;</span>123456<span class="nt">&lt;/autorizacao&gt;</span>
+               <span class="nt">&lt;codigoFormaPagamento&gt;</span>170<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+               <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+               <span class="nt">&lt;dataAprovacaoOperadora&gt;</span>24/05/2017<span class="nt">&lt;/dataAprovacaoOperadora&gt;</span>
+               <span class="nt">&lt;mensagemVenda&gt;</span>Transação autorizada<span class="nt">&lt;/mensagemVenda&gt;</span>
+               <span class="nt">&lt;numeroComprovanteVenda&gt;</span>10069930690009F2530A<span class="nt">&lt;/numeroComprovanteVenda&gt;</span>
+               <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+               <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+               <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+               <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+            <span class="nt">&lt;/detalhesFormaPagamentoMultiplosCartoes&gt;</span>
+            <span class="nt">&lt;detalhesFormaPagamentoMultiplosCartoes&gt;</span>
+               <span class="nt">&lt;autorizacao&gt;</span>0<span class="nt">&lt;/autorizacao&gt;</span>
+               <span class="nt">&lt;codigoFormaPagamento&gt;</span>171<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+               <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+               <span class="nt">&lt;dataAprovacaoOperadora&gt;</span>24/05/2017<span class="nt">&lt;/dataAprovacaoOperadora&gt;</span>
+               <span class="nt">&lt;mensagemVenda&gt;</span>Transação autorizada<span class="nt">&lt;/mensagemVenda&gt;</span>
+               <span class="nt">&lt;numeroComprovanteVenda&gt;</span>10069930690009F2531A<span class="nt">&lt;/numeroComprovanteVenda&gt;</span>
+               <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+               <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+               <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
+               <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+            <span class="nt">&lt;/detalhesFormaPagamentoMultiplosCartoes&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>10<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>1<span class="nt">&lt;/statusTransacao&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaMaisCartoesCreditoResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<p><strong>REQUISIÇÃO</strong></p>
+
+<p>Abaixo seguem os campos mínimos para finalizar com sucesso uma transação com Múltiplos Cartões.</p>
+
+<aside class="notice">
+Para enviar a transação, acione o método <code>pagamentoTransacaoCompletaMaisCartoesCredito</code>
+</aside>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Login do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
+
+<p><em>transacaoCompletaWS</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 19 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>urlCampainha</td>
+<td>URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha</td>
+<td>Alfa Numérico</td>
+<td>Até 250 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>idioma</td>
+<td>1 - Português 2 - Inglês 3 - Espanhol</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>dadosUsuarioTransacao</td>
+<td>Array dados do comprador</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>dadosCartoesCredito</td>
+<td>Lista com informações dos cartões de créditos</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<p><em>dadosUsuarioTransacao</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nomeComprador</td>
+<td>Nome do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 100 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>documentoComprador</td>
+<td>Documento principal do comprado</td>
+<td>Alfa Numérico</td>
+<td>30 caracteres</td>
+<td>Não</td>
+</tr>
+</tbody></table>
+
+<p><em>dadosCartaoCredito</em></p>
+
+<p>O array com os dados abaixo devem ser repetidos de acordo com a qauntidade de cartão a ser enviada.</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoFormaPagamento</td>
+<td>Código da forma de pagamento</td>
+<td>Numérico</td>
+<td>2 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação. Deve ser enviado sem pontos ou vírgulas</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>nomeTitularCartaoCredito</td>
+<td>Nome do titular do cartão de crédito (Exatamente como escrito no cartão)</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>numeroCartaoCredito</td>
+<td>Numero do cartão de crédito, sem espaços ou traços</td>
+<td>Numérico</td>
+<td>Até 22 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoSeguranca</td>
+<td>Código de segurança do cartão (campo não é armazenado pelo SuperPay)</td>
+<td>Numérico</td>
+<td>Até 4 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>dataValidadeCartao</td>
+<td>Data de validade do cartão. Formato mm/yyyy</td>
+<td>Alfa Numérico</td>
+<td>7 caracteres</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
+
+<p><strong>RESPOSTA</strong></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 19 dígitos</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+</tr>
+<tr>
+<td>statusTransacao</td>
+<td>Status atual da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>detalhesFormaPagamentoMultiplosCartoesWS</td>
+<td>Lista com informações dos cartões de créditos</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<p><em>detalhesFormaPagamentoMultiplosCartoesWS</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>valor</td>
+<td>Valor da transação</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>valorDesconto</td>
+<td>Valor do desconto da transação</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>taxaEmbarque</td>
+<td>Valor da taxa de embarque</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>autorizacao</td>
+<td>Código de autorização da adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>codigoTransacaoOperadora</td>
+<td>Código da transação na adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>dataAprovacaoOperadora</td>
+<td>Data de aprovação na adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+</tr>
+<tr>
+<td>numeroComprovanteVenda</td>
+<td>Número do comprovante de venda</td>
+<td>Alfa Numérico</td>
+<td>Até 20 caracteres</td>
+</tr>
+<tr>
+<td>mensagemVenda</td>
+<td>Mensagem de retorno da adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+</tr>
+</tbody></table>
+<h1 id='pagamentos-com-cartao-de-debito'>Pagamentos com cartão de débito</h1>
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="xml">xml</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

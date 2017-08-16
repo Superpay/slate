@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;xml&quot;,&quot;json&quot;]">
+  <body class="index" data-languages="[&quot;json&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,7 +211,6 @@
     <div class="toc-wrapper">
       <img src="images/logosp.png" class="logo" alt="Logosp" />
         <div class="lang-selector">
-              <a href="#" data-language-name="xml">xml</a>
               <a href="#" data-language-name="json">json</a>
         </div>
         <div class="search">
@@ -248,18 +247,29 @@
             <a href="#autenticacao" class="toc-h1 toc-link" data-title="Autenticação">Autenticação</a>
           </li>
           <li>
-            <a href="#pagamentos-com-cartao-de-credito-soap" class="toc-h1 toc-link" data-title="Pagamentos com cartão de crédito - SOAP">Pagamentos com cartão de crédito - SOAP</a>
+            <a href="#endpoint" class="toc-h1 toc-link" data-title="EndPoint">EndPoint</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#criando-uma-transacao-simplificada" class="toc-h2 toc-link" data-title="Pagamentos com cartão de crédito - SOAP">Criando uma transação simplificada</a>
-                  </li>
-                  <li>
-                    <a href="#criando-uma-transacao-com-analise-de-fraude" class="toc-h2 toc-link" data-title="Pagamentos com cartão de crédito - SOAP">Criando uma transação com Análise de Fraude</a>
-                  </li>
-                  <li>
-                    <a href="#criando-uma-transacao-com-multiplos-cartoes" class="toc-h2 toc-link" data-title="Pagamentos com cartão de crédito - SOAP">Criando uma transação com múltiplos cartões</a>
+                    <a href="#sandbox-2" class="toc-h2 toc-link" data-title="EndPoint">Sandbox</a>
                   </li>
               </ul>
+          </li>
+          <li>
+            <a href="#pagamentos-com-cartao-de-credito" class="toc-h1 toc-link" data-title="Pagamentos com cartão de crédito">Pagamentos com cartão de crédito</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#criando-uma-transacao-simplificada" class="toc-h2 toc-link" data-title="Pagamentos com cartão de crédito">Criando uma transação simplificada</a>
+                  </li>
+                  <li>
+                    <a href="#criando-uma-transacao-com-analise-de-fraude" class="toc-h2 toc-link" data-title="Pagamentos com cartão de crédito">Criando uma transação com Análise de Fraude</a>
+                  </li>
+                  <li>
+                    <a href="#criando-uma-transacao-com-multiplos-cartoes" class="toc-h2 toc-link" data-title="Pagamentos com cartão de crédito">Criando uma transação com múltiplos cartões</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#pagamentos-com-cartao-de-debito" class="toc-h1 toc-link" data-title="Pagamentos com cartão de débito">Pagamentos com cartão de débito</a>
           </li>
       </div>
         <ul class="toc-footer">
@@ -321,7 +331,7 @@ Ao ser finalizado o pagamento dentro da loja, o Ecommerce deverá consumir os se
 Caso tenha dúvidas sobre, por gentileza entrar em contato com nossa equipe comercial através do email [comercial@superpay.com.br] ou pelo telefone 11 3544-0678</p>
 <h1 id='autenticacao'>Autenticação</h1>
 <p>Para autenticação conosco, é preciso enviar o usuário e senha WS de seu estabelecimento. Caso ainda não o possua, por gentileza enviar solicitação para nossa equipe de Suporte através do email [servicedesk@superpay.com.br].</p>
-<h1 id='pagamentos-com-cartao-de-credito-soap'>Pagamentos com cartão de crédito - SOAP</h1>
+<h1 id='endpoint'>EndPoint</h1><h2 id='sandbox-2'>Sandbox</h2><h1 id='pagamentos-com-cartao-de-credito'>Pagamentos com cartão de crédito</h1>
 <p>Abaixo URL dos ambientes:</p>
 
 <p>Endpoint Sandbox: <code>https://homologacao.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl</code></p>
@@ -1559,16 +1569,69 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompletaMais
 </tr>
 </tbody></table>
 
-<p><em>dadosCartaoCredito</em>
-O array com os dados abaixo devem ser repetidos de acordo com a qauntidade de cartão a ser enviada.</p>
+<p><em>dadosCartaoCredito</em></p>
 
-<p>codigoFormaPagamento |  Código da forma de pagamento | Numérico |  2 dígitos | Sim
-valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas |    Numérico | Até 10 dígitos | Sim
-parcelas |  Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento |Numérico |    Até 2 dígitos|    Sim
-nomeTitularCartaoCredito|   Nome do titular do cartão de crédito (Exatamente como escrito no cartão)|    Alfa Numérico| Até 16 caracteres| Sim
-numeroCartaoCredito|    Numero do cartão de crédito, sem espaços ou traços| Numérico|  Até 22 caracteres| Sim
-codigoSeguranca|    Código de segurança do cartão (campo não é armazenado pelo SuperPay)|  Numérico|  Até 4 caracteres|  Sim
-dataValidadeCartao| Data de validade do cartão. Formato mm/yyyy|   Alfa Numérico| 7 caracteres|   Sim</p>
+<p>O array com os dados abaixo devem ser repetidos de acordo com a qauntidade de cartão a ser enviada.</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoFormaPagamento</td>
+<td>Código da forma de pagamento</td>
+<td>Numérico</td>
+<td>2 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação. Deve ser enviado sem pontos ou vírgulas</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>nomeTitularCartaoCredito</td>
+<td>Nome do titular do cartão de crédito (Exatamente como escrito no cartão)</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>numeroCartaoCredito</td>
+<td>Numero do cartão de crédito, sem espaços ou traços</td>
+<td>Numérico</td>
+<td>Até 22 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoSeguranca</td>
+<td>Código de segurança do cartão (campo não é armazenado pelo SuperPay)</td>
+<td>Numérico</td>
+<td>Até 4 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>dataValidadeCartao</td>
+<td>Data de validade do cartão. Formato mm/yyyy</td>
+<td>Alfa Numérico</td>
+<td>7 caracteres</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
 
 <p><strong>RESPOSTA</strong></p>
 
@@ -1608,20 +1671,73 @@ dataValidadeCartao| Data de validade do cartão. Formato mm/yyyy|   Alfa Numéri
 
 <p><em>detalhesFormaPagamentoMultiplosCartoesWS</em></p>
 
-<p>valor|  Valor da transação|   Numérico   |Até 10 dígitos
-valorDesconto|  Valor do desconto da transação|   Numérico|  Até 10 dígitos
-taxaEmbarque|   Valor da taxa de embarque|  Numérico|  Até 10 dígitos
-parcelas|   Quantidade de parcelas da transação|  Numérico|  Até 2 dígitos
-autorizacao |Código de autorização da adquirente|    Numérico|  Até 20 dígitos
-codigoTransacaoOperadora|   Código da transação na adquirente |  Numérico|  Até 20 dígitos
-dataAprovacaoOperadora| Data de aprovação na adquirente|  Alfa Numérico  |Até 10 caracteres
-numeroComprovanteVenda  |Número do comprovante de venda    |Alfa Numérico|    Até 20 caracteres
-mensagemVenda|  Mensagem de retorno da adquirente|  Alfa Numérico| Até 50 caracteres</p>
-
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>valor</td>
+<td>Valor da transação</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>valorDesconto</td>
+<td>Valor do desconto da transação</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>taxaEmbarque</td>
+<td>Valor da taxa de embarque</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>autorizacao</td>
+<td>Código de autorização da adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>codigoTransacaoOperadora</td>
+<td>Código da transação na adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>dataAprovacaoOperadora</td>
+<td>Data de aprovação na adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+</tr>
+<tr>
+<td>numeroComprovanteVenda</td>
+<td>Número do comprovante de venda</td>
+<td>Alfa Numérico</td>
+<td>Até 20 caracteres</td>
+</tr>
+<tr>
+<td>mensagemVenda</td>
+<td>Mensagem de retorno da adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+</tr>
+</tbody></table>
+<h1 id='pagamentos-com-cartao-de-debito'>Pagamentos com cartão de débito</h1>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="xml">xml</a>
                 <a href="#" data-language-name="json">json</a>
           </div>
       </div>
