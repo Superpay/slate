@@ -258,21 +258,35 @@
               </ul>
           </li>
           <li>
-            <a href="#pagamentos-com-cartao-de-credito" class="toc-h1 toc-link" data-title="Pagamentos com cartão de crédito">Pagamentos com cartão de crédito</a>
+            <a href="#pagamentos-com-cartao-de-credito" class="toc-h1 toc-link" data-title="Pagamentos com Cartão de Crédito">Pagamentos com Cartão de Crédito</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#criando-uma-transacao-simplificada" class="toc-h2 toc-link" data-title="Pagamentos com cartão de crédito">Criando uma transação simplificada</a>
+                    <a href="#criando-uma-transacao-simplificada" class="toc-h2 toc-link" data-title="Pagamentos com Cartão de Crédito">Criando uma transação simplificada</a>
                   </li>
                   <li>
-                    <a href="#criando-uma-transacao-com-analise-de-fraude" class="toc-h2 toc-link" data-title="Pagamentos com cartão de crédito">Criando uma transação com Análise de Fraude</a>
+                    <a href="#criando-uma-transacao-com-analise-de-fraude" class="toc-h2 toc-link" data-title="Pagamentos com Cartão de Crédito">Criando uma transação com Análise de Fraude</a>
                   </li>
                   <li>
-                    <a href="#criando-uma-transacao-com-multiplos-cartoes" class="toc-h2 toc-link" data-title="Pagamentos com cartão de crédito">Criando uma transação com múltiplos cartões</a>
+                    <a href="#criando-uma-transacao-com-multiplos-cartoes" class="toc-h2 toc-link" data-title="Pagamentos com Cartão de Crédito">Criando uma transação com múltiplos cartões</a>
+                  </li>
+                  <li>
+                    <a href="#capturando-uma-transacao" class="toc-h2 toc-link" data-title="Pagamentos com Cartão de Crédito">Capturando uma transação</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#pagamentos-com-cartao-de-debito" class="toc-h1 toc-link" data-title="Pagamentos com cartão de débito">Pagamentos com cartão de débito</a>
+            <a href="#pagamentos-com-cartao-de-debito" class="toc-h1 toc-link" data-title="Pagamentos com Cartão de Débito">Pagamentos com Cartão de Débito</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#criando-uma-transacao-simplificada-2" class="toc-h2 toc-link" data-title="Pagamentos com Cartão de Débito">Criando uma transação simplificada</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#pagamentos-com-boleto-bancario" class="toc-h1 toc-link" data-title="Pagamentos com Boleto Bancário">Pagamentos com Boleto Bancário</a>
+          </li>
+          <li>
+            <a href="#pagamentos-com-transferencia-eletronica" class="toc-h1 toc-link" data-title="Pagamentos com Transferência Eletrônica">Pagamentos com Transferência Eletrônica</a>
           </li>
       </div>
         <ul class="toc-footer">
@@ -338,11 +352,7 @@ Caso tenha dúvidas sobre, por gentileza entrar em contato com nossa equipe come
 <p><code>https://homologacao.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl</code></p>
 <h2 id='producao-2'>Produção</h2>
 <p><code>https://superpay2.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl</code></p>
-<h1 id='pagamentos-com-cartao-de-credito'>Pagamentos com cartão de crédito</h1>
-<p>Abaixo URL dos ambientes:</p>
-
-<p>Endpoint Produção: <code>https://superpay2.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl</code></p>
-<h2 id='criando-uma-transacao-simplificada'>Criando uma transação simplificada</h2>
+<h1 id='pagamentos-com-cartao-de-credito'>Pagamentos com Cartão de Crédito</h1><h2 id='criando-uma-transacao-simplificada'>Criando uma transação simplificada</h2>
 <blockquote>
 <p>Exemplo criação transação:</p>
 </blockquote>
@@ -1739,8 +1749,201 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompletaMais
 <td>Até 50 caracteres</td>
 </tr>
 </tbody></table>
-<h1 id='pagamentos-com-cartao-de-debito'>Pagamentos com cartão de débito</h1>
-<p>Para pagamentos com cartão de débito é obrigatório a etapa de autenticação do consumidor na página do banco emissor de seu cartão. Sendo assim, após o envio dos dados da transação, o eCommerce deverá redirecionar o consumidor para o campo <code>urlPagamento<code> retornado pelo Gateway.</p>
+<h2 id='capturando-uma-transacao'>Capturando uma transação</h2>
+<p>Através desta funcionalidade é possível confirmar uma pré autorização na operadora, assim o consumidor receberá a cobrança em seu cartão e gerará crédito ao lojista.
+Os estabelecimentos com captura manual deverão acionar o método de captura em até 5 dias da criação da venda, pois após este período a operadora cancelará automaticamente a pré autorização.</p>
+
+<p><strong>REQUISIÇÃO</strong></p>
+
+<aside class="notice">
+Para enviar a transação, acione o método <code>operacaoTransacao</code>
+</aside>
+
+<blockquote>
+<p>Exemplo captura de transação:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:header&gt;&lt;/soapenv:header&gt;</span>
+   <span class="nt">&lt;soapenv:body&gt;</span>
+      <span class="nt">&lt;pag:operacaoTransacao&gt;</span>
+         <span class="nt">&lt;operacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;operacao&gt;</span>1<span class="nt">&lt;/operacao&gt;</span>
+         <span class="nt">&lt;/operacao&gt;</span>
+         <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+         <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+      <span class="nt">&lt;/pag:operacaoTransacao&gt;</span>
+   <span class="nt">&lt;/soapenv:body&gt;</span>
+<span class="nt">&lt;/soapenv:envelope&gt;</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Login do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 8 dígitos</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+</tr>
+<tr>
+<td>operacao</td>
+<td>Código que identifica o processo que deseja realizar. Para captura, deve-se enviar o valor 1</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+</tr>
+</tbody></table>
+
+<p><strong>RESPOSTA</strong></p>
+
+<blockquote>
+<p>Exemplo retorna da captura de transação:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;</span>123456<span class="nt">&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>120<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;</span>24/05/2017<span class="nt">&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;</span>Transacao capturada com sucesso<span class="nt">&lt;/mensagemVenda&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;</span>1006993069181F841001<span class="nt">&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>1<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>14132971582229c00506d-e84d-4526-b902-92190d5aa808<span class="nt">&lt;urlpagamento&gt;&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 19 dígitos</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td>Código da forma de pagamento</td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação.</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>valorDesconto</td>
+<td>Valor desconto</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>taxaEmbarque</td>
+<td>Valor taxa embarque</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>urlPagamento</td>
+<td>Para o modelo redirect. Essa será a URL de redirecionamento da operação</td>
+<td>Alfa Numérico</td>
+<td>Até 500 caracteres</td>
+</tr>
+<tr>
+<td>statusTransacao</td>
+<td>Status atual da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>autorizacao</td>
+<td>Código de autorização da adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>codigoTransacaoOperadora</td>
+<td>Código da transação na adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>dataAprovacaoOperadora</td>
+<td>Data de aprovação na adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>numeroComprovanteVenda</td>
+<td>Número do comprovante de venda</td>
+<td>Alfa Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>mensagemVenda</td>
+<td>Mensagem de retorno da adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 50 dígitos</td>
+</tr>
+</tbody></table>
+<h1 id='pagamentos-com-cartao-de-debito'>Pagamentos com Cartão de Débito</h1><h2 id='criando-uma-transacao-simplificada-2'>Criando uma transação simplificada</h2>
+<p>Para pagamentos com cartão de débito é obrigatório a etapa de autenticação do consumidor na página do banco emissor de seu cartão. Sendo assim, após o envio dos dados da transação, o eCommerce deverá redirecionar o consumidor para o campo <code>urlPagamento</code> retornado pelo Gateway.</p>
 
 <p><strong>Particulariedades</strong></p>
 
@@ -2055,7 +2258,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 <td>Até 50 dígitos</td>
 </tr>
 </tbody></table>
-
+<h1 id='pagamentos-com-boleto-bancario'>Pagamentos com Boleto Bancário</h1><h1 id='pagamentos-com-transferencia-eletronica'>Pagamentos com Transferência Eletrônica</h1>
       </div>
       <div class="dark-box">
           <div class="lang-selector">

@@ -57,12 +57,7 @@ Para autenticação conosco, é preciso enviar o usuário e senha WS de seu esta
 ## Produção
 `https://superpay2.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl`
 
-# Pagamentos com cartão de crédito
-
-Abaixo URL dos ambientes:
-
-
-Endpoint Produção: `https://superpay2.superpay.com.br/checkout/servicosPagamentoCompletoWS.Services?wsdl`
+# Pagamentos com Cartão de Crédito
 
 ## Criando uma transação simplificada
 
@@ -574,8 +569,97 @@ dataAprovacaoOperadora|	Data de aprovação na adquirente|	Alfa Numérico	|Até 
 numeroComprovanteVenda	|Número do comprovante de venda	|Alfa Numérico|	Até 20 caracteres
 mensagemVenda|	Mensagem de retorno da adquirente|	Alfa Numérico|	Até 50 caracteres
 
-# Pagamentos com cartão de débito
-Para pagamentos com cartão de débito é obrigatório a etapa de autenticação do consumidor na página do banco emissor de seu cartão. Sendo assim, após o envio dos dados da transação, o eCommerce deverá redirecionar o consumidor para o campo <code>urlPagamento<code> retornado pelo Gateway.
+## Capturando uma transação
+Através desta funcionalidade é possível confirmar uma pré autorização na operadora, assim o consumidor receberá a cobrança em seu cartão e gerará crédito ao lojista.
+Os estabelecimentos com captura manual deverão acionar o método de captura em até 5 dias da criação da venda, pois após este período a operadora cancelará automaticamente a pré autorização.
+
+**REQUISIÇÃO**
+
+<aside class="notice">
+Para enviar a transação, acione o método <code>operacaoTransacao</code>
+</aside>
+
+> Exemplo captura de transação:
+
+```xml
+<soapenv:envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
+   <soapenv:header></soapenv:header>
+   <soapenv:body>
+      <pag:operacaoTransacao>
+         <operacao>
+            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
+            <numeroTransacao>1</numeroTransacao>
+            <operacao>1</operacao>
+         </operacao>
+         <usuario>superpay</usuario>
+         <senha>superpay</senha>
+      </pag:operacaoTransacao>
+   </soapenv:body>
+</soapenv:envelope>
+```
+
+Campo | Descrição 
+------| ----------
+usuario | Login do estabelecimento
+senha | Senha do estabelecimento
+
+Campo | Descrição | Tipo | Tamanho
+------| ---------- | ------| ----------
+numeroTransacao |	Código que identifica a transação dentro do SuperPay|	Numérico|	Até 8 dígitos
+codigoEstabelecimento|	Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)|	Numérico|	13 dígitos
+operacao|	Código que identifica o processo que deseja realizar. Para captura, deve-se enviar o valor 1|Numérico|	1 dígito
+
+**RESPOSTA**
+
+
+> Exemplo retorna da captura de transação:
+
+```xml
+<soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:body>
+      <ns2:pagamentoTransacaoCompletaResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
+         <return>
+            <autorizacao>123456</autorizacao>
+            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
+            <codigoFormaPagamento>120</codigoFormaPagamento>
+            <codigoTransacaoOperadora>0</codigoTransacaoOperadora>
+            <dataAprovacaoOperadora>24/05/2017</dataAprovacaOperadora>
+            <mensagemVenda>Transacao capturada com sucesso</mensagemVenda>
+            <numeroComprovanteVenda>1006993069181F841001</numeroComprovanteVenda>
+            <numeroTransacao>1</numeroTransacao>
+            <parcelas>1</parcelas>
+            <statusTransacao>1</statusTransacao>
+            <taxaEmbarque>0</taxaEmbarque>
+            <urlPagamento>14132971582229c00506d-e84d-4526-b902-92190d5aa808<urlpagamento></urlpagamento>
+            <valor>200</valor>
+            <valorDesconto>0</valorDesconto>
+         </return>
+      </ns2:pagamentoTransacaoCompletaResponse>
+   </soap:body>
+</soap:envelope>
+```
+
+Campo | Descrição | Tipo | Tamanho 
+------| ----------|------| --------
+numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay | Numérico | 13 dígitos
+codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos
+valor | Valor da transação.| Numérico | Até 10 dígitos
+valorDesconto | Valor desconto | Numérico | Até 10 dígitos
+taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
+parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
+urlPagamento | Para o modelo redirect. Essa será a URL de redirecionamento da operação |Alfa Numérico | Até 500 caracteres 
+statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+autorizacao | Código de autorização da adquirente | Numérico | Até 20 dígitos
+codigoTransacaoOperadora | Código da transação na adquirente | Numérico | Até 20 dígitos
+dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | Até 10 dígitos
+numeroComprovanteVenda | Número do comprovante de venda |Alfa Numérico | Até 20 dígitos
+mensagemVenda | Mensagem de retorno da adquirente |Alfa Numérico | Até 50 dígitos
+
+# Pagamentos com Cartão de Débito
+## Criando uma transação simplificada
+
+Para pagamentos com cartão de débito é obrigatório a etapa de autenticação do consumidor na página do banco emissor de seu cartão. Sendo assim, após o envio dos dados da transação, o eCommerce deverá redirecionar o consumidor para o campo <code>urlPagamento</code> retornado pelo Gateway.
 
 
 **Particulariedades**
@@ -703,4 +787,6 @@ dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | At�
 numeroComprovanteVenda | Número do comprovante de venda |Alfa Numérico | Até 20 dígitos
 mensagemVenda | Mensagem de retorno da adquirente |Alfa Numérico | Até 50 dígitos
 
+# Pagamentos com Boleto Bancário
 
+# Pagamentos com Transferência Eletrônica
