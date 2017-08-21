@@ -575,7 +575,7 @@ numeroComprovanteVenda	|Número do comprovante de venda	|Alfa Numérico|	Até 20
 mensagemVenda|	Mensagem de retorno da adquirente|	Alfa Numérico|	Até 50 caracteres
 
 # Pagamentos com cartão de débito
-Para pagamentos com cartão de débito é obrigatório a etapa de autenticação do consumidor na página do banco emissor de seu cartão. Sendo assim, após o envio dos dados da transação, o eCommerce deverá redirecionar o consumidor para o campo <urlPagamento> retornada pelo Gateway.
+Para pagamentos com cartão de débito é obrigatório a etapa de autenticação do consumidor na página do banco emissor de seu cartão. Sendo assim, após o envio dos dados da transação, o eCommerce deverá redirecionar o consumidor para o campo <code>urlPagamento<code> retornado pelo Gateway.
 
 
 **Particulariedades**
