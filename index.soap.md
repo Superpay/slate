@@ -657,7 +657,7 @@ dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | At�
 numeroComprovanteVenda | Número do comprovante de venda |Alfa Numérico | Até 20 dígitos
 mensagemVenda | Mensagem de retorno da adquirente |Alfa Numérico | Até 50 dígitos
 
-##Cancelando uma transação
+## Cancelando uma transação
 Através desta funcionalidade é possível cancelar uma venda pré autorizada ou capturada. Consulte abaixo o prazo de cancelamento para cada adquirente:
 
 Adquirente | Limite de cancelamento 
@@ -769,8 +769,9 @@ Bin|	D+0|	Apenas total
 <aside class="warning">
 Esta funcionalidade está disponível em um WebService diferenciado:
 
-*SANDBOX* <code>https://homologacao.superpay.com.br/checkout/servicosEstornoWS.Services?wsdl</code>
-*PRODUÇÃO* <code>https://superpay2.superpay.com.br/checkout/servicosEstornoWS.Services?wsdl</code>
+SANDBOX: <code>https://homologacao.superpay.com.br/checkout/servicosEstornoWS.Services?wsdl</code>
+
+PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/servicosEstornoWS.Services?wsdl</code>
 </aside>
 
 
@@ -962,9 +963,9 @@ Estrutura para geração de boletos com carteiras sem ou com registro.
 
 **Particulariedades**
 
-* O campo <estadoEnderecoComprador> deve ser preenchido apenas com a sigla do Estado;
-* O campo <numeroTransacao> deve conter até 8 dígitos;
-* Caso o campo <vencimentoBoleto> não for enviado, será utilizado os dias de vencimento configurado internamente no Gateway;
+* O campo `<estadoEnderecoComprador>` deve ser preenchido apenas com a sigla do Estado;
+* O campo `<numeroTransacao>` deve conter até 8 dígitos;
+* Caso o campo `<vencimentoBoleto>` não for enviado, será utilizado os dias de vencimento configurado internamente no Gateway;
 * Para boletos com carteira registrada (contratação a parte), o status retornado pelo SuperPay no primeiro momento será 5 (transação em andamento), enquanto para boletos sem registros é retornado 8 (aguardando pagamento);
 * Importante a utilização do recurso de Campainha, para atualização dos pedidos no Ecommerce;
 * A conciliação de boletos não é realizada automaticamente, funcionalidade deve ser contratada a parte com o comercial@superpay.com.br.
@@ -1130,6 +1131,7 @@ nomeCategoria|	Nome da categoria do produto	|Alfa Numérico|	100 caracteres|	Sim
 **RESPOSTA**
 Para geração do boleto o eCommerce deverá redirecionar o consumidor para a URl retornada no campo <urlPagamento>
 
+> Exemplo retorno criação boleto:
 ```xml
 <soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
    <soap:body>
@@ -1179,8 +1181,8 @@ Estrutura para criação de transferência eletrônica.
 
 **Particulariedades**
 
-* O campo <estadoEnderecoComprador> deve ser preenchido apenas com a sigla do Estado;
-* O campo <numeroTransacao> deve conter até 8 dígitos;
+* O campo `<estadoEnderecoComprador>` deve ser preenchido apenas com a sigla do Estado;
+* O campo `<numeroTransacao>` deve conter até 8 dígitos;
 * Importante a utilização do recurso de Campainha, para atualização dos pedidos no Ecommerce;
 
 
@@ -1392,9 +1394,10 @@ mensagemVenda | Retornado em branco para transferência |Alfa Numérico | Até 5
 <aside class="warning">
 Esta funcionalidade está disponível em um WebService diferenciado:
 
-*SANDBOX* <code>https://homologacao.superpay.com.br/checkout/servicosRecorrenciaWS
+SANDBOX: <code>https://homologacao.superpay.com.br/checkout/servicosRecorrenciaWS
 .Services?wsdl</code>
-*PRODUÇÃO* <code>https://superpay2.superpay.com.br/checkout/servicosRecorrenciaWS
+
+PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/servicosRecorrenciaWS
 .Services?wsdl</code>
 </aside>
 
@@ -1412,6 +1415,7 @@ O gateway possui um processo que verifica todos os dias se existem recorrências
 **REQUISIÇÃO**
 
 > Exemplo criação transação recorrente:
+
 ```xml
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rec="http://recorrencia.webservices.superpay.ernet.com.br/">
    <soapenv:Header/>
@@ -1553,6 +1557,7 @@ status|	Status da Recorrência ( True - Ativo, False - Inativo)
 
 **REQUISIÇÃO**
 
+> Exemplo cancelamento transação recorrente:
 
 ```xml
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rec="http://recorrencia.webservices.superpay.ernet.com.br/">
@@ -1582,6 +1587,8 @@ numeroRecorrencia|	Número da Recorrência a ser cancelada| Sim
 estabelecimento	|Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)| Sim
 
 **RESPOSTA**
+
+> Exemplo retorno cancelamento transação recorrente:
 
 ```xml
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rec="http://recorrencia.webservices.superpay.ernet.com.br/">

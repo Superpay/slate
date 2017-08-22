@@ -2240,8 +2240,9 @@ Para enviar a transação, acione o método <code>operacaoTransacao</code>
 <aside class="warning">
 Esta funcionalidade está disponível em um WebService diferenciado:
 
-*SANDBOX* <code>https://homologacao.superpay.com.br/checkout/servicosEstornoWS.Services?wsdl</code>
-*PRODUÇÃO* <code>https://superpay2.superpay.com.br/checkout/servicosEstornoWS.Services?wsdl</code>
+SANDBOX: <code>https://homologacao.superpay.com.br/checkout/servicosEstornoWS.Services?wsdl</code>
+
+PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/servicosEstornoWS.Services?wsdl</code>
 </aside>
 
 <p><strong>REQUISIÇÃO</strong></p>
@@ -2644,9 +2645,9 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 <p><strong>Particulariedades</strong></p>
 
 <ul>
-<li>O campo <estadoEnderecoComprador> deve ser preenchido apenas com a sigla do Estado;</li>
-<li>O campo <numeroTransacao> deve conter até 8 dígitos;</li>
-<li>Caso o campo <vencimentoBoleto> não for enviado, será utilizado os dias de vencimento configurado internamente no Gateway;</li>
+<li>O campo <code>&lt;estadoEnderecoComprador&gt;</code> deve ser preenchido apenas com a sigla do Estado;</li>
+<li>O campo <code>&lt;numeroTransacao&gt;</code> deve conter até 8 dígitos;</li>
+<li>Caso o campo <code>&lt;vencimentoBoleto&gt;</code> não for enviado, será utilizado os dias de vencimento configurado internamente no Gateway;</li>
 <li>Para boletos com carteira registrada (contratação a parte), o status retornado pelo SuperPay no primeiro momento será 5 (transação em andamento), enquanto para boletos sem registros é retornado 8 (aguardando pagamento);</li>
 <li>Importante a utilização do recurso de Campainha, para atualização dos pedidos no Ecommerce;</li>
 <li>A conciliação de boletos não é realizada automaticamente, funcionalidade deve ser contratada a parte com o comercial@superpay.com.br.</li>
@@ -3167,29 +3168,35 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 
 <p><strong>RESPOSTA</strong>
 Para geração do boleto o eCommerce deverá redirecionar o consumidor para a URl retornada no campo <urlPagamento></p>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;soap:body&gt;</span>
-      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
-         <span class="nt">&lt;return&gt;</span>
-            <span class="nt">&lt;autorizacao&gt;</span>0<span class="nt">&lt;/autorizacao&gt;</span>
-            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoestabelecimento&gt;</span>
-            <span class="nt">&lt;codigoFormaPagamento&gt;</span>29<span class="nt">&lt;/codigoformapagamento&gt;</span>
-            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigotransacaooperadora&gt;</span>
-            <span class="nt">&lt;dataAprovacaoOperadora&gt;&lt;/dataaprovacaooperadora&gt;</span>
-            <span class="nt">&lt;mensagemvenda&gt;&lt;/mensagemvenda&gt;</span>
-            <span class="nt">&lt;numeroComprovanteVenda&gt;&lt;/numerocomprovantevenda&gt;</span>
-            <span class="nt">&lt;numeroTransacao&gt;</span>9012346<span class="nt">&lt;/numerotransacao&gt;</span>
-            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
-            <span class="nt">&lt;statusTransacao&gt;</span>5<span class="nt">&lt;/statustransacao&gt;</span>
-            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaembarque&gt;</span>
-            <span class="nt">&lt;urlPagamento&gt;</span>https://homologacao.superpay.com.br/checkout/GeradorBoleto.do?cod=14956296486904d8312c6-d57a-499e-b53b-504047402e45<span class="nt">&lt;/urlpagamento&gt;</span>
-            <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
-            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valordesconto&gt;</span>
-         <span class="nt">&lt;/return&gt;</span>
-      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
-   <span class="nt">&lt;/soap:body&gt;</span>
-<span class="nt">&lt;/soap:envelope&gt;</span>
-</code></pre>
+
+<blockquote>
+<p>Exemplo retorno criação boleto:
+<code>xml
+&lt;soap:envelope xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
+   &lt;soap:body&gt;
+      &lt;ns2:pagamentoTransacaoCompletaResponse xmlns:ns2=&quot;http://pagamentos.webservices.superpay.ernet.com.br/&quot;&gt;
+         &lt;return&gt;
+            &lt;autorizacao&gt;0&lt;/autorizacao&gt;
+            &lt;codigoEstabelecimento&gt;1000000000000&lt;/codigoestabelecimento&gt;
+            &lt;codigoFormaPagamento&gt;29&lt;/codigoformapagamento&gt;
+            &lt;codigoTransacaoOperadora&gt;0&lt;/codigotransacaooperadora&gt;
+            &lt;dataAprovacaoOperadora&gt;&lt;/dataaprovacaooperadora&gt;
+            &lt;mensagemvenda&gt;&lt;/mensagemvenda&gt;
+            &lt;numeroComprovanteVenda&gt;&lt;/numerocomprovantevenda&gt;
+            &lt;numeroTransacao&gt;9012346&lt;/numerotransacao&gt;
+            &lt;parcelas&gt;1&lt;/parcelas&gt;
+            &lt;statusTransacao&gt;5&lt;/statustransacao&gt;
+            &lt;taxaEmbarque&gt;0&lt;/taxaembarque&gt;
+            &lt;urlPagamento&gt;https://homologacao.superpay.com.br/checkout/GeradorBoleto.do?cod=14956296486904d8312c6-d57a-499e-b53b-504047402e45&lt;/urlpagamento&gt;
+            &lt;valor&gt;200&lt;/valor&gt;
+            &lt;valorDesconto&gt;0&lt;/valordesconto&gt;
+         &lt;/return&gt;
+      &lt;/ns2:pagamentoTransacaoCompletaResponse&gt;
+   &lt;/soap:body&gt;
+&lt;/soap:envelope&gt;
+</code></p>
+</blockquote>
+
 <table><thead>
 <tr>
 <th>Campo</th>
@@ -3289,8 +3296,8 @@ Para geração do boleto o eCommerce deverá redirecionar o consumidor para a UR
 <p><strong>Particulariedades</strong></p>
 
 <ul>
-<li>O campo <estadoEnderecoComprador> deve ser preenchido apenas com a sigla do Estado;</li>
-<li>O campo <numeroTransacao> deve conter até 8 dígitos;</li>
+<li>O campo <code>&lt;estadoEnderecoComprador&gt;</code> deve ser preenchido apenas com a sigla do Estado;</li>
+<li>O campo <code>&lt;numeroTransacao&gt;</code> deve conter até 8 dígitos;</li>
 <li>Importante a utilização do recurso de Campainha, para atualização dos pedidos no Ecommerce;</li>
 </ul>
 
@@ -3934,9 +3941,10 @@ Para geração do boleto o eCommerce deverá redirecionar o consumidor para a UR
 <aside class="warning">
 Esta funcionalidade está disponível em um WebService diferenciado:
 
-*SANDBOX* <code>https://homologacao.superpay.com.br/checkout/servicosRecorrenciaWS
+SANDBOX: <code>https://homologacao.superpay.com.br/checkout/servicosRecorrenciaWS
 .Services?wsdl</code>
-*PRODUÇÃO* <code>https://superpay2.superpay.com.br/checkout/servicosRecorrenciaWS
+
+PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/servicosRecorrenciaWS
 .Services?wsdl</code>
 </aside>
 <h2 id='criando-uma-transacao-recorrente'>Criando uma transação recorrente</h2>
@@ -3952,46 +3960,44 @@ Esta funcionalidade está disponível em um WebService diferenciado:
 <p><strong>REQUISIÇÃO</strong></p>
 
 <blockquote>
-<p>Exemplo criação transação recorrente:
-<code>xml
-&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:rec=&quot;http://recorrencia.webservices.superpay.ernet.com.br/&quot;&gt;
-   &lt;soapenv:Header/&gt;
-   &lt;soapenv:Body&gt;
-      &lt;rec:cadastrarRecorrenciaWS&gt;
-          &lt;recorrenciaWS&gt;
-            &lt;dadosCartao&gt;
-               &lt;codigoSeguranca&gt;123&lt;/codigoSeguranca&gt;
-               &lt;dataValidade&gt;05/2018&lt;/dataValidade&gt;
-               &lt;nomePortador&gt;Teste&lt;/nomePortador&gt;
-               &lt;numeroCartao&gt;4444333322221111&lt;/numeroCartao&gt;
-            &lt;/dadosCartao&gt;
-            &lt;dadosCobranca&gt;
-               &lt;nomeComprador&gt;Nome do Comprador&lt;/nomeComprador&gt;
-                &lt;telefone&gt;
-                &lt;/telefone&gt;
-            &lt;/dadosCobranca&gt;
-            &lt;diaCobranca&gt;23&lt;/diaCobranca&gt;
-            &lt;mesCobranca&gt;10&lt;/mesCobranca&gt;
-            &lt;estabelecimento&gt;1000000000000&lt;/estabelecimento&gt;
-            &lt;formaPagamento&gt;170&lt;/formaPagamento&gt;
-            &lt;numeroRecorrencia&gt;1&lt;/numeroRecorrencia&gt;
-            &lt;periodicidade&gt;3&lt;/periodicidade&gt;
-            &lt;primeiraCobranca&gt;1&lt;/primeiraCobranca&gt;
-            &lt;processarImediatamente&gt;1&lt;/processarImediatamente&gt;
-            &lt;quantidadeCobrancas&gt;0&lt;/quantidadeCobrancas&gt;
-            &lt;urlNotificacao&gt;&lt;/urlNotificacao&gt;
-            &lt;valor&gt;100&lt;/valor&gt;
-         &lt;/recorrenciaWS&gt;
-         &lt;usuario&gt;
-            &lt;senha&gt;superpay&lt;/senha&gt;
-            &lt;usuario&gt;superpay&lt;/usuario&gt;
-         &lt;/usuario&gt;
-      &lt;/rec:cadastrarRecorrenciaWS&gt;
-   &lt;/soapenv:Body&gt;
-&lt;/soapenv:Envelope&gt;
-</code></p>
+<p>Exemplo criação transação recorrente:</p>
 </blockquote>
-
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:rec=</span><span class="s">"http://recorrencia.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;rec:cadastrarRecorrenciaWS&gt;</span>
+          <span class="nt">&lt;recorrenciaWS&gt;</span>
+            <span class="nt">&lt;dadosCartao&gt;</span>
+               <span class="nt">&lt;codigoSeguranca&gt;</span>123<span class="nt">&lt;/codigoSeguranca&gt;</span>
+               <span class="nt">&lt;dataValidade&gt;</span>05/2018<span class="nt">&lt;/dataValidade&gt;</span>
+               <span class="nt">&lt;nomePortador&gt;</span>Teste<span class="nt">&lt;/nomePortador&gt;</span>
+               <span class="nt">&lt;numeroCartao&gt;</span>4444333322221111<span class="nt">&lt;/numeroCartao&gt;</span>
+            <span class="nt">&lt;/dadosCartao&gt;</span>
+            <span class="nt">&lt;dadosCobranca&gt;</span>
+               <span class="nt">&lt;nomeComprador&gt;</span>Nome do Comprador<span class="nt">&lt;/nomeComprador&gt;</span>
+                <span class="nt">&lt;telefone&gt;</span>
+                <span class="nt">&lt;/telefone&gt;</span>
+            <span class="nt">&lt;/dadosCobranca&gt;</span>
+            <span class="nt">&lt;diaCobranca&gt;</span>23<span class="nt">&lt;/diaCobranca&gt;</span>
+            <span class="nt">&lt;mesCobranca&gt;</span>10<span class="nt">&lt;/mesCobranca&gt;</span>
+            <span class="nt">&lt;estabelecimento&gt;</span>1000000000000<span class="nt">&lt;/estabelecimento&gt;</span>
+            <span class="nt">&lt;formaPagamento&gt;</span>170<span class="nt">&lt;/formaPagamento&gt;</span>
+            <span class="nt">&lt;numeroRecorrencia&gt;</span>1<span class="nt">&lt;/numeroRecorrencia&gt;</span>
+            <span class="nt">&lt;periodicidade&gt;</span>3<span class="nt">&lt;/periodicidade&gt;</span>
+            <span class="nt">&lt;primeiraCobranca&gt;</span>1<span class="nt">&lt;/primeiraCobranca&gt;</span>
+            <span class="nt">&lt;processarImediatamente&gt;</span>1<span class="nt">&lt;/processarImediatamente&gt;</span>
+            <span class="nt">&lt;quantidadeCobrancas&gt;</span>0<span class="nt">&lt;/quantidadeCobrancas&gt;</span>
+            <span class="nt">&lt;urlNotificacao&gt;&lt;/urlNotificacao&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+         <span class="nt">&lt;/recorrenciaWS&gt;</span>
+         <span class="nt">&lt;usuario&gt;</span>
+            <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+            <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+         <span class="nt">&lt;/usuario&gt;</span>
+      <span class="nt">&lt;/rec:cadastrarRecorrenciaWS&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
 <table><thead>
 <tr>
 <th>Campo</th>
@@ -4410,6 +4416,10 @@ Esta funcionalidade está disponível em um WebService diferenciado:
 </tbody></table>
 <h2 id='cancelando-uma-recorrencia'>Cancelando uma recorrência</h2>
 <p><strong>REQUISIÇÃO</strong></p>
+
+<blockquote>
+<p>Exemplo cancelamento transação recorrente:</p>
+</blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:rec=</span><span class="s">"http://recorrencia.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
    <span class="nt">&lt;soapenv:Header/&gt;</span>
    <span class="nt">&lt;soapenv:Body&gt;</span>
@@ -4462,6 +4472,10 @@ Esta funcionalidade está disponível em um WebService diferenciado:
 </tbody></table>
 
 <p><strong>RESPOSTA</strong></p>
+
+<blockquote>
+<p>Exemplo retorno cancelamento transação recorrente:</p>
+</blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:rec=</span><span class="s">"http://recorrencia.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
    <span class="nt">&lt;soapenv:Body&gt;</span>
      <span class="nt">&lt;ns2:cancelarRecorrenciaWSResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://recorrencia.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
