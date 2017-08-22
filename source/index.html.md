@@ -1344,6 +1344,7 @@ nomeCategoria|	Nome da categoria do produto	|Alfa Numérico|	100 caracteres|	Sim
 
 
 **RESPOSTA**
+
 Para geração do boleto o eCommerce deverá redirecionar o consumidor para a URl retornada no campo <urlPagamento>
 
 > Exemplo retorno criação transação:
@@ -1408,6 +1409,7 @@ O gateway possui um processo que verifica todos os dias se existem recorrências
 
 
 **Particulariedades**
+
 * Disponível apenas para cartão de crédito no modelo WebService;
 * Renova Fácil com a operadora Cielo;
 * Importante a utilização do recurso de Campainha, para atualização dos pedidos no Ecommerce;

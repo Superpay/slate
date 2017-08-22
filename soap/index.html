@@ -3813,8 +3813,9 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 </tr>
 </tbody></table>
 
-<p><strong>RESPOSTA</strong>
-Para geração do boleto o eCommerce deverá redirecionar o consumidor para a URl retornada no campo <urlPagamento></p>
+<p><strong>RESPOSTA</strong></p>
+
+<p>Para geração do boleto o eCommerce deverá redirecionar o consumidor para a URl retornada no campo <urlPagamento></p>
 
 <blockquote>
 <p>Exemplo retorno criação transação:
@@ -3952,10 +3953,13 @@ PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/servicosRecorrencia
 
 <p>O gateway possui um processo que verifica todos os dias se existem recorrências a serem processadas. Se sim, elas são agendadas para processamento na madrugada e assim que finalizadas, o SuperPay notifica o estabelecimento através do acionamento da campainha, enviada no cadastro da recorrência.</p>
 
-<p><strong>Particulariedades</strong>
-* Disponível apenas para cartão de crédito no modelo WebService;
-* Renova Fácil com a operadora Cielo;
-* Importante a utilização do recurso de Campainha, para atualização dos pedidos no Ecommerce;</p>
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li>Disponível apenas para cartão de crédito no modelo WebService;</li>
+<li>Renova Fácil com a operadora Cielo;</li>
+<li>Importante a utilização do recurso de Campainha, para atualização dos pedidos no Ecommerce;</li>
+</ul>
 
 <p><strong>REQUISIÇÃO</strong></p>
 
