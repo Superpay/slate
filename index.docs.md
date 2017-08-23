@@ -5,7 +5,7 @@ toc_footers:
   - <a href='#'>Documentação API SuperPay</a>
 
 
-search: false
+search: true
 ---
 # Bem vindo ao SuperPay
 Tudo que você precisa para se integrar ao nosso Gateway.
