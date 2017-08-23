@@ -215,12 +215,56 @@
             <a href="#bem-vindo-ao-superpay" class="toc-h1 toc-link" data-title="Bem vindo ao SuperPay">Bem vindo ao SuperPay</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#integracao-rest" class="toc-h2 toc-link" data-title="Bem vindo ao SuperPay">Integração REST</a>
-                  </li>
-                  <li>
-                    <a href="#integracao-soap" class="toc-h2 toc-link" data-title="Bem vindo ao SuperPay">Integração SOAP</a>
+                    <a href="#introducao" class="toc-h2 toc-link" data-title="Bem vindo ao SuperPay">Introdução</a>
                   </li>
               </ul>
+          </li>
+          <li>
+            <a href="#funcionalidades" class="toc-h1 toc-link" data-title="Funcionalidades">Funcionalidades</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#captura-posterior-de-transacoes" class="toc-h2 toc-link" data-title="Funcionalidades">Captura posterior de transações</a>
+                  </li>
+                  <li>
+                    <a href="#cancelamento" class="toc-h2 toc-link" data-title="Funcionalidades">Cancelamento</a>
+                  </li>
+                  <li>
+                    <a href="#estorno" class="toc-h2 toc-link" data-title="Funcionalidades">Estorno</a>
+                  </li>
+                  <li>
+                    <a href="#multiplos-cartoes" class="toc-h2 toc-link" data-title="Funcionalidades">Múltiplos Cartões</a>
+                  </li>
+                  <li>
+                    <a href="#cobranca-recorrente" class="toc-h2 toc-link" data-title="Funcionalidades">Cobrança recorrente</a>
+                  </li>
+                  <li>
+                    <a href="#boletos-registrados" class="toc-h2 toc-link" data-title="Funcionalidades">Boletos Registrados</a>
+                  </li>
+                  <li>
+                    <a href="#renova-facil" class="toc-h2 toc-link" data-title="Funcionalidades">Renova Fácil</a>
+                  </li>
+                  <li>
+                    <a href="#pagamentos-com-um-unico-clique" class="toc-h2 toc-link" data-title="Funcionalidades">Pagamentos com um único clique</a>
+                  </li>
+                  <li>
+                    <a href="#analise-de-risco" class="toc-h2 toc-link" data-title="Funcionalidades">Análise de Risco</a>
+                  </li>
+                  <li>
+                    <a href="#multi-lojas" class="toc-h2 toc-link" data-title="Funcionalidades">Multi Lojas</a>
+                  </li>
+                  <li>
+                    <a href="#retentativa-de-pagamento" class="toc-h2 toc-link" data-title="Funcionalidades">Retentativa de Pagamento</a>
+                  </li>
+                  <li>
+                    <a href="#switch-de-adquirencia" class="toc-h2 toc-link" data-title="Funcionalidades">Switch de Adquirência</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#integracao-rest" class="toc-h1 toc-link" data-title="Integração REST">Integração REST</a>
+          </li>
+          <li>
+            <a href="#integracao-soap" class="toc-h1 toc-link" data-title="Integração SOAP">Integração SOAP</a>
           </li>
       </div>
         <ul class="toc-footer">
@@ -232,9 +276,76 @@
       <div class="content">
         <h1 id='bem-vindo-ao-superpay'>Bem vindo ao SuperPay</h1>
 <p>Tudo que você precisa para se integrar ao nosso Gateway.</p>
-<h2 id='integracao-rest'>Integração REST</h2>
+<h2 id='introducao'>Introdução</h2>
+<p>Gateway de pagamento é uma solução tecnológica, que permite, facilmente, que quaisquer sistemas que possam se comunicar via WebService, realizem cobranças via boleto, cartão e transferências bancárias. Uma vez integrado ao SuperPay, seu sistema estará pronto para disponibilizar diversas formas de pagamento.</p>
+<h1 id='funcionalidades'>Funcionalidades</h1><h2 id='captura-posterior-de-transacoes'>Captura posterior de transações</h2>
+<p>Com o SuperPay é possível realizar em primeiro momento apenas uma pré autorização, onde o valor da transação será apenas sensibilizado no limite do cartão, e após acionar o método de captura para a confirmação da venda e cobrança no cartão.</p>
+<h2 id='cancelamento'>Cancelamento</h2>
+<p>Cancelamento de transações rapidamente acionando o método de cancelamento.</p>
+<h2 id='estorno'>Estorno</h2>
+<p>Com esta funcionalidade é possível realizar cancelamentos parciais e totais, dependendo da adquirente utilizada.</p>
+<h2 id='multiplos-cartoes'>Múltiplos Cartões</h2>
+<p>Através desta estrutura é possível o envio de mais de um cartão para aprovação em uma mesma transação, dividindo o valor total do pedido entre os mesmos.</p>
+<h2 id='cobranca-recorrente'>Cobrança recorrente</h2>
+<p>Funcionalidade perfeita para estabelecimentos que precisam cobrar regularmente seus clientes. Faça os cadastros de suas mensalidades e o SuperPay cobrará para você de acordo com o período cadastrado.</p>
+<h2 id='boletos-registrados'>Boletos Registrados</h2>
+<p>Com o registro dos boletos, os bancos possuem conhecimento do mesmo desde sua geração. Atualmente o SuperPay possui em produção os boletos com registro do Itaú Offline, Itaú ShopLine, Santander, Bradesco Offline, Bradesco ShopFácil, Banco do Brasil e Caixa Econômica Federal.</p>
+
+<p>O SuperPay continua trabalhando com carteiras sem registros, basta o banco permitir isto em seu cadastro.
+<strong>Para utilização do boleto registrado, entre em contato com comercial@superpay.com.br.</strong></p>
+<h2 id='renova-facil'>Renova Fácil</h2>
+<p><strong>Funcionalidade da adquirente Cielo</strong></p>
+
+<p>Essa funcionalidade facilita a identificação de um cartão que tenha sido substituído por outro no banco emissor. Dessa forma, quando uma transação recorrente é submetida ao Web Service e a Cielo identifica que o cartão utilizado está desatualizado, a operadora retorna ao Gateway os novos dados, que por sua vez, os atualiza na base recorrente e envia novamente a cobrança a operadora, com os dados atualizados.</p>
+
+<p>Bancos Emissores Participantes:</p>
+
+<ul>
+<li>Bradesco</li>
+<li>Banco do Brasil</li>
+<li>Santander</li>
+<li>Panamericano</li>
+<li>Citi</li>
+</ul>
+
+<p>Para utilizar esta funcionalidade, solicite a Cielo a ativação em seu estabelecimento e ,após isto, ao Suporte SuperPay.</p>
+<h2 id='pagamentos-com-um-unico-clique'>Pagamentos com um único clique</h2>
+<p>Funcionalidade que permite o cadastramento de cartão para utilização nas futuras compras, assim o consumidor precisará incluir apenas o código de segurança para finalizar a compra.</p>
+
+<p><strong>Disponibilizado em nosso plano Corporativo</strong></p>
+<h2 id='analise-de-risco'>Análise de Risco</h2>
+<p>O SuperPay possui integração com as empresas especializadas em análises de riscos: ClearSale e FControl.</p>
+<h2 id='multi-lojas'>Multi Lojas</h2>
+<p>Permite a criação de diversas “lojas” para um mesmo contrato, podendo estas, serem configuradas com as mesma filiações das instituições financeiras ou diferentes.
+Além disto, cada &quot;loja&quot; poderá acessar nosso Painel Administrativo para consultar <em>apenas</em> suas vendas.</p>
+
+<p><strong>Para ativação solicitar ao Comercial SuperPay</strong></p>
+<h2 id='retentativa-de-pagamento'>Retentativa de Pagamento</h2>
+<p>Esta funcionalidade já gerou mais de 10% de recuperação de vendas com clientes.</p>
+
+<p>As vendas não autorizadas ou com falha de comunicação, serão armazenados para retentativa durante 2 dias.
+Não há alteração na estrutura de envio para utilizar esta funcionalidade. O Ecommerce deverá se atentar no retorno deste processo, onde o status para estes casos será 8 (aguardando pagamento) enquanto a venda não for aprovado ou até que sejam fechados (alterados para Não Pago) no terceiro dia.</p>
+
+<p><strong>Além de solicitar a ativação ao Suporte SuperPay, é preciso uma alteração no campo origemTransacao enviando 5 para os pedidos que desejar a retentativa</strong></p>
+<h2 id='switch-de-adquirencia'>Switch de Adquirência</h2>
+<p>Em caso de falha na aprovação da transação, o Gateway redirecionará o pagamento para outra adquirente configurada em seu estabelecimento.</p>
+
+<p>O estabelecimento pode criar regras, juntamente com a equipe de Suporte do SuperPay, podendo assim ordenar o envio para as operadoras por bandeiras.
+Lembrando que o roteamento é possível apenas em bandeiras que existem em outras operadoras. Abaixo segue lista de bandeiras que podem ser roteadas:</p>
+
+<ul>
+<li>Visa</li>
+<li>MasterCard</li>
+<li>Diners</li>
+<li>Discover</li>
+</ul>
+
+<p>Não há alteração na estrutura de envio para utilização desta funcionalidade. O Ecommerce deverá se atentar no retorno deste processo, onde o código da forma ded pagamento será diferente do enviado.</p>
+
+<p><strong>Disponibilizado em nosso plano Corporativo</strong></p>
+<h1 id='integracao-rest'>Integração REST</h1>
 <p>Acesse o link: <a href="https://superpay.github.io/rest">https://superpay.github.io/rest</a></p>
-<h2 id='integracao-soap'>Integração SOAP</h2>
+<h1 id='integracao-soap'>Integração SOAP</h1>
 <p>Acesse o link: <a href="https://superpay.github.io/soap">https://superpay.github.io/soap</a></p>
 
       </div>

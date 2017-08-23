@@ -317,12 +317,34 @@
           </li>
           <li>
             <a href="#pagamentos-com-token-oneclick" class="toc-h1 toc-link" data-title="Pagamentos com Token (OneClick)">Pagamentos com Token (OneClick)</a>
-          </li>
-          <li>
-            <a href="#funcionalidades" class="toc-h1 toc-link" data-title="Funcionalidades">Funcionalidades</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#cadastrando-cartao" class="toc-h2 toc-link" data-title="Pagamentos com Token (OneClick)">Cadastrando cartão</a>
+                  </li>
+                  <li>
+                    <a href="#pagamento-com-token" class="toc-h2 toc-link" data-title="Pagamentos com Token (OneClick)">Pagamento com token</a>
+                  </li>
+                  <li>
+                    <a href="#alterando-cadastro" class="toc-h2 toc-link" data-title="Pagamentos com Token (OneClick)">Alterando cadastro</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#consultas" class="toc-h1 toc-link" data-title="Consultas">Consultas</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#consultando-uma-transacao" class="toc-h2 toc-link" data-title="Consultas">Consultando uma transação</a>
+                  </li>
+                  <li>
+                    <a href="#consultando-uma-transacao-com-retorno-data-de-antifraude" class="toc-h2 toc-link" data-title="Consultas">Consultando uma transação com retorno data de Antifraude</a>
+                  </li>
+                  <li>
+                    <a href="#consultando-token" class="toc-h2 toc-link" data-title="Consultas">Consultando token</a>
+                  </li>
+                  <li>
+                    <a href="#consulta-recorrente" class="toc-h2 toc-link" data-title="Consultas">Consulta recorrente</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#post-de-notificacao" class="toc-h1 toc-link" data-title="Post de Notificação">Post de Notificação</a>
@@ -381,10 +403,13 @@ Uma vez integrado ao SuperPay, seu sistema estará pronto para disponibilizar di
 <p>A comunicação com o SuperPay ocorrerá após a finalização do pagamento no Checkout do Ecommerce, de forma transparente para o consumidor.
 Ao ser finalizado o pagamento dentro da loja, o Ecommerce deverá consumir os serviços WebServices do SuperPay encaminhando as informações da compra de acordo com a estrutura que será apresentada nesta documentação.</p>
 <h1 id='credencias-de-acesso'>Credencias de acesso</h1><h2 id='sandbox'>Sandbox</h2>
-<p>O SuperPay disponibiliza um ambiente totalmente gratuito para sua equipe de desenvolvimento realizar testes. Basta solicitar seu ambiente para nossa equipe comercial através do email [comercial@superpay.com.br] com as seguintes informações:
-* Nome da Loja;
-* CNPJ;
-* Email para criação do cadastro.</p>
+<p>O SuperPay disponibiliza um ambiente totalmente gratuito para sua equipe de desenvolvimento realizar testes. Basta solicitar seu ambiente para nossa equipe comercial através do email [comercial@superpay.com.br] com as seguintes informações:</p>
+
+<ul>
+<li>Nome da Loja;</li>
+<li>CNPJ;</li>
+<li>Email para criação do cadastro.</li>
+</ul>
 <h2 id='producao'>Produção</h2>
 <p>Para receber suas credenciais do nosso ambiente de produção, basta acessar nosso site e realizar a contratação de um de nossos planos: <a href="http://www.superpay.com.br/planos">Planos SuperPay</a>
 Caso tenha dúvidas sobre, por gentileza entrar em contato com nossa equipe comercial através do email [comercial@superpay.com.br] ou pelo telefone 11 3544-0678</p>
@@ -431,6 +456,8 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
   <span class="nt">&lt;/soapenv:Body&gt;</span>
 <span class="nt">&lt;/soapenv:Envelope&gt;</span>
 </code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
 <table><thead>
 <tr>
 <th>Campo</th>
@@ -789,6 +816,8 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
    <span class="nt">&lt;/soapenv:body&gt;</span>
 <span class="nt">&lt;/soapenv:envelope&gt;</span>
 </code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
 <table><thead>
 <tr>
 <th>Campo</th>
@@ -1489,6 +1518,8 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompletaMais
   <span class="nt">&lt;/soapenv:Body&gt;</span>
 <span class="nt">&lt;/soapenv:Envelope&gt;</span>
 </code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
 <table><thead>
 <tr>
 <th>Campo</th>
@@ -1819,6 +1850,8 @@ Para enviar a transação, acione o método <code>operacaoTransacao</code>
    <span class="nt">&lt;/soapenv:body&gt;</span>
 <span class="nt">&lt;/soapenv:envelope&gt;</span>
 </code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
 <table><thead>
 <tr>
 <th>Campo</th>
@@ -2043,6 +2076,8 @@ Para enviar a transação, acione o método <code>operacaoTransacao</code>
    <span class="nt">&lt;/soapenv:body&gt;</span>
 <span class="nt">&lt;/soapenv:envelope&gt;</span>
 </code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
 <table><thead>
 <tr>
 <th>Campo</th>
@@ -2237,10 +2272,11 @@ Para enviar a transação, acione o método <code>operacaoTransacao</code>
 </tr>
 </tbody></table>
 
-<aside class="warning">
+<aside class="notice">
 Esta funcionalidade está disponível em um WebService diferenciado:
 
 SANDBOX: <code>https://homologacao.superpay.com.br/checkout/servicosEstornoWS.Services?wsdl</code>
+
 
 PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/servicosEstornoWS.Services?wsdl</code>
 </aside>
@@ -2265,6 +2301,8 @@ Para enviar a transação, acione o método <code>estornaTransacao</code>
    <span class="nt">&lt;/soapenv:Body&gt;</span>
 <span class="nt">&lt;/soapenv:Envelope&gt;</span>
 </code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
 <table><thead>
 <tr>
 <th>Campo</th>
@@ -2371,6 +2409,8 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
   <span class="nt">&lt;/soapenv:Body&gt;</span>
 <span class="nt">&lt;/soapenv:Envelope&gt;</span>
 </code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
 <table><thead>
 <tr>
 <th>Campo</th>
@@ -2733,6 +2773,8 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
    <span class="nt">&lt;/soapenv:body&gt;</span>
 <span class="nt">&lt;/soapenv:envelope&gt;</span>
 </code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
 <table><thead>
 <tr>
 <th>Campo</th>
@@ -3380,6 +3422,8 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
    <span class="nt">&lt;/soapenv:body&gt;</span>
 <span class="nt">&lt;/soapenv:envelope&gt;</span>
 </code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
 <table><thead>
 <tr>
 <th>Campo</th>
@@ -3610,20 +3654,6 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 <td>Sim</td>
 </tr>
 <tr>
-<td>dddAdicionalComprador</td>
-<td>DDD do telefone adicional do comprador</td>
-<td>Alfa Numérico</td>
-<td>Até 3 caracteres</td>
-<td>Não</td>
-</tr>
-<tr>
-<td>ddiAdicionalComprador</td>
-<td>DDI do telefone adicional do comprador</td>
-<td>Alfa Numérico</td>
-<td>Até 3 caracteres</td>
-<td>Não</td>
-</tr>
-<tr>
 <td>emailComprador</td>
 <td>E-mail do comprador</td>
 <td>Alfa Numérico</td>
@@ -3818,33 +3848,31 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 <p>Para geração do boleto o eCommerce deverá redirecionar o consumidor para a URl retornada no campo <urlPagamento></p>
 
 <blockquote>
-<p>Exemplo retorno criação transação:
-<code>xml
-&lt;soap:envelope xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
-   &lt;soap:body&gt;
-      &lt;ns2:pagamentoTransacaoCompletaResponse xmlns:ns2=&quot;http://pagamentos.webservices.superpay.ernet.com.br/&quot;&gt;
-         &lt;return&gt;
-            &lt;autorizacao&gt;0&lt;/autorizacao&gt;
-            &lt;codigoEstabelecimento&gt;1000000000000&lt;/codigoestabelecimento&gt;
-            &lt;codigoFormaPagamento&gt;16&lt;/codigoformapagamento&gt;
-            &lt;codigoTransacaoOperadora&gt;0&lt;/codigotransacaooperadora&gt;
-            &lt;dataAprovacaoOperadora&gt;&lt;/dataaprovacaooperadora&gt;
-            &lt;mensagemvenda&gt;&lt;/mensagemvenda&gt;
-            &lt;numeroComprovanteVenda&gt;&lt;/numerocomprovantevenda&gt;
-            &lt;numeroTransacao&gt;9012346&lt;/numerotransacao&gt;
-            &lt;parcelas&gt;1&lt;/parcelas&gt;
-            &lt;statusTransacao&gt;5&lt;/statustransacao&gt;
-            &lt;taxaEmbarque&gt;0&lt;/taxaembarque&gt;
-            &lt;urlPagamento&gt;https://homologacao.superpay.com.br/checkout/PagamentoItauShopLine/PagamentoItauShopLine.do?code=14956296486904d8312c6-d57a-499e-b53b-504047402e45&lt;/urlpagamento&gt;
-            &lt;valor&gt;200&lt;/valor&gt;
-            &lt;valorDesconto&gt;0&lt;/valordesconto&gt;
-         &lt;/return&gt;
-      &lt;/ns2:pagamentoTransacaoCompletaResponse&gt;
-   &lt;/soap:body&gt;
-&lt;/soap:envelope&gt;
-</code></p>
+<p>Exemplo retorno criação transação:</p>
 </blockquote>
-
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;</span>0<span class="nt">&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoestabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>16<span class="nt">&lt;/codigoformapagamento&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigotransacaooperadora&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;&lt;/dataaprovacaooperadora&gt;</span>
+            <span class="nt">&lt;mensagemvenda&gt;&lt;/mensagemvenda&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;&lt;/numerocomprovantevenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>9012346<span class="nt">&lt;/numerotransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>5<span class="nt">&lt;/statustransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaembarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>https://homologacao.superpay.com.br/checkout/PagamentoItauShopLine/PagamentoItauShopLine.do?code=14956296486904d8312c6-d57a-499e-b53b-504047402e45<span class="nt">&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valordesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+</code></pre>
 <table><thead>
 <tr>
 <th>Campo</th>
@@ -3939,14 +3967,13 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 </tr>
 </tbody></table>
 <h1 id='pagamentos-recorrentes'>Pagamentos Recorrentes</h1>
-<aside class="warning">
+<aside class="notice">
 Esta funcionalidade está disponível em um WebService diferenciado:
 
-SANDBOX: <code>https://homologacao.superpay.com.br/checkout/servicosRecorrenciaWS
-.Services?wsdl</code>
+SANDBOX: <code>https://homologacao.superpay.com.br/checkout/servicosRecorrenciaWS.Services?wsdl</code>
 
-PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/servicosRecorrenciaWS
-.Services?wsdl</code>
+
+PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/servicosRecorrenciaWS.Services?wsdl</code>
 </aside>
 <h2 id='criando-uma-transacao-recorrente'>Criando uma transação recorrente</h2>
 <p>Neste modelo, o SuperPay controla os pagamentos que foram cadastrados pelo estabelecimento, de acordo com sua periodicidade, valor e dia de cobrança.</p>
@@ -4002,6 +4029,8 @@ PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/servicosRecorrencia
    <span class="nt">&lt;/soapenv:Body&gt;</span>
 <span class="nt">&lt;/soapenv:Envelope&gt;</span>
 </code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
 <table><thead>
 <tr>
 <th>Campo</th>
@@ -4440,6 +4469,8 @@ PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/servicosRecorrencia
    <span class="nt">&lt;/soapenv:Body&gt;</span>
 <span class="nt">&lt;/soapenv:Envelope&gt;</span>
 </code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
 <table><thead>
 <tr>
 <th>Campo</th>
@@ -4517,22 +4548,1349 @@ PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/servicosRecorrencia
 </tr>
 </tbody></table>
 <h1 id='pagamentos-com-token-oneclick'>Pagamentos com Token (OneClick)</h1>
-<p>criar
-pagamento
-alterar</p>
-<h1 id='funcionalidades'>Funcionalidades</h1>
-<p>Incluir todas funcionalidades</p>
-<h1 id='consultas'>Consultas</h1>
-<p>comum
-data de antifraude
-consulta one click
-consulta recorrencia</p>
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li>Disponível apenas no plano Corporativo;</li>
+<li>Disponível para cartão de crédito e débito.</li>
+</ul>
+
+<aside class="notice">
+Esta funcionalidade está disponível em um WebService diferenciado:
+
+SANDBOX: <code>https://homologacao.superpay.com.br/checkout/servicosPagamentoOneClickWS.Services?wsdl</code>
+
+
+PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/servicosPagamentoOneClickWS.Services?wsdl</code>
+</aside>
+<h2 id='cadastrando-cartao'>Cadastrando cartão</h2>
+<p>Funcionalidade que permite o cadastramento de cartão para utilização nas futuras compras, assim o consumidor precisará incluir apenas o código de segurança para finalizar a compra.</p>
+
+<p><strong>REQUISIÇÃO</strong></p>
+
+<aside class="notice">Para criar o token, acione o método <code>cadastraPagamentoOneClickV2</code></aside>
+
+<blockquote>
+<p>Exemplo cadastro do cartão:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;pag:cadastraPagamentoOneClickV2&gt;</span>
+         <span class="nt">&lt;dadosOneClick&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;emailComprador&gt;</span>suporte@superpay.com.br<span class="nt">&lt;/emailComprador&gt;</span>
+            <span class="nt">&lt;formaPagamento&gt;</span>350<span class="nt">&lt;/formaPagamento&gt;</span>
+            <span class="nt">&lt;nomeTitularCartaoCredito&gt;</span>Teste<span class="nt">&lt;/nomeTitularCartaoCredito&gt;</span>
+            <span class="nt">&lt;numeroCartaoCredito&gt;</span>4444333322221111<span class="nt">&lt;/numeroCartaoCredito&gt;</span>
+            <span class="nt">&lt;dataValidadeCartao&gt;</span>10/2018<span class="nt">&lt;/dataValidadeCartao&gt;</span>
+         <span class="nt">&lt;/dadosOneClick&gt;</span>
+         <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+         <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+      <span class="nt">&lt;/pag:cadastraPagamentoOneClickV2&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Login do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>codigoEstabelecimento|  Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)|   Numérico|13 dígitos|  Sim
+nomeTitularCartaoCredito|   Nome do titular do cartão de crédito |    Alfa Numérico| Até 25 caracteres| Sim
+numeroCartaoCredito|    Numero do cartão de crédito. Enviar sem espaços e virgúlas| Numérico|  Até 22 caracteres| Sim
+dataValidadeCartao| Data de validade do cartão. Formato mm/yyyy|   Alfa Numérico| 7 caracteres    |Sim
+emailComprador| Endereço de e-mail do comprador|   Alfa Numérico| Até 100 caracteres|    Não
+formaPagamento| Código da forma de pagamento. Clique aqui para maiores informações|  Numérico|  -|  Sim</p>
+
+<p><strong>RESPOSTA</strong></p>
+
+<blockquote>
+<p>Exemplo retorno cadastro do cartão. O retorno da requisição de cadastro será apenas o Token, este deverá ser armazenado no Ecommerce para as próximas compras</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns2:cadastraPagamentoOneClickV2Response</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>149624974900187da0175-509d-4b01-9158-a96e3ed9ccae<span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:cadastraPagamentoOneClickV2Response&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+</code></pre><h2 id='pagamento-com-token'>Pagamento com token</h2>
+<p>Com o Token recebido no momento do cadastro, é possível realizar o pagamento.</p>
+
+<p><strong>REQUISIÇÃO</strong></p>
+
+<aside class="notice">Para pagamento com token, acione o método <code>pagamentoOneClickV2</code></aside>
+
+<blockquote>
+<p>Exemplo estrutura simplificada para estabelecimentos que não utilizam antifraude:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;pag:pagamentoOneClickV2&gt;</span>
+         <span class="nt">&lt;transacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+               <span class="nt">&lt;nomeComprador&gt;</span>Nome do comprador<span class="nt">&lt;/nomeComprador&gt;</span>
+               <span class="nt">&lt;documentoComprador&gt;</span>12312312312<span class="nt">&lt;/documentoComprador&gt;</span>
+            <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>10<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;cvv&gt;</span>123<span class="nt">&lt;/cvv&gt;</span>
+            <span class="nt">&lt;token&gt;</span>149624974900187da0175-509d-4b01-9158-a96e3ed9ccae<span class="nt">&lt;/token&gt;</span>
+            <span class="nt">&lt;urlCampainha&gt;</span>http://sualoja.com.br/campainha<span class="nt">&lt;/urlcampainha&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+         <span class="nt">&lt;/transacao&gt;</span>
+         <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+         <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+      <span class="nt">&lt;/pag:pagamentoOneClickV2&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Login do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
+
+<p><em>transacaoOneClickWS</em></p>
+
+<p>numeroTransacao|    Código que identifica a transação dentro do SuperPay|    Numérico|  Até 19 dígitos|   Sim
+codigoEstabelecimento| Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)|    Numérico| 13 dígitos| Sim
+token|  Valor único obtido através do serviço “cadastroPagamentoOneClick2”|  Alfa Numérico| Até 100 caracteres|    Sim
+cvv | Código de segurança do cartão |Numérico|  Até 4 dígitos|    Sim
+valor|  Valor da transação. Deve ser enviado sem pontos ou vírgulas| Numérico|  Até 10 dígitos    |Sim
+valorDesconto|  Valor do desconto da transação. Campo apenas informativo| Numérico|  Até 10 dígitos|   Sim
+taxaEmbarque|   Valor da taxa de embarque. Campo apenas informativo|    Numérico|  Até 10 dígitos|   Sim
+parcelas|   Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento|    Numérico|Até 2 dígitos | Sim
+urlCampainha|   URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha|    Alfa Numérico  |Até 250 caracteres|   Não
+urlRedirecionamentoPago |Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação aprovada|  Alfa Numérico| Até 250 caracteres|    Para pagamentos com redirect é obrigatório
+urlRedirecionamentoNaoPago| Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação reprovada|  Alfa Numérico| Até 250 caracteres|    Para pagamentos com redirect é obrigatório
+ip| Número do IP do usuário final/cliente. Formato xxx.xxx.xxx.xxx|   Alfa Numérico| Até 15 caracteres| Não
+idioma| 1 - Português 2 - Inglês 3 - Espanhol|    Numérico|   - |    Sim
+origemTransacao|    1 - eCommerce 2 - Mobile 3 - URA |  Numérico|   - |    Sim
+campoLivre1|    Campo Livre 1|  Alfa Numérico| Até 16 caracteres| Não
+campoLivre2|    Campo Livre 2|  Alfa Numérico| Até 16 caracteres| Não
+campoLivre3|    Campo Livre 3|  Alfa Numérico| Até 16 caracteres| Não
+campoLivre4|    Campo Livre 4|  Alfa Numérico| Até 16 caracteres| Não
+campoLivre5|    Campo Livre 5|  Alfa Numérico| Até 16 caracteres| Não
+dadosUsuarioTransacao|  Informações para cobrança e entrega. Informações importantes para análise de fraude|   -|  -|  -
+itensDoPedido|  Lista com Itens que estão sendo comprados. Informações importantes para análise de fraude e intermediários financeiros | -  - |     - </p>
+
+<p><em>dadosUsuarioTransacao</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoCliente</td>
+<td>Código que identifica o cliente no estabelecimento</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>tipoCliente</td>
+<td>1 - Pessoa Física 2 - Pessoa Jurídica</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>nomeComprador</td>
+<td>Nome do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 100 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>documentoComprador</td>
+<td>Documento principal do comprador</td>
+<td>Alfa Numérico</td>
+<td>30 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>sexoComprador</td>
+<td>M – Masculino / F – Feminino</td>
+<td>Alfa Numérico</td>
+<td>1 caracter</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>dataNascimentoComprador</td>
+<td>Data de nascimento do comprador. Formato dd/mm/yyyy</td>
+<td>Alfa Numérico</td>
+<td>10 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>telefoneComprador</td>
+<td>Telefone do comprador sem espaços ou traços</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>dddComprador</td>
+<td>DDD do telefone do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 3 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>ddiComprador</td>
+<td>DDI do telefone do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 3 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>codigoTipoTelefoneComprador</td>
+<td>1 - Outros 2 - Residencial 3 - Comercial</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>emailComprador</td>
+<td>E-mail do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 100 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>enderecoComprador</td>
+<td>Logradouro do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 100 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>numeroEnderecoComprador</td>
+<td>Número do logradouro do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>bairroEnderecoComprador</td>
+<td>Bairro comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>complementoEnderecoComprador</td>
+<td>Complemento do endereço comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>cidadeEnderecoComprador</td>
+<td>Cidade do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>estadoEnderecoComprador</td>
+<td>Estado do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 2 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>cepEnderecoComprador</td>
+<td>CEP do comprador. Enviar sem traços ou espaços</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>enderecoEntrega</td>
+<td>Logradouro de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 100 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>numeroEnderecoEntrega</td>
+<td>Número do logradouro de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>bairroEnderecoEntrega</td>
+<td>Bairro do logradouro de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>complementoEnderecoEntrega</td>
+<td>Complemento do endereço de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>cidadeEnderecoEntrega</td>
+<td>Cidade de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>estadoEnderecoEntrega</td>
+<td>Estado de entrega</td>
+<td>Alfa Numérico</td>
+<td>2 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>cepEnderecoEntrega</td>
+<td>CEP de entrega. Enviar sem traços ou espaços</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>telefoneEntrega</td>
+<td>Telefone de entrega. Sem espaços ou traços</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>dddEntrega</td>
+<td>DDD do telefone de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 3 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>ddiEntrega</td>
+<td>DDI do telefone de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 3 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>codigoTipoTelefoneEntrega</td>
+<td>1 - Outros 2 - Residencial 3 - Comercial</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
+
+<p><em>itemPedidoTransacaoWS</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoProduto</td>
+<td>Código único que identifica cada produto</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>codigoCategoria</td>
+<td>Código que identifica categoria do produto</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>nomeProduto</td>
+<td>Nome do Produto Alfa Numérico</td>
+<td>100 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+<td></td>
+</tr>
+<tr>
+<td>quantidadeProduto</td>
+<td>Quantidade comprada do produto</td>
+<td>Numérico</td>
+<td>Até 8 dígitos</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>valorUnitarioProduto</td>
+<td>Valor unitário do produto. Deve ser enviado sem pontos ou vírgulas</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+<tr>
+<td>nomeCategoria</td>
+<td>Nome da categoria do produto</td>
+<td>Alfa Numérico</td>
+<td>100 caracteres</td>
+<td>Caso utilize antifraude sim</td>
+</tr>
+</tbody></table>
+
+<p><strong>RESPOSTA</strong></p>
+
+<blockquote>
+<p>Exemplo retorno pagamento com token:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;</span>123456<span class="nt">&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>350<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;</span>24/05/2017<span class="nt">&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;</span>Transacao capturada com sucesso<span class="nt">&lt;/mensagemVenda&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;</span>1006993069181F841001<span class="nt">&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>10<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>1<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>14132971582229c00506d-e84d-4526-b902-92190d5aa808<span class="nt">&lt;urlpagamento&gt;&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 19 dígitos</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td>Código da forma de pagamento</td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação.</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>valorDesconto</td>
+<td>Valor desconto</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>taxaEmbarque</td>
+<td>Valor taxa embarque</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>urlPagamento</td>
+<td>Url para autenticação em caso de cartão de débito</td>
+<td>Alfa Numérico</td>
+<td>Até 500 caracteres</td>
+</tr>
+<tr>
+<td>statusTransacao</td>
+<td>Status atual da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>autorizacao</td>
+<td>Número de autorização da adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>codigoTransacaoOperadora</td>
+<td>Código de retorno da adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>dataAprovacaoOperadora</td>
+<td>Data aprovação</td>
+<td>Alfa Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>numeroComprovanteVenda</td>
+<td>Número Comprovante de venda</td>
+<td>Alfa Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>mensagemVenda</td>
+<td>Mensagem de venda</td>
+<td>Alfa Numérico</td>
+<td>Até 50 dígitos</td>
+</tr>
+</tbody></table>
+<h2 id='alterando-cadastro'>Alterando cadastro</h2>
+<p>Este método permite a alteração dos dados já cadastrados na base do Gateway.</p>
+
+<p><strong>REQUISIÇÃO</strong></p>
+
+<aside class="notice">Para pagamento com token, acione o método <code>alteraCadastraPagamentoOneClick</code></aside>
+
+<blockquote>
+<p>Exemplo de alteração de cadastro</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;pag:alteraCadastraPagamentoOneClick&gt;</span>
+         <span class="nt">&lt;dadosOneClick&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1318336765212<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;dataValidadeCartao&gt;</span>11/2018<span class="nt">&lt;/dataValidadeCartao&gt;</span>
+            <span class="nt">&lt;emailComprador&gt;</span>teste@suporte.com.br<span class="nt">&lt;/emailComprador&gt;</span>
+            <span class="nt">&lt;formaPagamento&gt;</span>380<span class="nt">&lt;/formaPagamento&gt;</span>
+            <span class="nt">&lt;nomeTitularCartaoCredito&gt;</span>teste SuperPay<span class="nt">&lt;/nomeTitularCartaoCredito&gt;</span>
+            <span class="nt">&lt;numeroCartaoCredito&gt;</span>1111222233334444<span class="nt">&lt;/numeroCartaoCredito&gt;</span>
+         <span class="nt">&lt;/dadosOneClick&gt;</span>
+         <span class="nt">&lt;token&gt;</span>1476210884949a25ed2d6-17cf-4ac4-af22-5c67d7907ef5<span class="nt">&lt;/token&gt;</span>
+         <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+         <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+      <span class="nt">&lt;/pag:alteraCadastraPagamentoOneClick&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Login do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>numeroCartaoCredito</td>
+<td>Numero do cartão de crédito. Enviar sem espaços e virgúlas</td>
+<td>Numérico</td>
+<td>Até 22 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>dataValidadeCartao</td>
+<td>Data de validade do cartão. Formato mm/yyyy</td>
+<td>Alfa Numérico</td>
+<td>7 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>emailComprador</td>
+<td>Endereço de e-mail do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 100 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>formaPagamento</td>
+<td>Código da forma de pagamento</td>
+<td>Numérico</td>
+<td>-</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>token</td>
+<td>Token do cadastro que será alterado</td>
+<td>Alfa Numérico</td>
+<td>Até 100 caracteres</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
+
+<p><strong>RESPOSTA</strong></p>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns2:alteraCadastraPagamentoOneClickResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1010101010101010<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoSeguranca/&gt;</span>
+            <span class="nt">&lt;dataValidadeCartao&gt;</span>11/2018<span class="nt">&lt;/dataValidadeCartao&gt;</span>
+            <span class="nt">&lt;emailComprador&gt;</span>teste@suporte.com.br<span class="nt">&lt;/emailComprador&gt;</span>
+            <span class="nt">&lt;formaPagamento&gt;</span>380<span class="nt">&lt;/formaPagamento&gt;</span>
+            <span class="nt">&lt;nomeTitularCartaoCredito&gt;</span>Teste SuperPay<span class="nt">&lt;/nomeTitularCartaoCredito&gt;</span>
+            <span class="nt">&lt;numeroCartaoCredito&gt;</span>111122******4444<span class="nt">&lt;/numeroCartaoCredito&gt;</span>
+       <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:alteraCadastraPagamentoOneClickResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+</tr>
+<tr>
+<td>nomeTitularCartaoCredito</td>
+<td>Nome do titular do cartão de crédito</td>
+<td>Alfa Numérico</td>
+<td>Até 25 caracteres</td>
+</tr>
+<tr>
+<td>numeroCartaoCredito</td>
+<td>Numero do cartão de crédito. Enviar sem espaços e virgúlas</td>
+<td>Numérico</td>
+<td>Até 22 caracteres</td>
+</tr>
+<tr>
+<td>dataValidadeCartao</td>
+<td>Data de validade do cartão. Formato mm/yyyy</td>
+<td>Alfa Numérico</td>
+<td>7 caracteres</td>
+</tr>
+<tr>
+<td>emailComprador</td>
+<td>Endereço de e-mail do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 100 caracteres</td>
+</tr>
+<tr>
+<td>formaPagamento</td>
+<td>Código da forma de pagamento</td>
+<td>Numérico</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h1 id='consultas'>Consultas</h1><h2 id='consultando-uma-transacao'>Consultando uma transação</h2>
+<p>Para receber novamente os dados de retorno de uma venda, realize uma consulta.</p>
+
+<p><strong>REQUISIÇÃO</strong></p>
+
+<aside class="notice">Para consultas, acione o método <code>consultaTransacao</code></aside>
+
+<blockquote>
+<p>Exemplo consulta:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:header&gt;&lt;/soapenv:header&gt;</span>
+   <span class="nt">&lt;soapenv:body&gt;</span>
+      <span class="nt">&lt;pag:consultaTransacao&gt;</span>
+         <span class="nt">&lt;consultaTransacaoWS&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+         <span class="nt">&lt;/consultaTransacaoWS&gt;</span>
+         <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+         <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+      <span class="nt">&lt;/pag:consultaTransacao&gt;</span>
+   <span class="nt">&lt;/soapenv:body&gt;</span>
+<span class="nt">&lt;/soapenv:envelope&gt;</span>
+</code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Login do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 8 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
+
+<p><strong>RESPOSTA</strong></p>
+
+<blockquote>
+<p>Exemplo retorno:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:consultaTransacaoResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;</span>123456<span class="nt">&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>120<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;</span>24/05/2017<span class="nt">&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;</span>Transacao cancelada com sucesso<span class="nt">&lt;/mensagemVenda&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;</span>1006993069181F841001<span class="nt">&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>13<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>14132971582229c00506d-e84d-4526-b902-92190d5aa808<span class="nt">&lt;urlpagamento&gt;&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:consultaTransacaoResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 19 dígitos</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td>Código da forma de pagamento</td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação.</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>valorDesconto</td>
+<td>Valor desconto</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>taxaEmbarque</td>
+<td>Valor taxa embarque</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>urlPagamento</td>
+<td>Url para autenticação em caso de cartão de débito</td>
+<td>Alfa Numérico</td>
+<td>Até 500 caracteres</td>
+</tr>
+<tr>
+<td>statusTransacao</td>
+<td>Status atual da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>autorizacao</td>
+<td>Número de autorização da adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>codigoTransacaoOperadora</td>
+<td>Código de retorno da adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>dataAprovacaoOperadora</td>
+<td>Data aprovação</td>
+<td>Alfa Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>numeroComprovanteVenda</td>
+<td>Número Comprovante de venda</td>
+<td>Alfa Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>mensagemVenda</td>
+<td>Mensagem de venda</td>
+<td>Alfa Numérico</td>
+<td>Até 50 dígitos</td>
+</tr>
+</tbody></table>
+<h2 id='consultando-uma-transacao-com-retorno-data-de-antifraude'>Consultando uma transação com retorno data de Antifraude</h2>
+<p>Método de consulta com estrutura parecida ao método comum, porém com um novo campo informando a data e horário do retorno da antifraude ao Gateway.</p>
+
+<p><strong>Particularidades</strong></p>
+
+<ul>
+<li>Disponível apenas para estabelecimentos que possuem contrato com a Clear Sale nas modalidades Total/Total Garantido e Application;</li>
+<li>Para utilização solicitar ativação ao Suporte SuperPay.</li>
+</ul>
+
+<p><strong>REQUISIÇÃO</strong></p>
+
+<aside class="notice">Para consultas, acione o método <code>consultaDataAntifraude</code></aside>
+
+<blockquote>
+<p>Exemplo consulta:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:header&gt;&lt;/soapenv:header&gt;</span>
+   <span class="nt">&lt;soapenv:body&gt;</span>
+      <span class="nt">&lt;pag:consultaTransacao&gt;</span>
+         <span class="nt">&lt;consultaTransacaoWS&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+         <span class="nt">&lt;/consultaTransacaoWS&gt;</span>
+         <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+         <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+      <span class="nt">&lt;/pag:consultaTransacao&gt;</span>
+   <span class="nt">&lt;/soapenv:body&gt;</span>
+<span class="nt">&lt;/soapenv:envelope&gt;</span>
+</code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Login do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 8 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
+
+<p><strong>RESPOSTA</strong></p>
+
+<blockquote>
+<p>Exemplo de retorno:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns2:consultaDataAntifraudeResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>6903<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>170<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>1495797252959508629a6-16f2-4311-a79b-e290b4d64237<span class="nt">&lt;/urlPagamento&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>1<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;</span>345051<span class="nt">&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;</span>2017-05-26 08:14:17<span class="nt">&lt;/dataAprovacaoOperadora&gt;</span>
+            <span class="nt">&lt;dataRetornoAntifraude&gt;</span>26/05/2017 17:36:41<span class="nt">&lt;/dataRetornoAntifraude&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;</span>0526081417585<span class="nt">&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;</span>Transação capturada com sucesso<span class="nt">&lt;/mensagemVenda&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:consultaDataAntifraudeResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 19 dígitos</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td>Código da forma de pagamento</td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação.</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>valorDesconto</td>
+<td>Valor desconto</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>taxaEmbarque</td>
+<td>Valor taxa embarque</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>urlPagamento</td>
+<td>Url para autenticação em caso de cartão de débito</td>
+<td>Alfa Numérico</td>
+<td>Até 500 caracteres</td>
+</tr>
+<tr>
+<td>statusTransacao</td>
+<td>Status atual da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>autorizacao</td>
+<td>Número de autorização da adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>codigoTransacaoOperadora</td>
+<td>Código de retorno da adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>dataAprovacaoOperadora</td>
+<td>Data aprovação</td>
+<td>Alfa Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>dataRetornoAntifraude</td>
+<td>Data e hora de retorno da antifraude. **Caso o Gateway não tenha recebido o retorno ainda, este campo retornará em branco.</td>
+<td>Alfa Numérico</td>
+<td>Até 30 caracteres</td>
+</tr>
+<tr>
+<td>numeroComprovanteVenda</td>
+<td>Número Comprovante de venda</td>
+<td>Alfa Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>mensagemVenda</td>
+<td>Mensagem de venda</td>
+<td>Alfa Numérico</td>
+<td>Até 50 dígitos</td>
+</tr>
+</tbody></table>
+<h2 id='consultando-token'>Consultando token</h2>
+<p>Para visualizar os dados de cartão cadastrados em um Token, basta acionar o método de consulta dentro do WS de estorno.</p>
+
+<p><strong>REQUISIÇÃO</strong></p>
+
+<aside class="notice">Para consulta, acione o método <code>consultaDadosOneClick</code></aside>
+
+<blockquote>
+<p>Exemplo de consulta:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;pag:consultaDadosOneClick&gt;</span>
+         <span class="nt">&lt;token&gt;</span>1476210884949a25ed2d6-17cf-4ac4-af22-5c67d7907ef5<span class="nt">&lt;/token&gt;</span>
+         <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+         <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+      <span class="nt">&lt;/pag:consultaDadosOneClick&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Login do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>Token a ser consultado</td>
+<td>Alfa Numérico</td>
+<td>100 caracteres</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
+
+<p><strong>RESPOSTA</strong></p>
+
+<blockquote>
+<p>Exemplo retorno:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns2:consultaDadosOneClickResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1318336765212<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoSeguranca/&gt;</span>
+            <span class="nt">&lt;dataValidadeCartao&gt;</span>11/2016<span class="nt">&lt;/dataValidadeCartao&gt;</span>
+            <span class="nt">&lt;emailComprador&gt;</span>teste@suporte.com.br<span class="nt">&lt;/emailComprador&gt;</span>
+            <span class="nt">&lt;formaPagamento&gt;</span>121<span class="nt">&lt;/formaPagamento&gt;</span>
+            <span class="nt">&lt;numeroCartaoCredito&gt;</span>555555*****5555<span class="nt">&lt;/numeroCartaoCredito&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:consultaDadosOneClickResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre><h2 id='consulta-recorrente'>Consulta recorrente</h2>
+<p>Consulta para receber informações da recorrência e da última cobrança realizada.</p>
+
+<p><strong>REQUISIÇÃO</strong></p>
+
+<aside class="notice">Para consulta, acione o método <code>rec:consultaTransacaoRecorrenciaWS</code></aside>
+
+<blockquote>
+<p>Exemplo consulta:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:rec=</span><span class="s">"http://recorrencia.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+     <span class="nt">&lt;rec:consultaTransacaoRecorrenciaWS&gt;</span>
+         <span class="nt">&lt;recorrenciaConsultaWS&gt;</span>
+            <span class="nt">&lt;estabelecimento&gt;</span>1000000000000<span class="nt">&lt;/estabelecimento&gt;</span>
+            <span class="nt">&lt;numeroRecorrencia&gt;</span>1<span class="nt">&lt;/numeroRecorrencia&gt;</span>
+         <span class="nt">&lt;/recorrenciaConsultaWS&gt;</span>
+         <span class="nt">&lt;usuario&gt;</span>
+            <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+            <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+         <span class="nt">&lt;/usuario&gt;</span>
+      <span class="nt">&lt;/rec:consultaTransacaoRecorrenciaWS&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Login do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroRecorrencia</td>
+<td>Número da Recorrência a ser consultado</td>
+<td>Numérico</td>
+<td>Até 8 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>estabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
+
+<p><strong>RESPOSTA</strong></p>
+
+<blockquote>
+<p>Exemplo retorno:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns2:consultaTransacaoRecorrenciaWSResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://recorrencia.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;</span>145681<span class="nt">&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoFormapagamento&gt;</span>170<span class="nt">&lt;/codigoFormapagamento&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;</span>2017-06-02 10:20:30<span class="nt">&lt;/dataAprovacaoOperadora&gt;</span>
+            <span class="nt">&lt;estabelecimento&gt;</span>1000000000000<span class="nt">&lt;/estabelecimento&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;</span>Transação capturada com sucesso<span class="nt">&lt;/mensagemVenda&gt;</span>
+            <span class="nt">&lt;numeroCobrancaRestantes&gt;</span>0<span class="nt">&lt;/numeroCobrancaRestantes&gt;</span>
+            <span class="nt">&lt;numeroCobrancaTotal&gt;</span>Sem Limite<span class="nt">&lt;/numeroCobrancaTotal&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;</span>0602102031041<span class="nt">&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroPedido&gt;</span>1<span class="nt">&lt;/numeroPedido&gt;</span>
+            <span class="nt">&lt;numeroRecorrencia&gt;</span>10000001<span class="nt">&lt;/numeroRecorrencia&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>1<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:consultaTransacaoRecorrenciaWSResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroRecorrencia</td>
+<td>Número da Recorrência</td>
+</tr>
+<tr>
+<td>estabelecimento</td>
+<td>Código do estabelecimento, fornecido pelo SuperPay</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor</td>
+</tr>
+<tr>
+<td>statusTransacao</td>
+<td>Status da Parcela Recorrente</td>
+</tr>
+<tr>
+<td>numeroPedido</td>
+<td>Número do Pedido</td>
+</tr>
+<tr>
+<td>numeroCobrancaTotal</td>
+<td>Quantidade total de cobranças pedidas no cadastro. Caso não tenha sido pedido um valor limite, este campo retornará a mensagem: “Sem Limite&quot;</td>
+</tr>
+<tr>
+<td>numeroCobrancaRestantes</td>
+<td>Quantidade restante de cobranças a serem efetuadas.</td>
+</tr>
+<tr>
+<td>autorizacao</td>
+<td>Código de autorização retornado pela operadora. Retornado apenas se alguma cobrança já ocorreu</td>
+</tr>
+<tr>
+<td>codigoTransacaoOperadora</td>
+<td>Código de transação retornado pela operadora. Retornado apenas se alguma cobrança já ocorreu</td>
+</tr>
+<tr>
+<td>dataAprovacaoOperadora</td>
+<td>Data de aprovação retornado pela operadora. Retornado apenas se alguma cobrança já ocorreu</td>
+</tr>
+<tr>
+<td>numeroComprovanteVenda</td>
+<td>Número do comprovante de venda retornado pela operadora. Retornado apenas se alguma cobrança já ocorreu</td>
+</tr>
+<tr>
+<td>mensagemVenda</td>
+<td>Mensagem de venda retornado pela operadora. Retornado apenas se alguma cobrança já ocorreu</td>
+</tr>
+</tbody></table>
 <h1 id='post-de-notificacao'>Post de Notificação</h1>
 <p>campainha comum e recorrente</p>
 <h1 id='anexos'>Anexos</h1>
 <p>tabela de status
 tabela de forma de pagamento
-contratar meio de pagamento</p>
+contratar meio de pagamento
+download
+modulo</p>
 
       </div>
       <div class="dark-box">
