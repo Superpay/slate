@@ -3,6 +3,7 @@ title: API SuperPay
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - xml
+  - curl
 
 toc_footers:
   - <a href='#'>Documentação API SuperPay</a>
@@ -774,7 +775,7 @@ Bin|	D+0|	Apenas total
 <aside class="notice">
 Esta funcionalidade está disponível em um WebService diferenciado:
 
-SANDBOX: <code>https://homologacao.superpay.com.br/checkout/servicosEstornoWS.Services?wsdl</code>
+SANDBOX: <code>https://homologacao.superpay.com.br/checkout/servicosEstornoWS.Services?wsdl</code>  
 
 
 PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/servicosEstornoWS.Services?wsdl</code>
@@ -2248,7 +2249,40 @@ numeroComprovanteVenda|	Número do comprovante de venda retornado pela operadora
 mensagemVenda	|Mensagem de venda retornado pela operadora. Retornado apenas se alguma cobrança já ocorreu
 
 # Post de Notificação
-campainha comum e recorrente
+## Notificação vendas comuns
+
+O sistema de campainha existe para notificar o estabelecimento sobre uma atualização de status na transação. Toda vez que ocorre qualquer alteração de status em uma transação, é feita uma chamada via <code>POST</code> ao campo “urlCampainha” (enviada como parâmetro junto da transação), essa chamada enviará alguns dados que identificarão a transação, e assim o estabelecimento saberá em qual transação houve uma mudança de status.
+
+Importante lembrar que a chamada de campainha não informa qual o status atual da transação e apenas que houve uma alteração, sendo assim, o estabelecimento deve realizar uma consulta (através da função de [consultaTransacao](https://superpay.github.io/soap/#consultando-uma-transacao)) para verificar com mais detalhes a situação atual da transação.
+
+*Caso a URL de campainha estiver em HTTPS, informar ao Suporte SuperPay, servicedesk@superpay.com.br*
+
+> Exemplo de chamada:
+
+```curl
+POST HTTP
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 125
+numeroTransacao=123&codigoEstabelecimento=1000000000000&campoLivre=A&campoLivre2=B&campoLivre3=C&campoLivre4=D&campoLivre5=E
+```
+
+Detalhamento dos campos retornados:
+
+Campo | Descrição | Tipo
+------| ----------| -------
+numeroTransacao|	Código que identifica a transação dentro do SuperPay|	Numérico
+codigoEstabelecimento|	Código que identifica o estabelecimento dentro do SuperPay|	Numérico
+campoLivre1|	Campo Livre 1|	Alfa Numérico
+campoLivre2|	Campo Livre 2|	Alfa Numérico
+campoLivre3|	Campo Livre 3|	Alfa Numérico
+campoLivre4|	Campo Livre 4|	Alfa Numérico
+campoLivre5|	Campo Livre 5|	Alfa Numérico
+
+## Notificação cobrança recorrente
+
+Neste fluxo de recorrência, o estabelecimento receberá a campainha informando qual recorrência houve a cobrança e, depois disto, deverá acionar a [consulta da recorrência](https://superpay.github.io/soap/#consulta-recorrente) para receber o número do pedido, e assim, acionar a [consulta da transação](https://superpay.github.io/soap/#consultando-uma-transacao) para recebimento do status.
+
+
 
 # Anexos
 tabela de status

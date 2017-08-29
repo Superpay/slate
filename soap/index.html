@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;xml&quot;]">
+  <body class="index" data-languages="[&quot;xml&quot;,&quot;curl&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -212,6 +212,7 @@
       <img src="images/logosp.png" class="logo" alt="Logosp" />
         <div class="lang-selector">
               <a href="#" data-language-name="xml">xml</a>
+              <a href="#" data-language-name="curl">curl</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -348,6 +349,14 @@
           </li>
           <li>
             <a href="#post-de-notificacao" class="toc-h1 toc-link" data-title="Post de Notificação">Post de Notificação</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#notificacao-vendas-comuns" class="toc-h2 toc-link" data-title="Post de Notificação">Notificação vendas comuns</a>
+                  </li>
+                  <li>
+                    <a href="#notificacao-cobranca-recorrente" class="toc-h2 toc-link" data-title="Post de Notificação">Notificação cobrança recorrente</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#anexos" class="toc-h1 toc-link" data-title="Anexos">Anexos</a>
@@ -2275,7 +2284,7 @@ Para enviar a transação, acione o método <code>operacaoTransacao</code>
 <aside class="notice">
 Esta funcionalidade está disponível em um WebService diferenciado:
 
-SANDBOX: <code>https://homologacao.superpay.com.br/checkout/servicosEstornoWS.Services?wsdl</code>
+SANDBOX: <code>https://homologacao.superpay.com.br/checkout/servicosEstornoWS.Services?wsdl</code>  
 
 
 PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/servicosEstornoWS.Services?wsdl</code>
@@ -5883,8 +5892,68 @@ itensDoPedido|  Lista com Itens que estão sendo comprados. Informações import
 <td>Mensagem de venda retornado pela operadora. Retornado apenas se alguma cobrança já ocorreu</td>
 </tr>
 </tbody></table>
-<h1 id='post-de-notificacao'>Post de Notificação</h1>
-<p>campainha comum e recorrente</p>
+<h1 id='post-de-notificacao'>Post de Notificação</h1><h2 id='notificacao-vendas-comuns'>Notificação vendas comuns</h2>
+<p>O sistema de campainha existe para notificar o estabelecimento sobre uma atualização de status na transação. Toda vez que ocorre qualquer alteração de status em uma transação, é feita uma chamada via <code>POST</code> ao campo “urlCampainha” (enviada como parâmetro junto da transação), essa chamada enviará alguns dados que identificarão a transação, e assim o estabelecimento saberá em qual transação houve uma mudança de status.</p>
+
+<p>Importante lembrar que a chamada de campainha não informa qual o status atual da transação e apenas que houve uma alteração, sendo assim, o estabelecimento deve realizar uma consulta (através da função de <a href="https://superpay.github.io/soap/#consultando-uma-transacao">consultaTransacao</a>) para verificar com mais detalhes a situação atual da transação.</p>
+
+<p><em>Caso a URL de campainha estiver em HTTPS, informar ao Suporte SuperPay, servicedesk@superpay.com.br</em></p>
+
+<blockquote>
+<p>Exemplo de chamada:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST HTTP
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 125
+numeroTransacao=123&amp;codigoEstabelecimento=1000000000000&amp;campoLivre=A&amp;campoLivre2=B&amp;campoLivre3=C&amp;campoLivre4=D&amp;campoLivre5=E
+</code></pre>
+<p>Detalhamento dos campos retornados:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay</td>
+<td>Numérico</td>
+</tr>
+<tr>
+<td>campoLivre1</td>
+<td>Campo Livre 1</td>
+<td>Alfa Numérico</td>
+</tr>
+<tr>
+<td>campoLivre2</td>
+<td>Campo Livre 2</td>
+<td>Alfa Numérico</td>
+</tr>
+<tr>
+<td>campoLivre3</td>
+<td>Campo Livre 3</td>
+<td>Alfa Numérico</td>
+</tr>
+<tr>
+<td>campoLivre4</td>
+<td>Campo Livre 4</td>
+<td>Alfa Numérico</td>
+</tr>
+<tr>
+<td>campoLivre5</td>
+<td>Campo Livre 5</td>
+<td>Alfa Numérico</td>
+</tr>
+</tbody></table>
+<h2 id='notificacao-cobranca-recorrente'>Notificação cobrança recorrente</h2>
+<p>Neste fluxo de recorrência, o estabelecimento receberá a campainha informando qual recorrência houve a cobrança e, depois disto, deverá acionar a <a href="https://superpay.github.io/soap/#consulta-recorrente">consulta da recorrência</a> para receber o número do pedido, e assim, acionar a <a href="https://superpay.github.io/soap/#consultando-uma-transacao">consulta da transação</a> para recebimento do status.</p>
 <h1 id='anexos'>Anexos</h1>
 <p>tabela de status
 tabela de forma de pagamento
@@ -5896,6 +5965,7 @@ modulo</p>
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="xml">xml</a>
+                <a href="#" data-language-name="curl">curl</a>
           </div>
       </div>
     </div>
