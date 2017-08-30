@@ -369,15 +369,26 @@
               </ul>
           </li>
           <li>
-            <a href="#contratacao-e-informacoes-meios-de-pagamento" class="toc-h1 toc-link" data-title="Contratação e informações meios de pagamento">Contratação e informações meios de pagamento</a>
+            <a href="#anexos" class="toc-h1 toc-link" data-title="Anexos">Anexos</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#adquirente-cielo" class="toc-h2 toc-link" data-title="Contratação e informações meios de pagamento">Adquirente Cielo</a>
+                    <a href="#releases" class="toc-h2 toc-link" data-title="Anexos">Releases</a>
+                  </li>
+                  <li>
+                    <a href="#modulo-magento" class="toc-h2 toc-link" data-title="Anexos">Módulo Magento</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#anexos" class="toc-h1 toc-link" data-title="Anexos">Anexos</a>
+            <a href="#downloads" class="toc-h1 toc-link" data-title="Downloads">Downloads</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#exemplos-de-integracao" class="toc-h2 toc-link" data-title="Downloads">Exemplos de integração</a>
+                  </li>
+                  <li>
+                    <a href="#formularios" class="toc-h2 toc-link" data-title="Downloads">Formulários</a>
+                  </li>
+              </ul>
           </li>
       </div>
         <ul class="toc-footer">
@@ -6493,300 +6504,66 @@ numeroRecorrencia=1<span class="err">&amp;</span>codigoEstabelecimento=100000000
 111|PayPal Nacional 
 112|PayPal Internacional 
 155|SafetyPay </p>
-<h1 id='contratacao-e-informacoes-meios-de-pagamento'>Contratação e informações meios de pagamento</h1><h2 id='adquirente-cielo'>Adquirente Cielo</h2>
-<p><strong>MODALIDADE WEBSERVICE</strong></p>
+<h1 id='anexos'>Anexos</h1><h2 id='releases'>Releases</h2>
+<p><strong>01/06/2017</strong></p>
 
-<p><strong>Contratação</strong></p>
+<p>Disponibilizada integração com API 3.0 da adquirente Cielo</p>
 
-<p>Contratando a solução da CIELO para e-commerce será possível oferecer na sua loja:</p>
+<p><strong>20/03/2017</strong></p>
 
-<ul>
-<li><p>Vendas de cŕedito autenticadas;</p></li>
-<li><p>Cartão de crédito Amex;</p></li>
-<li><p>Cartão de crédito Aura;</p></li>
-<li><p>Cartão de crédito Diners;</p></li>
-<li><p>Cartão de crédito Discover;</p></li>
-<li><p>Cartão de crédito Elo;</p></li>
-<li><p>Cartão de crédito JCB;</p></li>
-<li><p>Cartão de crédito MasterCard;</p></li>
-<li><p>Cartão de crédito Visa;</p></li>
-<li><p>Cartão de débito Maestro;</p></li>
-<li><p>Cartão de débito Visa Electron;</p></li>
-</ul>
+<p>Disponível novo método de consulta em SOAP com campo de data e horário de retorno da Antifraude. Para maiores informações clique aqui.</p>
 
-<p>Ao final do processo de contratação, deve-se estar de posse das seguintes informações para ativação da CIELO no Gateway:</p>
+<p><strong>12/01/2017</strong></p>
 
-<ul>
-<li>Merchant ID;</li>
-<li>Merchant Key;</li>
-</ul>
-
-<p>O Superpay não participa das negociações entre o estabelecimento e bancos/adquirentes. Desta forma, taxas ou eventuais isenções são tratadas de forma direta entre os envolvidos.</p>
-
-<p>Para contratar, <a href="https://www.cielo.com.br/sitecielo/afiliacao/credenciamentoafiliacaonaologado.html?idSolucaoCaptura=81">acesse aqui</a></p>
+<p>Boletos com carteira registrada.</p>
+<h2 id='modulo-magento'>Módulo Magento</h2>
+<p><a href="https://superpay.acelerato.com/base-de-conhecimento/#/artigos/5">Baixe aqui seu Módulo</a></p>
 
 <p><strong>Particulariedades</strong></p>
 
 <ul>
-<li><p>Para esta modalidade é necessário certificado SSL de segurança <strong>2048 bits</strong>;</p></li>
-<li><p>Integração na plataforma WebService API 3.0;</p></li>
-<li><p>Caso o campo <code>&lt;codigoSeguranca&gt;</code> não for enviado ou for enviado com &quot;000&quot;, a transação será encaminhada a Cielo como modelo &quot;Recorrente&quot;, onde este campo não é obrigatório. Lembrando que para esta utilização é preciso habilitar junto a Adquirente. 
-Salientamos que a conversão de seu estabelecimento pode diminuir;</p></li>
-<li><p>Esta operadora de cartão permite cadastrar uma informação para aparecer na fatura dos clientes quando realizarem compras sua loja, funcionalidade chamada de SoftDescriptor. Esta deverá possuir até 13 caracteres.
-Caso queira utilizar, envie ao Suporte SuperPay o nome desejado para configuração em seu estabelecimento.
-Também é possível o envio do SoftDescriptor por pedido, para isto solicite ao Suporte a ativação e envie a informação no campoLivre4 de cada transação;</p></li>
-<li><p>Para transações com <em>cartão de débito</em> ou <em>autenticada</em>, o eCommerce deverá redirecionar o consumidor para a <code>&lt;urlPagamento&gt;</code>, onde o mesmo deverá incluir sua senha ou token no ambiente do banco emissor. Apenas após esta etapa, a transação será concluída.</p></li>
+<li>Não prestamos Suporte;</li>
+<li>As ações de captura, cancelamento e estorno não estão disponíveis no Módulo Magento. Estas ações deverão ser realizadas diretamente no painel administrativo SuperPay;</li>
+<li>As funcionalidades de Recorrência, Múltiplos Cartões, Retentativa de Pagamento e Switch de Adquirência atualmente não estão disponíveis no Módulo Magento;</li>
+<li>O Módulo Magento SuperPay é compatível com as versões 1.5.X, 1.6.X, 1.7.X, 1.8.X, 1.9.X do Magento;</li>
+<li>As adquirentes disponíveis no Módulo são: <code>Cielo, Rede, Elavon, GetNet e Stone</code>;</li>
+<li>Os bancos disponíveis no Módulo são: <code>Itau, Bradesco, Caixa, HSBC, Banco do Brasil</code>.</li>
 </ul>
 
-<p><strong>Processo de Homologação com Adquirente</strong></p>
-
-<p>Após a integração com o SuperPay, o estabelecimento deverá configurar as credenciais da Cielo no ambiente de produção do SuperPay e apontar sua loja para o ambiente real do Gateway. Após isto, a loja deverá enviar ao Suporte Cielo (cieloecommerce@cielo.com.br) a URL da loja com um produto de teste no valor de R$1,00.
-O suporte Cielo realizará os testes em ambiente real e caso esteja dentro das conformidades a loja estará apta a realizar vendas em produção.</p>
-
-<p><strong>Exemplos</strong></p>
-
-<p>REQUISIÇÃO</p>
-
-<p>Estrutura simplificada de envio para adquirente Cielo. Caso seu estabelecimento utilize <em>antifraude</em>, seguir a <a href="https://superpay.github.io/soap/#criando-uma-transacao-com-analise-de-fraude">estrutura completa</a>.</p>
-
-<blockquote>
-<p>Estrutra simplificada de envio Cielo:</p>
-</blockquote>
-<pre class="highlight xml tab-xml"><code>
-<span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
- <span class="nt">&lt;soapenv:Header/&gt;</span>
-  <span class="nt">&lt;soapenv:Body&gt;</span>
-   <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
-     <span class="nt">&lt;transacao&gt;</span>
-     <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
-     <span class="nt">&lt;codigoFormaPagamento&gt;</span>170<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
-     <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
-     <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
-      <span class="nt">&lt;documentoComprador&gt;</span>12312312312<span class="nt">&lt;/documentoComprador&gt;</span>
-      <span class="nt">&lt;nomeComprador&gt;</span>Teste SuperPay<span class="nt">&lt;/nomeComprador&gt;</span>
-     <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
-     <span class="nt">&lt;dataValidadeCartao&gt;</span>12/2026<span class="nt">&lt;/dataValidadeCartao&gt;</span>
-     <span class="nt">&lt;nomeTitularCartaoCredito&gt;</span>teste superpay<span class="nt">&lt;/nomeTitularCartaoCredito&gt;</span>
-     <span class="nt">&lt;numeroCartaoCredito&gt;</span>4444333322221111<span class="nt">&lt;/numeroCartaoCredito&gt;</span>
-     <span class="nt">&lt;codigoSeguranca&gt;</span>123<span class="nt">&lt;/codigoSeguranca&gt;</span>
-     <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
-     <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
-     <span class="nt">&lt;/transacao&gt;</span>
-     <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
-     <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
-    <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
-  <span class="nt">&lt;/soapenv:Body&gt;</span>
-<span class="nt">&lt;/soapenv:Envelope&gt;</span>
-</code></pre>
-<p>RESPOSTA</p>
-
-<p>Estrtura de retorno adquirente Cielo. Os comentários no XML indicam a informação retornada da adquirente em cada campo.</p>
-
-<blockquote>
-<p>Retorno:</p>
-</blockquote>
-<pre class="highlight xml tab-xml"><code>
-<span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;soap:body&gt;</span>
-      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
-         <span class="nt">&lt;return&gt;</span>
-            <span class="c">&lt;!--Código de autorização--&gt;</span>
-            <span class="nt">&lt;autorizacao&gt;</span>123456<span class="nt">&lt;/autorizacao&gt;</span>
-            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
-            <span class="nt">&lt;codigoFormaPagamento&gt;</span>170<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
-            <span class="c">&lt;!--Código erro em caso de negação--&gt;</span>
-            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
-            <span class="c">&lt;!--Data retorno adquirente--&gt;</span>
-            <span class="nt">&lt;dataAprovacaoOperadora&gt;</span>24/05/2017<span class="nt">&lt;/dataAprovacaOperadora&gt;</span>
-            <span class="c">&lt;!--Mensagem adquirente--&gt;</span>
-            <span class="nt">&lt;mensagemVenda&gt;</span>Transacao capturada com sucesso<span class="nt">&lt;/mensagemVenda&gt;</span>
-            <span class="c">&lt;!--TID--&gt;</span>
-            <span class="nt">&lt;numeroComprovanteVenda&gt;</span>1006993069181F841001<span class="nt">&lt;/numeroComprovanteVenda&gt;</span>
-            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
-            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
-            <span class="c">&lt;!--Status que deverá ser tratado pelo eCommerce--&gt;</span>
-            <span class="nt">&lt;statusTransacao&gt;</span>1<span class="nt">&lt;/statusTransacao&gt;</span>
-            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
-            <span class="nt">&lt;urlPagamento&gt;</span>14132971582229c00506d-e84d-4526-b902-92190d5aa808<span class="nt">&lt;urlpagamento&gt;&lt;/urlpagamento&gt;</span>
-            <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
-            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
-         <span class="nt">&lt;/return&gt;</span>
-      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
-   <span class="nt">&lt;/soap:body&gt;</span>
-<span class="nt">&lt;/soap:envelope&gt;</span>
-</code></pre>
-<p><strong>CHECKOUT CIELO (REDIRECIONADO)</strong></p>
-
-<p><strong>Contratação</strong></p>
-
-<p>Contratando a solução da CIELO para e-commerce será possível oferecer os seguintes meios de pagamento na sua loja:</p>
+<p><strong>Instalação</strong></p>
 
 <ul>
-<li>Cartão de crédito Amex;</li>
-<li>Cartão de crédito Aura;</li>
-<li>Cartão de crédito Diners;</li>
-<li>Cartão de crédito Discover;</li>
-<li>Cartão de crédito Elo;</li>
-<li>Cartão de crédito JCB;</li>
-<li>Cartão de crédito MasterCard;</li>
-<li>Cartão de crédito Visa;</li>
-<li>Cartão de débito Maestro;</li>
-<li>Cartão de débito Visa Electron;</li>
+<li>Para utilização do Módulo é necessário a habilitação do SoapClient no php.ini.</li>
 </ul>
-
-<p>Ao final do processo de contratação, deve-se estar de posse das seguintes informações para ativação da CIELO no Gateway:</p>
-
-<ul>
-<li>Código de filiação;</li>
-<li>Merchant ID;</li>
-</ul>
-
-<p>O Superpay não participa das negociações entre o estabelecimento e bancos/adquirentes. Desta forma, taxas ou eventuais isenções são tratadas de forma direta entre os envolvidos.</p>
-
-<p>Para contratar, <a href="https://www.cielo.com.br/aceite-cartao/checkout/">acesse aqui</a></p>
-
-<p><strong>Particulariedades</strong></p>
-
-<ul>
-<li><p>Para utilização correta desta forma de pagamento, deve se enviado ao Suporte SuperPay uma URL para redirecionamento do usuário após finalização do pagamento. Esta URL deve ser informada de forma completa, iniciando em HTTP ou HTTPS;</p></li>
-<li><p>O eCommerce deverá redirecionar o consumidor para a URL retornada no campo <code>&lt;urlPagamento&gt;</code>;</p></li>
-<li><p>Importante a utilização da <a href="https://superpay.github.io/soap/#notificacao-vendas-comuns">campainha</a> para atualização de status no eCommerce após finalização do pagamento;</p></li>
-<li><p>O eCommerce enviará um único código ao Gateway relacionado ao meio de pagamento Checkout (52) e após a abertura da URL o consumidor escolherá a bandeira de cartão;</p></li>
-<li><p>Necessário algumas configurações no painel Cielo. Passo a passo no próximo tópico deste documento.</p></li>
-</ul>
-
-<p><strong>Configuração painel Cielo</strong></p>
-
-<p>Etapas para configuração:</p>
 
 <ol>
-<li>Acesse o gerenciador Cielo</li>
-<li>Clique na aba &quot;Configurações&quot; --&gt; &quot;Configurações da loja&quot;</li>
-<li>Primeiramente habilite em &quot;Modo de Teste&quot;</li>
-<li>Inclua as URLs abaixo:</li>
+<li>Descompacte o conteúdo do arquivo SuperPay_Magento_1.2.x.zip no diretório raiz de instalação do Magento.</li>
+<li>Atualize o cache do Magento, através do item System/Cache Management do administrador do sistema.</li>
+<li>O módulo está instalado! </li>
 </ol>
 
-<p>EM TESTES
-<em>Subtituir o valor 10000000000 pelo código de estabelecimento SuperPay</em></p>
+<p><strong>Configuração</strong></p>
 
-<table><thead>
-<tr>
-<th>Nome Campo</th>
-<th>URL</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URL Retorno</td>
-<td>https://homologacao.superpay.com.br/checkout/PagamentoCielo/RetornoCheckout?codE=10000000000&amp;acao=retorno</td>
-</tr>
-<tr>
-<td>URL Notificação</td>
-<td>https://homologacao.superpay.com.br/checkout/PagamentoCielo/NotificacaoCheckout?codE=10000000000&amp;acao=notificacao</td>
-</tr>
-<tr>
-<td>URL de Mudança de Status</td>
-<td>https://homologacao.superpay.com.br/checkout/PagamentoCielo/NotificacaoCheckout?codE=10000000000&amp;acao=mudancaStatus</td>
-</tr>
-</tbody></table>
+<ol>
+<li>Após a instalação do Módulo Magento Superpay, acesse a aba System/Configuration e clique em Payment Methods, encontrada na aba Sales.</li>
+<li>Feito o passo anterior, conseguirá visualizar as abas relacionadas as configurações do SuperPay.</li>
+<li>Clicar na aba &quot;SuperPay Cartões&quot; ou &quot;SuperPay banco/boletos/redirect&quot; para configuração dos campos abaixo:
 
-<p>EM PRODUÇÃO
-<em>Subtituir o valor 10000000000 pelo código de estabelecimento SuperPay</em></p>
+<ul>
+<li>Título;</li>
+<li>Ambiente (Homologação ou Produção);</li>
+<li>Código do estabelecimento SuperPay;</li>
+<li>Usuário;</li>
+<li>Senha;</li>
+<li>Escolher as bandeiras/bancos em &quot;Cartão de credito&quot; / &quot;Banco&quot;.</li>
+</ul></li>
+</ol>
+<h1 id='downloads'>Downloads</h1><h2 id='exemplos-de-integracao'>Exemplos de integração</h2>
+<p>Temos alguns exemplos para te auxiliar no processo de integração com o Gateway, basta <a href="https://superpay.acelerato.com/base-de-conhecimento/#/artigos/2">acessar aqui</a> e realizar o download do exemplo da linguagem de programação se sua loja virtual.</p>
+<h2 id='formularios'>Formulários</h2>
+<p><a href="https://superpay.acelerato.com/base-de-conhecimento/#/artigos/70">Formulário para criação de um novo estabelecimento</a></p>
 
-<table><thead>
-<tr>
-<th>Nome Campo</th>
-<th>URL</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URL Retorno</td>
-<td>https://superpay2.superpay.com.br/checkout/PagamentoCielo/RetornoCheckout?codE=10000000000&amp;acao=retorno</td>
-</tr>
-<tr>
-<td>URL Notificação</td>
-<td>https://superpay2.superpay.com.br/checkout/PagamentoCielo/NotificacaoCheckout?codE=10000000000&amp;acao=notificacao</td>
-</tr>
-<tr>
-<td>URL de Mudança de Status</td>
-<td>https://superpay2.superpay.com.br/checkout/PagamentoCielo/NotificacaoCheckout?codE=10000000000&amp;acao=mudancaStatus</td>
-</tr>
-</tbody></table>
-
-<p><strong>Processo de Homologação com Adquirente</strong></p>
-
-<p>Após a integração com o SuperPay, o estabelecimento deverá configurar as credenciais da Cielo no ambiente de produção do SuperPay e apontar sua loja para o ambiente real do Gateway. Após isto, a loja deverá enviar ao Suporte Cielo (cieloecommerce@cielo.com.br) a URL da loja com um produto de teste no valor de R$1,00.
-O suporte Cielo realizará os testes em ambiente real e caso esteja dentro das conformidades a loja estará apta a realizar vendas em produção.</p>
-
-<p><strong>Exemplos</strong></p>
-
-<p>REQUISIÇÃO</p>
-
-<p>Estrutura simplificada de envio para adquirente Cielo. Caso seu estabelecimento utilize <em>antifraude</em>, seguir a <a href="https://superpay.github.io/soap/#criando-uma-transacao-com-analise-de-fraude">estrutura completa</a>.</p>
-
-<blockquote>
-<p>Estrutra simplificada de envio Cielo:</p>
-</blockquote>
-<pre class="highlight xml tab-xml"><code>
-<span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
- <span class="nt">&lt;soapenv:Header/&gt;</span>
-  <span class="nt">&lt;soapenv:Body&gt;</span>
-   <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
-     <span class="nt">&lt;transacao&gt;</span>
-     <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
-     <span class="nt">&lt;codigoFormaPagamento&gt;</span>52<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
-     <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
-     <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
-      <span class="nt">&lt;documentoComprador&gt;</span>12312312312<span class="nt">&lt;/documentoComprador&gt;</span>
-      <span class="nt">&lt;nomeComprador&gt;</span>Teste SuperPay<span class="nt">&lt;/nomeComprador&gt;</span>
-     <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
-     <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
-     <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
-     <span class="nt">&lt;/transacao&gt;</span>
-     <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
-     <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
-    <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
-  <span class="nt">&lt;/soapenv:Body&gt;</span>
-<span class="nt">&lt;/soapenv:Envelope&gt;</span>
-</code></pre>
-<p>RESPOSTA</p>
-
-<p>Estrtura de retorno adquirente Cielo. Os comentários no XML indicam a informação retornada da adquirente em cada campo.</p>
-
-<blockquote>
-<p>Retorno:</p>
-</blockquote>
-<pre class="highlight xml tab-xml"><code>
-<span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;soap:body&gt;</span>
-      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
-         <span class="nt">&lt;return&gt;</span>
-            <span class="c">&lt;!--Código de autorização--&gt;</span>
-            <span class="nt">&lt;autorizacao&gt;</span>0<span class="nt">&lt;/autorizacao&gt;</span>
-            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
-            <span class="nt">&lt;codigoFormaPagamento&gt;</span>52<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
-            <span class="c">&lt;!--Código erro em caso de negação--&gt;</span>
-            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
-            <span class="c">&lt;!--Data retorno adquirente--&gt;</span>
-            <span class="nt">&lt;dataAprovacaoOperadora/&gt;</span>
-            <span class="c">&lt;!--Mensagem adquirente--&gt;</span>
-            <span class="nt">&lt;mensagemVenda/&gt;</span>
-            <span class="c">&lt;!--TID--&gt;</span>
-            <span class="nt">&lt;numeroComprovanteVenda/&gt;</span>
-            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
-            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
-            <span class="nt">&lt;statusTransacao&gt;</span>5<span class="nt">&lt;/statusTransacao&gt;</span>
-            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
-            <span class="c">&lt;!--Redirecionar o consumidor--&gt;</span>
-            <span class="nt">&lt;urlPagamento&gt;</span>https://homologacao.superpay.com.br/checkout/PagamentoCielo/checkout?cod=14132971582229c00506d-e84d-4526-b902-92190d5aa808<span class="nt">&lt;urlpagamento&gt;&lt;/urlpagamento&gt;</span>
-            <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
-            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
-         <span class="nt">&lt;/return&gt;</span>
-      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
-   <span class="nt">&lt;/soap:body&gt;</span>
-<span class="nt">&lt;/soap:envelope&gt;</span>
-</code></pre><h1 id='anexos'>Anexos</h1>
-<p>download
-modulo</p>
+<p><a href="https://superpay.acelerato.com/base-de-conhecimento/#/artigos/71">Formulário para configuração das formas de pagamento</a></p>
 
       </div>
       <div class="dark-box">
