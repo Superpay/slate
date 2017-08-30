@@ -3,7 +3,6 @@ title: API SuperPay
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - xml
-  - curl
 
 toc_footers:
   - <a href='#'>Documentação API SuperPay</a>
@@ -30,6 +29,8 @@ Captura | A confirmação da transação. Nesta etapa o SuperPay aciona a operad
 Cancelamento | Cancelamento de uma compra realizada com cartão.
 One Click | Através desta funcionalidade é possível o cadastro dos cartões dos consumidores para serem utilizados em compras futuras.
 Recorrência | Agendamento de cobranças. O Gateway é responsável por realizar as cobranças de acordo com a data agendada pelo eCommerce.
+Modelo WebService | Consumidor digitará os dados de cartão na página de Checkout do eCommerce.
+Modelo Redirecionado | Consumidor digitará os dados de cartão na página da adquirente.
 
 # Fluxo de Comunicação
 
@@ -2259,11 +2260,13 @@ Importante lembrar que a chamada de campainha não informa qual o status atual d
 
 > Exemplo de chamada:
 
-```curl
+```xml
+
 POST HTTP
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 125
 numeroTransacao=123&codigoEstabelecimento=1000000000000&campoLivre=A&campoLivre2=B&campoLivre3=C&campoLivre4=D&campoLivre5=E
+
 ```
 
 Detalhamento dos campos retornados:
@@ -2282,12 +2285,404 @@ campoLivre5|	Campo Livre 5|	Alfa Numérico
 
 Neste fluxo de recorrência, o estabelecimento receberá a campainha informando qual recorrência houve a cobrança e, depois disto, deverá acionar a [consulta da recorrência](https://superpay.github.io/soap/#consulta-recorrente) para receber o número do pedido, e assim, acionar a [consulta da transação](https://superpay.github.io/soap/#consultando-uma-transacao) para recebimento do status.
 
+*Caso a URL de campainha estiver em HTTPS, informar ao Suporte SuperPay, servicedesk@superpay.com.br*
 
+> Exemplo de chamada:
+
+```xml
+
+POST HTTP
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 125
+numeroRecorrencia=1&codigoEstabelecimento=1000000000000&campoLivre=A&campoLivre2=B&campoLivre3=C&campoLivre4=D&campoLivre5=E
+
+```
+
+Detalhamento dos campos retornados:
+
+Campo | Descrição | Tipo
+------| ----------| -------
+numeroTransacao|	Código que identifica a transação dentro do SuperPay|	Numérico
+codigoEstabelecimento|	Código que identifica o estabelecimento dentro do SuperPay|	Numérico
+campoLivre1|	Campo Livre 1|	Alfa Numérico
+campoLivre2|	Campo Livre 2|	Alfa Numérico
+campoLivre3|	Campo Livre 3|	Alfa Numérico
+campoLivre4|	Campo Livre 4|	Alfa Numérico
+campoLivre5|	Campo Livre 5|	Alfa Numérico
+
+# Códigos da API
+## Status de transação
+
+Código | Nome | Descrição
+------| ----------| -------
+1 |Pago e Capturado| Transação está autorizada e confirmada na instituição financeira
+2 |Pago e Não Capturado |Transação está apenas autorizada, aguardando confirmação (captura)
+3| Não Pago |Transação negada pela instituição financeira
+5|Transação em Andamento|Comum para pagamentos cartão redirect ou pagamentos com autenticação
+8|Aguardando Pagamento|Comum para pagamentos com boletos e pedidos em reprocessamento
+9|Falha na Operadora|Houve um problema no processamento com a adquirente
+13|Cancelada|Transação cancelada na adquirente
+14|Estornada|A venda foi estornada na adquirente
+15|Em Análise de Fraude|A transação foi enviada para o sistema de análise de riscos. Status transitório
+17|Recusado pelo AntiFraude|A transação foi negada pelo sistema análise de risco
+18|Falha na Antifraude|Falha. Não foi possível enviar pedido para a análise de Risco, porém será reenviado
+21|Boleto Pago a menor|O boleto foi pago com valor menor do emitido
+22|Boleto Pago a maior|O boleto foi pago com valor maior do emitido
+23|Estorno Parcial|A venda estonada na adquirente parcialmente
+24|Estorno Não Autorizado|O Estorno não foi autorizado pela adquirente
+25|Falha no estorno|Falha ao enviar estorno para a operadora
+31|Transação já Paga|Transação já existente e finalizada na adquirente
+40|Aguardando Cancelamento |Processo de cancelamento em andamento
+
+## Forma de Pagamento
+### Cartões
+
+Código|Bandeira | Tecnologia | Adquirente| Modelo
+------| ----------| -------| -------| -------
+52|Checkout| Cielo e-Commerce| Cielo| Redirect
+170|Visa|Cielo API 3.0|	Cielo	| WebService
+171|MasterCard|Cielo API 3.0|	Cielo|	WebService
+172|American Express|Cielo API 3.0|Cielo|	WebService
+173|Elo|Cielo API 3.0|Cielo	|WebService
+174|Diners|	Cielo API 3.0|	Cielo|WebService
+175|Discover|Cielo API 3.0|	Cielo|	WebService
+176|Aura|	Cielo API 3.0|	Cielo|	WebService
+177|JCB|Cielo API 3.0|	Cielo|	WebService
+178|Maestro|Cielo API 3.0|	Cielo|	WebService
+179|Visa Electron|	Cielo API 3.0	|Cielo|	WebService
+80|Visa| Komerci| Rede| Redirect
+81|MasterCard| Komerci| Rede |Redirect
+82|Diners| Komerci| Rede| Redirect
+90|Visa |Komerci| Rede| WebService
+91|MasterCard| Komerci| Rede| WebService
+92|Diners| Komerci | Rede| WebService 
+93|Hipercard |Komerci| Rede| WebService
+94|Hiper| Komerci | Rede| WebService
+204|Visa| ElavonWS| Elavon |WebService
+205|MasterCard| ElavonWS| Elavon WebService
+206|Diners |ElavonWS |Elavon| WebService
+207|Discover| ElavonWS |Elavon| WebService
+270|Visa| GetNetWS |GetNet| WebService 
+271|MasterCard |GetNetWS| GetNet |WebService 
+350|Visa| StoneWs |Stone| WebService
+351|MasterCard| StoneWs| Stone| WebService
+380|Visa |	BinWS|	Bin-FirstData|	WebService
+381|MasterCard|	BinWS|	Bin-FirstData|	WebService
+382|Cabal|	BinWS|	Bin-FirstData|	WebService
+
+### Boletos e Transferências
+
+**Modalidade Online**
+
+Código|Banco | Modalidade | Tecnologia
+------| ----------| -------| -------
+16|Itaú |Transferência| Itaú Shopline 
+17 |Itaú| Boleto Online| Itaú Shopline
+18|Bradesco| Transferência| Bradesco Shopfacil
+20|Banco do Brasil| Boleto| BBOnline 
+21|Banco do Brasil|	Transferência	|BBOnline
+23|Banrisul |Transferência |Banricompras
+24|Banrisul|Parcelamento| Banricompras.com
+25|Banrisul| Pré Datado |Banricompras.com
+26|Banrisul| Boleto| Banricompras.com
+105| Bradesco|	Boleto Online|	Bradesco ShopFácil
+
+
+**Modalidade Offline**
+
+Código|Banco | Modalidade | Tecnologia
+------| ----------| -------| -------
+28|Banco do Brasil| Boleto Offline |Banco do Brasil 
+29|Itaú Boleto| Offline Itaú
+30|Bradesco |Boleto Offline| Bradesco 
+34|Caixa Econômica Federal| Boleto Offline| Caixa Econômica Federal
+41|Santander| Boleto Offline |Santander
+48|Banco do Brasil|	Boleto Offline com registro|	Banco do Brasil
+
+### Intermediários Financeiros
+
+Código|Nome
+------| ----------
+
+39|PagSeguro 
+111|PayPal Nacional 
+112|PayPal Internacional 
+155|SafetyPay 
 
 # Anexos
-tabela de status
-tabela de forma de pagamento
-contratar meio de pagamento
+## Informações sobre os meios de pagamento
+### Adquirente Cielo
+#### Modalidade WebService
+
+**Contratação**
+
+Contratando a solução da CIELO para e-commerce será possível oferecer na sua loja:
+
+* Vendas de cŕedito autenticadas;
+
+* Cartão de crédito Amex;
+* Cartão de crédito Aura;
+* Cartão de crédito Diners;
+* Cartão de crédito Discover;
+* Cartão de crédito Elo;
+* Cartão de crédito JCB;
+* Cartão de crédito MasterCard;
+* Cartão de crédito Visa;
+
+* Cartão de débito Maestro;
+* Cartão de débito Visa Electron;
+
+Ao final do processo de contratação, deve-se estar de posse das seguintes informações para ativação da CIELO no Gateway:
+
+* Merchant ID;
+* Merchant Key;
+
+O Superpay não participa das negociações entre o estabelecimento e bancos/adquirentes. Desta forma, taxas ou eventuais isenções são tratadas de forma direta entre os envolvidos.
+
+Para contratar, [acesse aqui](https://www.cielo.com.br/sitecielo/afiliacao/credenciamentoafiliacaonaologado.html?idSolucaoCaptura=81)
+
+**Particulariedades**
+
+* Para esta modalidade é necessário certificado SSL de segurança **2048 bits**;
+
+* Integração na plataforma WebService API 3.0;
+
+* Caso o campo `<codigoSeguranca>` não for enviado ou for enviado com "000", a transação será encaminhada a Cielo como modelo "Recorrente", onde este campo não é obrigatório. Lembrando que para esta utilização é preciso habilitar junto a Adquirente. 
+Salientamos que a conversão de seu estabelecimento pode diminuir;
+
+* Esta operadora de cartão permite cadastrar uma informação para aparecer na fatura dos clientes quando realizarem compras sua loja, funcionalidade chamada de SoftDescriptor. Esta deverá possuir até 13 caracteres.
+Caso queira utilizar, envie ao Suporte SuperPay o nome desejado para configuração em seu estabelecimento.
+Também é possível o envio do SoftDescriptor por pedido, para isto solicite ao Suporte a ativação e envie a informação no campoLivre4 de cada transação;
+
+* Para transações com *cartão de débito* ou *autenticada*, o eCommerce deverá redirecionar o consumidor para a `<urlPagamento>`, onde o mesmo deverá incluir sua senha ou token no ambiente do banco emissor. Apenas após esta etapa, a transação será concluída.
+
+
+**Processo de Homologação com Adquirente**
+
+Após a integração com o SuperPay, o estabelecimento deverá configurar as credenciais da Cielo no ambiente de produção do SuperPay e apontar sua loja para o ambiente real do Gateway. Após isto, a loja deverá enviar ao Suporte Cielo (cieloecommerce@cielo.com.br) a URL da loja com um produto de teste no valor de R$1,00.
+O suporte Cielo realizará os testes em ambiente real e caso esteja dentro das conformidades a loja estará apta a realizar vendas em produção.
+
+**Exemplos**
+
+REQUISIÇÃO
+
+Estrutura simplificada de envio para adquirente Cielo. Caso seu estabelecimento utilize *antifraude*, seguir a [estrutura completa](https://superpay.github.io/soap/#criando-uma-transacao-com-analise-de-fraude).
+
+> Estrutra simplificada de envio Cielo:
+
+```xml
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
+ <soapenv:Header/>
+  <soapenv:Body>
+   <pag:pagamentoTransacaoCompleta>
+     <transacao>
+     <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
+     <codigoFormaPagamento>170</codigoFormaPagamento>
+     <numeroTransacao>1</numeroTransacao>
+     <dadosUsuarioTransacao>
+      <documentoComprador>12312312312</documentoComprador>
+      <nomeComprador>Teste SuperPay</nomeComprador>
+     </dadosUsuarioTransacao>
+     <dataValidadeCartao>12/2026</dataValidadeCartao>
+     <nomeTitularCartaoCredito>teste superpay</nomeTitularCartaoCredito>
+     <numeroCartaoCredito>4444333322221111</numeroCartaoCredito>
+     <codigoSeguranca>123</codigoSeguranca>
+     <parcelas>1</parcelas>
+     <valor>200</valor>
+     </transacao>
+     <usuario>superpay</usuario>
+     <senha>superpay</senha>
+    </pag:pagamentoTransacaoCompleta>
+  </soapenv:Body>
+</soapenv:Envelope>
+```
+
+RESPOSTA
+
+Estrtura de retorno adquirente Cielo. Os comentários no XML indicam a informação retornada da adquirente em cada campo.
+
+> Retorno:
+
+```xml
+
+<soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:body>
+      <ns2:pagamentoTransacaoCompletaResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
+         <return>
+            <!--Código de autorização-->
+            <autorizacao>123456</autorizacao>
+            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
+            <codigoFormaPagamento>170</codigoFormaPagamento>
+            <!--Código erro em caso de negação-->
+            <codigoTransacaoOperadora>0</codigoTransacaoOperadora>
+            <!--Data retorno adquirente-->
+            <dataAprovacaoOperadora>24/05/2017</dataAprovacaOperadora>
+            <!--Mensagem adquirente-->
+            <mensagemVenda>Transacao capturada com sucesso</mensagemVenda>
+            <!--TID-->
+            <numeroComprovanteVenda>1006993069181F841001</numeroComprovanteVenda>
+            <numeroTransacao>1</numeroTransacao>
+            <parcelas>1</parcelas>
+            <!--Status que deverá ser tratado pelo eCommerce-->
+            <statusTransacao>1</statusTransacao>
+            <taxaEmbarque>0</taxaEmbarque>
+            <urlPagamento>14132971582229c00506d-e84d-4526-b902-92190d5aa808<urlpagamento></urlpagamento>
+            <valor>200</valor>
+            <valorDesconto>0</valorDesconto>
+         </return>
+      </ns2:pagamentoTransacaoCompletaResponse>
+   </soap:body>
+</soap:envelope>
+```
+
+#### Checkout Cielo (Redirecionado)
+
+**Contratação**
+
+Contratando a solução da CIELO para e-commerce será possível oferecer os seguintes meios de pagamento na sua loja:
+
+* Cartão de crédito Amex;
+* Cartão de crédito Aura;
+* Cartão de crédito Diners;
+* Cartão de crédito Discover;
+* Cartão de crédito Elo;
+* Cartão de crédito JCB;
+* Cartão de crédito MasterCard;
+* Cartão de crédito Visa;
+* Cartão de débito Maestro;
+* Cartão de débito Visa Electron;
+
+Ao final do processo de contratação, deve-se estar de posse das seguintes informações para ativação da CIELO no Gateway:
+
+* Código de filiação;
+* Merchant ID;
+
+O Superpay não participa das negociações entre o estabelecimento e bancos/adquirentes. Desta forma, taxas ou eventuais isenções são tratadas de forma direta entre os envolvidos.
+
+Para contratar, [acesse aqui](https://www.cielo.com.br/aceite-cartao/checkout/)
+
+**Particulariedades**
+
+* Para utilização correta desta forma de pagamento, deve se enviado ao Suporte SuperPay uma URL para redirecionamento do usuário após finalização do pagamento. Esta URL deve ser informada de forma completa, iniciando em HTTP ou HTTPS;
+
+* O eCommerce deverá redirecionar o consumidor para a URL retornada no campo `<urlPagamento>`;
+
+* Importante a utilização da [campainha](https://superpay.github.io/soap/#notificacao-vendas-comuns) para atualização de status no eCommerce após finalização do pagamento;
+
+* O eCommerce enviará um único código ao Gateway relacionado ao meio de pagamento Checkout (52) e após a abertura da URL o consumidor escolherá a bandeira de cartão;
+
+* Necessário algumas configurações no painel Cielo. Passo a passo no próximo tópico deste documento.
+
+
+**Configuração painel Cielo**
+
+Etapas para configuração:
+
+1. Acesse o gerenciador Cielo
+2. Clique na aba "Configurações" --> "Configurações da loja"
+3. Primeiramente habilite em "Modo de Teste"
+4. Inclua as URLs abaixo:
+
+EM TESTES
+*Subtituir o valor 10000000000 pelo código de estabelecimento SuperPay*
+
+Nome Campo|URL 
+------| ----------
+URL Retorno   |	https://homologacao.superpay.com.br/checkout/PagamentoCielo/RetornoCheckout?codE=10000000000&acao=retorno
+URL Notificação	|https://homologacao.superpay.com.br/checkout/PagamentoCielo/NotificacaoCheckout?codE=10000000000&acao=notificacao
+URL de Mudança de Status| https://homologacao.superpay.com.br/checkout/PagamentoCielo/NotificacaoCheckout?codE=10000000000&acao=mudancaStatus
+
+
+EM PRODUÇÃO
+*Subtituir o valor 10000000000 pelo código de estabelecimento SuperPay*
+
+
+Nome Campo|URL 
+------| ----------
+URL Retorno   |	https://superpay2.superpay.com.br/checkout/PagamentoCielo/RetornoCheckout?codE=10000000000&acao=retorno
+URL Notificação|	https://superpay2.superpay.com.br/checkout/PagamentoCielo/NotificacaoCheckout?codE=10000000000&acao=notificacao
+URL de Mudança de Status| https://superpay2.superpay.com.br/checkout/PagamentoCielo/NotificacaoCheckout?codE=10000000000&acao=mudancaStatus
+
+
+
+**Processo de Homologação com Adquirente**
+
+Após a integração com o SuperPay, o estabelecimento deverá configurar as credenciais da Cielo no ambiente de produção do SuperPay e apontar sua loja para o ambiente real do Gateway. Após isto, a loja deverá enviar ao Suporte Cielo (cieloecommerce@cielo.com.br) a URL da loja com um produto de teste no valor de R$1,00.
+O suporte Cielo realizará os testes em ambiente real e caso esteja dentro das conformidades a loja estará apta a realizar vendas em produção.
+
+**Exemplos**
+
+REQUISIÇÃO
+
+Estrutura simplificada de envio para adquirente Cielo. Caso seu estabelecimento utilize *antifraude*, seguir a [estrutura completa](https://superpay.github.io/soap/#criando-uma-transacao-com-analise-de-fraude).
+
+> Estrutra simplificada de envio Cielo:
+
+```xml
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
+ <soapenv:Header/>
+  <soapenv:Body>
+   <pag:pagamentoTransacaoCompleta>
+     <transacao>
+     <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
+     <codigoFormaPagamento>52</codigoFormaPagamento>
+     <numeroTransacao>1</numeroTransacao>
+     <dadosUsuarioTransacao>
+      <documentoComprador>12312312312</documentoComprador>
+      <nomeComprador>Teste SuperPay</nomeComprador>
+     </dadosUsuarioTransacao>
+     <parcelas>1</parcelas>
+     <valor>200</valor>
+     </transacao>
+     <usuario>superpay</usuario>
+     <senha>superpay</senha>
+    </pag:pagamentoTransacaoCompleta>
+  </soapenv:Body>
+</soapenv:Envelope>
+```
+
+RESPOSTA
+
+Estrtura de retorno adquirente Cielo. Os comentários no XML indicam a informação retornada da adquirente em cada campo.
+
+> Retorno:
+
+```xml
+
+<soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:body>
+      <ns2:pagamentoTransacaoCompletaResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
+         <return>
+            <!--Código de autorização-->
+            <autorizacao>0</autorizacao>
+            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
+            <codigoFormaPagamento>52</codigoFormaPagamento>
+            <!--Código erro em caso de negação-->
+            <codigoTransacaoOperadora>0</codigoTransacaoOperadora>
+            <!--Data retorno adquirente-->
+            <dataAprovacaoOperadora/>
+            <!--Mensagem adquirente-->
+            <mensagemVenda/>
+            <!--TID-->
+            <numeroComprovanteVenda/>
+            <numeroTransacao>1</numeroTransacao>
+            <parcelas>1</parcelas>
+            <statusTransacao>5</statusTransacao>
+            <taxaEmbarque>0</taxaEmbarque>
+            <!--Redirecionar o consumidor-->
+            <urlPagamento>https://homologacao.superpay.com.br/checkout/PagamentoCielo/checkout?cod=14132971582229c00506d-e84d-4526-b902-92190d5aa808<urlpagamento></urlpagamento>
+            <valor>200</valor>
+            <valorDesconto>0</valorDesconto>
+         </return>
+      </ns2:pagamentoTransacaoCompletaResponse>
+   </soap:body>
+</soap:envelope>
+```
+
+
+
 download
 modulo
 
