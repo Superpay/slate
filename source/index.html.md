@@ -2409,13 +2409,11 @@ Código|Nome
 112|PayPal Internacional 
 155|SafetyPay 
 
-<h1>Anexos</h1>
+# Contratação e informações meios de pagamento
 
-<h2>Informações sobre os meios de pagamento</h2>
+## Adquirente Cielo
 
-<h3>Adquirente Cielo</h3>
-
-#### Modalidade WebService
+**MODALIDADE WEBSERVICE**
 
 **Contratação**
 
@@ -2539,7 +2537,7 @@ Estrtura de retorno adquirente Cielo. Os comentários no XML indicam a informaç
 </soap:envelope>
 ```
 
-#### Checkout Cielo (Redirecionado)
+**CHECKOUT CIELO (REDIRECIONADO)**
 
 **Contratação**
 
@@ -2684,6 +2682,7 @@ Estrtura de retorno adquirente Cielo. Os comentários no XML indicam a informaç
 </soap:envelope>
 ```
 
+# Anexos
 
 
 download
