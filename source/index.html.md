@@ -2413,7 +2413,7 @@ Código|Nome
 
 ## Informações sobre os meios de pagamento
 
-### Adquirente Cielo
+## Adquirente Cielo
 
 #### Modalidade WebService
 
