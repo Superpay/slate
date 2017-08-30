@@ -2409,11 +2409,11 @@ Código|Nome
 112|PayPal Internacional 
 155|SafetyPay 
 
-# Anexos
+<h1>Anexos</h1>
 
-## Informações sobre os meios de pagamento
+<h2>Informações sobre os meios de pagamento</h2>
 
-## Adquirente Cielo
+<h3>Adquirente Cielo</h3>
 
 #### Modalidade WebService
 
