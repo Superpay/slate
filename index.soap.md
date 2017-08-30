@@ -2410,8 +2410,11 @@ Código|Nome
 155|SafetyPay 
 
 # Anexos
+
 ## Informações sobre os meios de pagamento
+
 ### Adquirente Cielo
+
 #### Modalidade WebService
 
 **Contratação**
