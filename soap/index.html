@@ -456,6 +456,195 @@ Ao ser finalizado o pagamento dentro da loja, o Ecommerce deverá consumir os se
 <li>CNPJ;</li>
 <li>Email para criação do cadastro.</li>
 </ul>
+
+<p><strong>CARTÕES E REGRAS PARA TESTES</strong></p>
+
+<p><em>CIELO API 3.0</em></p>
+
+<p><strong>Aprovação</strong></p>
+
+<table><thead>
+<tr>
+<th>Bandeira</th>
+<th>Número do cartão</th>
+<th>Código de segurança</th>
+<th>Data de validade</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Qualquer</td>
+<td>0000000000000001</td>
+<td>123</td>
+<td>qualquer posteiror ao dia corrente</td>
+</tr>
+</tbody></table>
+
+<p><strong>Negação</strong></p>
+
+<table><thead>
+<tr>
+<th>Bandeira</th>
+<th>Número do cartão</th>
+<th>Código de segurança</th>
+<th>Data de validade</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Qualquer</td>
+<td>0000000000000002</td>
+<td>123</td>
+<td>qualquer posteiror ao dia corrente</td>
+</tr>
+</tbody></table>
+
+<p><em>Elavon</em></p>
+
+<p>Para testar esta modalidade as seguintes regras abaixo devem ser utilizadas:</p>
+
+<ul>
+<li>Para aprovação da venda, o valor total da venda deve  ser em valor inteiro, ou seja, sem centavos;</li>
+<li>Para negação, basta enviar o valor total da venda quebrado, ou seja, com centavos;</li>
+<li>Como o ambiente de testes da Elavon é compartilhado, sugerimos gerar o número do pedido baseado em YYMMDDHHMMSS (ano, mês, dia, hora, minuto, segundo).</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Bandeira</th>
+<th>Número do cartão</th>
+<th>Código de segurança</th>
+<th>Data de validade</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Visa</td>
+<td>4444111122223333</td>
+<td>123</td>
+<td>Qualquer posterior ao dia corrente</td>
+</tr>
+<tr>
+<td>MasterCard</td>
+<td>5431111111111111</td>
+<td>123</td>
+<td>Qualquer posterior ao dia corrente</td>
+</tr>
+<tr>
+<td>Diners</td>
+<td>38000000000006</td>
+<td>123</td>
+<td>Qualquer posterior ao dia corrente</td>
+</tr>
+<tr>
+<td>Discover</td>
+<td>6011111111111117</td>
+<td>123</td>
+<td>Qualquer posterior ao dia corrente</td>
+</tr>
+</tbody></table>
+
+<p><em>Rede Komerci</em></p>
+
+<p>Para testes com esta operadora não há necessidade de contratação, basta solicitar ao Suporte SuperPay a configuração desta forma de pagamento.
+Esta operadora não possui regras para aprovação ou negação dos pedidos, os retornos são aleatórios independente dos dados enviados.</p>
+
+<p><em>Bin - First Data</em></p>
+
+<ul>
+<li>Utilizar os dados abaixo para aprovação;</li>
+<li>Para aprovação com a bandeira Cabal, o valor do pedido deve ser superior a R$100,00.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Bandeira</th>
+<th>Número do cartão</th>
+<th>Código de segurança</th>
+<th>Data de validade</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Visa</td>
+<td>4488540010253330004</td>
+<td>123</td>
+<td>12/2026</td>
+</tr>
+<tr>
+<td>MasterCard</td>
+<td>5547220000000102</td>
+<td>123</td>
+<td>12/2017</td>
+</tr>
+<tr>
+<td>Cabal*</td>
+<td>6042030000204200</td>
+<td>123</td>
+<td>09/2029</td>
+</tr>
+</tbody></table>
+
+<p><em>GetNet</em></p>
+
+<p>Para aprovação das vendas, seguir tabelas abaixo:</p>
+
+<table><thead>
+<tr>
+<th>Bandeira</th>
+<th>Número do cartão</th>
+<th>Código de segurança</th>
+<th>Data de validade</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Visa</td>
+<td>4012001038166662</td>
+<td>456</td>
+<td>10/2017</td>
+</tr>
+<tr>
+<td>MasterCard</td>
+<td>5453010000083303</td>
+<td>321</td>
+<td>10/2017</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Categoria</th>
+<th>Número de parcelas</th>
+<th>Valor</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>A vista</td>
+<td>1</td>
+<td>nnn,nn</td>
+</tr>
+<tr>
+<td>Parcelado</td>
+<td>2</td>
+<td>nn6nn,02</td>
+</tr>
+<tr>
+<td>Parcelado</td>
+<td>3</td>
+<td>nn6nn,03</td>
+</tr>
+<tr>
+<td>Parcelado</td>
+<td>4</td>
+<td>nn6nn,04</td>
+</tr>
+</tbody></table>
+
+<p><em>Boletos Offline</em></p>
+
+<p>Neste ambiente não configuramos dados reais para geração dos boletos por segurança. Caso queira utilizar esta forma de pagamento solicite ao Suporte SuperPay e o boleto será configurado com dados fictícios.</p>
+
+<p>Obs: Neste ambiente os testes ocorrem apenas com boletos sem registros.</p>
+
+<p><em>Intermediários Financeiros</em></p>
+
+<p>Para testes com este meio de pagamento é preciso possuir cadastro com a instituição financeira.</p>
 <h2 id='producao'>Produção</h2>
 <p>Para receber suas credenciais do nosso ambiente de produção, basta acessar nosso site e realizar a contratação de um de nossos planos: <a href="http://www.superpay.com.br/planos">Planos SuperPay</a>
 Caso tenha dúvidas sobre, por gentileza entrar em contato com nossa equipe comercial através do email [comercial@superpay.com.br] ou pelo telefone 11 3544-0678</p>
@@ -6559,7 +6748,7 @@ numeroRecorrencia=1<span class="err">&amp;</span>codigoEstabelecimento=100000000
 </ul></li>
 </ol>
 <h1 id='downloads'>Downloads</h1><h2 id='exemplos-de-integracao'>Exemplos de integração</h2>
-<p>Temos alguns exemplos para te auxiliar no processo de integração com o Gateway, basta <a href="https://superpay.acelerato.com/base-de-conhecimento/#/artigos/2">acessar aqui</a> e realizar o download do exemplo da linguagem de programação se sua loja virtual.</p>
+<p>Temos alguns exemplos para te auxiliar no processo de integração com o Gateway, basta <a href="https://superpay.acelerato.com/base-de-conhecimento/#/artigos/2">acessar aqui</a> e realizar o download do exemplo da linguagem de programação de sua loja virtual.</p>
 <h2 id='formularios'>Formulários</h2>
 <p><a href="https://superpay.acelerato.com/base-de-conhecimento/#/artigos/70">Formulário para criação de um novo estabelecimento</a></p>
 
