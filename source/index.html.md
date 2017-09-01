@@ -64,7 +64,7 @@ Bandeira | Número do cartão | Código de segurança | Data de validade
 Qualquer | 0000000000000002 | 123| qualquer posteiror ao dia corrente
 
 
-*Elavon*
+*ELAVON*
 
 Para testar esta modalidade as seguintes regras abaixo devem ser utilizadas:
 
@@ -81,13 +81,13 @@ Diners	|38000000000006|	123	|Qualquer posterior ao dia corrente
 Discover|	6011111111111117|	123|	Qualquer posterior ao dia corrente
 
 
-*Rede Komerci*
+*REDE KOMERCI*
 
 Para testes com esta operadora não há necessidade de contratação, basta solicitar ao Suporte SuperPay a configuração desta forma de pagamento.
 Esta operadora não possui regras para aprovação ou negação dos pedidos, os retornos são aleatórios independente dos dados enviados.
 
 
-*Bin - First Data*
+*BIN - FIRST DATA*
 
 
 * Utilizar os dados abaixo para aprovação;
@@ -101,7 +101,7 @@ MasterCard|	5547220000000102|	123|	12/2017
 Cabal*|	6042030000204200 | 123|	09/2029
 
 
-*GetNet*
+*GETNET*
 
 Para aprovação das vendas, seguir tabelas abaixo:
 
@@ -114,20 +114,20 @@ MasterCard|	5453010000083303 |321|	10/2017
 
 Categoria | Número de parcelas | Valor
 ------| -------|------
-A vista	|1|	nnn,nn
-Parcelado|	2|	nn6nn,02
+A vista	| 1 	nnn,nn
+Parcelado|	2 |	nn6nn,02
 Parcelado| 3	|nn6nn,03
-Parcelado|	4|	nn6nn,04
+Parcelado|	4 |	nn6nn,04
 
 
-*Boletos Offline*
+*BOLETOS OFFLINE*
 
 Neste ambiente não configuramos dados reais para geração dos boletos por segurança. Caso queira utilizar esta forma de pagamento solicite ao Suporte SuperPay e o boleto será configurado com dados fictícios.
 
 Obs: Neste ambiente os testes ocorrem apenas com boletos sem registros.
 
 
-*Intermediários Financeiros*
+*INTERMEDIÁRIOS FINANCEIROS*
 
 Para testes com este meio de pagamento é preciso possuir cadastro com a instituição financeira.
 
