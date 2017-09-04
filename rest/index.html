@@ -670,45 +670,41 @@ Para enviar a transação, utilize o método <code>POST</code>
 </aside>
 
 <blockquote>
-<p>Exemplo criação transação:
-```json</p>
+<p>Exemplo criação transação:</p>
 </blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="s2">"codigoEstabelecimento"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1000000000000</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"codigoFormaPagamento"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">170</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"transacao"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"numeroTransacao"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"valor"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"parcelas"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"idioma"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"dadosCartao"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nomePortador"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Teste Teste"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"numeroCartao"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0000000000000001"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigoSeguranca"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dataValidade"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"12/2017"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"itensDoPedido"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"codigoProduto"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nomeProduto"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Produto 1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigoCategoria"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nomeCategoria"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"categoria"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantidadeProduto"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"valorUnitarioProduto"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"dadosCobranca"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nome"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Teste Integração"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"documento"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"12312312312"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-<p>{
-   &quot;codigoEstabelecimento&quot; : 1000000000000,
-   &quot;codigoFormaPagamento&quot; : 170,
-   &quot;transacao&quot; : {
-      &quot;numeroTransacao&quot; : 123,
-      &quot;valor&quot; : 100,
-      &quot;parcelas&quot; : 1,
-      &quot;idioma&quot; : 1
-   },
-   &quot;dadosCartao&quot; : {
-      &quot;nomePortador&quot; : &quot;Teste Teste&quot;,
-      &quot;numeroCartao&quot; : &quot;0000000000000001&quot;,
-      &quot;codigoSeguranca&quot; : &quot;123&quot;,
-      &quot;dataValidade&quot; : &quot;12/2017&quot;
-   },
-   &quot;itensDoPedido&quot; : [
-  {
-      &quot;codigoProduto&quot; : 1,
-      &quot;nomeProduto&quot; : &quot;Produto 1&quot;,
-      &quot;codigoCategoria&quot; : 1,
-      &quot;nomeCategoria&quot; : &quot;categoria&quot;,
-      &quot;quantidadeProduto&quot; : 1,
-      &quot;valorUnitarioProduto&quot; : 100
-  }
-   ],
-   &quot;dadosCobranca&quot; : {
-      &quot;nome&quot; : &quot;Teste Integração&quot;,
-      &quot;documento&quot; : &quot;12312312312&quot;
-   }
-}</p>
-<pre class="highlight plaintext"><code>
-
-
-```curl
-
+</span></code></pre><pre class="highlight plaintext"><code>
 curl
 --request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
 --header "Content-Type: application/json"
@@ -826,9 +822,10 @@ curl
 </tr>
 </tbody></table>
 
-<p><em>dadosCartao</em></p>
-
-<p>nomePortador | Nome do titular do cartão de crédito (Exatamente como escrito no cartão) | Alfa Numérico | Até 16 dígitos | Sim
+<p><em>dadosCartao</em>
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+nomePortador | Nome do titular do cartão de crédito (Exatamente como escrito no cartão) | Alfa Numérico | Até 16 dígitos | Sim
 numeroCartao | Numero do cartão de crédito, sem espaços ou traços | Numérico | Até 22 caracteres | Sim
 codigoSeguranca | Código de segurança do cartão (campo não é armazenado pelo SuperPay) | Numérico | Até 4 caracteres | Sim
 dataValidade | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres | Sim</p>

@@ -172,6 +172,7 @@ Para enviar a transação, utilize o método <code>POST</code>
 </aside>
 
 > Exemplo criação transação:
+
 ```json
 
 {
@@ -269,7 +270,8 @@ urlRetorno | Para o modelo de pagamento redirect, O SuperPay redirecionará para
 
 
 *dadosCartao*
-
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
 nomePortador | Nome do titular do cartão de crédito (Exatamente como escrito no cartão) | Alfa Numérico | Até 16 dígitos | Sim
 numeroCartao | Numero do cartão de crédito, sem espaços ou traços | Numérico | Até 22 caracteres | Sim
 codigoSeguranca | Código de segurança do cartão (campo não é armazenado pelo SuperPay) | Numérico | Até 4 caracteres | Sim
