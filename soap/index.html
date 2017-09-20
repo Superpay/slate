@@ -998,7 +998,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
                <span class="nt">&lt;codigoCliente&gt;</span>1<span class="nt">&lt;/codigoCliente&gt;</span>
                <span class="nt">&lt;codigoTipoTelefoneComprador&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneComprador&gt;</span>
                <span class="nt">&lt;codigoTipoTelefoneEntrega&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneEntrega&gt;</span>
-               <span class="nt">&lt;complementoEndereCocomprador&gt;&lt;/complementoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;complementoEnderecoComprador&gt;&lt;/complementoEnderecoComprador&gt;</span>
                <span class="nt">&lt;complementoEnderecoEntrega&gt;&lt;/complementoEnderecoEntrega&gt;</span>
                <span class="nt">&lt;dataNascimentoComprador&gt;</span>10/01/1980<span class="nt">&lt;/dataNascimentoComprador&gt;</span>
                <span class="nt">&lt;dddComprador&gt;</span>11<span class="nt">&lt;/dddComprador&gt;</span>
@@ -1030,7 +1030,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
                <span class="nt">&lt;codigoProduto&gt;</span>1<span class="nt">&lt;/codigoProduto&gt;</span>
                <span class="nt">&lt;nomeCategoria&gt;</span>Roupa<span class="nt">&lt;/nomeCategoria&gt;</span>
                <span class="nt">&lt;nomeProduto&gt;</span>Camiseta<span class="nt">&lt;/nomeProduto&gt;</span>
-               <span class="nt">&lt;quantidaDeProduto&gt;</span>1<span class="nt">&lt;/quantidaDeProduto&gt;</span>
+               <span class="nt">&lt;quantidadeProduto&gt;</span>1<span class="nt">&lt;/quantidadeProduto&gt;</span>
                <span class="nt">&lt;valorUnitarioProduto&gt;</span>200<span class="nt">&lt;/valorUnitarioProduto&gt;</span>
             <span class="nt">&lt;/itensDoPedido&gt;</span>
             <span class="nt">&lt;nomeTitularCartaoCredito&gt;</span>Teste Integracao<span class="nt">&lt;/nomeTitularCartaoCredito&gt;</span>
@@ -1402,6 +1402,13 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 <td>Sim</td>
 </tr>
 <tr>
+<td>paisComprador</td>
+<td>Pais do Comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
 <td>cepEnderecoComprador</td>
 <td>CEP do comprador. Enviar sem traços ou espaços</td>
 <td>Alfa Numérico</td>
@@ -1449,6 +1456,13 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 <td>Alfa Numérico</td>
 <td>2 caracteres</td>
 <td>Não</td>
+</tr>
+<tr>
+<td>paisEntrega</td>
+<td>Pais de entrega</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Sim</td>
 </tr>
 <tr>
 <td>cepEnderecoEntrega</td>
@@ -2959,7 +2973,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
                <span class="nt">&lt;codigoCliente&gt;</span>1<span class="nt">&lt;/codigoCliente&gt;</span>
                <span class="nt">&lt;codigoTipoTelefoneComprador&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneComprador&gt;</span>
                <span class="nt">&lt;codigoTipoTelefoneEntrega&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneEntrega&gt;</span>
-               <span class="nt">&lt;complementoEndereCocomprador&gt;&lt;/complementoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;complementoEnderecoComprador&gt;&lt;/complementoEnderecoComprador&gt;</span>
                <span class="nt">&lt;complementoEnderecoEntrega&gt;&lt;/complementoEnderecoEntrega&gt;</span>
                <span class="nt">&lt;dataNascimentoComprador&gt;</span>10/01/1980<span class="nt">&lt;/dataNascimentoComprador&gt;</span>
                <span class="nt">&lt;dddComprador&gt;</span>11<span class="nt">&lt;/dddComprador&gt;</span>
@@ -2989,7 +3003,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
                <span class="nt">&lt;codigoProduto&gt;</span>1<span class="nt">&lt;/codigoProduto&gt;</span>
                <span class="nt">&lt;nomeCategoria&gt;</span>Roupa<span class="nt">&lt;/nomeCategoria&gt;</span>
                <span class="nt">&lt;nomeProduto&gt;</span>Camiseta<span class="nt">&lt;/nomeProduto&gt;</span>
-               <span class="nt">&lt;quantidaDeProduto&gt;</span>1<span class="nt">&lt;/quantidaDeProduto&gt;</span>
+               <span class="nt">&lt;quantidadeProduto&gt;</span>1<span class="nt">&lt;/quantidadeProduto&gt;</span>
                <span class="nt">&lt;valorUnitarioProduto&gt;</span>200<span class="nt">&lt;/valorUnitarioProduto&gt;</span>
             <span class="nt">&lt;/itensDoPedido&gt;</span>
             <span class="nt">&lt;numeroTransacao&gt;</span>9012346<span class="nt">&lt;/numeroTransacao&gt;</span>
@@ -3609,7 +3623,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
                <span class="nt">&lt;codigoCliente&gt;</span>1<span class="nt">&lt;/codigoCliente&gt;</span>
                <span class="nt">&lt;codigoTipoTelefoneComprador&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneComprador&gt;</span>
                <span class="nt">&lt;codigoTipoTelefoneEntrega&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneEntrega&gt;</span>
-               <span class="nt">&lt;complementoEndereCocomprador&gt;&lt;/complementoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;complementoEnderecoComprador&gt;&lt;/complementoEnderecoComprador&gt;</span>
                <span class="nt">&lt;complementoEnderecoEntrega&gt;&lt;/complementoEnderecoEntrega&gt;</span>
                <span class="nt">&lt;dataNascimentoComprador&gt;</span>10/01/1980<span class="nt">&lt;/dataNascimentoComprador&gt;</span>
                <span class="nt">&lt;dddComprador&gt;</span>11<span class="nt">&lt;/dddComprador&gt;</span>
@@ -3639,7 +3653,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
                <span class="nt">&lt;codigoProduto&gt;</span>1<span class="nt">&lt;/codigoProduto&gt;</span>
                <span class="nt">&lt;nomeCategoria&gt;</span>Roupa<span class="nt">&lt;/nomeCategoria&gt;</span>
                <span class="nt">&lt;nomeProduto&gt;</span>Camiseta<span class="nt">&lt;/nomeProduto&gt;</span>
-               <span class="nt">&lt;quantidaDeProduto&gt;</span>1<span class="nt">&lt;/quantidaDeProduto&gt;</span>
+               <span class="nt">&lt;quantidadeProduto&gt;</span>1<span class="nt">&lt;/quantidadeProduto&gt;</span>
                <span class="nt">&lt;valorUnitarioProduto&gt;</span>200<span class="nt">&lt;/valorUnitarioProduto&gt;</span>
             <span class="nt">&lt;/itensDoPedido&gt;</span>
             <span class="nt">&lt;numeroTransacao&gt;</span>9012346<span class="nt">&lt;/numeroTransacao&gt;</span>

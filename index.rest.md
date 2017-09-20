@@ -2,7 +2,6 @@
 title: API SuperPay
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - json
   - curl
 
 toc_footers:
@@ -173,43 +172,6 @@ Para enviar a transação, utilize o método <code>POST</code>
 
 > Exemplo criação transação:
 
-```json
-
-{
-   "codigoEstabelecimento" : 1000000000000,
-   "codigoFormaPagamento" : 170,
-   "transacao" : {
-      "numeroTransacao" : 123,
-      "valor" : 100,
-      "parcelas" : 1,
-      "idioma" : 1
-   },
-   "dadosCartao" : {
-      "nomePortador" : "Teste Teste",
-      "numeroCartao" : "0000000000000001",
-      "codigoSeguranca" : "123",
-      "dataValidade" : "12/2017"
-   },
-   "itensDoPedido" : [
-  {
-      "codigoProduto" : 1,
-      "nomeProduto" : "Produto 1",
-      "codigoCategoria" : 1,
-      "nomeCategoria" : "categoria",
-      "quantidadeProduto" : 1,
-      "valorUnitarioProduto" : 100
-  }
-   ],
-   "dadosCobranca" : {
-      "nome" : "Teste Integração",
-      "documento" : "12312312312"
-   }
-}
-
-```
-
-
-
 ```curl
 
 curl
@@ -249,6 +211,7 @@ curl
 }
 
 ```
+
 Para autenticação, enviar `login` e `senha` no HEADER:
 
 Campo | Descrição 
@@ -256,17 +219,25 @@ Campo | Descrição
 login | Login do estabelecimento
 senha | Senha do estabelecimento
 
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
+codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
+transacao | Nó reservado para informações da transação | - | - | -
+dadosCartao | Nó reservado para dados de cartão | - | - | -
+dadosCobranca | Nó reservado para informações dos dados de cobrança | - | - | -
+
+
 *transacao*
 
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
 numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos | Sim
-codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
 valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas | Numérico | Até 10 dígitos | Sim
 parcelas | Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento | Numérico | Até 2 dígitos | Sim
 urlCampainha | URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha | Alfa Numérico | Até 250 caracteres | Não
-urlRetorno | Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL | Alfa Numérico | Até 250 caracteres | Para pagamentos redirecionáveis é obrigatório
+urlResultado | Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL | Alfa Numérico | Até 250 caracteres | Para pagamentos redirecionáveis é obrigatório
 
 
 *dadosCartao*
@@ -289,30 +260,6 @@ documento | Documento principal do comprado| Alfa Numérico | 30 caracteres | N�
 **RESPOSTA**
 
 > Exemplo retorno transação:
-
-```json
-
---header "Content-Type: application/json"
-{
-   "numeroTransacao": 123,
-   "codigoEstabelecimento": "1000000000000",
-   "codigoFormaPagamento": 170,
-   "valor": 2000,
-   "valorDesconto": 0,
-   "parcelas": 1,
-   "statusTransacao": 1,
-   "autorizacao": "123456",
-   "codigoTransacaoOperadora": "0",
-   "dataAprovacaoOperadora": "24/05/2017",
-   "numeroComprovanteVenda": "10069930690009F2122A",
-   "nsu": "428706",
-   "mensagemVenda": "Operation Success",
-   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoCielo/PagamentoCielo.do?cod=14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
-   "cartoesUtilizados": ["000000*******0001"]
-}
-
-```
-
 
 ```curl
 
@@ -369,88 +316,104 @@ A utilização desta estrutura é indicada para envio de pedidos com a forma de 
 **REQUISIÇÃO**
 
 <aside class="notice">
-Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</code>
+Para enviar a transação, acione o método <code>POST</code>
 </aside>
 
 > Exemplo criação transação:
 
-```xml
-<soapenv:envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
-   <soapenv:header></soapenv:header>
-   <soapenv:body>
-      <pag:pagamentoTransacaoCompleta>
-         <transacao>
-            <campoLivre1></campoLivre1>
-            <campoLivre2></campoLivre2>
-            <campoLivre3></campoLivre3>
-            <campoLivre4></campoLivre4>
-            <campoLivre5></campoLivre5>
-            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-            <codigoFormaPagamento>170</codigoFormaPagamento>
-            <codigoSeguranca>123</codigoSeguranca>
-            <dadosUsuarioTransacao>
-               <bairroEnderecoComprador>Vila</bairroEnderecoComprador>
-               <bairroEnderecoEntrega>centro</bairroEnderecoEntrega>
-               <cepEnderecoComprador>05707001</cepEnderecoComprador>
-               <cepEnderecoEntrega>05707001</cepEnderecoEntrega>
-               <cidadeEnderecoComprador>Sao Paulo</cidadeEnderecoComprador>
-               <cidadeEnderecoEntrega>Sao Paulo</cidadeEnderecoEntrega>
-               <codigoCliente>1</codigoCliente>
-               <codigoTipoTelefoneComprador>1</codigoTipoTelefoneComprador>
-               <codigoTipoTelefoneEntrega>1</codigoTipoTelefoneEntrega>
-               <complementoEndereCocomprador></complementoEnderecoComprador>
-               <complementoEnderecoEntrega></complementoEnderecoEntrega>
-               <dataNascimentoComprador>10/01/1980</dataNascimentoComprador>
-               <dddComprador>11</dddComprador>
-               <dddEntrega>11</dddEntrega>
-               <ddiComprador>55</ddiComprador>
-               <ddiEntrega>55</ddiEntrega>
-               <documento2Comprador></documento2Comprador>
-               <documentoComprador>12345678919</documentoComprador>
-               <emailComprador>superpay@superpay.com.br</emailComprador>
-               <enderecoComprador>Rua do Comprador</enderecoComprador>
-               <enderecoEntrega>Rua do Comprador</enderecoEntrega>
-               <estadoEnderecoComprador>SP</estadoEnderecoComprador>
-               <estadoEnderecoEntrega>SP</estadoEnderecoEntrega>
-               <nomeComprador>Testes de integracao Cartão</nomeComprador>
-               <numeroEnderecoComprador>123</numeroEnderecoComprador>
-               <numeroEnderecoEntrega>123</numeroEnderecoEntrega>
-               <paisComprador>BR</paisComprador>
-               <paisEntrega>BR</paisEntrega>
-               <sexoComprador>M</sexoComprador>
-               <telefoneComprador>1234123123</telefoneComprador>
-               <telefoneEntrega>1234123123</telefoneEntrega>
-               <tipoCliente>1</tipoCliente>
-            </dadosUsuarioTransacao>
-           <dataDalidadeCartao>10/2017</dataValidadeCartao>
-            <IP>10.100.1.12</IP>
-            <idioma>1</idioma>
-            <itensDoPedido>
-               <codigoCategoria>1</codigoCategoria>
-               <codigoProduto>1</codigoProduto>
-               <nomeCategoria>Roupa</nomeCategoria>
-               <nomeProduto>Camiseta</nomeProduto>
-               <quantidaDeProduto>1</quantidaDeProduto>
-               <valorUnitarioProduto>200</valorUnitarioProduto>
-            </itensDoPedido>
-            <nomeTitularCartaoCredito>Teste Integracao</nomeTitularCartaoCredito>
-            <numeroCartaoCredito>4444333322221111</numeroCartaoCredito>
-            <numeroTransacao>1</numeroTransacao>
-            <origemTransacao>1</origemTransacao>
-            <parcelas>1</parcelas>
-            <taxaEmbarque>0</taxaEmbarque>
-            <urlCampainha>http://www.sualoja.campainha.com.br</urlCampainha>
-            <urlRedirecionamentoNaoPago>http://www.google.com.br</urlRedirecionamentoNaoPago>
-            <urlRedirecionamentoPago>http://www.google.com.br</urlRedirecionamentoPago>
-            <valor>200</valor>
-            <valorDesconto>0</valorDesconto>
-         </transacao>
-         <usuario>superpay</usuario>
-         <senha>superpay</senha>
-      </pag:pagamentoTransacaoCompleta>
-   </soapenv:body>
-</soapenv:envelope>
+```curl
+
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   "codigoEstabelecimento" : 1000000000000,
+   "codigoFormaPagamento" : 190,
+   "transacao" : {
+      "numeroTransacao" : 1234,
+      "valor" : 2000,
+      "valorDesconto" : 0,
+      "parcelas" : 1,
+      "urlCampainha" : "http://seusite.com.br/campainha",
+      "ip" : "192.168.12.110",
+      "idioma" : 1,
+      "campoLivre1" : "",
+      "campoLivre2" : "",
+      "campoLivre3" : "",
+      "campoLivre4" : "",
+      "campoLivre5" : ""
+   },
+   "dadosCartao" : {
+      "nomePortador" : "Teste Teste",
+      "numeroCartao" : "4002479199570736",
+      "codigoSeguranca" : "132",
+      "dataValidade" : "12/2020"
+   },
+   "itensDoPedido" : [
+  {
+      "codigoProduto" : 1,
+      "nomeProduto" : "Produto 1",
+      "codigoCategoria" : 1,
+      "nomeCategoria" : "categoria",
+      "quantidadeProduto" : 1,
+      "valorUnitarioProduto" : 2000
+  }
+   ],
+   "dadosCobranca" : {
+      "codigoCliente" : 1,
+      "tipoCliente" : 1,
+      "nome" : "Teste 123",
+      "email" : "teste@teste.com",
+      "dataNascimento" : "10/01/1975",
+      "sexo" : "M",
+      "documento" : "123.123.123-12",
+      "endereco" : {
+         "logradouro" : "Rua",
+         "numero" : "123",
+         "complemento" : "",
+         "cep" : "12345-678",
+         "bairro" : "Bairro",
+         "cidade" : "Cidade",
+         "estado" : "SP",
+         "pais" : "BR"
+        },
+      "telefone" : [
+        {
+         "tipoTelefone" : "1",
+         "ddi" : "55",
+         "ddd" : "12",
+         "telefone" : "1234-5678"
+        }
+      ]
+   },
+   "dadosEntrega" : { 
+      "nome" : "Teste 123",
+      "endereco" : {
+         "logradouro" : "Rua",
+         "numero" : "123",
+         "complemento" : "",
+         "cep" : "12345-678",
+         "bairro" : "Bairro",
+         "cidade" : "Cidade",
+         "estado" : "SP",
+         "pais" : "BR"
+        },
+      "telefone" : [
+        {
+         "tipoTelefone" : "1",
+         "ddi" : "55",
+         "ddd" : "12",
+         "telefone" : "1234-5678"
+        }
+      ]
+   }
+}
+
 ```
+
+
 Para autenticação, enviar `usuario` e `senha`:
 
 Campo | Descrição 
@@ -459,7 +422,19 @@ usuario | Login do estabelecimento
 senha | Senha do estabelecimento
 
 
-*transacaoCompletaWS*
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
+codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
+transacao | Nó reservado para informações da transação | - | - | -
+dadosCartao | Nó reservado para dados de cartão | - | - | -
+itensDoPedido | Nó reservado para informações dos produtos | - | - | - 
+dadosCobranca | Nó reservado para informações dos dados de cobrança | - | - | -
+telefone |Nó reservado para informações de telefone | - | - | - 
+dadosEntrega | Nó reservado para informações de dados de entrega | - | - | -
+
+
+*transacao*
 
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
@@ -467,107 +442,115 @@ numeroTransacao | Código que identifica a transação dentro do SuperPay | Num�
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
 codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
 valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas | Numérico | Até 10 dígitos | Sim
+moeda |	Tipo da moeda. OBS: Disponível 'USD" apenas para PayPal Internacional |	Alfa Numérico |	Até 10 caracteres |	Não
+tipoParcelamento |	Use "E" para estabelecimento, use "A" para administradora. Caso não for enviado será utilizado as configurações do seu estabelecimento |	Alfa Numérico |	1 caracter|	Não
+valorDesconto |	Valor do desconto da transação. Campo apenas informativo |	Numérico	|Até 10 dígitos	|Sim
 parcelas | Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento | Numérico | Até 2 dígitos | Sim
-nomeTitularCartaoCredito | Nome do titular do cartão de crédito (Exatamente como escrito no cartão) | Alfa Numérico | Até 16 dígitos | Sim
-numeroCartaoCredito | Numero do cartão de crédito, sem espaços ou traços | Numérico | Até 22 caracteres | Sim
-codigoSeguranca | Código de segurança do cartão (campo não é armazenado pelo SuperPay) | Numérico | Até 4 caracteres | Sim
-dataValidadeCartao | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres | Sim
 urlCampainha | URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha | Alfa Numérico | Até 250 caracteres | Não
-urlRedirecionamentoPago | Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação aprovada | Alfa Numérico | Até 250 caracteres | Para pagamentos redirecionáveis é obrigatório
-urlRedirecionamentoPago | Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação negada | Alfa Numérico | Até 250 caracteres | Para pagamentos redirecionáveis é obrigatório
-ip | Número do IP de origem. Formato xxx.xxx.xxx.xxx | Alfa Numérico | Até 15 caracteres | Não
-idioma	| 1 - Português 2 - Inglês 3 - Espanhol | Numérico | 1 dígito | Sim
-origemTransacao | 1 - eCommerce 2 - Mobile 3 - URA | Numérico | 1 dígito | Sim
-campoLivre1 | Campo Livre 1 |	Alfa Numérico |	Até 16 caracteres |	Não
-campoLivre2 |	Campo Livre 2 (Envio do FingerPrint ClearSale) | Alfa Numérico | Até 16 caracteres | Não
-campoLivre3 |	Campo Livre 3 (Envio do canal de venda ClearSale Total/Total Garantido e Application - solicitar ativação para Suporte SuperPay)  | Alfa Numérico | Até 16 caracteres | Não
-campoLivre4 |	Campo Livre 4 | Alfa Numérico |Até 16 caracteres | Não
-campoLivre5 |	Campo Livre 5 |	Alfa Numérico |	Até 16 caracteres| Não
-dadosUsuarioTransacao | Array dados do comprador | - | - | -
-itensDoPedido | Lista itens do pedido | - | - | -
+urlResultado | Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL | Alfa Numérico | Até 250 caracteres | Para pagamentos redirecionáveis é obrigatório
+ip	| Número do IP do usuário final/cliente. Formato xxx.xxx.xxx.xxx |	Alfa Numérico	|Até 15 caracteres	|Sim
+idioma|	1 - Português 2 - Inglês 3 - Espanhol|	Numérico|	 - |	Sim
+campoLivre1|	Campo Livre 1|	Alfa Numérico|	Até 16 caracteres|	Não
+campoLivre2|	Campo Livre 2  (Envio do FingerPrint ClearSale)|	Alfa Numérico|	Até 16 caracteres|	Não
+campoLivre3|	Campo Livre 3 (Envio do canal de venda ClearSale Total/Total Garantido e Application - solicitar ativação para Suporte SuperPay)|	Alfa Numérico|	Até 16 caracteres|	Não
+campoLivre4|	Campo Livre 4|	Alfa Numérico|	Até 16 caracteres|	Não
+campoLivre5|	Campo Livre 5|	Alfa Numérico|	Até 16 caracteres|	Não
 
-*dadosUsuarioTransacao*
+
+*dadosCartao*
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+nomePortador | Nome do titular do cartão de crédito (Exatamente como escrito no cartão) | Alfa Numérico | Até 16 dígitos | Sim
+numeroCartao | Numero do cartão de crédito, sem espaços ou traços | Numérico | Até 22 caracteres | Sim
+codigoSeguranca | Código de segurança do cartão (campo não é armazenado pelo SuperPay) | Numérico | Até 4 caracteres | Sim
+dataValidade | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres | Sim
+
+
+*dadosCobranca*
 
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
-codigoCliente |	Código que identifica o cliente no estabelecimento |	Alfa Numérico |	20 caracteres	|Não
-tipoCliente |	1 - Pessoa Física 2 - Pessoa Jurídica |	Numérico	| 1 dígito	|Sim
-nomeComprador |	Nome do comprador |	Alfa Numérico	| Até 100 caracteres	| Sim
-documentoComprador |	Documento principal do comprador |	Alfa Numérico	| 30 caracteres	| Sim
-documento2Comprador |	Documento complementar do comprador |	Alfa Numérico |	30 caracteres |	Não
-sexoComprador |	M – Masculino / F – Feminino |	Alfa Numérico |	1 caracter |	Não
-dataNascimentoComprador |	Data de nascimento do comprador. Formato dd/mm/yyyy |	Alfa Numérico|	10 caracteres	|Sim
-telefoneComprador | Telefone do comprador sem espaços ou traços |	Alfa Numérico |	Até 10 caracteres |	Sim
-dddComprador |	DDD do telefone do comprador |	Alfa Numérico	| Até 3 caracteres |	Sim
-ddiComprador |	DDI do telefone do comprador |	Alfa Numérico |	Até 3 caracteres |	Sim
-codigoTipoTelefoneComprador |	1 - Outros 2 - Residencial 3 - Comercial |	Numérico |	1 dígito | Sim
-telefoneAdicionalComprador |	Telefone adicional do comprador. Sem espaços ou traços |	Alfa Numérico |	Até 10 caracteres | Não
-dddAdicionalComprador |	DDD do telefone adicional do comprador |	Alfa Numérico |	Até 3 caracteres |	Não
-ddiAdicionalComprador |	DDI do telefone adicional do comprador | Alfa Numérico | Até 3 caracteres |	Não
-codigoTipoTelefoneAdicionalComprador |	1 - Outros 2 - Residencial 3 - Comercial |	Numérico	|1 dígito|	Sim
-emailComprador|	E-mail do comprador|	Alfa Numérico|	Até 100 caracteres|	Sim
-enderecoComprador|	Logradouro do comprador|	Alfa Numérico|	Até 100 caracteres|	Sim
-numeroEnderecoComprador|	Número do logradouro do comprador|	Alfa Numérico|	Até 10 caracteres|	Sim
-bairroEnderecoComprador|	Bairro comprador|	Alfa Numérico|	Até 50 caracteres|	Sim
-complementoEnderecoComprador|	Complemento do endereço comprador|	Alfa Numérico|	Até 50 caracteres|	Não
-cidadeEnderecoComprador|	Cidade do comprador|	Alfa Numérico	|Até 50 caracteres|	Sim
-estadoEnderecoComprador|	Estado do comprador|	Alfa Numérico|	Até 2 caracteres|	Sim
-cepEnderecoComprador|	CEP do comprador. Enviar sem traços ou espaços|	Alfa Numérico|	Até 10 caracteres|	Sim
-enderecoEntrega| Logradouro de entrega|	Alfa Numérico	|Até 100 caracteres|	Não
-numeroEnderecoEntrega|	Número do logradouro de entrega|	Alfa Numérico|	Até 10 caracteres|	Não
-bairroEnderecoEntrega|	Bairro do logradouro de entrega|	Alfa Numérico|	Até 50 caracteres|	Não
-complementoEnderecoEntrega|	Complemento do endereço de entrega|	Alfa Numérico	|Até 50 caracteres|	Não
-cidadeEnderecoEntrega|	Cidade de entrega|	Alfa Numérico|	Até 50 caracteres|	Não
-estadoEnderecoEntrega|	Estado de entrega|	Alfa Numérico|	2 caracteres|	Não
-cepEnderecoEntrega|	CEP de entrega. Enviar sem traços ou espaços|	Alfa Numérico|	Até 10 caracteres|	Não
-telefoneEntrega|	Telefone de entrega. Sem espaços ou traços|	Alfa Numérico|	Até 10 caracteres|	Não
-dddEntrega|	DDD do telefone de entrega|	Alfa Numérico|	Até 3 caracteres|	Não
-ddiEntrega|	DDI do telefone de entrega|	Alfa Numérico|	Até 3 caracteres|	Não
-codigoTipoTelefoneEntrega|	1 - Outros 2 - Residencial 3 - Comercial |	Numérico|	1 dígito|	Sim
-telefoneAdicionalEntrega|	Telefone adicional de entrega. Sem espaços ou traços|	Alfa Numérico|	Até 3 caracteres|	Não
-dddAdicionalEntrega|	DDD do telefone adicional de entrega	|Alfa Numérico	|Até 3 caracteres|	Não
-ddiAdicionalEntrega|	DDI do telefone adicional de entrega|	Alfa Numérico	|Até 3 caracteres|	Não
-codigoTipoTelefoneAdicionalEntrega|	1 - Outros 2 - Residencial 3 - Comercial |	Numérico|	1 dígito|	Sim
+nome | Nome do comprador| Alfa Numérico | Até 100 caracteres | Sim
+documento | Documento principal do comprado| Alfa Numérico | 30 caracteres | Sim
+documento2 |Documento principal do comprado| Alfa Numérico | 30 caracteres | Não
+email |	E-mail do comprador|	Alfa Numérico|	20 caracteres|	Sim
+codigoCliente |	Código do Comprador|	Alfa Numérico|	20 caracteres|	Não
+dataNascimento |	Data Nascimento Comprador|	Alfa Numérico|	10 caracteres	| Sim
+sexo |	Sexo Comprador|	Alfa Numérico|	2 caracteres	|Não
+tipoCliente|	Tipo do Cliente - 1 - Pessoa Física      2 - Pessoa Jurídica|	Numérico|	Até 8 dígitos|	Sim
+endereco	|Nó reservado para dados de endereço do comprador|	 - 	| - |	 - 
+telefone	|Nó reservado para dados de telefone do comprador	| -	| -|	 -
 
-*itemPedidoTransacaoWS*
+*itensDoPedido*
 
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
-codigoProduto|	Código único que identifica cada produto|	Alfa Numérico|	20 caracteres|	Sim
+codigoProduto|	Código único que identifica cada produto|	Alfa Numérico|20 caracteres|	Sim
 codigoCategoria|	Código que identifica categoria do produto|	Alfa Numérico|	20 caracteres|	Sim
-nomeProduto|	Nome do Produto	Alfa Numérico	|100 caracteres	|Sim
-quantidadeProduto|	Quantidade comprada do produto|	Numérico|	Até 8 dígitos|	Sim
-valorUnitarioProduto|	Valor unitário do produto. Deve ser enviado sem pontos ou vírgulas|	Numérico|	Até 10 dígitos	|Sim
-nomeCategoria|	Nome da categoria do produto	|Alfa Numérico|	100 caracteres|	Sim
+nomeProduto|	Nome do Produto|	Alfa Numérico|	100 caracteres	|Sim
+quantidadeProduto	|Quantidade comprada do produto	|Numérico	|Até 8 dígitos|	Sim
+valorUnitarioProduto	|Valor unitário do produto. Deve ser enviado sem pontos ou vírgulas|	Numérico|	Até 10 dígitos|	Sim
+nomeCategoria	|Nome da categoria do produto|	Alfa Numérico	|100 caracteres| Sim
 
+
+*endereco*
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+logradouro |	Endereço do comprador|	Alfa Numérico|	Sim
+numero|	Número do comprador|	Alfa Numérico|	Sim
+bairro	|Bairro do comprador|	Alfa Numérico|	Sim
+complemento|	Complemento do endereço	| Alfa Numérico |Não
+cidade|	Cidade do comprador	|Alfa Numérico	|Sim
+estado|	Estado do comprador|	Alfa Numérico |	Sim
+cep	|CEP do comprador|	Alfa Numérico	|Sim
+pais|	País do comprador|	Alfa Numérico	|Sim
+
+
+*telefone*
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+tipoTelefone|	1 = Outros / 2 = Residencial / 3 = Comercial / 4 = Recados / 5 = Cobrança / 6 = Temporário|	Numérico| Sim
+ddi|	Código DDI do telefone|	Alfa Numérico	|Sim
+ddd|	Código DDD do telefone|	Alfa Numérico|	Sim
+telefone|	Número do telefone|	Alfa Numérico|	Sim
+
+
+*dadosEntrega* 
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+nome	|Nome do comprador|	Alfa Numérico|	20 caracteres	|Não
+email|	E-mail do comprador	|Alfa Numérico	|20 caracteres	|Não
+endereco|	Nó reservado para dados de endereço do comprador|	 - |	 - |	 - 
+telefone|	Nó reservado para dados de telefone do comprador|	-|	-|	-
+|
 
 **RESPOSTA**
 
 > Exemplo retorno transação:
 
-```xml
-<soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-   <soap:body>
-      <ns2:pagamentoTransacaoCompletaResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
-         <return>
-            <autorizacao>123456</autorizacao>
-            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-            <codigoFormaPagamento>170</codigoFormaPagamento>
-            <codigoTransacaoOperadora>0</codigoTransacaoOperadora>
-            <dataAprovacaoOperadora>24/05/2017</dataAprovacaOperadora>
-            <mensagemVenda>Transacao autorizada</mensagemVenda>
-            <numeroComprovanteVenda>1006993069181F841001</numeroComprovanteVenda>
-            <numeroTransacao>1</numeroTransacao>
-            <parcelas>1</parcelas>
-            <statusTransacao>15</statusTransacao>
-            <taxaEmbarque>0</taxaEmbarque>
-            <urlPagamento>14132971582229c00506d-e84d-4526-b902-92190d5aa808<urlpagamento></urlpagamento>
-            <valor>200</valor>
-            <valorDesconto>0</valorDesconto>
-         </return>
-      </ns2:pagamentoTransacaoCompletaResponse>
-   </soap:body>
-</soap:envelope>
+```curl
+
+--header "Content-Type: application/json"
+{  "numeroTransacao": 1234,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 190,
+   "valor": 2000, 
+   "valorDesconto": 0, 
+   "parcelas": 1, 
+   "statusTransacao": 1,
+   "autorizacao": "12260",
+   "codigoTransacaoOperadora": "0",
+   "dataAprovacaoOperadora": "24/05/2017", 
+   "numeroComprovanteVenda": "10117092009151900057", 
+   "nsu": "428706",
+   "mensagemVenda": "00 - Success",
+   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoCielo/PagamentoCielo.do?cod=14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66", 
+   "cartoesUtilizados": ["400247******0736"]
+}
+
 ```
 
 Campo | Descrição | Tipo | Tamanho 
@@ -585,170 +568,10 @@ autorizacao | Código de autorização da adquirente | Numérico | Até 20 dígi
 codigoTransacaoOperadora | Código da transação na adquirente | Numérico | Até 20 dígitos
 dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | Até 10 dígitos
 numeroComprovanteVenda | Número do comprovante de venda |Alfa Numérico | Até 20 dígitos
+nsu | Número de NSU | Alfa Numérico | Até 10 dígitos
 mensagemVenda | Mensagem de retorno da adquirente |Alfa Numérico | Até 50 dígitos
+cartoesUtilizados | Número de cartão truncado utilizado na transação | Alfa Numérico | Até 20 dígitos
 
-## Criando uma transação com múltiplos cartões
-Esta estrutura permite o envio de dois ou mais cartões em uma mesma requisição, permitindo ao consumidor dividir o valor total da venda entre os seus cartões de crédito.
-A venda só será finalizada com sucesso, se todos os cartões forem aprovados.
-
-**Particulariedades**
-
-* Disponível apenas no plano Corporativo;
-* Disponível apenas para cartões de crédito modalidade WebService;
-* Não disponível no fluxo de Antifraude.
-
-
-**REQUISIÇÃO**
-
-Abaixo seguem os campos mínimos para finalizar com sucesso uma transação com Múltiplos Cartões.
-
-<aside class="notice">
-Para enviar a transação, acione o método <code>pagamentoTransacaoCompletaMaisCartoesCredito</code>
-</aside>
-
-> Exemplo criação transação:
-
-```xml
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
- <soapenv:Header/>
-  <soapenv:Body>
-   <pag:pagamentoTransacaoCompletaMaisCartoesCredito>
-     <transacao>
-       <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-       <!--enviar o array dadosCartoesCredito de acordo com a quantidade de cartões-->
-       <dadosCartoesCredito>
-         <codigoFormaPagamento>170</codigoFormaPagamento>
-         <codigoSeguranca>123</codigoSeguranca>
-         <dataValidadeCartao>12/2016</dataValidadeCartao>
-         <nomeTitularCartaoCredito>Teste</nomeTitularCartaoCredito>
-         <numeroCartaoCredito>4444333322221111</numeroCartaoCredito>
-         <parcelas>1</parcelas>
-         <valor>100</valor>
-       </dadosCartoesCredito>
-       <dadosCartoesCredito>
-         <codigoFormaPagamento>171</codigoFormaPagamento>
-         <codigoSeguranca>123</codigoSeguranca>
-         <dataValidadeCartao>12/2016</dataValidadeCartao>
-         <nomeTitularCartaoCredito>Teste</nomeTitularCartaoCredito>
-         <numeroCartaoCredito>4444333322221111</numeroCartaoCredito>
-         <parcelas>1</parcelas>
-         <valor>100</valor>
-       </dadosCartoesCredito>
-       <dadosUsuarioTransacao>
-         <documentoComprador>12312312312</documentoComprador>
-         <nomeComprador>Teste SuperPay</nomeComprador>
-       </dadosUsuarioTransacao>
-       <idioma>1</idioma>
-       <numeroTransacao>10</numeroTransacao>
-       <urlCampainha></urlCampainha>
-     </transacao>
-     <usuario>superpay</usuario>
-     <senha>superpay</senha>
-    </pag:pagamentoTransacaoCompletaMaisCartoesCredito>
-  </soapenv:Body>
-</soapenv:Envelope>
-```
-Para autenticação, enviar `usuario` e `senha`:
-
-Campo | Descrição 
-------| ----------
-usuario | Login do estabelecimento
-senha | Senha do estabelecimento
-
-*transacaoCompletaWS*
-
-Campo | Descrição | Tipo | Tamanho | Obrigatório
-------| ----------|------| --------|------------
-numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos | Sim
-codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
-urlCampainha | URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha | Alfa Numérico | Até 250 caracteres | Não
-idioma | 1 - Português 2 - Inglês 3 - Espanhol | Numérico | 1 dígito | Sim
-dadosUsuarioTransacao | Array dados do comprador | - | - | -
-dadosCartoesCredito | Lista com informações dos cartões de créditos | - | - | -
-
-*dadosUsuarioTransacao*
-
-Campo | Descrição | Tipo | Tamanho | Obrigatório
-------| ----------|------| --------|------------
-nomeComprador | Nome do comprador| Alfa Numérico | Até 100 caracteres | Não
-documentoComprador | Documento principal do comprado| Alfa Numérico | 30 caracteres | Não
-
-*dadosCartaoCredito*
-
-O array com os dados abaixo devem ser repetidos de acordo com a qauntidade de cartão a ser enviada.
-
-Campo | Descrição | Tipo | Tamanho | Obrigatório
-------| ----------|------| --------|------------
-codigoFormaPagamento |	Código da forma de pagamento |	Numérico |  2 dígitos	| Sim
-valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas |	Numérico |	Até 10 dígitos | Sim
-parcelas |	Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento |Numérico |	Até 2 dígitos|	Sim
-nomeTitularCartaoCredito|	Nome do titular do cartão de crédito (Exatamente como escrito no cartão)|	Alfa Numérico|	Até 16 caracteres|	Sim
-numeroCartaoCredito|	Numero do cartão de crédito, sem espaços ou traços|	Numérico|	Até 22 caracteres|	Sim
-codigoSeguranca|	Código de segurança do cartão (campo não é armazenado pelo SuperPay)|	Numérico|	Até 4 caracteres|	Sim
-dataValidadeCartao|	Data de validade do cartão. Formato mm/yyyy|	Alfa Numérico|	7 caracteres|	Sim
-
-**RESPOSTA**
-
-> Exemplo retorno transação:
-
-```xml
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-   <soap:Body>
-      <ns2:pagamentoTransacaoCompletaMaisCartoesCreditoResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
-         <return>
-            <codigoEstabelecimento>1318336765212</codigoEstabelecimento>
-            <detalhesFormaPagamentoMultiplosCartoes>
-               <autorizacao>123456</autorizacao>
-               <codigoFormaPagamento>170</codigoFormaPagamento>
-               <codigoTransacaoOperadora>0</codigoTransacaoOperadora>
-               <dataAprovacaoOperadora>24/05/2017</dataAprovacaoOperadora>
-               <mensagemVenda>Transação autorizada</mensagemVenda>
-               <numeroComprovanteVenda>10069930690009F2530A</numeroComprovanteVenda>
-               <parcelas>1</parcelas>
-               <taxaEmbarque>0</taxaEmbarque>
-               <valor>100</valor>
-               <valorDesconto>0</valorDesconto>
-            </detalhesFormaPagamentoMultiplosCartoes>
-            <detalhesFormaPagamentoMultiplosCartoes>
-               <autorizacao>0</autorizacao>
-               <codigoFormaPagamento>171</codigoFormaPagamento>
-               <codigoTransacaoOperadora>0</codigoTransacaoOperadora>
-               <dataAprovacaoOperadora>24/05/2017</dataAprovacaoOperadora>
-               <mensagemVenda>Transação autorizada</mensagemVenda>
-               <numeroComprovanteVenda>10069930690009F2531A</numeroComprovanteVenda>
-               <parcelas>1</parcelas>
-               <taxaEmbarque>0</taxaEmbarque>
-               <valor>200</valor>
-               <valorDesconto>0</valorDesconto>
-            </detalhesFormaPagamentoMultiplosCartoes>
-            <numeroTransacao>10</numeroTransacao>
-            <statusTransacao>1</statusTransacao>
-         </return>
-      </ns2:pagamentoTransacaoCompletaMaisCartoesCreditoResponse>
-   </soap:Body>
-</soap:Envelope>
-```
-
-Campo | Descrição | Tipo | Tamanho 
-------| ----------|------| --------
-numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos
-codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay | Numérico | 13 dígitos
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
-detalhesFormaPagamentoMultiplosCartoesWS|	Lista com informações dos cartões de créditos|-|-|-
-
-*detalhesFormaPagamentoMultiplosCartoesWS*
-
-Campo | Descrição | Tipo | Tamanho 
-------| ----------|------| --------
-valor|	Valor da transação|	Numérico	|Até 10 dígitos
-valorDesconto|	Valor do desconto da transação|	Numérico|	Até 10 dígitos
-taxaEmbarque|	Valor da taxa de embarque|	Numérico|	Até 10 dígitos
-parcelas|	Quantidade de parcelas da transação|	Numérico|	Até 2 dígitos
-autorizacao	|Código de autorização da adquirente|	Numérico|	Até 20 dígitos
-codigoTransacaoOperadora|	Código da transação na adquirente |	Numérico|	Até 20 dígitos
-dataAprovacaoOperadora|	Data de aprovação na adquirente|	Alfa Numérico	|Até 10 caracteres
-numeroComprovanteVenda	|Número do comprovante de venda	|Alfa Numérico|	Até 20 caracteres
-mensagemVenda|	Mensagem de retorno da adquirente|	Alfa Numérico|	Até 50 caracteres
 
 ## Capturando uma transação
 Através desta funcionalidade é possível confirmar uma pré autorização na adquirente, assim o consumidor receberá a cobrança em seu cartão e gerará crédito ao lojista.
@@ -757,26 +580,19 @@ Os estabelecimentos com captura manual deverão acionar o método de captura em 
 **REQUISIÇÃO**
 
 <aside class="notice">
-Para enviar a transação, acione o método <code>operacaoTransacao</code>
+Para enviar a transação, acione o método <code>POST</code>
 </aside>
 
 > Exemplo captura de transação:
 
-```xml
-<soapenv:envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
-   <soapenv:header></soapenv:header>
-   <soapenv:body>
-      <pag:operacaoTransacao>
-         <operacao>
-            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-            <numeroTransacao>1</numeroTransacao>
-            <operacao>1</operacao>
-         </operacao>
-         <usuario>superpay</usuario>
-         <senha>superpay</senha>
-      </pag:operacaoTransacao>
-   </soapenv:body>
-</soapenv:envelope>
+```curl
+
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao/10000000000000/1234/capturar
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+
 ```
 
 Para autenticação, enviar `usuario` e `senha`:
@@ -786,40 +602,38 @@ Campo | Descrição
 usuario | Login do estabelecimento
 senha | Senha do estabelecimento
 
-Campo | Descrição | Tipo | Tamanho
-------| ---------- | ------| ----------
-numeroTransacao |	Código que identifica a transação dentro do SuperPay|	Numérico|	Até 8 dígitos
-codigoEstabelecimento|	Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)|	Numérico|	13 dígitos
-operacao|	Código que identifica o processo que deseja realizar. Para captura, deve-se enviar o valor 1|Numérico|	1 dígito
+Campo | Descrição 
+------| ---------- 
+numeroTransacao |	Código que identifica a transação dentro do SuperPay
+codigoEstabelecimento|	Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)
+acao|	Ação a ser realizada. Enviar "capturar" 
 
 **RESPOSTA**
 
 
 > Exemplo retorno da captura de transação:
 
-```xml
-<soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-   <soap:body>
-      <ns2:pagamentoTransacaoCompletaResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
-         <return>
-            <autorizacao>123456</autorizacao>
-            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-            <codigoFormaPagamento>120</codigoFormaPagamento>
-            <codigoTransacaoOperadora>0</codigoTransacaoOperadora>
-            <dataAprovacaoOperadora>24/05/2017</dataAprovacaOperadora>
-            <mensagemVenda>Transacao capturada com sucesso</mensagemVenda>
-            <numeroComprovanteVenda>1006993069181F841001</numeroComprovanteVenda>
-            <numeroTransacao>1</numeroTransacao>
-            <parcelas>1</parcelas>
-            <statusTransacao>1</statusTransacao>
-            <taxaEmbarque>0</taxaEmbarque>
-            <urlPagamento>14132971582229c00506d-e84d-4526-b902-92190d5aa808<urlpagamento></urlpagamento>
-            <valor>200</valor>
-            <valorDesconto>0</valorDesconto>
-         </return>
-      </ns2:pagamentoTransacaoCompletaResponse>
-   </soap:body>
-</soap:envelope>
+```curl
+
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 1234,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 170,
+   "valor": 2000,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   "statusTransacao": 1,
+   "autorizacao": "123456",
+   "codigoTransacaoOperadora": "0",
+   "dataAprovacaoOperadora": "24/05/2017",
+   "numeroComprovanteVenda": "10069930690009F2122A",
+   "nsu": "428706",
+   "mensagemVenda": "Operation Success",
+   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoCielo/PagamentoCielo.do?cod=14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
+   "cartoesUtilizados": ["000000*******0001"]
+}
+
 ```
 
 Campo | Descrição | Tipo | Tamanho 
@@ -838,6 +652,8 @@ codigoTransacaoOperadora | Código da transação na adquirente | Numérico | At
 dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | Até 10 dígitos
 numeroComprovanteVenda | Número do comprovante de venda |Alfa Numérico | Até 20 dígitos
 mensagemVenda | Mensagem de retorno da adquirente |Alfa Numérico | Até 50 dígitos
+cartoesUtilizados | Número de cartão truncado utilizado na transação | Alfa Numérico | Até 20 dígitos
+
 
 ## Cancelando uma transação
 Através desta funcionalidade é possível cancelar uma venda pré autorizada ou capturada. Consulte abaixo o prazo de cancelamento para cada adquirente:
@@ -851,30 +667,25 @@ GETNET|	24 horas após geração do pedido
 Stone	|180 dias após a geração do pedido
 Bin	|90 dias após captura do pedido
 
+
 **REQUISIÇÃO**
 
 <aside class="notice">
-Para enviar a transação, acione o método <code>operacaoTransacao</code>
+Para enviar a transação, acione o método <code>POST</code>
 </aside>
 
 > Exemplo cancelamento de transação:
 
-```xml
-<soapenv:envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
-   <soapenv:header></soapenv:header>
-   <soapenv:body>
-      <pag:operacaoTransacao>
-         <operacao>
-            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-            <numeroTransacao>1</numeroTransacao>
-            <operacao>2</operacao>
-         </operacao>
-         <usuario>superpay</usuario>
-         <senha>superpay</senha>
-      </pag:operacaoTransacao>
-   </soapenv:body>
-</soapenv:envelope>
+```curl
+
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao/10000000000000/1234/cancelar
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+
 ```
+
 Para autenticação, enviar `usuario` e `senha`:
 
 Campo | Descrição 
@@ -882,40 +693,40 @@ Campo | Descrição
 usuario | Login do estabelecimento
 senha | Senha do estabelecimento
 
-Campo | Descrição | Tipo | Tamanho
-------| ---------- | ------| ----------
-numeroTransacao |	Código que identifica a transação dentro do SuperPay|	Numérico|	Até 8 dígitos
-codigoEstabelecimento|	Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)|	Numérico|	13 dígitos
-operacao|	Código que identifica o processo que deseja realizar. Para cancelar, deve-se enviar o valor 2|Numérico|	1 dígito
+
+Campo | Descrição 
+------| ----------
+
+numeroTransacao |	Código que identifica a transação dentro do SuperPay
+codigoEstabelecimento|	Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)
+acao|	Ação a ser realizada. Enviar "cancelar" 
+
 
 **RESPOSTA**
 
+> Exemplo retorno de cancelamento de transação:
 
-> Exemplo retorno do cancelamento da transação:
+```curl
 
-```xml
-<soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-   <soap:body>
-      <ns2:pagamentoTransacaoCompletaResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
-         <return>
-            <autorizacao>123456</autorizacao>
-            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-            <codigoFormaPagamento>120</codigoFormaPagamento>
-            <codigoTransacaoOperadora>0</codigoTransacaoOperadora>
-            <dataAprovacaoOperadora>24/05/2017</dataAprovacaOperadora>
-            <mensagemVenda>Transacao cancelada com sucesso</mensagemVenda>
-            <numeroComprovanteVenda>1006993069181F841001</numeroComprovanteVenda>
-            <numeroTransacao>1</numeroTransacao>
-            <parcelas>1</parcelas>
-            <statusTransacao>13</statusTransacao>
-            <taxaEmbarque>0</taxaEmbarque>
-            <urlPagamento>14132971582229c00506d-e84d-4526-b902-92190d5aa808<urlpagamento></urlpagamento>
-            <valor>200</valor>
-            <valorDesconto>0</valorDesconto>
-         </return>
-      </ns2:pagamentoTransacaoCompletaResponse>
-   </soap:body>
-</soap:envelope>
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 1234,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 170,
+   "valor": 2000,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   "statusTransacao": 13,
+   "autorizacao": "123456",
+   "codigoTransacaoOperadora": "0",
+   "dataAprovacaoOperadora": "24/05/2017",
+   "numeroComprovanteVenda": "10069930690009F2122A",
+   "nsu": "428706",
+   "mensagemVenda": "Operation Success",
+   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoCielo/PagamentoCielo.do?cod=14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
+   "cartoesUtilizados": ["000000*******0001"]
+}
+
 ```
 
 Campo | Descrição | Tipo | Tamanho 
@@ -934,81 +745,7 @@ codigoTransacaoOperadora | Código da transação na adquirente | Numérico | At
 dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | Até 10 dígitos
 numeroComprovanteVenda | Número do comprovante de venda |Alfa Numérico | Até 20 dígitos
 mensagemVenda | Mensagem de retorno da adquirente |Alfa Numérico | Até 50 dígitos
-
-## Estornando uma transação
-
-A funcionalidade de estorno possui o mesmo objetivo do cancelamento, retornar o valor do pedido ao consumidor. A única diferença entre elas, é que neste modelo algumas adquirentes permitem a devolução de apenas parte do valor da venda ao consumidor, como é o caso da Cielo.
-
-**Particulariedades**
-
-* Disponível apenas no plano Corporativo;
-* Disponível apenas para cartões de crédito.
-
-Operadora | Prazo para estorno | Particulariedades
-------| ----------|------
-Cielo|	D+300|	Total e parcial. Para a bandeira Amex, disponível apenas o estorno Total
-Bin|	D+0|	Apenas total
-
-<aside class="notice">
-Esta funcionalidade está disponível em um WebService diferenciado:
-
-SANDBOX: <code>https://homologacao.superpay.com.br/checkout/servicosEstornoWS.Services?wsdl</code>  
-
-
-PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/servicosEstornoWS.Services?wsdl</code>
-</aside>
-
-
-**REQUISIÇÃO**
-
-<aside class="notice">
-Para enviar a transação, acione o método <code>estornaTransacao</code>
-</aside>
-
-> Exemplo estorno de transação:
-
-```xml
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:est="http://estorno.webservices.superpay.ernet.com.br/">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <est:estornaTransacao>
-         <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-         <numeroTransacao>2</numeroTransacao>
-         <valorEstorno>1000</valorEstorno>
-      </est:estornaTransacao>
-   </soapenv:Body>
-</soapenv:Envelope>
-```
-Para autenticação, enviar `usuario` e `senha`:
-
-Campo | Descrição 
-------| ----------
-usuario | Login do estabelecimento
-senha | Senha do estabelecimento
-
-Campo | Descrição | Tipo | Tamanho
-------| ---------- | ------| ----------
-numeroTransacao |	Código que identifica a transação dentro do SuperPay|	Numérico|	Até 8 dígitos
-codigoEstabelecimento|	Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)|	Numérico|	13 dígitos
-valorEstorno|	Valor do estorno |Numérico|	Ate 10 dígitos
-
-
-**RESPOSTA**
-
-> Exemplo retorno estorno de transação:
-
-```xml
-<soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-   <soap:body>
-      <ns2:estornaTransacaoResponse xmlns:ns2="http://estorno.webservices.superpay.ernet.com.br/">
-         <return>
-            Solicitacao de Estorno Cadastrada
-         </return>
-      </ns2:estornaTransacaoResponse>
-   </soap:body>
-</soap:envelope>
-```
-
+cartoesUtilizados | Número de cartão truncado utilizado na transação | Alfa Numérico | Até 20 dígitos
 
 
 # Pagamentos com Cartão de Débito
@@ -1027,104 +764,125 @@ Para pagamentos com cartão de débito é obrigatório a etapa de autenticação
 **REQUISIÇÃO**
 
 <aside class="notice">
-Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</code>
+Para enviar a transação, acione o método <code>POST</code>
 </aside>
 
 > Exemplo criação transação:
 
-```xml
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
- <soapenv:Header/>
-  <soapenv:Body>
-   <pag:pagamentoTransacaoCompleta>
-     <transacao>
-     <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-     <codigoFormaPagamento>179</codigoFormaPagamento>
-     <numeroTransacao>1</numeroTransacao>
-     <dadosUsuarioTransacao>
-      <documentoComprador>12312312312</documentoComprador>
-      <nomeComprador>Teste SuperPay</nomeComprador>
-     </dadosUsuarioTransacao>
-     <dataValidadeCartao>12/2026</dataValidadeCartao>
-     <nomeTitularCartaoCredito>teste superpay</nomeTitularCartaoCredito>
-     <numeroCartaoCredito>4444333322221111</numeroCartaoCredito>
-     <codigoSeguranca>123</codigoSeguranca>
-     <parcelas>1</parcelas>
-     <valor>200</valor>
-     <urlCampainha>http://www.sualoja.campainha.com.br</urlCampainha>
-     <urlRedirecionamentoNaoPago>https://www.sualoja.com.br/NaoPago</urlRedirecionamentoNaoPago>
-     <urlRedirecionamentoPago>https://www.sualoja.com.br/Pago</urlRedirecionamentoPago>
-     </transacao>
-     <usuario>superpay</usuario>
-     <senha>superpay</senha>
-    </pag:pagamentoTransacaoCompleta>
-  </soapenv:Body>
-</soapenv:Envelope>
+```curl
+
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   "codigoEstabelecimento" : 1000000000000,
+   "codigoFormaPagamento" : 179,
+   "transacao" : {
+      "numeroTransacao" : 123,
+      "valor" : 100,
+      "parcelas" : 1,
+      "idioma" : 1,
+      "urlCampainha" : "http://seusite.com.br/campainha",
+      "urlResultado" : "http://seusite.com.br/retorno"
+   },
+   "dadosCartao" : {
+      "nomePortador" : "Teste Teste",
+      "numeroCartao" : "0000000000000001",
+      "codigoSeguranca" : "123",
+      "dataValidade" : "12/2017"
+   },
+   "itensDoPedido" : [
+  {
+      "codigoProduto" : 1,
+      "nomeProduto" : "Produto 1",
+      "codigoCategoria" : 1,
+      "nomeCategoria" : "categoria",
+      "quantidadeProduto" : 1,
+      "valorUnitarioProduto" : 100
+  }
+   ],
+   "dadosCobranca" : {
+      "nome" : "Teste Integração",
+      "documento" : "12312312312"
+   }
+}
+
 ```
-Para autenticação, enviar `usuario` e `senha`:
+
+Para autenticação, enviar `login` e `senha` no HEADER:
 
 Campo | Descrição 
 ------| ----------
-usuario | Login do estabelecimento
+login | Login do estabelecimento
 senha | Senha do estabelecimento
 
 
-*transacaoCompletaWS*
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
+codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
+transacao | Nó reservado para informações da transação | - | - | -
+dadosCartao | Nó reservado para dados de cartão | - | - | -
+dadosCobranca | Nó reservado para informações dos dados de cobrança | - | - | -
+
+
+*transacao*
 
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
 numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos | Sim
-codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
 valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas | Numérico | Até 10 dígitos | Sim
 parcelas | Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento | Numérico | Até 2 dígitos | Sim
-nomeTitularCartaoCredito | Nome do titular do cartão de crédito (Exatamente como escrito no cartão) | Alfa Numérico | Até 16 dígitos | Sim
-numeroCartaoCredito | Numero do cartão de crédito, sem espaços ou traços | Numérico | Até 22 caracteres | Sim
-codigoSeguranca | Código de segurança do cartão (campo não é armazenado pelo SuperPay) | Numérico | Até 4 caracteres | Sim
-dataValidadeCartao | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres | Sim
-urlCampainha | URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha | Alfa Numérico | Até 250 caracteres | Não
-urlRedirecionamentoPago | Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação aprovada | Alfa Numérico | Até 250 caracteres | Para pagamentos redirecionáveis é obrigatório
-urlRedirecionamentoPago | Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação negada | Alfa Numérico | Até 250 caracteres | Para pagamentos redirecionáveis é obrigatório
-dadosUsuarioTransacao | Array dados do comprador | - | - | -
+urlCampainha | URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha | Alfa Numérico | Até 250 caracteres | Sim
+urlResultado | O SuperPay redirecionará para essa URL na finalização do pagamento| Alfa Numérico | Até 250 caracteres | Sim
 
-*dadosUsuarioTransacao*
+
+*dadosCartao*
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+nomePortador | Nome do titular do cartão de crédito (Exatamente como escrito no cartão) | Alfa Numérico | Até 16 dígitos | Sim
+numeroCartao | Numero do cartão de crédito, sem espaços ou traços | Numérico | Até 22 caracteres | Sim
+codigoSeguranca | Código de segurança do cartão (campo não é armazenado pelo SuperPay) | Numérico | Até 4 caracteres | Sim
+dataValidade | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres | Sim
+
+
+*dadosCobranca*
 
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
-nomeComprador | Nome do comprador| Alfa Numérico | Até 100 caracteres | Não
-documentoComprador | Documento principal do comprado| Alfa Numérico | 30 caracteres | Não
-
-
+nome | Nome do comprador| Alfa Numérico | Até 100 caracteres | Não
+documento | Documento principal do comprado| Alfa Numérico | 30 caracteres | Não
 
 
 **RESPOSTA**
 
 > Exemplo retorno transação:
 
-```xml
-<soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-   <soap:body>
-      <ns2:pagamentoTransacaoCompletaResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
-         <return>
-            <autorizacao>0</autorizacao>
-            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-            <codigoFormaPagamento>179</codigoFormaPagamento>
-            <codigoTransacaoOperadora>0</codigoTransacaoOperadora>
-            <dataAprovacaoOperadora>24/05/2017</dataAprovacaOperadora>
-            <mensagemVenda></mensagemVenda>
-            <numeroComprovanteVenda>1006993069181F841001</numeroComprovanteVenda>
-            <numeroTransacao>1</numeroTransacao>
-            <parcelas>1</parcelas>
-            <statusTransacao>5</statusTransacao>
-            <taxaEmbarque>0</taxaEmbarque>
-            <urlPagamento>https://homologacao.superpay.com.br/checkout/PagamentoCielo/PagamentoVisaElectron.do?          cod=1503069157836b501aa77-6988-427c-9c8e-bead7409c669</urlpagamento>
-            <valor>200</valor>
-            <valorDesconto>0</valorDesconto>
-         </return>
-      </ns2:pagamentoTransacaoCompletaResponse>
-   </soap:body>
-</soap:envelope>
+```curl
+
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 123,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 170,
+   "valor": 2000,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   "statusTransacao": 1,
+   "autorizacao": "123456",
+   "codigoTransacaoOperadora": "0",
+   "dataAprovacaoOperadora": "24/05/2017",
+   "numeroComprovanteVenda": "10069930690009F2122A",
+   "nsu": "428706",
+   "mensagemVenda": "Operation Success",
+   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoCielo/PagamentoVisaElectron.do?cod=14132971582229c00506d-e84d-4526-b902-92190d5aa808",
+   "cartoesUtilizados": ["000000*******0001"]
+}
+
 ```
+
 
 Campo | Descrição | Tipo | Tamanho 
 ------| ----------|------| --------
@@ -1135,13 +893,16 @@ valor | Valor da transação.| Numérico | Até 10 dígitos
 valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
-urlPagamento | Para o modelo redirect. Essa será a URL de redirecionamento da operação |Alfa Numérico | Até 500 caracteres 
+urlPagamento | URL para redirecionar o consumidor para autenticação |Alfa Numérico | Até 500 caracteres 
 statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
 autorizacao | Código de autorização da adquirente | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Código da transação na adquirente | Numérico | Até 20 dígitos
-dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | Até 10 dígitos
-numeroComprovanteVenda | Número do comprovante de venda |Alfa Numérico | Até 20 dígitos
-mensagemVenda | Mensagem de retorno da adquirente |Alfa Numérico | Até 50 dígitos
+dataTprovacaoOperadora | Data que a transação foi enviada a adquirente |Alfa Numérico | Até 10 dícaracteresgitos
+dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | Até 10 caracteres
+numeroComprovanteVenda | Número do comprovante de venda |Alfa Numérico | Até 20 caracteres
+nsu | Número do NSU da adquirente | Alfa Numérico | Até 20 caracteres
+mensagemVenda | Mensagem de retorno da adquirente |Alfa Numérico | Até 50 caracteres
+cartoesUtilizados | Cartões mascarados utilizados na transação | Alfa Numérico | Até 20 caracteres
 
 # Pagamentos com Boleto Bancário
 ## Criando uma transação
@@ -1150,9 +911,9 @@ Estrutura para geração de boletos com carteiras sem ou com registro.
 
 **Particulariedades**
 
-* O campo `<estadoEnderecoComprador>` deve ser preenchido apenas com a sigla do Estado;
+* O campo `<estado>` deve ser preenchido apenas com a sigla do Estado;
 * O campo `<numeroTransacao>` deve conter até 8 dígitos;
-* Caso o campo `<vencimentoBoleto>` não for enviado, será utilizado os dias de vencimento configurado internamente no Gateway;
+* Caso o campo `<dataVencimentoBoleto>` não for enviado, será utilizado os dias de vencimento configurado internamente no Gateway;
 * Para boletos com carteira registrada (contratação a parte), o status retornado pelo SuperPay no primeiro momento será 5 (transação em andamento), enquanto para boletos sem registros é retornado 8 (aguardando pagamento);
 * Importante a utilização do recurso de Campainha, para atualização dos pedidos no Ecommerce;
 * A conciliação de boletos não é realizada automaticamente, funcionalidade deve ser contratada a parte com o comercial@superpay.com.br.
@@ -1160,83 +921,94 @@ Estrutura para geração de boletos com carteiras sem ou com registro.
 **REQUISIÇÃO**
 
 <aside class="notice">
-Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</code>
+Para enviar a transação, acione o método <code>POST</code>
 </aside>
 
 > Exemplo criação transação:
 
-```xml
-<soapenv:envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
-   <soapenv:header></soapenv:header>
-   <soapenv:body>
-      <pag:pagamentoTransacaoCompleta>
-         <transacao>
-            <campoLivre1></campoLivre1>
-            <campoLivre2></campoLivre2>
-            <campoLivre3></campoLivre3>
-            <campoLivre4></campoLivre4>
-            <campoLivre5></campoLivre5>
-            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-            <codigoFormaPagamento>29</codigoFormaPagamento>
-            <dadosUsuarioTransacao>
-               <bairroEnderecoComprador>Vila</bairroEnderecoComprador>
-               <bairroEnderecoEntrega>centro</bairroEnderecoEntrega>
-               <cepEnderecoComprador>05707001</cepEnderecoComprador>
-               <cepEnderecoEntrega>05707001</cepEnderecoEntrega>
-               <cidadeEnderecoComprador>Sao Paulo</cidadeEnderecoComprador>
-               <cidadeEnderecoEntrega>Sao Paulo</cidadeEnderecoEntrega>
-               <codigoCliente>1</codigoCliente>
-               <codigoTipoTelefoneComprador>1</codigoTipoTelefoneComprador>
-               <codigoTipoTelefoneEntrega>1</codigoTipoTelefoneEntrega>
-               <complementoEndereCocomprador></complementoEnderecoComprador>
-               <complementoEnderecoEntrega></complementoEnderecoEntrega>
-               <dataNascimentoComprador>10/01/1980</dataNascimentoComprador>
-               <dddComprador>11</dddComprador>
-               <dddEntrega>11</dddEntrega>
-               <ddiComprador>55</ddiComprador>
-               <ddiEntrega>55</ddiEntrega>
-               <documentoComprador>12345678919</documentoComprador>
-               <emailComprador>superpay@superpay.com.br</emailComprador>
-               <enderecoComprador>Rua do Comprador</enderecoComprador>
-               <enderecoEntrega>Rua do Comprador</enderecoEntrega>
-               <estadoEnderecoComprador>SP</estadoEnderecoComprador>
-               <estadoEnderecoEntrega>SP</estadoEnderecoEntrega>
-               <nomeComprador>Testes de integracao Boleto</nomeComprador>
-               <numeroEnderecoComprador>123</numeroEnderecoComprador>
-               <numeroEnderecoEntrega>123</numeroEnderecoEntrega>
-               <paisComprador>BR</paisComprador>
-               <paisEntrega>BR</paisEntrega>
-               <sexoComprador>M</sexoComprador>
-               <telefoneComprador>1234123123</telefoneComprador>
-               <telefoneEntrega>1234123123</telefoneEntrega>
-               <tipoCliente>1</tipoCliente>
-            </dadosUsuarioTransacao>
-            <IP>10.100.1.12</IP>
-            <idioma>1</idioma>
-            <itensDoPedido>
-               <codigoCategoria>1</codigoCategoria>
-               <codigoProduto>1</codigoProduto>
-               <nomeCategoria>Roupa</nomeCategoria>
-               <nomeProduto>Camiseta</nomeProduto>
-               <quantidaDeProduto>1</quantidaDeProduto>
-               <valorUnitarioProduto>200</valorUnitarioProduto>
-            </itensDoPedido>
-            <numeroTransacao>9012346</numeroTransacao>
-            <origemTransacao>1</origemTransacao>
-            <taxaEmbarque>0</taxaEmbarque>
-            <urlCampainha>https://campainha.do</urlCampainha>
-            <urlRedirecionamentoNaoPago>http://www.google.com.br</urlRedirecionamentoNaoPago>
-            <urlRedirecionamentoPago>http://www.google.com.br</urlRedirecionamentoPago>
-            <valor>200</valor>
-            <valorDesconto>0</valorDesconto>
-            <vencimentoBoleto></vencimentoBoleto>
-         </transacao>
-         <usuario>superpay</usuario>
-         <senha>superpay</senha>
-      </pag:pagamentoTransacaoCompleta>
-   </soapenv:body>
-</soapenv:envelope>
+```curl
+
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   "codigoEstabelecimento" : 1000000000000,
+   "codigoFormaPagamento" : 29,
+   "transacao" : {
+      "numeroTransacao" : 1234,
+      "valor" : 2000,
+      "valorDesconto" : 0,
+      "parcelas" : 1,
+      "urlCampainha" : "http://seusite.com.br/campainha",
+      "urlResultado" : "http://seusite.com.br/retorno",
+      "ip" : "192.168.12.110",
+      "idioma" : 1,
+      "dataVencimentoBoleto":"13/12/2017"
+   },
+   "itensDoPedido" : [
+  {
+      "codigoProduto" : 1,
+      "nomeProduto" : "Produto 1",
+      "codigoCategoria" : 1,
+      "nomeCategoria" : "categoria",
+      "quantidadeProduto" : 1,
+      "valorUnitarioProduto" : 2000
+  }
+   ],
+   "dadosCobranca" : {
+      "codigoCliente" : 1,
+      "tipoCliente" : 1,
+      "nome" : "Teste 123",
+      "email" : "teste@teste.com",
+      "dataNascimento" : "10/01/1975",
+      "sexo" : "M",
+      "documento" : "123.123.123-12",
+      "endereco" : {
+         "logradouro" : "Rua",
+         "numero" : "123",
+         "complemento" : "",
+         "cep" : "12345-678",
+         "bairro" : "Bairro",
+         "cidade" : "Cidade",
+         "estado" : "SP",
+         "pais" : "BR"
+        },
+      "telefone" : [
+        {
+         "tipoTelefone" : "1",
+         "ddi" : "55",
+         "ddd" : "12",
+         "telefone" : "1234-5678"
+        }
+      ]
+   },
+   "dadosEntrega" : { 
+      "nome" : "Teste 123",
+      "endereco" : {
+         "logradouro" : "Rua",
+         "numero" : "123",
+         "complemento" : "",
+         "cep" : "12345-678",
+         "bairro" : "Bairro",
+         "cidade" : "Cidade",
+         "estado" : "SP",
+         "pais" : "BR"
+        },
+      "telefone" : [
+        {
+         "tipoTelefone" : "1",
+         "ddi" : "55",
+         "ddd" : "12",
+         "telefone" : "1234-5678"
+        }
+      ]
+   }
+}
+
 ```
+
 Para autenticação, enviar `usuario` e `senha`:
 
 Campo | Descrição 
@@ -1245,7 +1017,17 @@ usuario | Login do estabelecimento
 senha | Senha do estabelecimento
 
 
-*transacaoCompletaWS*
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
+codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
+transacao | Nó reservado para informações da transação | - | - | -
+dadosCobranca | Nó reservado para informações dos dados de cobrança | - | - | -
+telefone |Nó reservado para informações de telefone | - | - | - 
+dadosEntrega | Nó reservado para informações de dados de entrega | - | - | -
+
+
+*transacao*
 
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
@@ -1253,66 +1035,67 @@ numeroTransacao | Código que identifica a transação dentro do SuperPay | Num�
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
 codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
 valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas | Numérico | Até 10 dígitos | Sim
+valorDesconto |	Valor do desconto da transação. Campo apenas informativo |	Numérico	|Até 10 dígitos	|Sim
 urlCampainha | URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha | Alfa Numérico | Até 250 caracteres | Não
-urlRedirecionamentoPago | Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação aprovada | Alfa Numérico | Até 250 caracteres | Para pagamentos redirecionáveis é obrigatório
-urlRedirecionamentoPago | Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação negada | Alfa Numérico | Até 250 caracteres | Para pagamentos redirecionáveis é obrigatório
-ip | Número do IP de origem. Formato xxx.xxx.xxx.xxx | Alfa Numérico | Até 15 caracteres | Não
-idioma	| 1 - Português 2 - Inglês 3 - Espanhol | Numérico | 1 dígito | Sim
-origemTransacao | 1 - eCommerce 2 - Mobile 3 - URA | Numérico | 1 dígito | Sim
-campoLivre1 | Campo Livre 1 |	Alfa Numérico |	Até 16 caracteres |	Não
-campoLivre2 |	Campo Livre 2  | Alfa Numérico | Até 16 caracteres | Não
-campoLivre3 |	Campo Livre 3 | Alfa Numérico | Até 16 caracteres | Não
-campoLivre4 |	Campo Livre 4 | Alfa Numérico |Até 16 caracteres | Não
-campoLivre5 |	Campo Livre 5 |	Alfa Numérico |	Até 16 caracteres| Não
-dadosUsuarioTransacao | Array dados do comprador | - | - | -
-itensDoPedido | Lista itens do pedido | - | - | -
+dataVencimentoBoleto | Data de vencimento do boleto, se não enviado será utilizado os dias da configuração |Alfa Numérico| Até 10 caracteres | Não
+urlResultado | Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL | Alfa Numérico | Até 250 caracteres | Para pagamentos redirecionáveis é obrigatório
+ip	| Número do IP do usuário final/cliente. Formato xxx.xxx.xxx.xxx |	Alfa Numérico	|Até 15 caracteres	|Não
+idioma|	1 - Português 2 - Inglês 3 - Espanhol|	Numérico|	 - |	Sim
+campoLivre1|	Campo Livre 1|	Alfa Numérico|	Até 16 caracteres|	Não
+campoLivre2|	Campo Livre 2  |Alfa Numérico|	Até 16 caracteres|	Não
+campoLivre3|	Campo Livre 3 |	Alfa Numérico|	Até 16 caracteres|	Não
+campoLivre4|	Campo Livre 4|	Alfa Numérico|	Até 16 caracteres|	Não
+campoLivre5|	Campo Livre 5|	Alfa Numérico|	Até 16 caracteres|	Não
 
-*dadosUsuarioTransacao*
+
+*dadosCobranca*
 
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
-codigoCliente |	Código que identifica o cliente no estabelecimento |	Alfa Numérico |	20 caracteres	|Não
-tipoCliente |	1 - Pessoa Física 2 - Pessoa Jurídica |	Numérico	| 1 dígito	|Sim
-nomeComprador |	Nome do comprador |	Alfa Numérico	| Até 100 caracteres	| Sim
-documentoComprador |	Documento principal do comprador |	Alfa Numérico	| 30 caracteres	| Sim
-sexoComprador |	M – Masculino / F – Feminino |	Alfa Numérico |	1 caracter |	Não
-dataNascimentoComprador |	Data de nascimento do comprador. Formato dd/mm/yyyy |	Alfa Numérico|	10 caracteres	|Sim
-telefoneComprador | Telefone do comprador sem espaços ou traços |	Alfa Numérico |	Até 10 caracteres |	Sim
-dddComprador |	DDD do telefone do comprador |	Alfa Numérico	| Até 3 caracteres |	Sim
-ddiComprador |	DDI do telefone do comprador |	Alfa Numérico |	Até 3 caracteres |	Sim
-codigoTipoTelefoneComprador |	1 - Outros 2 - Residencial 3 - Comercial |	Numérico |	1 dígito | Sim
-dddAdicionalComprador |	DDD do telefone adicional do comprador |	Alfa Numérico |	Até 3 caracteres |	Não
-ddiAdicionalComprador |	DDI do telefone adicional do comprador | Alfa Numérico | Até 3 caracteres |	Não
-emailComprador|	E-mail do comprador|	Alfa Numérico|	Até 100 caracteres|	Sim
-enderecoComprador|	Logradouro do comprador|	Alfa Numérico|	Até 100 caracteres|	Sim
-numeroEnderecoComprador|	Número do logradouro do comprador|	Alfa Numérico|	Até 10 caracteres|	Sim
-bairroEnderecoComprador|	Bairro comprador|	Alfa Numérico|	Até 50 caracteres|	Sim
-complementoEnderecoComprador|	Complemento do endereço comprador|	Alfa Numérico|	Até 50 caracteres|	Não
-cidadeEnderecoComprador|	Cidade do comprador|	Alfa Numérico	|Até 50 caracteres|	Sim
-estadoEnderecoComprador|	Estado do comprador|	Alfa Numérico|	Até 2 caracteres|	Sim
-cepEnderecoComprador|	CEP do comprador. Enviar sem traços ou espaços|	Alfa Numérico|	Até 10 caracteres|	Sim
-enderecoEntrega| Logradouro de entrega|	Alfa Numérico	|Até 100 caracteres|	Não
-numeroEnderecoEntrega|	Número do logradouro de entrega|	Alfa Numérico|	Até 10 caracteres|	Não
-bairroEnderecoEntrega|	Bairro do logradouro de entrega|	Alfa Numérico|	Até 50 caracteres|	Não
-complementoEnderecoEntrega|	Complemento do endereço de entrega|	Alfa Numérico	|Até 50 caracteres|	Não
-cidadeEnderecoEntrega|	Cidade de entrega|	Alfa Numérico|	Até 50 caracteres|	Não
-estadoEnderecoEntrega|	Estado de entrega|	Alfa Numérico|	2 caracteres|	Não
-cepEnderecoEntrega|	CEP de entrega. Enviar sem traços ou espaços|	Alfa Numérico|	Até 10 caracteres|	Não
-telefoneEntrega|	Telefone de entrega. Sem espaços ou traços|	Alfa Numérico|	Até 10 caracteres|	Não
-dddEntrega|	DDD do telefone de entrega|	Alfa Numérico|	Até 3 caracteres|	Não
-ddiEntrega|	DDI do telefone de entrega|	Alfa Numérico|	Até 3 caracteres|	Não
-codigoTipoTelefoneEntrega|	1 - Outros 2 - Residencial 3 - Comercial |	Numérico|	1 dígito|	Sim
+nome | Nome do comprador| Alfa Numérico | Até 100 caracteres | Sim
+documento | Documento principal do comprado| Alfa Numérico | 30 caracteres | Sim
+documento2 |Documento principal do comprado| Alfa Numérico | 30 caracteres | Não
+email |	E-mail do comprador|	Alfa Numérico|	20 caracteres|	Sim
+codigoCliente |	Código do Comprador|	Alfa Numérico|	20 caracteres|	Não
+dataNascimento |	Data Nascimento Comprador|	Alfa Numérico|	10 caracteres	| Não
+sexo |	Sexo Comprador|	Alfa Numérico|	2 caracteres	|Não
+tipoCliente|	Tipo do Cliente - 1 - Pessoa Física      2 - Pessoa Jurídica|	Numérico|	Até 8 dígitos|	Sim
+endereco	|Nó reservado para dados de endereço do comprador|	 - 	| - |	 - 
+telefone	|Nó reservado para dados de telefone do comprador	| -	| -|	 -
 
-*itemPedidoTransacaoWS*
+
+*endereco*
 
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
-codigoProduto|	Código único que identifica cada produto|	Alfa Numérico|	20 caracteres|	Sim
-codigoCategoria|	Código que identifica categoria do produto|	Alfa Numérico|	20 caracteres|	Sim
-nomeProduto|	Nome do Produto	Alfa Numérico	|100 caracteres	|Sim
-quantidadeProduto|	Quantidade comprada do produto|	Numérico|	Até 8 dígitos|	Sim
-valorUnitarioProduto|	Valor unitário do produto. Deve ser enviado sem pontos ou vírgulas|	Numérico|	Até 10 dígitos	|Sim
-nomeCategoria|	Nome da categoria do produto	|Alfa Numérico|	100 caracteres|	Sim
+logradouro |	Endereço do comprador|	Alfa Numérico|	Sim
+numero|	Número do comprador|	Alfa Numérico|	Sim
+bairro	|Bairro do comprador|	Alfa Numérico|	Sim
+complemento|	Complemento do endereço	| Alfa Numérico |Não
+cidade|	Cidade do comprador	|Alfa Numérico	|Sim
+estado|	Estado do comprador|	Alfa Numérico |	Sim
+cep	|CEP do comprador|	Alfa Numérico	|Sim
+pais|	País do comprador|	Alfa Numérico	|Não
+
+
+*telefone*
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+tipoTelefone|	1 = Outros / 2 = Residencial / 3 = Comercial / 4 = Recados / 5 = Cobrança / 6 = Temporário|	Numérico| Sim
+ddi|	Código DDI do telefone|	Alfa Numérico	|Não
+ddd|	Código DDD do telefone|	Alfa Numérico|	Não
+telefone|	Número do telefone|	Alfa Numérico|	Não
+
+
+*dadosEntrega* 
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+nome	|Nome do comprador|	Alfa Numérico|	20 caracteres	|Não
+email|	E-mail do comprador	|Alfa Numérico	|20 caracteres	|Não
+endereco|	Nó reservado para dados de endereço do comprador|	 - |	 - |	 - 
+telefone|	Nó reservado para dados de telefone do comprador|	-|	-|	-
 
 
 
@@ -1320,29 +1103,26 @@ nomeCategoria|	Nome da categoria do produto	|Alfa Numérico|	100 caracteres|	Sim
 Para geração do boleto o eCommerce deverá redirecionar o consumidor para a URl retornada no campo <urlPagamento>
 
 > Exemplo retorno criação boleto:
-```xml
-<soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-   <soap:body>
-      <ns2:pagamentoTransacaoCompletaResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
-         <return>
-            <autorizacao>0</autorizacao>
-            <codigoEstabelecimento>1000000000000</codigoestabelecimento>
-            <codigoFormaPagamento>29</codigoformapagamento>
-            <codigoTransacaoOperadora>0</codigotransacaooperadora>
-            <dataAprovacaoOperadora></dataaprovacaooperadora>
-            <mensagemvenda></mensagemvenda>
-            <numeroComprovanteVenda></numerocomprovantevenda>
-            <numeroTransacao>9012346</numerotransacao>
-            <parcelas>1</parcelas>
-            <statusTransacao>5</statustransacao>
-            <taxaEmbarque>0</taxaembarque>
-            <urlPagamento>https://homologacao.superpay.com.br/checkout/GeradorBoleto.do?cod=14956296486904d8312c6-d57a-499e-b53b-504047402e45</urlpagamento>
-            <valor>200</valor>
-            <valorDesconto>0</valordesconto>
-         </return>
-      </ns2:pagamentoTransacaoCompletaResponse>
-   </soap:body>
-</soap:envelope>
+
+```curl
+
+--header "Content-Type: application/json"
+{  "numeroTransacao": 1234,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 29,
+   "valor": 2000, 
+   "valorDesconto": 0, 
+   "parcelas": 1, 
+   "statusTransacao": 8,
+   "autorizacao": "0",
+   "codigoTransacaoOperadora": "0",
+   "dataAprovacaoOperadora": "", 
+   "numeroComprovanteVenda": "", 
+   "nsu": "",
+   "mensagemVenda": "",
+   "urlPagamento": "https://homologacao.superpay.com.br/checkout/Gerarboleto.do?cod=14956296486904d8312c6-d57a-499e-b53b-504047402e45"
+}
+
 ```
 
 Campo | Descrição | Tipo | Tamanho 
@@ -1369,7 +1149,7 @@ Estrutura para criação de transferência eletrônica.
 
 **Particulariedades**
 
-* O campo `<estadoEnderecoComprador>` deve ser preenchido apenas com a sigla do Estado;
+* O campo `<estado>` deve ser preenchido apenas com a sigla do Estado;
 * O campo `<numeroTransacao>` deve conter até 8 dígitos;
 * Importante a utilização do recurso de Campainha, para atualização dos pedidos no Ecommerce;
 
@@ -1377,82 +1157,93 @@ Estrutura para criação de transferência eletrônica.
 **REQUISIÇÃO**
 
 <aside class="notice">
-Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</code>
+Para enviar a transação, acione o método <code>POST</code>
 </aside>
 
 > Exemplo criação transação:
 
-```xml
-<soapenv:envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
-   <soapenv:header></soapenv:header>
-   <soapenv:body>
-      <pag:pagamentoTransacaoCompleta>
-         <transacao>
-            <campoLivre1></campoLivre1>
-            <campoLivre2></campoLivre2>
-            <campoLivre3></campoLivre3>
-            <campoLivre4></campoLivre4>
-            <campoLivre5></campoLivre5>
-            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-            <codigoFormaPagamento>16</codigoFormaPagamento>
-            <dadosUsuarioTransacao>
-               <bairroEnderecoComprador>Vila</bairroEnderecoComprador>
-               <bairroEnderecoEntrega>centro</bairroEnderecoEntrega>
-               <cepEnderecoComprador>05707001</cepEnderecoComprador>
-               <cepEnderecoEntrega>05707001</cepEnderecoEntrega>
-               <cidadeEnderecoComprador>Sao Paulo</cidadeEnderecoComprador>
-               <cidadeEnderecoEntrega>Sao Paulo</cidadeEnderecoEntrega>
-               <codigoCliente>1</codigoCliente>
-               <codigoTipoTelefoneComprador>1</codigoTipoTelefoneComprador>
-               <codigoTipoTelefoneEntrega>1</codigoTipoTelefoneEntrega>
-               <complementoEndereCocomprador></complementoEnderecoComprador>
-               <complementoEnderecoEntrega></complementoEnderecoEntrega>
-               <dataNascimentoComprador>10/01/1980</dataNascimentoComprador>
-               <dddComprador>11</dddComprador>
-               <dddEntrega>11</dddEntrega>
-               <ddiComprador>55</ddiComprador>
-               <ddiEntrega>55</ddiEntrega>
-               <documentoComprador>12345678919</documentoComprador>
-               <emailComprador>superpay@superpay.com.br</emailComprador>
-               <enderecoComprador>Rua do Comprador</enderecoComprador>
-               <enderecoEntrega>Rua do Comprador</enderecoEntrega>
-               <estadoEnderecoComprador>SP</estadoEnderecoComprador>
-               <estadoEnderecoEntrega>SP</estadoEnderecoEntrega>
-               <nomeComprador>Testes de integracao Boleto</nomeComprador>
-               <numeroEnderecoComprador>123</numeroEnderecoComprador>
-               <numeroEnderecoEntrega>123</numeroEnderecoEntrega>
-               <paisComprador>BR</paisComprador>
-               <paisEntrega>BR</paisEntrega>
-               <sexoComprador>M</sexoComprador>
-               <telefoneComprador>1234123123</telefoneComprador>
-               <telefoneEntrega>1234123123</telefoneEntrega>
-               <tipoCliente>1</tipoCliente>
-            </dadosUsuarioTransacao>
-            <IP>10.100.1.12</IP>
-            <idioma>1</idioma>
-            <itensDoPedido>
-               <codigoCategoria>1</codigoCategoria>
-               <codigoProduto>1</codigoProduto>
-               <nomeCategoria>Roupa</nomeCategoria>
-               <nomeProduto>Camiseta</nomeProduto>
-               <quantidaDeProduto>1</quantidaDeProduto>
-               <valorUnitarioProduto>200</valorUnitarioProduto>
-            </itensDoPedido>
-            <numeroTransacao>9012346</numeroTransacao>
-            <origemTransacao>1</origemTransacao>
-            <taxaEmbarque>0</taxaEmbarque>
-            <urlCampainha>https://campainha.do</urlCampainha>
-            <urlRedirecionamentoNaoPago>http://www.google.com.br</urlRedirecionamentoNaoPago>
-            <urlRedirecionamentoPago>http://www.google.com.br</urlRedirecionamentoPago>
-            <valor>200</valor>
-            <valorDesconto>0</valorDesconto>
-         </transacao>
-         <usuario>superpay</usuario>
-         <senha>superpay</senha>
-      </pag:pagamentoTransacaoCompleta>
-   </soapenv:body>
-</soapenv:envelope>
+```curl
+
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   "codigoEstabelecimento" : 1000000000000,
+   "codigoFormaPagamento" : 16,
+   "transacao" : {
+      "numeroTransacao" : 1234,
+      "valor" : 2000,
+      "valorDesconto" : 0,
+      "parcelas" : 1,
+      "urlCampainha" : "http://seusite.com.br/campainha",
+      "urlResultado" : "http://seusite.com.br/retorno",
+      "ip" : "192.168.12.110",
+      "idioma" : 1
+   },
+   "itensDoPedido" : [
+  {
+      "codigoProduto" : 1,
+      "nomeProduto" : "Produto 1",
+      "codigoCategoria" : 1,
+      "nomeCategoria" : "categoria",
+      "quantidadeProduto" : 1,
+      "valorUnitarioProduto" : 2000
+  }
+   ],
+   "dadosCobranca" : {
+      "codigoCliente" : 1,
+      "tipoCliente" : 1,
+      "nome" : "Teste 123",
+      "email" : "teste@teste.com",
+      "dataNascimento" : "10/01/1975",
+      "sexo" : "M",
+      "documento" : "123.123.123-12",
+      "endereco" : {
+         "logradouro" : "Rua",
+         "numero" : "123",
+         "complemento" : "",
+         "cep" : "12345-678",
+         "bairro" : "Bairro",
+         "cidade" : "Cidade",
+         "estado" : "SP",
+         "pais" : "BR"
+        },
+      "telefone" : [
+        {
+         "tipoTelefone" : "1",
+         "ddi" : "55",
+         "ddd" : "12",
+         "telefone" : "1234-5678"
+        }
+      ]
+   },
+   "dadosEntrega" : { 
+      "nome" : "Teste 123",
+      "endereco" : {
+         "logradouro" : "Rua",
+         "numero" : "123",
+         "complemento" : "",
+         "cep" : "12345-678",
+         "bairro" : "Bairro",
+         "cidade" : "Cidade",
+         "estado" : "SP",
+         "pais" : "BR"
+        },
+      "telefone" : [
+        {
+         "tipoTelefone" : "1",
+         "ddi" : "55",
+         "ddd" : "12",
+         "telefone" : "1234-5678"
+        }
+      ]
+   }
+}
+
 ```
+
 Para autenticação, enviar `usuario` e `senha`:
 
 Campo | Descrição 
@@ -1461,7 +1252,18 @@ usuario | Login do estabelecimento
 senha | Senha do estabelecimento
 
 
-*transacaoCompletaWS*
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
+codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
+transacao | Nó reservado para informações da transação | - | - | -
+itensDoPedido | Nó reservado para informações dos produtos | - | - | - 
+dadosCobranca | Nó reservado para informações dos dados de cobrança | - | - | -
+telefone |Nó reservado para informações de telefone | - | - | - 
+dadosEntrega | Nó reservado para informações de dados de entrega | - | - | -
+
+
+*transacao*
 
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
@@ -1469,96 +1271,89 @@ numeroTransacao | Código que identifica a transação dentro do SuperPay | Num�
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
 codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
 valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas | Numérico | Até 10 dígitos | Sim
+valorDesconto |	Valor do desconto da transação. Campo apenas informativo |	Numérico	|Até 10 dígitos	|Sim
 urlCampainha | URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha | Alfa Numérico | Até 250 caracteres | Não
-urlRedirecionamentoPago | URl para onde o consumidor será recirecionado em caso de pagamento aprovado | Alfa Numérico | Até 250 caracteres | Sim
-urlRedirecionamentoPago | URl para onde o consumidor será recirecionado em caso de pagamento não aprovado | Alfa Numérico | Até 250 caracteres | Sim
-ip | Número do IP de origem. Formato xxx.xxx.xxx.xxx | Alfa Numérico | Até 15 caracteres | Não
-idioma	| 1 - Português 2 - Inglês 3 - Espanhol | Numérico | 1 dígito | Sim
-origemTransacao | 1 - eCommerce 2 - Mobile 3 - URA | Numérico | 1 dígito | Sim
-campoLivre1 | Campo Livre 1 |	Alfa Numérico |	Até 16 caracteres |	Não
-campoLivre2 |	Campo Livre 2  | Alfa Numérico | Até 16 caracteres | Não
-campoLivre3 |	Campo Livre 3 | Alfa Numérico | Até 16 caracteres | Não
-campoLivre4 |	Campo Livre 4 | Alfa Numérico |Até 16 caracteres | Não
-campoLivre5 |	Campo Livre 5 |	Alfa Numérico |	Até 16 caracteres| Não
-dadosUsuarioTransacao | Array dados do comprador | - | - | -
-itensDoPedido | Lista itens do pedido | - | - | -
+urlResultado | Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL | Alfa Numérico | Até 250 caracteres | Para pagamentos redirecionáveis é obrigatório
+ip	| Número do IP do usuário final/cliente. Formato xxx.xxx.xxx.xxx |	Alfa Numérico	|Até 15 caracteres	|Não
+idioma|	1 - Português 2 - Inglês 3 - Espanhol|	Numérico|	 - |	Sim
 
-*dadosUsuarioTransacao*
+
+*dadosCobranca*
 
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
-codigoCliente |	Código que identifica o cliente no estabelecimento |	Alfa Numérico |	20 caracteres	|Não
-tipoCliente |	1 - Pessoa Física 2 - Pessoa Jurídica |	Numérico	| 1 dígito	|Sim
-nomeComprador |	Nome do comprador |	Alfa Numérico	| Até 100 caracteres	| Sim
-documentoComprador |	Documento principal do comprador |	Alfa Numérico	| 30 caracteres	| Sim
-sexoComprador |	M – Masculino / F – Feminino |	Alfa Numérico |	1 caracter |	Não
-dataNascimentoComprador |	Data de nascimento do comprador. Formato dd/mm/yyyy |	Alfa Numérico|	10 caracteres	|Sim
-telefoneComprador | Telefone do comprador sem espaços ou traços |	Alfa Numérico |	Até 10 caracteres |	Sim
-dddComprador |	DDD do telefone do comprador |	Alfa Numérico	| Até 3 caracteres |	Sim
-ddiComprador |	DDI do telefone do comprador |	Alfa Numérico |	Até 3 caracteres |	Sim
-codigoTipoTelefoneComprador |	1 - Outros 2 - Residencial 3 - Comercial |	Numérico |	1 dígito | Sim
-emailComprador|	E-mail do comprador|	Alfa Numérico|	Até 100 caracteres|	Sim
-enderecoComprador|	Logradouro do comprador|	Alfa Numérico|	Até 100 caracteres|	Sim
-numeroEnderecoComprador|	Número do logradouro do comprador|	Alfa Numérico|	Até 10 caracteres|	Sim
-bairroEnderecoComprador|	Bairro comprador|	Alfa Numérico|	Até 50 caracteres|	Sim
-complementoEnderecoComprador|	Complemento do endereço comprador|	Alfa Numérico|	Até 50 caracteres|	Não
-cidadeEnderecoComprador|	Cidade do comprador|	Alfa Numérico	|Até 50 caracteres|	Sim
-estadoEnderecoComprador|	Estado do comprador|	Alfa Numérico|	Até 2 caracteres|	Sim
-cepEnderecoComprador|	CEP do comprador. Enviar sem traços ou espaços|	Alfa Numérico|	Até 10 caracteres|	Sim
-enderecoEntrega| Logradouro de entrega|	Alfa Numérico	|Até 100 caracteres|	Não
-numeroEnderecoEntrega|	Número do logradouro de entrega|	Alfa Numérico|	Até 10 caracteres|	Não
-bairroEnderecoEntrega|	Bairro do logradouro de entrega|	Alfa Numérico|	Até 50 caracteres|	Não
-complementoEnderecoEntrega|	Complemento do endereço de entrega|	Alfa Numérico	|Até 50 caracteres|	Não
-cidadeEnderecoEntrega|	Cidade de entrega|	Alfa Numérico|	Até 50 caracteres|	Não
-estadoEnderecoEntrega|	Estado de entrega|	Alfa Numérico|	2 caracteres|	Não
-cepEnderecoEntrega|	CEP de entrega. Enviar sem traços ou espaços|	Alfa Numérico|	Até 10 caracteres|	Não
-telefoneEntrega|	Telefone de entrega. Sem espaços ou traços|	Alfa Numérico|	Até 10 caracteres|	Não
-dddEntrega|	DDD do telefone de entrega|	Alfa Numérico|	Até 3 caracteres|	Não
-ddiEntrega|	DDI do telefone de entrega|	Alfa Numérico|	Até 3 caracteres|	Não
-codigoTipoTelefoneEntrega|	1 - Outros 2 - Residencial 3 - Comercial |	Numérico|	1 dígito|	Sim
+nome | Nome do comprador| Alfa Numérico | Até 100 caracteres | Sim
+documento | Documento principal do comprado| Alfa Numérico | 30 caracteres | Sim
+documento2 |Documento principal do comprado| Alfa Numérico | 30 caracteres | Não
+email |	E-mail do comprador|	Alfa Numérico|	20 caracteres|	Sim
+codigoCliente |	Código do Comprador|	Alfa Numérico|	20 caracteres|	Não
+dataNascimento |	Data Nascimento Comprador|	Alfa Numérico|	10 caracteres	| Não
+sexo |	Sexo Comprador|	Alfa Numérico|	2 caracteres	|Não
+tipoCliente|	Tipo do Cliente - 1 - Pessoa Física      2 - Pessoa Jurídica|	Numérico|	Até 8 dígitos|	Sim
+endereco	|Nó reservado para dados de endereço do comprador|	 - 	| - |	 - 
+telefone	|Nó reservado para dados de telefone do comprador	| -	| -|	 -
 
-*itemPedidoTransacaoWS*
+
+*endereco*
 
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
-codigoProduto|	Código único que identifica cada produto|	Alfa Numérico|	20 caracteres|	Sim
-codigoCategoria|	Código que identifica categoria do produto|	Alfa Numérico|	20 caracteres|	Sim
-nomeProduto|	Nome do Produto	Alfa Numérico	|100 caracteres	|Sim
-quantidadeProduto|	Quantidade comprada do produto|	Numérico|	Até 8 dígitos|	Sim
-valorUnitarioProduto|	Valor unitário do produto. Deve ser enviado sem pontos ou vírgulas|	Numérico|	Até 10 dígitos	|Sim
-nomeCategoria|	Nome da categoria do produto	|Alfa Numérico|	100 caracteres|	Sim
+logradouro |	Endereço do comprador|	Alfa Numérico|	Sim
+numero|	Número do comprador|	Alfa Numérico|	Sim
+bairro	|Bairro do comprador|	Alfa Numérico|	Sim
+complemento|	Complemento do endereço	| Alfa Numérico |Não
+cidade|	Cidade do comprador	|Alfa Numérico	|Sim
+estado|	Estado do comprador|	Alfa Numérico |	Sim
+cep	|CEP do comprador|	Alfa Numérico	|Sim
+pais|	País do comprador|	Alfa Numérico	|Não
 
+
+*telefone*
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+tipoTelefone|	1 = Outros / 2 = Residencial / 3 = Comercial / 4 = Recados / 5 = Cobrança / 6 = Temporário|	Numérico| Sim
+ddi|	Código DDI do telefone|	Alfa Numérico	|Não
+ddd|	Código DDD do telefone|	Alfa Numérico|	Não
+telefone|	Número do telefone|	Alfa Numérico|	Não
+
+
+*dadosEntrega* 
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+nome	|Nome do comprador|	Alfa Numérico|	20 caracteres	|Não
+email|	E-mail do comprador	|Alfa Numérico	|20 caracteres	|Não
+endereco|	Nó reservado para dados de endereço do comprador|	 - |	 - |	 - 
+telefone|	Nó reservado para dados de telefone do comprador|	-|	-|	-
 
 
 **RESPOSTA**
 
-Para geração do boleto o eCommerce deverá redirecionar o consumidor para a URl retornada no campo <urlPagamento>
+Para geração da transferência, o eCommerce deverá redirecionar o consumidor para a URl retornada no campo <urlPagamento>
+
 
 > Exemplo retorno criação transação:
 
-```xml
-<soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-   <soap:body>
-      <ns2:pagamentoTransacaoCompletaResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
-         <return>
-            <autorizacao>0</autorizacao>
-            <codigoEstabelecimento>1000000000000</codigoestabelecimento>
-            <codigoFormaPagamento>16</codigoformapagamento>
-            <codigoTransacaoOperadora>0</codigotransacaooperadora>
-            <dataAprovacaoOperadora></dataaprovacaooperadora>
-            <mensagemvenda></mensagemvenda>
-            <numeroComprovanteVenda></numerocomprovantevenda>
-            <numeroTransacao>9012346</numerotransacao>
-            <parcelas>1</parcelas>
-            <statusTransacao>5</statustransacao>
-            <taxaEmbarque>0</taxaembarque>
-            <urlPagamento>https://homologacao.superpay.com.br/checkout/PagamentoItauShopLine/PagamentoItauShopLine.do?code=14956296486904d8312c6-d57a-499e-b53b-504047402e45</urlpagamento>
-            <valor>200</valor>
-            <valorDesconto>0</valordesconto>
-         </return>
-      </ns2:pagamentoTransacaoCompletaResponse>
-   </soap:body>
-</soap:envelope>
+```curl
+
+--header "Content-Type: application/json"
+{  "numeroTransacao": 1234,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 16,
+   "valor": 2000, 
+   "valorDesconto": 0, 
+   "parcelas": 1, 
+   "statusTransacao": 8,
+   "autorizacao": "0",
+   "codigoTransacaoOperadora": "0",
+   "dataAprovacaoOperadora": "", 
+   "numeroComprovanteVenda": "", 
+   "nsu": "",
+   "mensagemVenda": "",
+   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoIatuShopLine/PagamentoItauShopLine.do?cod=132971582229c00506d-e84d-4526-b902-92190d5aa808"
+}
+
 ```
 
 Campo | Descrição | Tipo | Tamanho 
@@ -1578,16 +1373,18 @@ dataAprovacaoOperadora | Retornado em branco para transferência |Alfa Numérico
 numeroComprovanteVenda | Retornado em branco para transferência |Alfa Numérico | Até 20 dígitos
 mensagemVenda | Retornado em branco para transferência |Alfa Numérico | Até 50 dígitos
 
+
 # Pagamentos Recorrentes
 
 <aside class="notice">
-Esta funcionalidade está disponível em um WebService diferenciado:
+Esta funcionalidade está disponível em um EndPoint diferenciado:
 
-SANDBOX: <code>https://homologacao.superpay.com.br/checkout/servicosRecorrenciaWS.Services?wsdl</code>
+SANDBOX: <code>	https://homologacao.superpay.com.br/checkout/api/v2/recorrencia</code>
 
 
-PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/servicosRecorrenciaWS.Services?wsdl</code>
+PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/api/v2/recorrencia</code>
 </aside>
+
 
 ## Criando uma transação recorrente
 Neste modelo, o SuperPay controla os pagamentos que foram cadastrados pelo estabelecimento, de acordo com sua periodicidade, valor e dia de cobrança.
@@ -1601,47 +1398,50 @@ O gateway possui um processo que verifica todos os dias se existem recorrências
 * Renova Fácil com a operadora Cielo;
 * Importante a utilização do recurso de Campainha, para atualização dos pedidos no Ecommerce;
 
+
 **REQUISIÇÃO**
 
 > Exemplo criação transação recorrente:
 
-```xml
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rec="http://recorrencia.webservices.superpay.ernet.com.br/">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <rec:cadastrarRecorrenciaWS>
-          <recorrenciaWS>
-            <dadosCartao>
-               <codigoSeguranca>123</codigoSeguranca>
-               <dataValidade>05/2018</dataValidade>
-               <nomePortador>Teste</nomePortador>
-               <numeroCartao>4444333322221111</numeroCartao>
-            </dadosCartao>
-            <dadosCobranca>
-               <nomeComprador>Nome do Comprador</nomeComprador>
-                <telefone>
-                </telefone>
-            </dadosCobranca>
-            <diaCobranca>23</diaCobranca>
-            <mesCobranca>10</mesCobranca>
-            <estabelecimento>1000000000000</estabelecimento>
-            <formaPagamento>170</formaPagamento>
-            <numeroRecorrencia>1</numeroRecorrencia>
-            <periodicidade>3</periodicidade>
-            <primeiraCobranca>1</primeiraCobranca>
-            <processarImediatamente>1</processarImediatamente>
-            <quantidadeCobrancas>0</quantidadeCobrancas>
-            <urlNotificacao></urlNotificacao>
-            <valor>100</valor>
-         </recorrenciaWS>
-         <usuario>
-            <senha>superpay</senha>
-            <usuario>superpay</usuario>
-         </usuario>
-      </rec:cadastrarRecorrenciaWS>
-   </soapenv:Body>
-</soapenv:Envelope>
+
+```curl
+
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+    "estabelecimento": "1000000000000",
+    "recorrencia": {
+        "formaPagamento": 170,
+        "numeroRecorrencia": 2,
+        "valor": 13000,
+        "modalidade": "1",
+        "periodicidade": "3",
+        "urlNotificacao": "http://teste.com.br/campainha",
+        "processarImediatamente": "true",
+        "quantidadeCobrancas": "0",
+        "dataPrimeiraCobranca": "30/06/2017",
+        
+        "dadosCobranca": {
+            "nomeComprador": "Teste Recorrencia",
+            "documento": "12312312312",
+            "telefone": {
+                "tipoTelefone": "1"
+            }
+        },
+        "dadosCartao": {
+            "nomePortador": "Teste",
+            "numeroCartao": "0000000000000001",
+            "codigoSeguranca": "287",
+            "dataValidade": "01/2018"
+        }
+    }
+}
+
 ```
+
 Para autenticação, enviar `usuario` e `senha`:
 
 Campo | Descrição 
@@ -1716,23 +1516,32 @@ ddi|	DDI do telefone do comprador|	Alfa Numérico|	Até 3 caracteres|	Caso utili
 telefone|	 Número do telefone|	Alfa Numérico|	Até 10 caracteres|	Caso utilize antifraude, sim
 tipoTelefone|	1 - Outros 2 - Residencial 3 - Comercial |	Numérico|	Até 2 dígitos|	Sim
 
+
 **RESPOSTA**
 
 > Exemplo retorno criação transação recorrente:
 
-```xml
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rec="http://recorrencia.webservices.superpay.ernet.com.br/">
-   <soapenv:Body>
-     <ns2:cadastrarRecorrenciaWSResponse xmlns:ns2="http://recorrencia.webservices.superpay.ernet.com.br/">
-         <return>
-            <estabelecimento>1000000000000</estabelecimento>
-            <numeroRecorrencia>1</numeroRecorrencia>
-            <status>true</status>
-            <valor>100</valor>
-         </return>
-      </ns2:cadastrarRecorrenciaWSResponse>
-   </soapenv:Body>
-</soapenv:Envelope>
+```curl
+
+--header "Content-Type: application/json"
+"recorrencia": {
+   "estabelecimento": "1000000000000",
+   "numeroRecorrencia": 2,
+   "codigoFormaPagamento": 170,
+   "valor": 13000,
+   "numeroCobrancaTotal": 0,
+   "numeroCobrancaRestantes": -1,
+   "status": 0,
+   "mensagem": "Processamento realizado com sucesso.",
+   "numeroPedido": 20001,
+   "statusTransacao": 1,
+   "autorizacao": "123456",
+   "codigoTransacaoOperadora": "00",
+   "dataAprovacaoOperadora": "30/05/2017",
+   "numeroComprovanteVenda": "1006993069000891071A",
+   "mensagemVenda": "Operation Success"
+   }
+
 ```
 
 Campo | Descrição 
@@ -1740,7 +1549,18 @@ Campo | Descrição
 numeroRecorrencia|	Número da Recorrência
 estabelecimento|	Código do estabelecimento, fornecido pelo SuperPay
 valor|	Valor
-status|	Status da Recorrência ( True - Ativo, False - Inativo)
+codigoFormaPagamento	|Código da forma de pagamento cadastrado na recorrência
+numeroCobrancaTotal|	Quantidade máxima de cobranças
+numeroCobrancaRestantes	|Quantidade de cobranças restantes
+status|	Status atual da recorrência
+mensagem|	Mensagem da recorrência
+numeroPedido|	Número da Cobrança Recorrente
+statusTransacao|	Status da Cobrança Recorrente
+autorizacao|	Código de autorização da Adquirente
+codigoTransacaoOperadora|	Código de erro da Adquirente
+dataAprovacaoOperadora|	Data aprovação Adquirente
+numeroComprovanteVenda|	Número Comprovante Adquirente
+mensagemVenda	|Mensagem Venda Adquirente
 
 
 ## Cancelando uma recorrência
@@ -1749,22 +1569,14 @@ status|	Status da Recorrência ( True - Ativo, False - Inativo)
 
 > Exemplo cancelamento transação recorrente:
 
-```xml
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rec="http://recorrencia.webservices.superpay.ernet.com.br/">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <rec:cancelarRecorrenciaWS>
-         <recorrenciaCancelarWS>
-            <estabelecimento>1000000000000</estabelecimento>
-            <numeroRecorrencia>1</numeroRecorrencia>
-         </recorrenciaCancelarWS>
-         <usuario>
-            <senha>superpay</senha>
-            <usuario>superpay</usuario>
-         </usuario>
-      </rec:cancelarRecorrenciaWS>
-   </soapenv:Body>
-</soapenv:Envelope>
+```curl
+
+curl
+--request GET https://homologacao.superpay.com.br/checkout/api/v2/recorrencia/10000000000000/2/cancelar
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+
 ```
 Para autenticação, enviar `usuario` e `senha`:
 
@@ -1773,28 +1585,38 @@ Campo | Descrição
 usuario | Login do estabelecimento
 senha | Senha do estabelecimento
 
-Campo | Descrição | Obrigatório
+Campo | Descrição | Tipo
 ------| ----------| ----------
-numeroRecorrencia|	Número da Recorrência a ser cancelada| Sim
-estabelecimento	|Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)| Sim
+numeroRecorrencia|	Número da Recorrência a ser cancelada| Numérico
+estabelecimento	|Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)| Numérico
+acao | Ação para realizar o processamento | "cancelar"
+
 
 **RESPOSTA**
 
 > Exemplo retorno cancelamento transação recorrente:
 
-```xml
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rec="http://recorrencia.webservices.superpay.ernet.com.br/">
-   <soapenv:Body>
-     <ns2:cancelarRecorrenciaWSResponse xmlns:ns2="http://recorrencia.webservices.superpay.ernet.com.br/">
-         <return>
-            <estabelecimento>1000000000000</estabelecimento>
-            <numeroRecorrencia>1</numeroRecorrencia>
-            <status>false</status>
-            <valor>100</valor>
-         </return>
-      </ns2:ccancelarRecorrenciaWSResponse>
-   </soapenv:Body>
-</soapenv:Envelope>
+```curl
+
+--header "Content-Type: application/json"
+"recorrencia": {
+   "estabelecimento": "1000000000000",
+   "numeroRecorrencia": 2,
+   "codigoFormaPagamento": 170,
+   "valor": 13000,
+   "numeroCobrancaTotal": 3,
+   "numeroCobrancaRestantes": 3,
+   "status": 0,
+   "mensagem": "Recorrência cancelada com sucesso.",
+   "numeroPedido": null,
+   "statusTransacao": null,
+   "autorizacao": null,
+   "codigoTransacaoOperadora": null,
+   "dataAprovacaoOperadora": null,
+   "numeroComprovanteVenda": null,
+   "mensagemVenda": null
+  }
+
 ```
 
 Campo | Descrição 
@@ -1802,322 +1624,18 @@ Campo | Descrição
 numeroRecorrencia|	Número da Recorrência
 estabelecimento|	Código do estabelecimento, fornecido pelo SuperPay
 valor|	Valor
-status|	Status da Recorrência ( True - Ativo, False - Inativo)
-
-
-# Pagamentos com Token (OneClick)
-
-**Particulariedades**
-
-* Disponível apenas no plano Corporativo;
-* Disponível para cartão de crédito e débito.
-
-
-<aside class="notice">
-Esta funcionalidade está disponível em um WebService diferenciado:
-
-SANDBOX: <code>https://homologacao.superpay.com.br/checkout/servicosPagamentoOneClickWS.Services?wsdl</code>
-
-
-PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/servicosPagamentoOneClickWS.Services?wsdl</code>
-</aside>
-
-## Cadastrando cartão
-
-Funcionalidade que permite o cadastramento de cartão para utilização nas futuras compras, assim o consumidor precisará incluir apenas o código de segurança para finalizar a compra.
-
-
-**REQUISIÇÃO**
-
-<aside class="notice">Para criar o token, acione o método <code>cadastraPagamentoOneClickV2</code></aside>
-
-> Exemplo cadastro do cartão:
-
-```xml
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <pag:cadastraPagamentoOneClickV2>
-         <dadosOneClick>
-            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-            <emailComprador>suporte@superpay.com.br</emailComprador>
-            <formaPagamento>350</formaPagamento>
-            <nomeTitularCartaoCredito>Teste</nomeTitularCartaoCredito>
-            <numeroCartaoCredito>4444333322221111</numeroCartaoCredito>
-            <dataValidadeCartao>10/2018</dataValidadeCartao>
-         </dadosOneClick>
-         <usuario>superpay</usuario>
-         <senha>superpay</senha>
-      </pag:cadastraPagamentoOneClickV2>
-   </soapenv:Body>
-</soapenv:Envelope>
-```
-
-Para autenticação, enviar `usuario` e `senha`:
-
-Campo | Descrição 
-------| ----------
-usuario | Login do estabelecimento
-senha | Senha do estabelecimento
-
-
-Campo | Descrição | Tipo | Tamanho | Obrigatório
-------| ----------|------| --------|------------
-
-codigoEstabelecimento|	Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)|	Numérico|13 dígitos|	Sim
-nomeTitularCartaoCredito|	Nome do titular do cartão de crédito |	Alfa Numérico|	Até 25 caracteres|	Sim
-numeroCartaoCredito|	Numero do cartão de crédito. Enviar sem espaços e virgúlas|	Numérico|	Até 22 caracteres|	Sim
-dataValidadeCartao|	Data de validade do cartão. Formato mm/yyyy|	Alfa Numérico|	7 caracteres	|Sim
-emailComprador|	Endereço de e-mail do comprador|	Alfa Numérico|	Até 100 caracteres|	Não
-formaPagamento|	Código da forma de pagamento. Clique aqui para maiores informações|	Numérico|	-|	Sim
-
-**RESPOSTA**
-
-> Exemplo retorno cadastro do cartão. O retorno da requisição de cadastro será apenas o Token, este deverá ser armazenado no Ecommerce para as próximas compras
-
-```xml
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-   <soap:Body>
-      <ns2:cadastraPagamentoOneClickV2Response xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
-         <return>149624974900187da0175-509d-4b01-9158-a96e3ed9ccae</return>
-      </ns2:cadastraPagamentoOneClickV2Response>
-   </soap:body>
-</soap:envelope>
-```
-
-## Pagamento com token
-
-Com o Token recebido no momento do cadastro, é possível realizar o pagamento.
-
-
-**REQUISIÇÃO**
-
-<aside class="notice">Para pagamento com token, acione o método <code>pagamentoOneClickV2</code></aside>
-
-> Exemplo estrutura simplificada para estabelecimentos que não utilizam antifraude:
-
-```xml
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <pag:pagamentoOneClickV2>
-         <transacao>
-            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-            <dadosUsuarioTransacao>
-               <nomeComprador>Nome do comprador</nomeComprador>
-               <documentoComprador>12312312312</documentoComprador>
-            </dadosUsuarioTransacao>
-            <numeroTransacao>10</numeroTransacao>
-            <parcelas>1</parcelas>
-            <cvv>123</cvv>
-            <token>149624974900187da0175-509d-4b01-9158-a96e3ed9ccae</token>
-            <urlCampainha>http://sualoja.com.br/campainha</urlcampainha>
-            <valor>100</valor>
-         </transacao>
-         <usuario>superpay</usuario>
-         <senha>superpay</senha>
-      </pag:pagamentoOneClickV2>
-   </soapenv:Body>
-</soapenv:Envelope>
-```
-
-Para autenticação, enviar `usuario` e `senha`:
-
-Campo | Descrição 
-------| ----------
-usuario | Login do estabelecimento
-senha | Senha do estabelecimento
-
-*transacaoOneClickWS*
-
-numeroTransacao|	Código que identifica a transação dentro do SuperPay|	Numérico|	Até 19 dígitos|	Sim
-codigoEstabelecimento| Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)|	Numérico| 13 dígitos|	Sim
-token|	Valor único obtido através do serviço “cadastroPagamentoOneClick2”|	Alfa Numérico|	Até 100 caracteres|	Sim
-cvv	| Código de segurança do cartão |Numérico|	Até 4 dígitos|	Sim
-valor|	Valor da transação. Deve ser enviado sem pontos ou vírgulas|	Numérico|	Até 10 dígitos	|Sim
-valorDesconto|	Valor do desconto da transação. Campo apenas informativo|	Numérico|	Até 10 dígitos|	Sim
-taxaEmbarque|	Valor da taxa de embarque. Campo apenas informativo|	Numérico|	Até 10 dígitos|	Sim
-parcelas|	Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento|	Numérico|Até 2 dígitos | Sim
-urlCampainha|	URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha|	Alfa Numérico	|Até 250 caracteres|	Não
-urlRedirecionamentoPago	|Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação aprovada|	Alfa Numérico|	Até 250 caracteres|	Para pagamentos com redirect é obrigatório
-urlRedirecionamentoNaoPago|	Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação reprovada|	Alfa Numérico|	Até 250 caracteres|	Para pagamentos com redirect é obrigatório
-ip|	Número do IP do usuário final/cliente. Formato xxx.xxx.xxx.xxx|	Alfa Numérico|	Até 15 caracteres|	Não
-idioma|	1 - Português 2 - Inglês 3 - Espanhol|	Numérico|	 - |	Sim
-origemTransacao|	1 - eCommerce 2 - Mobile 3 - URA |	Numérico|	 - |	Sim
-campoLivre1|	Campo Livre 1|	Alfa Numérico|	Até 16 caracteres|	Não
-campoLivre2|	Campo Livre 2|	Alfa Numérico|	Até 16 caracteres|	Não
-campoLivre3|	Campo Livre 3|	Alfa Numérico|	Até 16 caracteres|	Não
-campoLivre4|	Campo Livre 4|	Alfa Numérico|	Até 16 caracteres|	Não
-campoLivre5|	Campo Livre 5|	Alfa Numérico|	Até 16 caracteres|	Não
-dadosUsuarioTransacao|	Informações para cobrança e entrega. Informações importantes para análise de fraude|	 -|	 -|	 -
-itensDoPedido|	Lista com Itens que estão sendo comprados. Informações importantes para análise de fraude e intermediários financeiros	| -	 - |	 - 
-
-*dadosUsuarioTransacao*
-
-Campo | Descrição | Tipo | Tamanho | Obrigatório
-------| ----------|------| --------|------------
-codigoCliente |	Código que identifica o cliente no estabelecimento |	Alfa Numérico |	20 caracteres	|Não
-tipoCliente |	1 - Pessoa Física 2 - Pessoa Jurídica |	Numérico	| 1 dígito	|Sim
-nomeComprador |	Nome do comprador |	Alfa Numérico	| Até 100 caracteres	| Caso utilize antifraude sim
-documentoComprador |	Documento principal do comprador |	Alfa Numérico	| 30 caracteres	| Caso utilize antifraude sim
-sexoComprador |	M – Masculino / F – Feminino |	Alfa Numérico |	1 caracter |	Não
-dataNascimentoComprador |	Data de nascimento do comprador. Formato dd/mm/yyyy |	Alfa Numérico|	10 caracteres	|Caso utilize antifraude sim
-telefoneComprador | Telefone do comprador sem espaços ou traços |	Alfa Numérico |	Até 10 caracteres |	Caso utilize antifraude sim
-dddComprador |	DDD do telefone do comprador |	Alfa Numérico	| Até 3 caracteres |	Caso utilize antifraude sim
-ddiComprador |	DDI do telefone do comprador |	Alfa Numérico |	Até 3 caracteres |	Caso utilize antifraude sim
-codigoTipoTelefoneComprador |	1 - Outros 2 - Residencial 3 - Comercial |	Numérico |	1 dígito | Sim
-emailComprador|	E-mail do comprador|	Alfa Numérico|	Até 100 caracteres|	Caso utilize antifraude sim
-enderecoComprador|	Logradouro do comprador|	Alfa Numérico|	Até 100 caracteres|	Caso utilize antifraude sim
-numeroEnderecoComprador|	Número do logradouro do comprador|	Alfa Numérico|	Até 10 caracteres|	Caso utilize antifraude sim
-bairroEnderecoComprador|	Bairro comprador|	Alfa Numérico|	Até 50 caracteres|	Caso utilize antifraude sim
-complementoEnderecoComprador|	Complemento do endereço comprador|	Alfa Numérico|	Até 50 caracteres|	Não
-cidadeEnderecoComprador|	Cidade do comprador|	Alfa Numérico	|Até 50 caracteres|	Caso utilize antifraude sim
-estadoEnderecoComprador|	Estado do comprador|	Alfa Numérico|	Até 2 caracteres|	Caso utilize antifraude sim
-cepEnderecoComprador|	CEP do comprador. Enviar sem traços ou espaços|	Alfa Numérico|	Até 10 caracteres|	Caso utilize antifraude sim
-enderecoEntrega| Logradouro de entrega|	Alfa Numérico	|Até 100 caracteres|	Caso utilize antifraude sim
-numeroEnderecoEntrega|	Número do logradouro de entrega|	Alfa Numérico|	Até 10 caracteres|	Caso utilize antifraude sim
-bairroEnderecoEntrega|	Bairro do logradouro de entrega|	Alfa Numérico|	Até 50 caracteres|	Caso utilize antifraude sim
-complementoEnderecoEntrega|	Complemento do endereço de entrega|	Alfa Numérico	|Até 50 caracteres|	Não
-cidadeEnderecoEntrega|	Cidade de entrega|	Alfa Numérico|	Até 50 caracteres|	Caso utilize antifraude sim
-estadoEnderecoEntrega|	Estado de entrega|	Alfa Numérico|	2 caracteres|	Caso utilize antifraude sim
-cepEnderecoEntrega|	CEP de entrega. Enviar sem traços ou espaços|	Alfa Numérico|	Até 10 caracteres|	Caso utilize antifraude sim
-telefoneEntrega|	Telefone de entrega. Sem espaços ou traços|	Alfa Numérico|	Até 10 caracteres|	Caso utilize antifraude sim
-dddEntrega|	DDD do telefone de entrega|	Alfa Numérico|	Até 3 caracteres|	Caso utilize antifraude sim
-ddiEntrega|	DDI do telefone de entrega|	Alfa Numérico|	Até 3 caracteres|	Caso utilize antifraude sim
-codigoTipoTelefoneEntrega|	1 - Outros 2 - Residencial 3 - Comercial |	Numérico|	1 dígito|	Sim
-
-*itemPedidoTransacaoWS*
-
-Campo | Descrição | Tipo | Tamanho | Obrigatório
-------| ----------|------| --------|------------
-codigoProduto|	Código único que identifica cada produto|	Alfa Numérico|	20 caracteres|	Caso utilize antifraude sim
-codigoCategoria|	Código que identifica categoria do produto|	Alfa Numérico|	20 caracteres|	Caso utilize antifraude sim
-nomeProduto|	Nome do Produto	Alfa Numérico	|100 caracteres	|Caso utilize antifraude sim
-quantidadeProduto|	Quantidade comprada do produto|	Numérico|	Até 8 dígitos|	Caso utilize antifraude sim
-valorUnitarioProduto|	Valor unitário do produto. Deve ser enviado sem pontos ou vírgulas|	Numérico|	Até 10 dígitos	|Caso utilize antifraude sim
-nomeCategoria|	Nome da categoria do produto	|Alfa Numérico|	100 caracteres|	Caso utilize antifraude sim
-
-**RESPOSTA**
-
-> Exemplo retorno pagamento com token:
-
-```xml
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-   <soap:Body>
-      <ns2:pagamentoTransacaoCompletaResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
-         <return>
-            <autorizacao>123456</autorizacao>
-            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-            <codigoFormaPagamento>350</codigoFormaPagamento>
-            <codigoTransacaoOperadora>0</codigoTransacaoOperadora>
-            <dataAprovacaoOperadora>24/05/2017</dataAprovacaOperadora>
-            <mensagemVenda>Transacao capturada com sucesso</mensagemVenda>
-            <numeroComprovanteVenda>1006993069181F841001</numeroComprovanteVenda>
-            <numeroTransacao>10</numeroTransacao>
-            <parcelas>1</parcelas>
-            <statusTransacao>1</statusTransacao>
-            <taxaEmbarque>0</taxaEmbarque>
-            <urlPagamento>14132971582229c00506d-e84d-4526-b902-92190d5aa808<urlpagamento></urlpagamento>
-            <valor>100</valor>
-            <valorDesconto>0</valorDesconto>
-         </return>
-      </ns2:pagamentoTransacaoCompletaResponse>
-   </soap:Body>
-</soap:Envelope>
-```
-
-Campo | Descrição | Tipo | Tamanho 
-------| ----------|------| --------
-numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos
-codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay | Numérico | 13 dígitos
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos
-valor | Valor da transação.| Numérico | Até 10 dígitos
-valorDesconto | Valor desconto | Numérico | Até 10 dígitos
-taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
-parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
-urlPagamento | Url para autenticação em caso de cartão de débito |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
-autorizacao | Número de autorização da adquirente | Numérico | Até 20 dígitos
-codigoTransacaoOperadora | Código de retorno da adquirente | Numérico | Até 20 dígitos
-dataAprovacaoOperadora | Data aprovação |Alfa Numérico | Até 10 dígitos
-numeroComprovanteVenda | Número Comprovante de venda |Alfa Numérico | Até 20 dígitos
-mensagemVenda | Mensagem de venda |Alfa Numérico | Até 50 dígitos
-
-## Alterando cadastro
-
-Este método permite a alteração dos dados já cadastrados na base do Gateway.
-
-**REQUISIÇÃO**
-
-<aside class="notice">Para pagamento com token, acione o método <code>alteraCadastraPagamentoOneClick</code></aside>
-
-> Exemplo de alteração de cadastro
- 
-```xml
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <pag:alteraCadastraPagamentoOneClick>
-         <dadosOneClick>
-            <codigoEstabelecimento>1318336765212</codigoEstabelecimento>
-            <dataValidadeCartao>11/2018</dataValidadeCartao>
-            <emailComprador>teste@suporte.com.br</emailComprador>
-            <formaPagamento>380</formaPagamento>
-            <nomeTitularCartaoCredito>teste SuperPay</nomeTitularCartaoCredito>
-            <numeroCartaoCredito>1111222233334444</numeroCartaoCredito>
-         </dadosOneClick>
-         <token>1476210884949a25ed2d6-17cf-4ac4-af22-5c67d7907ef5</token>
-         <usuario>superpay</usuario>
-         <senha>superpay</senha>
-      </pag:alteraCadastraPagamentoOneClick>
-   </soapenv:Body>
-</soapenv:Envelope>
-```
-
-Para autenticação, enviar `usuario` e `senha`:
-
-Campo | Descrição 
-------| ----------
-usuario | Login do estabelecimento
-senha | Senha do estabelecimento
-
-Campo | Descrição | Tipo | Tamanho | Obrigatório
-------| ----------|------| --------|------------
-codigoEstabelecimento|	Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)|	Numérico|	13 dígitos|	Sim
-numeroCartaoCredito|	Numero do cartão de crédito. Enviar sem espaços e virgúlas|	Numérico|	Até 22 caracteres|	Sim
-dataValidadeCartao|	Data de validade do cartão. Formato mm/yyyy|	Alfa Numérico|	7 caracteres|	Sim
-emailComprador|	Endereço de e-mail do comprador|	Alfa Numérico|	Até 100 caracteres|	Não
-formaPagamento|	Código da forma de pagamento|	Numérico|	-|	Sim
-token	|Token do cadastro que será alterado	|Alfa Numérico|	Até 100 caracteres|	Sim
-
-**RESPOSTA**
-
-```xml
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-   <soap:Body>
-      <ns2:alteraCadastraPagamentoOneClickResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
-       <return>
-            <codigoEstabelecimento>1010101010101010</codigoEstabelecimento>
-            <codigoSeguranca/>
-            <dataValidadeCartao>11/2018</dataValidadeCartao>
-            <emailComprador>teste@suporte.com.br</emailComprador>
-            <formaPagamento>380</formaPagamento>
-            <nomeTitularCartaoCredito>Teste SuperPay</nomeTitularCartaoCredito>
-            <numeroCartaoCredito>111122******4444</numeroCartaoCredito>
-       </return>
-      </ns2:alteraCadastraPagamentoOneClickResponse>
-   </soap:body>
-</soap:envelope>
-```
-
-Campo | Descrição | Tipo | Tamanho 
-------| ----------|------| --------
-codigoEstabelecimento|	Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)|	Numérico|	13 dígitos
-nomeTitularCartaoCredito| Nome do titular do cartão de crédito| Alfa Numérico|Até 25 caracteres
-numeroCartaoCredito|	Numero do cartão de crédito. Enviar sem espaços e virgúlas|	Numérico|	Até 22 caracteres
-dataValidadeCartao|	Data de validade do cartão. Formato mm/yyyy|	Alfa Numérico|	7 caracteres
-emailComprador|	Endereço de e-mail do comprador|	Alfa Numérico|	Até 100 caracteres
-formaPagamento|	Código da forma de pagamento|	Numérico|	-
+codigoFormaPagamento	|Código da forma de pagamento cadastrado na recorrência
+numeroCobrancaTotal|	Quantidade máxima de cobranças
+numeroCobrancaRestantes	|Quantidade de cobranças restantes
+status|	Status atual da recorrência
+mensagem|	Mensagem da recorrência
+numeroPedido|	Número da Cobrança Recorrente
+statusTransacao|	Status da Cobrança Recorrente
+autorizacao|	Código de autorização da Adquirente
+codigoTransacaoOperadora|	Código de erro da Adquirente
+dataAprovacaoOperadora|	Data aprovação Adquirente
+numeroComprovanteVenda|	Número Comprovante Adquirente
+mensagemVenda	|Mensagem Venda Adquirente
 
 
 # Consultas
@@ -2126,25 +1644,20 @@ Para receber novamente os dados de retorno de uma venda, realize uma consulta.
 
 **REQUISIÇÃO**
 
-<aside class="notice">Para consultas, acione o método <code>consultaTransacao</code></aside>
+<aside class="notice">Para consultas, acione o método <code>GET</code></aside>
 
 > Exemplo consulta:
 
-```xml
-<soapenv:envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
-   <soapenv:header></soapenv:header>
-   <soapenv:body>
-      <pag:consultaTransacao>
-         <consultaTransacaoWS>
-            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-            <numeroTransacao>1</numeroTransacao>
-         </consultaTransacaoWS>
-         <usuario>superpay</usuario>
-         <senha>superpay</senha>
-      </pag:consultaTransacao>
-   </soapenv:body>
-</soapenv:envelope>
+```curl
+
+curl
+--request GET https://homologacao.superpay.com.br/checkout/api/v2/transacao/10000000000000/1234
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+
 ```
+
 Para autenticação, enviar `usuario` e `senha`:
 
 Campo | Descrição 
@@ -2157,33 +1670,31 @@ Campo | Descrição | Tipo | Tamanho | Obrigatório
 numeroTransacao|	Código que identifica a transação dentro do SuperPay|	Numérico|	Até 8 dígitos| Sim
 codigoEstabelecimento|	Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)|	Numérico|	13 dígitos| Sim
 
+
 **RESPOSTA**
 
 > Exemplo retorno:
 
-```xml
-<soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-   <soap:body>
-      <ns2:consultaTransacaoResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
-         <return>
-            <autorizacao>123456</autorizacao>
-            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-            <codigoFormaPagamento>120</codigoFormaPagamento>
-            <codigoTransacaoOperadora>0</codigoTransacaoOperadora>
-            <dataAprovacaoOperadora>24/05/2017</dataAprovacaOperadora>
-            <mensagemVenda>Transacao cancelada com sucesso</mensagemVenda>
-            <numeroComprovanteVenda>1006993069181F841001</numeroComprovanteVenda>
-            <numeroTransacao>1</numeroTransacao>
-            <parcelas>1</parcelas>
-            <statusTransacao>13</statusTransacao>
-            <taxaEmbarque>0</taxaEmbarque>
-            <urlPagamento>14132971582229c00506d-e84d-4526-b902-92190d5aa808<urlpagamento></urlpagamento>
-            <valor>200</valor>
-            <valorDesconto>0</valorDesconto>
-         </return>
-      </ns2:consultaTransacaoResponse>
-   </soap:body>
-</soap:envelope>
+```curl
+
+--header "Content-Type: application/json"
+{   "numeroTransacao": 1234,
+    "codigoEstabelecimento": "1000000000000",
+    "codigoFormaPagamento": 170, 
+    "valor": 2000, 
+    "valorDesconto": 0, 
+    "parcelas": 1,
+    "statusTransacao": 13,
+    "autorizacao": "123456",
+    "codigoTransacaoOperadora": "0", 
+    "dataAprovacaoOperadora": "24/05/2017",
+    "numeroComprovanteVenda": "10069930690009F2122A",
+    "nsu": "428706",
+    "mensagemVenda": "Operation Success",
+    "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoCielo/PagamentoCielo.do?cod=14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
+    "cartoesUtilizados": ["000000*******0001"]
+}
+
 ```
 
 Campo | Descrição | Tipo | Tamanho 
@@ -2202,146 +1713,7 @@ codigoTransacaoOperadora | Código de retorno da adquirente | Numérico | Até 2
 dataAprovacaoOperadora | Data aprovação |Alfa Numérico | Até 10 dígitos
 numeroComprovanteVenda | Número Comprovante de venda |Alfa Numérico | Até 20 dígitos
 mensagemVenda | Mensagem de venda |Alfa Numérico | Até 50 dígitos
-
-## Consultando uma transação com retorno data de Antifraude
-Método de consulta com estrutura parecida ao método comum, porém com um novo campo informando a data e horário do retorno da antifraude ao Gateway.
-
-**Particularidades**
-
-* Disponível apenas para estabelecimentos que possuem contrato com a Clear Sale nas modalidades Total/Total Garantido e Application;
-* Para utilização solicitar ativação ao Suporte SuperPay.
-
-**REQUISIÇÃO**
-
-<aside class="notice">Para consultas, acione o método <code>consultaDataAntifraude</code></aside>
-
-> Exemplo consulta:
-
-```xml
-<soapenv:envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
-   <soapenv:header></soapenv:header>
-   <soapenv:body>
-      <pag:consultaTransacao>
-         <consultaTransacaoWS>
-            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-            <numeroTransacao>1</numeroTransacao>
-         </consultaTransacaoWS>
-         <usuario>superpay</usuario>
-         <senha>superpay</senha>
-      </pag:consultaTransacao>
-   </soapenv:body>
-</soapenv:envelope>
-```
-Para autenticação, enviar `usuario` e `senha`:
-
-Campo | Descrição 
-------| ----------
-usuario | Login do estabelecimento
-senha | Senha do estabelecimento
-
-Campo | Descrição | Tipo | Tamanho | Obrigatório
-------| ----------|------| --------| ----------
-numeroTransacao|	Código que identifica a transação dentro do SuperPay|	Numérico|	Até 8 dígitos| Sim
-codigoEstabelecimento|	Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)|	Numérico|	13 dígitos| Sim
-
-**RESPOSTA**
-
-> Exemplo de retorno:
-
-```xml
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-   <soap:Body>
-      <ns2:consultaDataAntifraudeResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
-         <return>
-            <numeroTransacao>6903</numeroTransacao>
-            <codigoEstabelecimento>1000000000000</codigoEstabelecimento>
-            <codigoFormaPagamento>170</codigoFormaPagamento>
-            <valor>200</valor>
-            <valorDesconto>0</valorDesconto>
-            <taxaEmbarque>0</taxaEmbarque>
-            <parcelas>1</parcelas>
-            <urlPagamento>1495797252959508629a6-16f2-4311-a79b-e290b4d64237</urlPagamento>
-            <statusTransacao>1</statusTransacao>
-            <autorizacao>345051</autorizacao>
-            <codigoTransacaoOperadora>0</codigoTransacaoOperadora>
-            <dataAprovacaoOperadora>2017-05-26 08:14:17</dataAprovacaoOperadora>
-            <dataRetornoAntifraude>26/05/2017 17:36:41</dataRetornoAntifraude>
-            <numeroComprovanteVenda>0526081417585</numeroComprovanteVenda>
-            <mensagemVenda>Transação capturada com sucesso</mensagemVenda>
-         </return>
-      </ns2:consultaDataAntifraudeResponse>
-   </soap:Body>
-</soap:Envelope>
-```
-Campo | Descrição | Tipo | Tamanho 
-------| ----------|------| --------
-numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos
-codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay | Numérico | 13 dígitos
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos
-valor | Valor da transação.| Numérico | Até 10 dígitos
-valorDesconto | Valor desconto | Numérico | Até 10 dígitos
-taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
-parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
-urlPagamento | Url para autenticação em caso de cartão de débito |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
-autorizacao | Número de autorização da adquirente | Numérico | Até 20 dígitos
-codigoTransacaoOperadora | Código de retorno da adquirente | Numérico | Até 20 dígitos
-dataAprovacaoOperadora | Data aprovação |Alfa Numérico | Até 10 dígitos
-dataRetornoAntifraude | Data e hora de retorno da antifraude. **Caso o Gateway não tenha recebido o retorno ainda, este campo retornará em branco. | Alfa Numérico |Até 30 caracteres
-numeroComprovanteVenda | Número Comprovante de venda |Alfa Numérico | Até 20 dígitos
-mensagemVenda | Mensagem de venda |Alfa Numérico | Até 50 dígitos
-
-## Consultando token
-Para visualizar os dados de cartão cadastrados em um Token, basta acionar o método de consulta dentro do WS de estorno.
-
-**REQUISIÇÃO**
-
-<aside class="notice">Para consulta, acione o método <code>consultaDadosOneClick</code></aside>
-
-> Exemplo de consulta:
-
-```xml
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pag="http://pagamentos.webservices.superpay.ernet.com.br/">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <pag:consultaDadosOneClick>
-         <token>1476210884949a25ed2d6-17cf-4ac4-af22-5c67d7907ef5</token>
-         <usuario>superpay</usuario>
-         <senha>superpay</senha>
-      </pag:consultaDadosOneClick>
-   </soapenv:Body>
-</soapenv:Envelope>
-```
-
-Campo | Descrição 
-------| ----------
-usuario | Login do estabelecimento
-senha | Senha do estabelecimento
-
-Campo | Descrição | Tipo | Tamanho | Obrigatório
-------| ----------|------| --------| ----------
-token|	Token a ser consultado|	Alfa Numérico|	100 caracteres| Sim
-
-**RESPOSTA**
-
-> Exemplo retorno:
-
-```xml
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-   <soap:Body>
-      <ns2:consultaDadosOneClickResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
-         <return>
-            <codigoEstabelecimento>1318336765212</codigoEstabelecimento>
-            <codigoSeguranca/>
-            <dataValidadeCartao>11/2016</dataValidadeCartao>
-            <emailComprador>teste@suporte.com.br</emailComprador>
-            <formaPagamento>121</formaPagamento>
-            <numeroCartaoCredito>555555*****5555</numeroCartaoCredito>
-         </return>
-      </ns2:consultaDadosOneClickResponse>
-   </soap:Body>
-</soap:Envelope>
-```
+cartoesUtilizados | Cartões mascarados utilizados na transação | Alfa Numérico | Até 20 caracteres
 
 ## Consulta recorrente
 
@@ -2349,27 +1721,20 @@ Consulta para receber informações da recorrência e da última cobrança reali
 
 **REQUISIÇÃO**
 
-<aside class="notice">Para consulta, acione o método <code>rec:consultaTransacaoRecorrenciaWS</code></aside>
+<aside class="notice">Para consulta, acione o método <code>GET</code></aside>
 
 > Exemplo consulta:
 
-```xml
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rec="http://recorrencia.webservices.superpay.ernet.com.br/">
-   <soapenv:Header/>
-   <soapenv:Body>
-     <rec:consultaTransacaoRecorrenciaWS>
-         <recorrenciaConsultaWS>
-            <estabelecimento>1000000000000</estabelecimento>
-            <numeroRecorrencia>1</numeroRecorrencia>
-         </recorrenciaConsultaWS>
-         <usuario>
-            <senha>superpay</senha>
-            <usuario>superpay</usuario>
-         </usuario>
-      </rec:consultaTransacaoRecorrenciaWS>
-   </soapenv:Body>
-</soapenv:Envelope>
+```curl
+
+curl
+--request GET https://homologacao.superpay.com.br/checkout/api/v2/recorrencia/10000000000000/2
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+
 ```
+
 Para autenticação, enviar `usuario` e `senha`:
 
 Campo | Descrição 
@@ -2386,28 +1751,27 @@ estabelecimento|	Código que identifica o estabelecimento dentro do SuperPay (fo
 
 > Exemplo retorno:
 
-```xml
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-   <soap:Body>
-      <ns2:consultaTransacaoRecorrenciaWSResponse xmlns:ns2="http://recorrencia.webservices.superpay.ernet.com.br/">
-         <return>
-            <autorizacao>145681</autorizacao>
-            <codigoFormapagamento>170</codigoFormapagamento>
-            <codigoTransacaoOperadora>0</codigoTransacaoOperadora>
-            <dataAprovacaoOperadora>2017-06-02 10:20:30</dataAprovacaoOperadora>
-            <estabelecimento>1000000000000</estabelecimento>
-            <mensagemVenda>Transação capturada com sucesso</mensagemVenda>
-            <numeroCobrancaRestantes>0</numeroCobrancaRestantes>
-            <numeroCobrancaTotal>Sem Limite</numeroCobrancaTotal>
-            <numeroComprovanteVenda>0602102031041</numeroComprovanteVenda>
-            <numeroPedido>1</numeroPedido>
-            <numeroRecorrencia>10000001</numeroRecorrencia>
-            <statusTransacao>1</statusTransacao>
-            <valor>100</valor>
-         </return>
-      </ns2:consultaTransacaoRecorrenciaWSResponse>
-   </soap:Body>
-</soap:Envelope>
+```curl
+
+--header "Content-Type: application/json"
+"recorrencia": {
+   "estabelecimento": "1000000000000",
+   "numeroRecorrencia": 2,
+   "codigoFormaPagamento": 170,
+   "valor": 13000,
+   "numeroCobrancaTotal": 0,
+   "numeroCobrancaRestantes": -1,
+   "status": 0,
+   "mensagem": "Processamento realizado com sucesso.",
+   "numeroPedido": 20001,
+   "statusTransacao": 1,
+   "autorizacao": "123456",
+   "codigoTransacaoOperadora": "00",
+   "dataAprovacaoOperadora": "30/05/2017",
+   "numeroComprovanteVenda": "1006993069000891071A",
+   "mensagemVenda": "Operation Success"
+   }
+
 ```
 
 Campo | Descrição 
@@ -2430,13 +1794,13 @@ mensagemVenda	|Mensagem de venda retornado pela operadora. Retornado apenas se a
 
 O sistema de campainha existe para notificar o estabelecimento sobre uma atualização de status na transação. Toda vez que ocorre qualquer alteração de status em uma transação, é feita uma chamada via <code>POST</code> ao campo “urlCampainha” (enviada como parâmetro junto da transação), essa chamada enviará alguns dados que identificarão a transação, e assim o estabelecimento saberá em qual transação houve uma mudança de status.
 
-Importante lembrar que a chamada de campainha não informa qual o status atual da transação e apenas que houve uma alteração, sendo assim, o estabelecimento deve realizar uma consulta (através da função de [consultaTransacao](https://superpay.github.io/soap/#consultando-uma-transacao)) para verificar com mais detalhes a situação atual da transação.
+Importante lembrar que a chamada de campainha não informa qual o status atual da transação e apenas que houve uma alteração, sendo assim, o estabelecimento deve realizar uma consulta (através da função de [consultaTransacao](https://superpay.github.io/rest/#consultando-uma-transacao)) para verificar com mais detalhes a situação atual da transação.
 
 *Caso a URL de campainha estiver em HTTPS, informar ao Suporte SuperPay, servicedesk@superpay.com.br*
 
 > Exemplo de chamada:
 
-```xml
+```curl
 
 POST HTTP
 Content-Type: application/x-www-form-urlencoded
@@ -2457,15 +1821,16 @@ campoLivre3|	Campo Livre 3|	Alfa Numérico
 campoLivre4|	Campo Livre 4|	Alfa Numérico
 campoLivre5|	Campo Livre 5|	Alfa Numérico
 
+
 ## Notificação cobrança recorrente
 
-Neste fluxo de recorrência, o estabelecimento receberá a campainha informando qual recorrência houve a cobrança e, depois disto, deverá acionar a [consulta da recorrência](https://superpay.github.io/soap/#consulta-recorrente) para receber o número do pedido, e assim, acionar a [consulta da transação](https://superpay.github.io/soap/#consultando-uma-transacao) para recebimento do status.
+Neste fluxo de recorrência, o estabelecimento receberá a campainha informando qual recorrência houve a cobrança e, depois disto, deverá acionar a [consulta da recorrência](https://superpay.github.io/rest/#consulta-recorrente) para receber o número do pedido, e assim, acionar a [consulta da transação](https://superpay.github.io/rest/#consultando-uma-transacao) para recebimento do status.
 
 *Caso a URL de campainha estiver em HTTPS, informar ao Suporte SuperPay, servicedesk@superpay.com.br*
 
 > Exemplo de chamada:
 
-```xml
+```curl
 
 POST HTTP
 Content-Type: application/x-www-form-urlencoded
@@ -2485,6 +1850,7 @@ campoLivre2|	Campo Livre 2|	Alfa Numérico
 campoLivre3|	Campo Livre 3|	Alfa Numérico
 campoLivre4|	Campo Livre 4|	Alfa Numérico
 campoLivre5|	Campo Livre 5|	Alfa Numérico
+
 
 # Códigos da API
 ## Status de transação
@@ -2586,66 +1952,10 @@ Código|Nome
 155|SafetyPay 
 
 
-# Anexos
-## Releases
-
-**01/06/2017**
-
-Disponibilizada integração com API 3.0 da adquirente Cielo
-
-
-**20/03/2017**
-
-Disponível novo método de consulta em SOAP com campo de data e horário de retorno da Antifraude. Para maiores informações clique aqui.
-
-
-**12/01/2017**
-
-Boletos com carteira registrada.
-
-
-## Módulo Magento
-
-[Baixe aqui seu Módulo](https://superpay.acelerato.com/base-de-conhecimento/#/artigos/5)
-
-**Particulariedades**
-
-* Não prestamos Suporte;
-* As ações de captura, cancelamento e estorno não estão disponíveis no Módulo Magento. Estas ações deverão ser realizadas diretamente no painel administrativo SuperPay;
-* As funcionalidades de Recorrência, Múltiplos Cartões, Retentativa de Pagamento e Switch de Adquirência atualmente não estão disponíveis no Módulo Magento;
-* O Módulo Magento SuperPay é compatível com as versões 1.5.X, 1.6.X, 1.7.X, 1.8.X, 1.9.X do Magento;
-* As adquirentes disponíveis no Módulo são: <code>Cielo, Rede, Elavon, GetNet e Stone</code>;
-* Os bancos disponíveis no Módulo são: <code>Itau, Bradesco, Caixa, HSBC, Banco do Brasil</code>.
-
-**Instalação**
-
-* Para utilização do Módulo é necessário a habilitação do SoapClient no php.ini.
-
-1. Descompacte o conteúdo do arquivo SuperPay_Magento_1.2.x.zip no diretório raiz de instalação do Magento.
-2. Atualize o cache do Magento, através do item System/Cache Management do administrador do sistema.
-3. O módulo está instalado! 
-
-**Configuração**
-
-1. Após a instalação do Módulo Magento Superpay, acesse a aba System/Configuration e clique em Payment Methods, encontrada na aba Sales.
-2. Feito o passo anterior, conseguirá visualizar as abas relacionadas as configurações do SuperPay.
-3. Clicar na aba "SuperPay Cartões" ou "SuperPay banco/boletos/redirect" para configuração dos campos abaixo:
-   * Título;
-   * Ambiente (Homologação ou Produção);
-   * Código do estabelecimento SuperPay;
-   * Usuário;
-   * Senha;
-   * Escolher as bandeiras/bancos em "Cartão de credito" / "Banco".
-
 # Downloads
 ## Exemplos de integração
 
-Temos alguns exemplos para te auxiliar no processo de integração com o Gateway, basta [acessar aqui](https://superpay.acelerato.com/base-de-conhecimento/#/artigos/2) e realizar o download do exemplo da linguagem de programação de sua loja virtual.
+Temos alguns exemplos para te auxiliar no processo de integração com o Gateway, basta [acessar aqui](https://superpay.acelerato.com/base-de-conhecimento/#/artigos/110) e realizar o download do exemplo da linguagem de programação de sua loja virtual.
 
-## Formulários
-
-[Formulário para criação de um novo estabelecimento](https://superpay.acelerato.com/base-de-conhecimento/#/artigos/70)
-
-[Formulário para configuração das formas de pagamento](https://superpay.acelerato.com/base-de-conhecimento/#/artigos/71)
 
 

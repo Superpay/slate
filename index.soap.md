@@ -308,7 +308,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
                <codigoCliente>1</codigoCliente>
                <codigoTipoTelefoneComprador>1</codigoTipoTelefoneComprador>
                <codigoTipoTelefoneEntrega>1</codigoTipoTelefoneEntrega>
-               <complementoEndereCocomprador></complementoEnderecoComprador>
+               <complementoEnderecoComprador></complementoEnderecoComprador>
                <complementoEnderecoEntrega></complementoEnderecoEntrega>
                <dataNascimentoComprador>10/01/1980</dataNascimentoComprador>
                <dddComprador>11</dddComprador>
@@ -340,7 +340,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
                <codigoProduto>1</codigoProduto>
                <nomeCategoria>Roupa</nomeCategoria>
                <nomeProduto>Camiseta</nomeProduto>
-               <quantidaDeProduto>1</quantidaDeProduto>
+               <quantidadeProduto>1</quantidadeProduto>
                <valorUnitarioProduto>200</valorUnitarioProduto>
             </itensDoPedido>
             <nomeTitularCartaoCredito>Teste Integracao</nomeTitularCartaoCredito>
@@ -422,6 +422,7 @@ bairroEnderecoComprador|	Bairro comprador|	Alfa Numérico|	Até 50 caracteres|	S
 complementoEnderecoComprador|	Complemento do endereço comprador|	Alfa Numérico|	Até 50 caracteres|	Não
 cidadeEnderecoComprador|	Cidade do comprador|	Alfa Numérico	|Até 50 caracteres|	Sim
 estadoEnderecoComprador|	Estado do comprador|	Alfa Numérico|	Até 2 caracteres|	Sim
+paisComprador | Pais do Comprador | Alfa Numérico | Até 10 caracteres | Sim
 cepEnderecoComprador|	CEP do comprador. Enviar sem traços ou espaços|	Alfa Numérico|	Até 10 caracteres|	Sim
 enderecoEntrega| Logradouro de entrega|	Alfa Numérico	|Até 100 caracteres|	Não
 numeroEnderecoEntrega|	Número do logradouro de entrega|	Alfa Numérico|	Até 10 caracteres|	Não
@@ -429,6 +430,7 @@ bairroEnderecoEntrega|	Bairro do logradouro de entrega|	Alfa Numérico|	Até 50 
 complementoEnderecoEntrega|	Complemento do endereço de entrega|	Alfa Numérico	|Até 50 caracteres|	Não
 cidadeEnderecoEntrega|	Cidade de entrega|	Alfa Numérico|	Até 50 caracteres|	Não
 estadoEnderecoEntrega|	Estado de entrega|	Alfa Numérico|	2 caracteres|	Não
+paisEntrega | Pais de entrega | Alfa Numérico | Até 10 caracteres | Sim
 cepEnderecoEntrega|	CEP de entrega. Enviar sem traços ou espaços|	Alfa Numérico|	Até 10 caracteres|	Não
 telefoneEntrega|	Telefone de entrega. Sem espaços ou traços|	Alfa Numérico|	Até 10 caracteres|	Não
 dddEntrega|	DDD do telefone de entrega|	Alfa Numérico|	Até 3 caracteres|	Não
@@ -1098,7 +1100,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
                <codigoCliente>1</codigoCliente>
                <codigoTipoTelefoneComprador>1</codigoTipoTelefoneComprador>
                <codigoTipoTelefoneEntrega>1</codigoTipoTelefoneEntrega>
-               <complementoEndereCocomprador></complementoEnderecoComprador>
+               <complementoEnderecoComprador></complementoEnderecoComprador>
                <complementoEnderecoEntrega></complementoEnderecoEntrega>
                <dataNascimentoComprador>10/01/1980</dataNascimentoComprador>
                <dddComprador>11</dddComprador>
@@ -1128,7 +1130,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
                <codigoProduto>1</codigoProduto>
                <nomeCategoria>Roupa</nomeCategoria>
                <nomeProduto>Camiseta</nomeProduto>
-               <quantidaDeProduto>1</quantidaDeProduto>
+               <quantidadeProduto>1</quantidadeProduto>
                <valorUnitarioProduto>200</valorUnitarioProduto>
             </itensDoPedido>
             <numeroTransacao>9012346</numeroTransacao>
@@ -1315,7 +1317,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
                <codigoCliente>1</codigoCliente>
                <codigoTipoTelefoneComprador>1</codigoTipoTelefoneComprador>
                <codigoTipoTelefoneEntrega>1</codigoTipoTelefoneEntrega>
-               <complementoEndereCocomprador></complementoEnderecoComprador>
+               <complementoEnderecoComprador></complementoEnderecoComprador>
                <complementoEnderecoEntrega></complementoEnderecoEntrega>
                <dataNascimentoComprador>10/01/1980</dataNascimentoComprador>
                <dddComprador>11</dddComprador>
@@ -1345,7 +1347,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
                <codigoProduto>1</codigoProduto>
                <nomeCategoria>Roupa</nomeCategoria>
                <nomeProduto>Camiseta</nomeProduto>
-               <quantidaDeProduto>1</quantidaDeProduto>
+               <quantidadeProduto>1</quantidadeProduto>
                <valorUnitarioProduto>200</valorUnitarioProduto>
             </itensDoPedido>
             <numeroTransacao>9012346</numeroTransacao>
