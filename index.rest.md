@@ -1945,7 +1945,6 @@ Código|Banco | Modalidade | Tecnologia
 
 Código|Nome
 ------| ----------
-
 39|PagSeguro 
 111|PayPal Nacional 
 112|PayPal Internacional 
