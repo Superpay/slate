@@ -201,7 +201,7 @@ Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
 numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos | Sim
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/soap/#forma-de-pagamento) | Numérico | Até 3 dígitos | Sim
 valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas | Numérico | Até 10 dígitos | Sim
 parcelas | Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento | Numérico | Até 2 dígitos | Sim
 nomeTitularCartaoCredito | Nome do titular do cartão de crédito (Exatamente como escrito no cartão) | Alfa Numérico | Até 16 dígitos | Sim
@@ -261,7 +261,7 @@ valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Para o modelo redirect. Essa será a URL de redirecionamento da operação |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Status atual da transação](https://superpay.github.io/soap/#status-de-transacao) | Numérico | Até 2 dígitos
 autorizacao | Código de autorização da adquirente | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Código da transação na adquirente | Numérico | Até 20 dígitos
 dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | Até 10 dígitos
@@ -375,7 +375,7 @@ Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
 numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos | Sim
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/soap/#forma-de-pagamento) | Numérico | Até 3 dígitos | Sim
 valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas | Numérico | Até 10 dígitos | Sim
 parcelas | Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento | Numérico | Até 2 dígitos | Sim
 nomeTitularCartaoCredito | Nome do titular do cartão de crédito (Exatamente como escrito no cartão) | Alfa Numérico | Até 16 dígitos | Sim
@@ -492,7 +492,7 @@ valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Para o modelo redirect. Essa será a URL de redirecionamento da operação |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Status atual da transação](https://superpay.github.io/soap/#status-de-transacao) | Numérico | Até 2 dígitos
 autorizacao | Código de autorização da adquirente | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Código da transação na adquirente | Numérico | Até 20 dígitos
 dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | Até 10 dígitos
@@ -591,7 +591,7 @@ O array com os dados abaixo devem ser repetidos de acordo com a qauntidade de ca
 
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
-codigoFormaPagamento |	Código da forma de pagamento |	Numérico |  2 dígitos	| Sim
+codigoFormaPagamento |	[Código da forma de pagamento](https://superpay.github.io/soap/#forma-de-pagamento) |	Numérico |  2 dígitos	| Sim
 valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas |	Numérico |	Até 10 dígitos | Sim
 parcelas |	Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento |Numérico |	Até 2 dígitos|	Sim
 nomeTitularCartaoCredito|	Nome do titular do cartão de crédito (Exatamente como escrito no cartão)|	Alfa Numérico|	Até 16 caracteres|	Sim
@@ -645,7 +645,7 @@ Campo | Descrição | Tipo | Tamanho
 ------| ----------|------| --------
 numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay | Numérico | 13 dígitos
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Status atual da transação](https://superpay.github.io/soap/#status-de-transacao) | Numérico | Até 2 dígitos
 detalhesFormaPagamentoMultiplosCartoesWS|	Lista com informações dos cartões de créditos|-|-|-
 
 *detalhesFormaPagamentoMultiplosCartoesWS*
@@ -744,7 +744,7 @@ valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Para o modelo redirect. Essa será a URL de redirecionamento da operação |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Código da forma de pagamento](https://superpay.github.io/soap/#forma-de-pagamento) | Numérico | Até 2 dígitos
 autorizacao | Código de autorização da adquirente | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Código da transação na adquirente | Numérico | Até 20 dígitos
 dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | Até 10 dígitos
@@ -840,7 +840,7 @@ valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Para o modelo redirect. Essa será a URL de redirecionamento da operação |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Código da forma de pagamento](https://superpay.github.io/soap/#forma-de-pagamento) | Numérico | Até 2 dígitos
 autorizacao | Código de autorização da adquirente | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Código da transação na adquirente | Numérico | Até 20 dígitos
 dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | Até 10 dígitos
@@ -987,7 +987,7 @@ Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
 numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos | Sim
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/soap/#forma-de-pagamento) | Numérico | Até 3 dígitos | Sim
 valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas | Numérico | Até 10 dígitos | Sim
 parcelas | Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento | Numérico | Até 2 dígitos | Sim
 nomeTitularCartaoCredito | Nome do titular do cartão de crédito (Exatamente como escrito no cartão) | Alfa Numérico | Até 16 dígitos | Sim
@@ -1048,7 +1048,7 @@ valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Para o modelo redirect. Essa será a URL de redirecionamento da operação |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Status atual da transação](https://superpay.github.io/soap/#status-de-transacao) | Numérico | Até 2 dígitos
 autorizacao | Código de autorização da adquirente | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Código da transação na adquirente | Numérico | Até 20 dígitos
 dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | Até 10 dígitos
@@ -1163,7 +1163,7 @@ Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
 numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos | Sim
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/soap/#forma-de-pagamento) | Numérico | Até 3 dígitos | Sim
 valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas | Numérico | Até 10 dígitos | Sim
 urlCampainha | URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha | Alfa Numérico | Até 250 caracteres | Não
 urlRedirecionamentoPago | Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL em caso de transação aprovada | Alfa Numérico | Até 250 caracteres | Para pagamentos redirecionáveis é obrigatório
@@ -1232,7 +1232,9 @@ nomeCategoria|	Nome da categoria do produto	|Alfa Numérico|	100 caracteres|	Sim
 Para geração do boleto o eCommerce deverá redirecionar o consumidor para a URl retornada no campo <urlPagamento>
 
 > Exemplo retorno criação boleto:
+
 ```xml
+
 <soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
    <soap:body>
       <ns2:pagamentoTransacaoCompletaResponse xmlns:ns2="http://pagamentos.webservices.superpay.ernet.com.br/">
@@ -1255,6 +1257,7 @@ Para geração do boleto o eCommerce deverá redirecionar o consumidor para a UR
       </ns2:pagamentoTransacaoCompletaResponse>
    </soap:body>
 </soap:envelope>
+
 ```
 
 Campo | Descrição | Tipo | Tamanho 
@@ -1267,7 +1270,7 @@ valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Url para geração do boleto |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Status atual da transação](https://superpay.github.io/soap/#status-de-transacao) | Numérico | Até 2 dígitos
 autorizacao | Retornado "0" para boletos | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Retornado "0" para boletos | Numérico | Até 20 dígitos
 dataAprovacaoOperadora | Retornado em branco para boletos |Alfa Numérico | Até 10 dígitos
@@ -1379,7 +1382,7 @@ Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
 numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos | Sim
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/soap/#forma-de-pagamento) | Numérico | Até 3 dígitos | Sim
 valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas | Numérico | Até 10 dígitos | Sim
 urlCampainha | URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha | Alfa Numérico | Até 250 caracteres | Não
 urlRedirecionamentoPago | URl para onde o consumidor será recirecionado em caso de pagamento aprovado | Alfa Numérico | Até 250 caracteres | Sim
@@ -1483,7 +1486,7 @@ valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Url para geração da página do banco |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Status atual da transação](https://superpay.github.io/soap/#status-de-transacao) | Numérico | Até 2 dígitos
 autorizacao | Retornado "0" para transferência | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Retornado "0" para transferência | Numérico | Até 20 dígitos
 dataAprovacaoOperadora | Retornado em branco para transferência |Alfa Numérico | Até 10 dígitos
@@ -1568,7 +1571,7 @@ Campo | Descrição | Tipo | Tamanho | Obrigatório
 numeroRecorrencia|	Número da Recorrência deve ser único|	Numérico|	Até 15 dígitos|	Sim
 estabelecimento|	Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)|	Numérico|	13 dígitos|	Sim
 valor|	Valor da recorrência. Não devem ser utilizados virgulas nem pontos|	Numérico|	Até 10 dígitos|	Sim
-formaPagamento|	Código da forma de pagamento |	Numérico|	Até 3 dígitos|	Sim
+formaPagamento|	[Código da forma de pagamento](https://superpay.github.io/soap/#forma-de-pagamento) |	Numérico|	Até 3 dígitos|	Sim
 dadosCartao|	Array descrito abaixo|	-|	-|	-
 dadosCobranca|	Array descrito abaixo|	-|	-|	-
 dadosEntrega|	Array descrito abaixo|	-|	-|	-
@@ -1781,7 +1784,7 @@ nomeTitularCartaoCredito|	Nome do titular do cartão de crédito |	Alfa Numéric
 numeroCartaoCredito|	Numero do cartão de crédito. Enviar sem espaços e virgúlas|	Numérico|	Até 22 caracteres|	Sim
 dataValidadeCartao|	Data de validade do cartão. Formato mm/yyyy|	Alfa Numérico|	7 caracteres	|Sim
 emailComprador|	Endereço de e-mail do comprador|	Alfa Numérico|	Até 100 caracteres|	Não
-formaPagamento|	Código da forma de pagamento. Clique aqui para maiores informações|	Numérico|	-|	Sim
+formaPagamento|	[Código da forma de pagamento](https://superpay.github.io/soap/#forma-de-pagamento)|	Numérico|	-|	Sim
 
 **RESPOSTA**
 
@@ -1948,7 +1951,7 @@ valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Url para autenticação em caso de cartão de débito |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Status atual da transação](https://superpay.github.io/soap/#status-de-transacao) | Numérico | Até 2 dígitos
 autorizacao | Número de autorização da adquirente | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Código de retorno da adquirente | Numérico | Até 20 dígitos
 dataAprovacaoOperadora | Data aprovação |Alfa Numérico | Até 10 dígitos
@@ -1999,7 +2002,7 @@ codigoEstabelecimento|	Código que identifica o estabelecimento dentro do SuperP
 numeroCartaoCredito|	Numero do cartão de crédito. Enviar sem espaços e virgúlas|	Numérico|	Até 22 caracteres|	Sim
 dataValidadeCartao|	Data de validade do cartão. Formato mm/yyyy|	Alfa Numérico|	7 caracteres|	Sim
 emailComprador|	Endereço de e-mail do comprador|	Alfa Numérico|	Até 100 caracteres|	Não
-formaPagamento|	Código da forma de pagamento|	Numérico|	-|	Sim
+formaPagamento|	[Código da forma de pagamento](https://superpay.github.io/soap/#forma-de-pagamento)|	Numérico|	-|	Sim
 token	|Token do cadastro que será alterado	|Alfa Numérico|	Até 100 caracteres|	Sim
 
 **RESPOSTA**
@@ -2108,7 +2111,7 @@ valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Url para autenticação em caso de cartão de débito |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Status atual da transação](https://superpay.github.io/soap/#status-de-transacao) | Numérico | Até 2 dígitos
 autorizacao | Número de autorização da adquirente | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Código de retorno da adquirente | Numérico | Até 20 dígitos
 dataAprovacaoOperadora | Data aprovação |Alfa Numérico | Até 10 dígitos
@@ -2195,7 +2198,7 @@ valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Url para autenticação em caso de cartão de débito |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Status atual da transação](https://superpay.github.io/soap/#status-de-transacao) | Numérico | Até 2 dígitos
 autorizacao | Número de autorização da adquirente | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Código de retorno da adquirente | Numérico | Até 20 dígitos
 dataAprovacaoOperadora | Data aprovação |Alfa Numérico | Até 10 dígitos
@@ -2327,7 +2330,7 @@ Campo | Descrição
 numeroRecorrencia|	Número da Recorrência
 estabelecimento|	Código do estabelecimento, fornecido pelo SuperPay
 valor|	Valor
-statusTransacao	|Status da Parcela Recorrente
+statusTransacao	|[Status atual da transação recorrente](https://superpay.github.io/soap/#status-de-transacao)
 numeroPedido|	Número do Pedido
 numeroCobrancaTotal|	Quantidade total de cobranças pedidas no cadastro. Caso não tenha sido pedido um valor limite, este campo retornará a mensagem: “Sem Limite"
 numeroCobrancaRestantes|	Quantidade restante de cobranças a serem efetuadas.

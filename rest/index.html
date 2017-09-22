@@ -315,6 +315,15 @@
                   <li>
                     <a href="#criando-uma-transacao-3" class="toc-h2 toc-link" data-title="Checkout SuperPay">Criando uma transação</a>
                   </li>
+                  <li>
+                    <a href="#criando-transacao-com-multiplos-cartoes" class="toc-h2 toc-link" data-title="Checkout SuperPay">Criando transação com Multiplos Cartões</a>
+                  </li>
+                  <li>
+                    <a href="#criando-transacao-com-um-clique" class="toc-h2 toc-link" data-title="Checkout SuperPay">Criando transação com um clique</a>
+                  </li>
+                  <li>
+                    <a href="#criando-transacao-com-multiplos-boletos" class="toc-h2 toc-link" data-title="Checkout SuperPay">Criando transação com Multiplos Boletos</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -4416,7 +4425,7 @@ curl
      "codigoEstabelecimento": 1000000000000,
      "codigoFormaPagamento" : 997,
      "transacao": {
-        "numeroTransacao": 9879690,
+        "numeroTransacao": 123,
         "valor": 2000,
         "valorDesconto": 0,
         "dataVencimentoBoleto":,
@@ -4437,7 +4446,7 @@ curl
           "codigoCategoria": 1,
           "nomeCategoria": "categoria",
           "quantidadeProduto": 1,
-          "valorUnitarioProduto": 1199
+          "valorUnitarioProduto": 2000
         }
      ]
      "dadosCobranca": {
@@ -4643,17 +4652,1601 @@ curl
 </tr>
 <tr>
 <td>tipoPagamento</td>
-<td>0 - Todas formas de pagamento;</td>
-<td></td>
-<td></td>
+<td>0 - Todas formas de pagamento; 1 - Cartões de Crédito; 2 - Cartões de Débito; 3 - Boleto; 4 - Transferência;</td>
+<td>Numérico</td>
+<td>Sim</td>
 </tr>
 </tbody></table>
 
-<p>1 - Cartões de Crédito;
-2 - Cartões de Débito;
-3 - Boleto;
-4 - Transferência;
-| Numérico |   Sim</p>
+<p><em>itensPedido</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoProduto</td>
+<td>Código único que identifica o produto</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>nomeProduto</td>
+<td>Nome do Produto Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+<td></td>
+</tr>
+<tr>
+<td>quantidadeProduto</td>
+<td>Quantidade do produto</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valorUnitarioProduto</td>
+<td>Valor unitário do produto. Deve ser enviado sem pontos ou vírgulas</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoCategoria</td>
+<td>Código que identifica categoria do produto</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>nomeCategoria</td>
+<td>Nome da categoria do produto</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+</tbody></table>
+
+<p><em>dadosCobranca</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nome</td>
+<td>Nome do comprador</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+</tr>
+<tr>
+<td>email</td>
+<td>E-mail do comprador</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+</tr>
+<tr>
+<td>documento</td>
+<td>Documento do Comprador</td>
+<td>Alfa Numérico</td>
+<td>100 caracteres</td>
+</tr>
+<tr>
+<td>tipoCliente</td>
+<td>1 - Pessoa Física      2 - Pessoa Jurídica</td>
+<td>Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>endereco</td>
+<td>Nó reservado para dados de endereço do comprador</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>telefone</td>
+<td>Nó reservado para dados de telefone do comprador</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<p><em>endereco</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>logradouro</td>
+<td>Endereço do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>numero</td>
+<td>Número do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>bairro</td>
+<td>Bairro do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>complemento</td>
+<td>Complemento do endereço</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>cidade</td>
+<td>Cidade do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>estado</td>
+<td>Estado do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>cep</td>
+<td>CEP do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>pais</td>
+<td>País do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+</tbody></table>
+
+<p><em>telefone</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tipoTelefone</td>
+<td>1 = Outros / 2 = Residencial / 3 = Comercial / 4 = Recados / 5 = Cobrança / 6 = Temporário</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>ddi</td>
+<td>Código DDI do telefone</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>ddd</td>
+<td>Código DDD do telefone</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>telefone</td>
+<td>Número do telefone</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+</tbody></table>
+
+<p><em>dadosEntrega</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nome</td>
+<td>Nome do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>email</td>
+<td>E-mail do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>endereco</td>
+<td>Nó reservado para dados de endereço do comprador</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>telefone</td>
+<td>Nó reservado para dados de telefone do comprador</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<p><strong>RESPOSTA</strong></p>
+
+<blockquote>
+<p>Exemplo estrutura de resposta:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{"urlPagamento": "https://homologacao.superpay.com.br/checkout/checkout/redirecionaPagamento?codigoPagamento=150609150796704e7-5b25-4a41-a753-a09bfb66db8d&amp;tipoPagamento=0&amp;oneClick=false"}
+
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>urlPagamento</td>
+<td>URL para redirecionar o consumidor para o Checkout</td>
+</tr>
+</tbody></table>
+<h2 id='criando-transacao-com-multiplos-cartoes'>Criando transação com Multiplos Cartões</h2>
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li>Disponível apenas no Plano Corporativo;</li>
+<li>Disponível para cartão de <em>crédito</em>;</li>
+<li>Funcionalidade com redirecionamento;</li>
+<li>Importante a utilização do recurso de Campainha, para atualização dos pedidos no Ecommerce;</li>
+<li>Estrutura para utilização de Multiplos Cartões.</li>
+</ul>
+
+<p><strong>REQUISIÇÃO</strong></p>
+
+<aside class="notice">
+Para enviar a transação, acione o método <code>POST</code>
+</aside>
+
+<blockquote>
+<p>Exemplo de estrutura de requisição simplificada:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+     "codigoEstabelecimento": 1000000000000,
+     "codigoFormaPagamento" : 997,
+     "transacao": {
+        "numeroTransacao": 123,
+        "valor": 2000,
+        "valorDesconto": 0,
+        "dataVencimentoBoleto":,
+        "parcelas": 1,
+        "urlCampainha": "http://sualoja.com.br_campainha/",
+        "urlResultado": "http://sualoja.com.br",
+        "ip": "192.168.12.110",
+        "idioma": 1
+     },
+     "checkout": {
+        "processar": 0,
+        "tipoPagamento" : 1,
+        "multiploCartao": 1
+     },
+     "itensDoPedido": [
+        {
+          "codigoProduto": 1,
+          "nomeProduto": "Produto 1",
+          "codigoCategoria": 1,
+          "nomeCategoria": "categoria",
+          "quantidadeProduto": 1,
+          "valorUnitarioProduto": 2000
+        }
+     ]
+     "dadosCobranca": {
+        "nome": "Teste 123",
+        "email": "teste@teste.com",
+        "documento": "12345671234",
+        "endereco": {
+           "logradouro": "Rua",
+           "numero": "123",
+           "complemento": "",
+           "cep": "12345-678",
+           "bairro": "Bairro",
+           "cidade": "Cidade",
+           "estado": "SP",
+           "pais": "BR"
+         },
+         "telefone": [
+            {
+            "tipoTelefone": "1",
+            "ddi": "55",
+            "ddd": "12",                                                 
+            "telefone": "1234-5678"
+            }
+         ]
+      },
+      "dadosEntrega": {
+         "nome": "Teste 123",
+         "email": "teste@teste.com",
+         "endereco": {
+            "logradouro": "Rua",
+            "numero": "123",
+            "complemento": "",
+            "cep": "12345-678",
+            "bairro": "Bairro",
+            "cidade": "Cidade",
+            "estado": "SP",
+            "pais": "BR"
+          },
+          "telefone": [
+             {
+             "tipoTelefone": "1",
+             "ddi": "55",
+             "ddd": "12",
+             "telefone": "1234-5678"
+             }
+          ]
+     }
+}
+
+
+</code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Login do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código único que identifica o estabelecimento dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td>Código da forma de pagamento - Enviar 997</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
+
+<p><em>transacao</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código único que identifica o pedido</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação. Não utilizar vírgulas ou pontos</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valorDesconto</td>
+<td>Valor do desconto da transação. Campo apenas informativo</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>urlCampainha</td>
+<td>URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha</td>
+<td>Alfa Numérico  Não</td>
+<td></td>
+</tr>
+<tr>
+<td>urlResultado</td>
+<td>Consumidor será redirecionado para esta URL, quando finalizar o pagamento</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>idioma</td>
+<td>1 - Português 2 - Inglês 3 - Espanhol</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>ip</td>
+<td>Número do IP do usuário final/cliente. Formato xxx.xxx.xxx.xxx</td>
+<td>Alfa Numérico</td>
+<td>Caso utilizar antifraude, sim</td>
+</tr>
+<tr>
+<td>dataVencimentoBoleto</td>
+<td>Data do Vencimento do boleto. Formato dd/mm/aaaa</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre1</td>
+<td>Campo Livre 1</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre2</td>
+<td>Campo Livre 2</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre3</td>
+<td>Campo Livre 3</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre4</td>
+<td>Campo Livre 4</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre5</td>
+<td>Campo Livre 5</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+</tbody></table>
+
+<p><em>checkout</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>processar</td>
+<td>Enviar 0 - pagamento comum</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>tipoPagamento</td>
+<td>1 - Cartões de Crédito;</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>multiploCartao</td>
+<td>Enviar 1</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
+
+<p><em>itensPedido</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoProduto</td>
+<td>Código único que identifica o produto</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>nomeProduto</td>
+<td>Nome do Produto Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+<td></td>
+</tr>
+<tr>
+<td>quantidadeProduto</td>
+<td>Quantidade do produto</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valorUnitarioProduto</td>
+<td>Valor unitário do produto. Deve ser enviado sem pontos ou vírgulas</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoCategoria</td>
+<td>Código que identifica categoria do produto</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>nomeCategoria</td>
+<td>Nome da categoria do produto</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+</tbody></table>
+
+<p><em>dadosCobranca</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nome</td>
+<td>Nome do comprador</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+</tr>
+<tr>
+<td>email</td>
+<td>E-mail do comprador</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+</tr>
+<tr>
+<td>documento</td>
+<td>Documento do Comprador</td>
+<td>Alfa Numérico</td>
+<td>100 caracteres</td>
+</tr>
+<tr>
+<td>tipoCliente</td>
+<td>1 - Pessoa Física      2 - Pessoa Jurídica</td>
+<td>Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>endereco</td>
+<td>Nó reservado para dados de endereço do comprador</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>telefone</td>
+<td>Nó reservado para dados de telefone do comprador</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<p><em>endereco</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>logradouro</td>
+<td>Endereço do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>numero</td>
+<td>Número do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>bairro</td>
+<td>Bairro do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>complemento</td>
+<td>Complemento do endereço</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>cidade</td>
+<td>Cidade do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>estado</td>
+<td>Estado do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>cep</td>
+<td>CEP do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>pais</td>
+<td>País do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+</tbody></table>
+
+<p><em>telefone</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tipoTelefone</td>
+<td>1 = Outros / 2 = Residencial / 3 = Comercial / 4 = Recados / 5 = Cobrança / 6 = Temporário</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>ddi</td>
+<td>Código DDI do telefone</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>ddd</td>
+<td>Código DDD do telefone</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>telefone</td>
+<td>Número do telefone</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+</tbody></table>
+
+<p><em>dadosEntrega</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nome</td>
+<td>Nome do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>email</td>
+<td>E-mail do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>endereco</td>
+<td>Nó reservado para dados de endereço do comprador</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>telefone</td>
+<td>Nó reservado para dados de telefone do comprador</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<p><strong>RESPOSTA</strong></p>
+
+<blockquote>
+<p>Exemplo estrutura de resposta:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{"urlPagamento": "https://homologacao.superpay.com.br/checkout/checkout/redirecionaPagamento?codigoPagamento=150609150796704e7-5b25-4a41-a753-a09bfb66db8d&amp;tipoPagamento=0&amp;oneClick=false"}
+
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>urlPagamento</td>
+<td>URL para redirecionar o consumidor para o Checkout</td>
+</tr>
+</tbody></table>
+<h2 id='criando-transacao-com-um-clique'>Criando transação com um clique</h2>
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li>Disponível apenas no Plano Corporativo;</li>
+<li>Funcionalidade com redirecionamento;</li>
+<li>Importante a utilização do recurso de Campainha, para atualização dos pedidos no Ecommerce;</li>
+</ul>
+
+<p>Neste modelo os dados de cartão, como nome titular, número e data de validade, são cadastrados no sistema de forma segura e assim o consumidor não precisará incluir estes dados em sua próxima compra, tendo que incluir apenas seu código de segurança para finalizar a transação.
+Os cartões cadastrados são vinculados ao email do consumidor.</p>
+
+<p><strong>REQUISIÇÃO</strong></p>
+
+<aside class="notice">
+Para enviar a transação, acione o método <code>POST</code>
+</aside>
+
+<blockquote>
+<p>Exemplo de estrutura de requisição simplificada:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+     "codigoEstabelecimento": 1000000000000,
+     "codigoFormaPagamento" : 997,
+     "transacao": {
+        "numeroTransacao": 123,
+        "valor": 2000,
+        "valorDesconto": 0,
+        "dataVencimentoBoleto":,
+        "parcelas": 1,
+        "urlCampainha": "http://sualoja.com.br_campainha/",
+        "urlResultado": "http://sualoja.com.br",
+        "ip": "192.168.12.110",
+        "idioma": 1
+     },
+     "checkout": {
+        "processar": 1,
+        "tipoPagamento" : 1,
+
+     },
+     "itensDoPedido": [
+        {
+          "codigoProduto": 1,
+          "nomeProduto": "Produto 1",
+          "codigoCategoria": 1,
+          "nomeCategoria": "categoria",
+          "quantidadeProduto": 1,
+          "valorUnitarioProduto": 2000
+        }
+     ]
+     "dadosCobranca": {
+        "nome": "Teste 123",
+        "email": "teste@teste.com",
+        "documento": "12345671234",
+        "endereco": {
+           "logradouro": "Rua",
+           "numero": "123",
+           "complemento": "",
+           "cep": "12345-678",
+           "bairro": "Bairro",
+           "cidade": "Cidade",
+           "estado": "SP",
+           "pais": "BR"
+         },
+         "telefone": [
+            {
+            "tipoTelefone": "1",
+            "ddi": "55",
+            "ddd": "12",                                                 
+            "telefone": "1234-5678"
+            }
+         ]
+      },
+      "dadosEntrega": {
+         "nome": "Teste 123",
+         "email": "teste@teste.com",
+         "endereco": {
+            "logradouro": "Rua",
+            "numero": "123",
+            "complemento": "",
+            "cep": "12345-678",
+            "bairro": "Bairro",
+            "cidade": "Cidade",
+            "estado": "SP",
+            "pais": "BR"
+          },
+          "telefone": [
+             {
+             "tipoTelefone": "1",
+             "ddi": "55",
+             "ddd": "12",
+             "telefone": "1234-5678"
+             }
+          ]
+     }
+}
+
+
+</code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Login do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código único que identifica o estabelecimento dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td>Código da forma de pagamento - Enviar 997</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
+
+<p><em>transacao</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código único que identifica o pedido</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação. Não utilizar vírgulas ou pontos</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valorDesconto</td>
+<td>Valor do desconto da transação. Campo apenas informativo</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>urlCampainha</td>
+<td>URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha</td>
+<td>Alfa Numérico  Não</td>
+<td></td>
+</tr>
+<tr>
+<td>urlResultado</td>
+<td>Consumidor será redirecionado para esta URL, quando finalizar o pagamento</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>idioma</td>
+<td>1 - Português 2 - Inglês 3 - Espanhol</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>ip</td>
+<td>Número do IP do usuário final/cliente. Formato xxx.xxx.xxx.xxx</td>
+<td>Alfa Numérico</td>
+<td>Caso utilizar antifraude, sim</td>
+</tr>
+<tr>
+<td>dataVencimentoBoleto</td>
+<td>Data do Vencimento do boleto. Formato dd/mm/aaaa</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre1</td>
+<td>Campo Livre 1</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre2</td>
+<td>Campo Livre 2</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre3</td>
+<td>Campo Livre 3</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre4</td>
+<td>Campo Livre 4</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre5</td>
+<td>Campo Livre 5</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+</tbody></table>
+
+<p><em>checkout</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>processar</td>
+<td>Enviar 1 - pagamento OneClick</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>tipoPagamento</td>
+<td>1 - Cartões de Crédito</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
+
+<p><em>itensPedido</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoProduto</td>
+<td>Código único que identifica o produto</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>nomeProduto</td>
+<td>Nome do Produto Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+<td></td>
+</tr>
+<tr>
+<td>quantidadeProduto</td>
+<td>Quantidade do produto</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valorUnitarioProduto</td>
+<td>Valor unitário do produto. Deve ser enviado sem pontos ou vírgulas</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoCategoria</td>
+<td>Código que identifica categoria do produto</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>nomeCategoria</td>
+<td>Nome da categoria do produto</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+</tbody></table>
+
+<p><em>dadosCobranca</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nome</td>
+<td>Nome do comprador</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+</tr>
+<tr>
+<td>email</td>
+<td>E-mail do comprador</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+</tr>
+<tr>
+<td>documento</td>
+<td>Documento do Comprador</td>
+<td>Alfa Numérico</td>
+<td>100 caracteres</td>
+</tr>
+<tr>
+<td>tipoCliente</td>
+<td>1 - Pessoa Física      2 - Pessoa Jurídica</td>
+<td>Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>endereco</td>
+<td>Nó reservado para dados de endereço do comprador</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>telefone</td>
+<td>Nó reservado para dados de telefone do comprador</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<p><em>endereco</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>logradouro</td>
+<td>Endereço do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>numero</td>
+<td>Número do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>bairro</td>
+<td>Bairro do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>complemento</td>
+<td>Complemento do endereço</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>cidade</td>
+<td>Cidade do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>estado</td>
+<td>Estado do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>cep</td>
+<td>CEP do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>pais</td>
+<td>País do comprador</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+</tbody></table>
+
+<p><em>telefone</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tipoTelefone</td>
+<td>1 = Outros / 2 = Residencial / 3 = Comercial / 4 = Recados / 5 = Cobrança / 6 = Temporário</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>ddi</td>
+<td>Código DDI do telefone</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>ddd</td>
+<td>Código DDD do telefone</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+<tr>
+<td>telefone</td>
+<td>Número do telefone</td>
+<td>Alfa Numérico</td>
+<td>Caso utilize antifraude, sim</td>
+</tr>
+</tbody></table>
+
+<p><em>dadosEntrega</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nome</td>
+<td>Nome do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>email</td>
+<td>E-mail do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>endereco</td>
+<td>Nó reservado para dados de endereço do comprador</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>telefone</td>
+<td>Nó reservado para dados de telefone do comprador</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<p><strong>RESPOSTA</strong></p>
+
+<blockquote>
+<p>Exemplo estrutura de resposta:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{"urlPagamento": "https://homologacao.superpay.com.br/checkout/checkout/redirecionaPagamento?codigoPagamento=150609150796704e7-5b25-4a41-a753-a09bfb66db8d&amp;tipoPagamento=0&amp;oneClick=false"}
+
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>urlPagamento</td>
+<td>URL para redirecionar o consumidor para o Checkout</td>
+</tr>
+</tbody></table>
+<h2 id='criando-transacao-com-multiplos-boletos'>Criando transação com Multiplos Boletos</h2>
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li>Disponível apenas no Plano Corporativo;</li>
+<li>Funcionalidade com redirecionamento;</li>
+<li>Importante a utilização do recurso de Campainha, para atualização dos pedidos no Ecommerce;</li>
+</ul>
+
+<p><strong>REQUISIÇÃO</strong></p>
+
+<aside class="notice">
+Para enviar a transação, acione o método <code>POST</code>
+</aside>
+
+<blockquote>
+<p>Exemplo de estrutura de requisição simplificada:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+     "codigoEstabelecimento": 1000000000000,
+     "codigoFormaPagamento" : 997,
+     "transacao": {
+        "numeroTransacao": 123,
+        "valor": 10000,
+        "valorDesconto": 0,
+        "dataVencimentoBoleto":,
+        "parcelas": 1,
+        "urlCampainha": "http://sualoja.com.br_campainha/",
+        "urlResultado": "http://sualoja.com.br",
+        "ip": "192.168.12.110",
+        "idioma": 1
+     },
+     "checkout": {
+        "processar": 0,
+        "tipoPagamento" : 3,
+        "multiploBoleto": 1,
+        "boletos": [
+         {
+           "valor": 5000,
+           "vencimento": "13/01/2018"
+         },
+         {
+           "valor": 5000,
+           "vencimento": "13/02/2018"
+         }
+        ]
+     },
+     "itensDoPedido": [
+        {
+          "codigoProduto": 1,
+          "nomeProduto": "Produto 1",
+          "codigoCategoria": 1,
+          "nomeCategoria": "categoria",
+          "quantidadeProduto": 1,
+          "valorUnitarioProduto": 10000
+        }
+     ]
+     "dadosCobranca": {
+        "nome": "Teste 123",
+        "email": "teste@teste.com",
+        "documento": "12345671234",
+        "endereco": {
+           "logradouro": "Rua",
+           "numero": "123",
+           "complemento": "",
+           "cep": "12345-678",
+           "bairro": "Bairro",
+           "cidade": "Cidade",
+           "estado": "SP",
+           "pais": "BR"
+         },
+         "telefone": [
+            {
+            "tipoTelefone": "1",
+            "ddi": "55",
+            "ddd": "12",                                                 
+            "telefone": "1234-5678"
+            }
+         ]
+      },
+      "dadosEntrega": {
+         "nome": "Teste 123",
+         "email": "teste@teste.com",
+         "endereco": {
+            "logradouro": "Rua",
+            "numero": "123",
+            "complemento": "",
+            "cep": "12345-678",
+            "bairro": "Bairro",
+            "cidade": "Cidade",
+            "estado": "SP",
+            "pais": "BR"
+          },
+          "telefone": [
+             {
+             "tipoTelefone": "1",
+             "ddi": "55",
+             "ddd": "12",
+             "telefone": "1234-5678"
+             }
+          ]
+     }
+}
+
+
+</code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Login do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código único que identifica o estabelecimento dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td>Código da forma de pagamento - Enviar 997</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
+
+<p><em>transacao</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código único que identifica o pedido</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação. Não utilizar vírgulas ou pontos</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valorDesconto</td>
+<td>Valor do desconto da transação. Campo apenas informativo</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>urlCampainha</td>
+<td>URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha</td>
+<td>Alfa Numérico  Não</td>
+<td></td>
+</tr>
+<tr>
+<td>urlResultado</td>
+<td>Consumidor será redirecionado para esta URL, quando finalizar o pagamento</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>idioma</td>
+<td>1 - Português 2 - Inglês 3 - Espanhol</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>ip</td>
+<td>Número do IP do usuário final/cliente. Formato xxx.xxx.xxx.xxx</td>
+<td>Alfa Numérico</td>
+<td>Caso utilizar antifraude, sim</td>
+</tr>
+<tr>
+<td>dataVencimentoBoleto</td>
+<td>Data do Vencimento do boleto. Formato dd/mm/aaaa</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre1</td>
+<td>Campo Livre 1</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre2</td>
+<td>Campo Livre 2</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre3</td>
+<td>Campo Livre 3</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre4</td>
+<td>Campo Livre 4</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre5</td>
+<td>Campo Livre 5</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+</tr>
+</tbody></table>
+
+<p><em>checkout</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>processar</td>
+<td>Enviar 0 - pagamento comum</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>tipoPagamento</td>
+<td>3 - Boleto Bancário;</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>multiploBoleto</td>
+<td>Enviar 1</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>boletos</td>
+<td>Array reservado para informações de múltiplos boletos</td>
+<td>-</td>
+<td>Apenas quando utilizar múltiplos boletos</td>
+</tr>
+</tbody></table>
+
+<p><em>boletos</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>valor</td>
+<td>Valor do boleto</td>
+<td>Numérico</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>vencimento</td>
+<td>Vencimento do boleto. Formato dd/mm/aaaa</td>
+<td>Alfa Numérico</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
 
 <p><em>itensPedido</em></p>
 

@@ -725,7 +725,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 </tr>
 <tr>
 <td>codigoFormaPagamento</td>
-<td>Código da forma de pagamento</td>
+<td><a href="https://superpay.github.io/soap/#forma-de-pagamento">Código da forma de pagamento</a></td>
 <td>Numérico</td>
 <td>Até 3 dígitos</td>
 <td>Sim</td>
@@ -915,7 +915,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 </tr>
 <tr>
 <td>statusTransacao</td>
-<td>Status atual da transação</td>
+<td><a href="https://superpay.github.io/soap/#status-de-transacao">Status atual da transação</a></td>
 <td>Numérico</td>
 <td>Até 2 dígitos</td>
 </tr>
@@ -1085,7 +1085,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 </tr>
 <tr>
 <td>codigoFormaPagamento</td>
-<td>Código da forma de pagamento</td>
+<td><a href="https://superpay.github.io/soap/#forma-de-pagamento">Código da forma de pagamento</a></td>
 <td>Numérico</td>
 <td>Até 3 dígitos</td>
 <td>Sim</td>
@@ -1659,7 +1659,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 </tr>
 <tr>
 <td>statusTransacao</td>
-<td>Status atual da transação</td>
+<td><a href="https://superpay.github.io/soap/#status-de-transacao">Status atual da transação</a></td>
 <td>Numérico</td>
 <td>Até 2 dígitos</td>
 </tr>
@@ -1871,7 +1871,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompletaMais
 </thead><tbody>
 <tr>
 <td>codigoFormaPagamento</td>
-<td>Código da forma de pagamento</td>
+<td><a href="https://superpay.github.io/soap/#forma-de-pagamento">Código da forma de pagamento</a></td>
 <td>Numérico</td>
 <td>2 dígitos</td>
 <td>Sim</td>
@@ -1983,7 +1983,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompletaMais
 </tr>
 <tr>
 <td>statusTransacao</td>
-<td>Status atual da transação</td>
+<td><a href="https://superpay.github.io/soap/#status-de-transacao">Status atual da transação</a></td>
 <td>Numérico</td>
 <td>Até 2 dígitos</td>
 </tr>
@@ -2220,7 +2220,7 @@ Para enviar a transação, acione o método <code>operacaoTransacao</code>
 </tr>
 <tr>
 <td>statusTransacao</td>
-<td>Status atual da transação</td>
+<td><a href="https://superpay.github.io/soap/#forma-de-pagamento">Código da forma de pagamento</a></td>
 <td>Numérico</td>
 <td>Até 2 dígitos</td>
 </tr>
@@ -2446,7 +2446,7 @@ Para enviar a transação, acione o método <code>operacaoTransacao</code>
 </tr>
 <tr>
 <td>statusTransacao</td>
-<td>Status atual da transação</td>
+<td><a href="https://superpay.github.io/soap/#forma-de-pagamento">Código da forma de pagamento</a></td>
 <td>Numérico</td>
 <td>Até 2 dígitos</td>
 </tr>
@@ -2692,7 +2692,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 </tr>
 <tr>
 <td>codigoFormaPagamento</td>
-<td>Código da forma de pagamento</td>
+<td><a href="https://superpay.github.io/soap/#forma-de-pagamento">Código da forma de pagamento</a></td>
 <td>Numérico</td>
 <td>Até 3 dígitos</td>
 <td>Sim</td>
@@ -2882,7 +2882,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 </tr>
 <tr>
 <td>statusTransacao</td>
-<td>Status atual da transação</td>
+<td><a href="https://superpay.github.io/soap/#status-de-transacao">Status atual da transação</a></td>
 <td>Numérico</td>
 <td>Até 2 dígitos</td>
 </tr>
@@ -3056,7 +3056,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 </tr>
 <tr>
 <td>codigoFormaPagamento</td>
-<td>Código da forma de pagamento</td>
+<td><a href="https://superpay.github.io/soap/#forma-de-pagamento">Código da forma de pagamento</a></td>
 <td>Numérico</td>
 <td>Até 3 dígitos</td>
 <td>Sim</td>
@@ -3450,33 +3450,33 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 Para geração do boleto o eCommerce deverá redirecionar o consumidor para a URl retornada no campo <urlPagamento></p>
 
 <blockquote>
-<p>Exemplo retorno criação boleto:
-<code>xml
-&lt;soap:envelope xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
-   &lt;soap:body&gt;
-      &lt;ns2:pagamentoTransacaoCompletaResponse xmlns:ns2=&quot;http://pagamentos.webservices.superpay.ernet.com.br/&quot;&gt;
-         &lt;return&gt;
-            &lt;autorizacao&gt;0&lt;/autorizacao&gt;
-            &lt;codigoEstabelecimento&gt;1000000000000&lt;/codigoestabelecimento&gt;
-            &lt;codigoFormaPagamento&gt;29&lt;/codigoformapagamento&gt;
-            &lt;codigoTransacaoOperadora&gt;0&lt;/codigotransacaooperadora&gt;
-            &lt;dataAprovacaoOperadora&gt;&lt;/dataaprovacaooperadora&gt;
-            &lt;mensagemvenda&gt;&lt;/mensagemvenda&gt;
-            &lt;numeroComprovanteVenda&gt;&lt;/numerocomprovantevenda&gt;
-            &lt;numeroTransacao&gt;9012346&lt;/numerotransacao&gt;
-            &lt;parcelas&gt;1&lt;/parcelas&gt;
-            &lt;statusTransacao&gt;5&lt;/statustransacao&gt;
-            &lt;taxaEmbarque&gt;0&lt;/taxaembarque&gt;
-            &lt;urlPagamento&gt;https://homologacao.superpay.com.br/checkout/GeradorBoleto.do?cod=14956296486904d8312c6-d57a-499e-b53b-504047402e45&lt;/urlpagamento&gt;
-            &lt;valor&gt;200&lt;/valor&gt;
-            &lt;valorDesconto&gt;0&lt;/valordesconto&gt;
-         &lt;/return&gt;
-      &lt;/ns2:pagamentoTransacaoCompletaResponse&gt;
-   &lt;/soap:body&gt;
-&lt;/soap:envelope&gt;
-</code></p>
+<p>Exemplo retorno criação boleto:</p>
 </blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;</span>0<span class="nt">&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoestabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>29<span class="nt">&lt;/codigoformapagamento&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigotransacaooperadora&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;&lt;/dataaprovacaooperadora&gt;</span>
+            <span class="nt">&lt;mensagemvenda&gt;&lt;/mensagemvenda&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;&lt;/numerocomprovantevenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>9012346<span class="nt">&lt;/numerotransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>5<span class="nt">&lt;/statustransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaembarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>https://homologacao.superpay.com.br/checkout/GeradorBoleto.do?cod=14956296486904d8312c6-d57a-499e-b53b-504047402e45<span class="nt">&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valordesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
 
+</code></pre>
 <table><thead>
 <tr>
 <th>Campo</th>
@@ -3535,7 +3535,7 @@ Para geração do boleto o eCommerce deverá redirecionar o consumidor para a UR
 </tr>
 <tr>
 <td>statusTransacao</td>
-<td>Status atual da transação</td>
+<td><a href="https://superpay.github.io/soap/#status-de-transacao">Status atual da transação</a></td>
 <td>Numérico</td>
 <td>Até 2 dígitos</td>
 </tr>
@@ -3705,7 +3705,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 </tr>
 <tr>
 <td>codigoFormaPagamento</td>
-<td>Código da forma de pagamento</td>
+<td><a href="https://superpay.github.io/soap/#forma-de-pagamento">Código da forma de pagamento</a></td>
 <td>Numérico</td>
 <td>Até 3 dígitos</td>
 <td>Sim</td>
@@ -4169,7 +4169,7 @@ Para enviar a transação, acione o método <code>pagamentoTransacaoCompleta</co
 </tr>
 <tr>
 <td>statusTransacao</td>
-<td>Status atual da transação</td>
+<td><a href="https://superpay.github.io/soap/#status-de-transacao">Status atual da transação</a></td>
 <td>Numérico</td>
 <td>Até 2 dígitos</td>
 </tr>
@@ -4319,7 +4319,7 @@ PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/servicosRecorrencia
 </tr>
 <tr>
 <td>formaPagamento</td>
-<td>Código da forma de pagamento</td>
+<td><a href="https://superpay.github.io/soap/#forma-de-pagamento">Código da forma de pagamento</a></td>
 <td>Numérico</td>
 <td>Até 3 dígitos</td>
 <td>Sim</td>
@@ -4863,7 +4863,7 @@ nomeTitularCartaoCredito|   Nome do titular do cartão de crédito |    Alfa Num
 numeroCartaoCredito|    Numero do cartão de crédito. Enviar sem espaços e virgúlas| Numérico|  Até 22 caracteres| Sim
 dataValidadeCartao| Data de validade do cartão. Formato mm/yyyy|   Alfa Numérico| 7 caracteres    |Sim
 emailComprador| Endereço de e-mail do comprador|   Alfa Numérico| Até 100 caracteres|    Não
-formaPagamento| Código da forma de pagamento. Clique aqui para maiores informações|  Numérico|  -|  Sim</p>
+formaPagamento| <a href="https://superpay.github.io/soap/#forma-de-pagamento">Código da forma de pagamento</a>|   Numérico|  -|  Sim</p>
 
 <p><strong>RESPOSTA</strong></p>
 
@@ -5309,7 +5309,7 @@ itensDoPedido|  Lista com Itens que estão sendo comprados. Informações import
 </tr>
 <tr>
 <td>statusTransacao</td>
-<td>Status atual da transação</td>
+<td><a href="https://superpay.github.io/soap/#status-de-transacao">Status atual da transação</a></td>
 <td>Numérico</td>
 <td>Até 2 dígitos</td>
 </tr>
@@ -5430,7 +5430,7 @@ itensDoPedido|  Lista com Itens que estão sendo comprados. Informações import
 </tr>
 <tr>
 <td>formaPagamento</td>
-<td>Código da forma de pagamento</td>
+<td><a href="https://superpay.github.io/soap/#forma-de-pagamento">Código da forma de pagamento</a></td>
 <td>Numérico</td>
 <td>-</td>
 <td>Sim</td>
@@ -5659,7 +5659,7 @@ itensDoPedido|  Lista com Itens que estão sendo comprados. Informações import
 </tr>
 <tr>
 <td>statusTransacao</td>
-<td>Status atual da transação</td>
+<td><a href="https://superpay.github.io/soap/#status-de-transacao">Status atual da transação</a></td>
 <td>Numérico</td>
 <td>Até 2 dígitos</td>
 </tr>
@@ -5855,7 +5855,7 @@ itensDoPedido|  Lista com Itens que estão sendo comprados. Informações import
 </tr>
 <tr>
 <td>statusTransacao</td>
-<td>Status atual da transação</td>
+<td><a href="https://superpay.github.io/soap/#status-de-transacao">Status atual da transação</a></td>
 <td>Numérico</td>
 <td>Até 2 dígitos</td>
 </tr>
@@ -6086,7 +6086,7 @@ itensDoPedido|  Lista com Itens que estão sendo comprados. Informações import
 </tr>
 <tr>
 <td>statusTransacao</td>
-<td>Status da Parcela Recorrente</td>
+<td><a href="https://superpay.github.io/soap/#status-de-transacao">Status atual da transação recorrente</a></td>
 </tr>
 <tr>
 <td>numeroPedido</td>
