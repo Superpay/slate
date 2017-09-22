@@ -223,7 +223,7 @@ senha | Senha do estabelecimento
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos | Sim
 transacao | Nó reservado para informações da transação | - | - | -
 dadosCartao | Nó reservado para dados de cartão | - | - | -
 dadosCobranca | Nó reservado para informações dos dados de cobrança | - | - | -
@@ -289,13 +289,13 @@ Campo | Descrição | Tipo | Tamanho
 ------| ----------|------| --------
 numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay | Numérico | 13 dígitos
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
 valor | Valor da transação.| Numérico | Até 10 dígitos
 valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Para o modelo redirect. Essa será a URL de redirecionamento da operação |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Status atual da transação](https://superpay.github.io/rest/#status-de-transacao) | Numérico | Até 2 dígitos
 autorizacao | Código de autorização da adquirente | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Código da transação na adquirente | Numérico | Até 20 dígitos
 dataTprovacaoOperadora | Data que a transação foi enviada a adquirente |Alfa Numérico | Até 10 dícaracteresgitos
@@ -425,7 +425,7 @@ senha | Senha do estabelecimento
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos | Sim
 transacao | Nó reservado para informações da transação | - | - | -
 dadosCartao | Nó reservado para dados de cartão | - | - | -
 itensDoPedido | Nó reservado para informações dos produtos | - | - | - 
@@ -557,13 +557,13 @@ Campo | Descrição | Tipo | Tamanho
 ------| ----------|------| --------
 numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay | Numérico | 13 dígitos
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
 valor | Valor da transação.| Numérico | Até 10 dígitos
 valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Para o modelo redirect. Essa será a URL de redirecionamento da operação |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Status atual da transação](https://superpay.github.io/rest/#status-de-transacao) | Numérico | Até 2 dígitos
 autorizacao | Código de autorização da adquirente | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Código da transação na adquirente | Numérico | Até 20 dígitos
 dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | Até 10 dígitos
@@ -640,13 +640,13 @@ Campo | Descrição | Tipo | Tamanho
 ------| ----------|------| --------
 numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay | Numérico | 13 dígitos
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
 valor | Valor da transação.| Numérico | Até 10 dígitos
 valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Para o modelo redirect. Essa será a URL de redirecionamento da operação |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Status atual da transação](https://superpay.github.io/rest/#status-de-transacao) | Numérico | Até 2 dígitos
 autorizacao | Código de autorização da adquirente | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Código da transação na adquirente | Numérico | Até 20 dígitos
 dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | Até 10 dígitos
@@ -733,13 +733,13 @@ Campo | Descrição | Tipo | Tamanho
 ------| ----------|------| --------
 numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay | Numérico | 13 dígitos
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
 valor | Valor da transação.| Numérico | Até 10 dígitos
 valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Para o modelo redirect. Essa será a URL de redirecionamento da operação |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Status atual da transação](https://superpay.github.io/rest/#status-de-transacao) | Numérico | Até 2 dígitos
 autorizacao | Código de autorização da adquirente | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Código da transação na adquirente | Numérico | Até 20 dígitos
 dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | Até 10 dígitos
@@ -822,7 +822,7 @@ senha | Senha do estabelecimento
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos | Sim
 transacao | Nó reservado para informações da transação | - | - | -
 dadosCartao | Nó reservado para dados de cartão | - | - | -
 dadosCobranca | Nó reservado para informações dos dados de cobrança | - | - | -
@@ -888,13 +888,13 @@ Campo | Descrição | Tipo | Tamanho
 ------| ----------|------| --------
 numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay | Numérico | 13 dígitos
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
 valor | Valor da transação.| Numérico | Até 10 dígitos
 valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | URL para redirecionar o consumidor para autenticação |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Status atual da transação](https://superpay.github.io/rest/#status-de-transacao) | Numérico | Até 2 dígitos
 autorizacao | Código de autorização da adquirente | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Código da transação na adquirente | Numérico | Até 20 dígitos
 dataTprovacaoOperadora | Data que a transação foi enviada a adquirente |Alfa Numérico | Até 10 dícaracteresgitos
@@ -1020,7 +1020,7 @@ senha | Senha do estabelecimento
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos | Sim
 transacao | Nó reservado para informações da transação | - | - | -
 dadosCobranca | Nó reservado para informações dos dados de cobrança | - | - | -
 telefone |Nó reservado para informações de telefone | - | - | - 
@@ -1033,7 +1033,7 @@ Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
 numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos | Sim
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos | Sim
 valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas | Numérico | Até 10 dígitos | Sim
 valorDesconto |	Valor do desconto da transação. Campo apenas informativo |	Numérico	|Até 10 dígitos	|Sim
 urlCampainha | URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha | Alfa Numérico | Até 250 caracteres | Não
@@ -1129,13 +1129,13 @@ Campo | Descrição | Tipo | Tamanho
 ------| ----------|------| --------
 numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay | Numérico | 13 dígitos
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
 valor | Valor da transação.| Numérico | Até 10 dígitos
 valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Url para geração do boleto |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Status atual da transação](https://superpay.github.io/rest/#status-de-transacao) | Numérico | Até 2 dígitos
 autorizacao | Retornado "0" para boletos | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Retornado "0" para boletos | Numérico | Até 20 dígitos
 dataAprovacaoOperadora | Retornado em branco para boletos |Alfa Numérico | Até 10 dígitos
@@ -1255,7 +1255,7 @@ senha | Senha do estabelecimento
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos | Sim
 transacao | Nó reservado para informações da transação | - | - | -
 itensDoPedido | Nó reservado para informações dos produtos | - | - | - 
 dadosCobranca | Nó reservado para informações dos dados de cobrança | - | - | -
@@ -1360,13 +1360,13 @@ Campo | Descrição | Tipo | Tamanho
 ------| ----------|------| --------
 numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay | Numérico | 13 dígitos
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
 valor | Valor da transação.| Numérico | Até 10 dígitos
 valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Url para geração da página do banco |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Status atual da transação](https://superpay.github.io/rest/#status-de-transacao) | Numérico | Até 2 dígitos
 autorizacao | Retornado "0" para transferência | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Retornado "0" para transferência | Numérico | Até 20 dígitos
 dataAprovacaoOperadora | Retornado em branco para transferência |Alfa Numérico | Até 10 dígitos
@@ -1456,7 +1456,7 @@ Campo | Descrição | Tipo | Tamanho | Obrigatório
 numeroRecorrencia|	Número da Recorrência deve ser único|	Numérico|	Até 15 dígitos|	Sim
 estabelecimento|	Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)|	Numérico|	13 dígitos|	Sim
 valor|	Valor da recorrência. Não devem ser utilizados virgulas nem pontos|	Numérico|	Até 10 dígitos|	Sim
-formaPagamento|	Código da forma de pagamento |	Numérico|	Até 3 dígitos|	Sim
+formaPagamento|	[Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) |	Numérico|	Até 3 dígitos|	Sim
 dadosCartao|	Array descrito abaixo|	-|	-|	-
 dadosCobranca|	Array descrito abaixo|	-|	-|	-
 dadosEntrega|	Array descrito abaixo|	-|	-|	-
@@ -1549,13 +1549,13 @@ Campo | Descrição
 numeroRecorrencia|	Número da Recorrência
 estabelecimento|	Código do estabelecimento, fornecido pelo SuperPay
 valor|	Valor
-codigoFormaPagamento	|Código da forma de pagamento cadastrado na recorrência
+codigoFormaPagamento	|[Código da forma de pagamento cadastrada](https://superpay.github.io/rest/#forma-de-pagamento)
 numeroCobrancaTotal|	Quantidade máxima de cobranças
 numeroCobrancaRestantes	|Quantidade de cobranças restantes
 status|	Status atual da recorrência
 mensagem|	Mensagem da recorrência
 numeroPedido|	Número da Cobrança Recorrente
-statusTransacao|	Status da Cobrança Recorrente
+statusTransacao|	[Status atual da transação recorrente](https://superpay.github.io/rest/#status-de-transacao)
 autorizacao|	Código de autorização da Adquirente
 codigoTransacaoOperadora|	Código de erro da Adquirente
 dataAprovacaoOperadora|	Data aprovação Adquirente
@@ -1624,18 +1624,241 @@ Campo | Descrição
 numeroRecorrencia|	Número da Recorrência
 estabelecimento|	Código do estabelecimento, fornecido pelo SuperPay
 valor|	Valor
-codigoFormaPagamento	|Código da forma de pagamento cadastrado na recorrência
+codigoFormaPagamento	|[Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento)
 numeroCobrancaTotal|	Quantidade máxima de cobranças
 numeroCobrancaRestantes	|Quantidade de cobranças restantes
 status|	Status atual da recorrência
 mensagem|	Mensagem da recorrência
 numeroPedido|	Número da Cobrança Recorrente
-statusTransacao|	Status da Cobrança Recorrente
+statusTransacao|	[Status atual da transação recorrente](https://superpay.github.io/rest/#status-de-transacao)
 autorizacao|	Código de autorização da Adquirente
 codigoTransacaoOperadora|	Código de erro da Adquirente
 dataAprovacaoOperadora|	Data aprovação Adquirente
 numeroComprovanteVenda|	Número Comprovante Adquirente
 mensagemVenda	|Mensagem Venda Adquirente
+
+# Checkout SuperPay
+
+Através desta funcionalidade, é possível finalizar pagamentos dentro do ambiente seguro do SuperPay. O consumidor será redirecionado para o Checkout do Gateway e assim finalizará sua transação.
+Os meios de pagamentos disponíveis serão todos que estiverem configurados no estabelecimento.
+
+## Criando uma transação
+
+**Particulariedades**
+
+* Funcionalidade com redirecionamento;
+* Importante a utilização do recurso de Campainha, para atualização dos pedidos no Ecommerce;
+* Estrutura completa e definição da forma de pagamento pelo consumidor.
+
+**REQUISIÇÃO**
+
+<aside class="notice">
+Para enviar a transação, acione o método <code>POST</code>
+</aside>
+
+
+> Exemplo de estrutura de requisição simplificada:
+
+```curl
+
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+     "codigoEstabelecimento": 1000000000000,
+     "codigoFormaPagamento" : 997,
+     "transacao": {
+        "numeroTransacao": 9879690,
+        "valor": 2000,
+        "valorDesconto": 0,
+        "dataVencimentoBoleto":,
+        "parcelas": 1,
+        "urlCampainha": "http://sualoja.com.br_campainha/",
+        "urlResultado": "http://sualoja.com.br",
+        "ip": "192.168.12.110",
+        "idioma": 1
+     },
+     "checkout": {
+        "processar": 0,
+        "tipoPagamento" : 0
+     },
+     "itensDoPedido": [
+        {
+          "codigoProduto": 1,
+          "nomeProduto": "Produto 1",
+          "codigoCategoria": 1,
+          "nomeCategoria": "categoria",
+          "quantidadeProduto": 1,
+          "valorUnitarioProduto": 1199
+        }
+     ]
+     "dadosCobranca": {
+        "nome": "Teste 123",
+        "email": "teste@teste.com",
+        "documento": "12345671234",
+        "endereco": {
+           "logradouro": "Rua",
+           "numero": "123",
+           "complemento": "",
+           "cep": "12345-678",
+           "bairro": "Bairro",
+           "cidade": "Cidade",
+           "estado": "SP",
+           "pais": "BR"
+         },
+         "telefone": [
+            {
+            "tipoTelefone": "1",
+            "ddi": "55",
+            "ddd": "12",                                                 
+            "telefone": "1234-5678"
+            }
+         ]
+      },
+      "dadosEntrega": {
+         "nome": "Teste 123",
+         "email": "teste@teste.com",
+         "endereco": {
+            "logradouro": "Rua",
+            "numero": "123",
+            "complemento": "",
+            "cep": "12345-678",
+            "bairro": "Bairro",
+            "cidade": "Cidade",
+            "estado": "SP",
+            "pais": "BR"
+          },
+          "telefone": [
+             {
+             "tipoTelefone": "1",
+             "ddi": "55",
+             "ddd": "12",
+             "telefone": "1234-5678"
+             }
+          ]
+     }
+}
+
+
+```
+
+Para autenticação, enviar `usuario` e `senha`:
+
+Campo | Descrição 
+------| ----------
+usuario | Login do estabelecimento
+senha | Senha do estabelecimento
+
+
+Campo | Descrição | Tipo | Obrigatório
+------| ---------- | ------- | ---------
+codigoEstabelecimento |	Código único que identifica o estabelecimento dentro do SuperPay|	Numérico|	Sim
+codigoFormaPagamento|	Código da forma de pagamento - Enviar 997|	Numérico|	Sim
+
+
+*transacao*
+
+Campo | Descrição | Tipo | Obrigatório
+------| ---------- | ------- | ---------
+numeroTransacao	|Código único que identifica o pedido|	Numérico|	Sim
+valor|	Valor da transação. Não utilizar vírgulas ou pontos|	Numérico|	Sim
+valorDesconto|	Valor do desconto da transação. Campo apenas informativo|	Numérico|	Sim
+parcelas|	Quantidade de parcelas da transação|	Numérico|	Sim
+urlCampainha|	URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha|	Alfa Numérico	Não
+urlResultado|	Consumidor será redirecionado para esta URL, quando finalizar o pagamento|	Alfa Numérico|	Não
+idioma	|1 - Português 2 - Inglês 3 - Espanhol |	Numérico|	Sim
+ip|	Número do IP do usuário final/cliente. Formato xxx.xxx.xxx.xxx|	Alfa Numérico|	Caso utilizar antifraude, sim
+dataVencimentoBoleto|	Data do Vencimento do boleto. Formato dd/mm/aaaa|	Alfa Numérico|	Não
+campoLivre1|	Campo Livre 1	|Alfa Numérico|	Não
+campoLivre2|	Campo Livre 2|	Alfa Numérico	|Não
+campoLivre3|	Campo Livre 3	|Alfa Numérico|	Não
+campoLivre4|	Campo Livre 4	|Alfa Numérico	|Não
+campoLivre5|	Campo Livre 5	|Alfa Numérico	|Não
+
+
+*checkout*
+
+Campo | Descrição | Tipo | Obrigatório
+------| ---------- | ------- | ---------
+processar|	Enviar 0 - pagamento comum|	Numérico|	Sim
+tipoPagamento	|0 - Todas formas de pagamento;
+1 - Cartões de Crédito;
+2 - Cartões de Débito;
+3 - Boleto;
+4 - Transferência;
+| Numérico |	Sim
+
+*itensPedido*
+
+Campo | Descrição | Tipo | Obrigatório
+------| ---------- | ------- | ---------
+codigoProduto|	Código único que identifica o produto|	Alfa Numérico|	Caso utilize antifraude, sim
+nomeProduto|	Nome do Produto	Alfa Numérico|	Caso utilize antifraude, sim
+quantidadeProduto|	Quantidade do produto|	Numérico|	Sim
+valorUnitarioProduto|	Valor unitário do produto. Deve ser enviado sem pontos ou vírgulas|	Numérico| Sim
+codigoCategoria	|Código que identifica categoria do produto|	Alfa Numérico|Caso utilize antifraude, sim
+nomeCategoria|	Nome da categoria do produto	|Alfa Numérico|	Caso utilize antifraude, sim
+
+
+*dadosCobranca*
+
+Campo | Descrição | Tipo | Obrigatório
+------| ---------- | ------- | ---------
+nome|	Nome do comprador|	Alfa Numérico|	20 caracteres	|Sim
+email	|E-mail do comprador|	Alfa Numérico|	20 caracteres|	Sim
+documento|	Documento do Comprador|	Alfa Numérico|	100 caracteres|	Sim
+tipoCliente|	1 - Pessoa Física      2 - Pessoa Jurídica|	Numérico|	Caso utilize antifraude, sim
+endereco|	Nó reservado para dados de endereço do comprador|	 - |	 - 
+telefone|	Nó reservado para dados de telefone do comprador|	 -|	 -
+
+*endereco*
+
+Campo | Descrição | Tipo | Obrigatório
+------| ---------- | ------- | ---------
+logradouro|	Endereço do comprador|	Alfa Numérico|	Caso utilize antifraude, sim
+numero|	Número do comprador|	Alfa Numérico|	Caso utilize antifraude, sim
+bairro|	Bairro do comprador|	Alfa Numérico|	Caso utilize antifraude, sim
+complemento|	Complemento do endereço	|Alfa Numérico|	Não
+cidade|	Cidade do comprador|	Alfa Numérico|	Caso utilize antifraude, sim
+estado|	Estado do comprador|	Alfa Numérico|	Caso utilize antifraude, sim
+cep	|CEP do comprador|	Alfa Numérico|	Caso utilize antifraude, sim
+pais|	País do comprador|	Alfa Numérico|	Caso utilize antifraude, sim
+
+*telefone*
+
+Campo | Descrição | Tipo | Obrigatório
+------| ---------- | ------- | ---------
+tipoTelefone|	1 = Outros / 2 = Residencial / 3 = Comercial / 4 = Recados / 5 = Cobrança / 6 = Temporário|	Numérico|	Sim
+ddi|	Código DDI do telefone|	Alfa Numérico|	Caso utilize antifraude, sim
+ddd|	Código DDD do telefone|	Alfa Numérico|	Caso utilize antifraude, sim
+telefone|	Número do telefone|	Alfa Numérico|	Caso utilize antifraude, sim
+
+*dadosEntrega*
+
+Campo | Descrição | Tipo | Obrigatório
+------| ---------- | ------- | ---------
+nome|	Nome do comprador|	Alfa Numérico|	Não
+email|	E-mail do comprador|	Alfa Numérico|	Não
+endereco|	Nó reservado para dados de endereço do comprador|- |-
+telefone|	Nó reservado para dados de telefone do comprador|-|-
+
+
+**RESPOSTA**
+
+> Exemplo estrutura de resposta:
+
+```curl
+
+--header "Content-Type: application/json"
+{"urlPagamento": "https://homologacao.superpay.com.br/checkout/checkout/redirecionaPagamento?codigoPagamento=150609150796704e7-5b25-4a41-a753-a09bfb66db8d&tipoPagamento=0&oneClick=false"}
+
+```
+
+Campo | Descrição 
+------| ---------- 
+urlPagamento | URL para redirecionar o consumidor para o Checkout
 
 
 # Consultas
@@ -1701,13 +1924,13 @@ Campo | Descrição | Tipo | Tamanho
 ------| ----------|------| --------
 numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos
 codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay | Numérico | 13 dígitos
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
 valor | Valor da transação.| Numérico | Até 10 dígitos
 valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Url para autenticação em caso de cartão de débito |Alfa Numérico | Até 500 caracteres 
-statusTransacao | Status atual da transação | Numérico | Até 2 dígitos
+statusTransacao | [Status atual da transação](https://superpay.github.io/rest/#status-de-transacao) | Numérico | Até 2 dígitos
 autorizacao | Número de autorização da adquirente | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Código de retorno da adquirente | Numérico | Até 20 dígitos
 dataAprovacaoOperadora | Data aprovação |Alfa Numérico | Até 10 dígitos
@@ -1779,7 +2002,7 @@ Campo | Descrição
 numeroRecorrencia|	Número da Recorrência
 estabelecimento|	Código do estabelecimento, fornecido pelo SuperPay
 valor|	Valor
-statusTransacao	|Status da Parcela Recorrente
+statusTransacao	|[Status atual da transação recorrente](https://superpay.github.io/rest/#status-de-transacao)
 numeroPedido|	Número do Pedido
 numeroCobrancaTotal|	Quantidade total de cobranças pedidas no cadastro. Caso não tenha sido pedido um valor limite, este campo retornará a mensagem: “Sem Limite"
 numeroCobrancaRestantes|	Quantidade restante de cobranças a serem efetuadas.
@@ -1788,6 +2011,7 @@ codigoTransacaoOperadora|	Código de transação retornado pela operadora. Retor
 dataAprovacaoOperadora|	Data de aprovação retornado pela operadora. Retornado apenas se alguma cobrança já ocorreu
 numeroComprovanteVenda|	Número do comprovante de venda retornado pela operadora. Retornado apenas se alguma cobrança já ocorreu
 mensagemVenda	|Mensagem de venda retornado pela operadora. Retornado apenas se alguma cobrança já ocorreu
+
 
 # Post de Notificação
 ## Notificação vendas comuns

@@ -2491,63 +2491,11 @@ Código|Banco | Modalidade | Tecnologia
 
 Código|Nome
 ------| ----------
-
 39|PagSeguro 
 111|PayPal Nacional 
 112|PayPal Internacional 
 155|SafetyPay 
 
-
-# Anexos
-## Releases
-
-**01/06/2017**
-
-Disponibilizada integração com API 3.0 da adquirente Cielo
-
-
-**20/03/2017**
-
-Disponível novo método de consulta em SOAP com campo de data e horário de retorno da Antifraude. Para maiores informações clique aqui.
-
-
-**12/01/2017**
-
-Boletos com carteira registrada.
-
-
-## Módulo Magento
-
-[Baixe aqui seu Módulo](https://superpay.acelerato.com/base-de-conhecimento/#/artigos/5)
-
-**Particulariedades**
-
-* Não prestamos Suporte;
-* As ações de captura, cancelamento e estorno não estão disponíveis no Módulo Magento. Estas ações deverão ser realizadas diretamente no painel administrativo SuperPay;
-* As funcionalidades de Recorrência, Múltiplos Cartões, Retentativa de Pagamento e Switch de Adquirência atualmente não estão disponíveis no Módulo Magento;
-* O Módulo Magento SuperPay é compatível com as versões 1.5.X, 1.6.X, 1.7.X, 1.8.X, 1.9.X do Magento;
-* As adquirentes disponíveis no Módulo são: <code>Cielo, Rede, Elavon, GetNet e Stone</code>;
-* Os bancos disponíveis no Módulo são: <code>Itau, Bradesco, Caixa, HSBC, Banco do Brasil</code>.
-
-**Instalação**
-
-* Para utilização do Módulo é necessário a habilitação do SoapClient no php.ini.
-
-1. Descompacte o conteúdo do arquivo SuperPay_Magento_1.2.x.zip no diretório raiz de instalação do Magento.
-2. Atualize o cache do Magento, através do item System/Cache Management do administrador do sistema.
-3. O módulo está instalado! 
-
-**Configuração**
-
-1. Após a instalação do Módulo Magento Superpay, acesse a aba System/Configuration e clique em Payment Methods, encontrada na aba Sales.
-2. Feito o passo anterior, conseguirá visualizar as abas relacionadas as configurações do SuperPay.
-3. Clicar na aba "SuperPay Cartões" ou "SuperPay banco/boletos/redirect" para configuração dos campos abaixo:
-   * Título;
-   * Ambiente (Homologação ou Produção);
-   * Código do estabelecimento SuperPay;
-   * Usuário;
-   * Senha;
-   * Escolher as bandeiras/bancos em "Cartão de credito" / "Banco".
 
 # Downloads
 ## Exemplos de integração

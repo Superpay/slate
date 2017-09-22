@@ -287,6 +287,25 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#anexos" class="toc-h1 toc-link" data-title="Anexos">Anexos</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#releases" class="toc-h2 toc-link" data-title="Anexos">Releases</a>
+                  </li>
+                  <li>
+                    <a href="#modulo-magento" class="toc-h2 toc-link" data-title="Anexos">Módulo Magento</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#downloads" class="toc-h1 toc-link" data-title="Downloads">Downloads</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#formularios" class="toc-h2 toc-link" data-title="Downloads">Formulários</a>
+                  </li>
+              </ul>
+          </li>
       </div>
         <ul class="toc-footer">
             <li><a href='#'>Documentação API SuperPay</a></li>
@@ -665,7 +684,65 @@ O suporte Cielo realizará os testes em ambiente real e caso esteja dentro das c
       <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
    <span class="nt">&lt;/soap:body&gt;</span>
 <span class="nt">&lt;/soap:envelope&gt;</span>
-</code></pre>
+</code></pre><h1 id='anexos'>Anexos</h1><h2 id='releases'>Releases</h2>
+<p><strong>01/06/2017</strong></p>
+
+<p>Disponibilizada integração com API 3.0 da adquirente Cielo</p>
+
+<p><strong>20/03/2017</strong></p>
+
+<p>Disponível novo método de consulta em SOAP com campo de data e horário de retorno da Antifraude. Para maiores informações clique aqui.</p>
+
+<p><strong>12/01/2017</strong></p>
+
+<p>Boletos com carteira registrada.</p>
+<h2 id='modulo-magento'>Módulo Magento</h2>
+<p><a href="https://superpay.acelerato.com/base-de-conhecimento/#/artigos/5">Baixe aqui seu Módulo</a></p>
+
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li>Não prestamos Suporte;</li>
+<li>As ações de captura, cancelamento e estorno não estão disponíveis no Módulo Magento. Estas ações deverão ser realizadas diretamente no painel administrativo SuperPay;</li>
+<li>As funcionalidades de Recorrência, Múltiplos Cartões, Retentativa de Pagamento e Switch de Adquirência atualmente não estão disponíveis no Módulo Magento;</li>
+<li>O Módulo Magento SuperPay é compatível com as versões 1.5.X, 1.6.X, 1.7.X, 1.8.X, 1.9.X do Magento;</li>
+<li>As adquirentes disponíveis no Módulo são: <code>Cielo, Rede, Elavon, GetNet e Stone</code>;</li>
+<li>Os bancos disponíveis no Módulo são: <code>Itau, Bradesco, Caixa, HSBC, Banco do Brasil</code>.</li>
+</ul>
+
+<p><strong>Instalação</strong></p>
+
+<ul>
+<li>Para utilização do Módulo é necessário a habilitação do SoapClient no php.ini.</li>
+</ul>
+
+<ol>
+<li>Descompacte o conteúdo do arquivo SuperPay_Magento_1.2.x.zip no diretório raiz de instalação do Magento.</li>
+<li>Atualize o cache do Magento, através do item System/Cache Management do administrador do sistema.</li>
+<li>O módulo está instalado! </li>
+</ol>
+
+<p><strong>Configuração</strong></p>
+
+<ol>
+<li>Após a instalação do Módulo Magento Superpay, acesse a aba System/Configuration e clique em Payment Methods, encontrada na aba Sales.</li>
+<li>Feito o passo anterior, conseguirá visualizar as abas relacionadas as configurações do SuperPay.</li>
+<li>Clicar na aba &quot;SuperPay Cartões&quot; ou &quot;SuperPay banco/boletos/redirect&quot; para configuração dos campos abaixo:
+
+<ul>
+<li>Título;</li>
+<li>Ambiente (Homologação ou Produção);</li>
+<li>Código do estabelecimento SuperPay;</li>
+<li>Usuário;</li>
+<li>Senha;</li>
+<li>Escolher as bandeiras/bancos em &quot;Cartão de credito&quot; / &quot;Banco&quot;.</li>
+</ul></li>
+</ol>
+<h1 id='downloads'>Downloads</h1><h2 id='formularios'>Formulários</h2>
+<p><a href="https://superpay.acelerato.com/base-de-conhecimento/#/artigos/70">Formulário para criação de um novo estabelecimento</a></p>
+
+<p><a href="https://superpay.acelerato.com/base-de-conhecimento/#/artigos/71">Formulário para configuração das formas de pagamento</a></p>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
