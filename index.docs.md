@@ -11,11 +11,6 @@ toc_footers:
 
 search: true
 ---
-# Bem vindo ao SuperPay
-Tudo que você precisa para se integrar ao nosso Gateway.
-
-## Introdução
-Gateway de pagamento é uma solução tecnológica, que permite, facilmente, que quaisquer sistemas que possam se comunicar via WebService, realizem cobranças via boleto, cartão e transferências bancárias. Uma vez integrado ao SuperPay, seu sistema estará pronto para disponibilizar diversas formas de pagamento.
 
 # Funcionalidades
 ## Captura posterior de transações
@@ -96,15 +91,6 @@ Lembrando que o roteamento é possível apenas em bandeiras que existem em outra
 Não há alteração na estrutura de envio para utilização desta funcionalidade. O Ecommerce deverá se atentar no retorno deste processo, onde o código da forma ded pagamento será diferente do enviado.
 
 **Disponibilizado em nosso plano Corporativo**
-
-# Integrações 
-## Integração REST
-
-Para maiores informações [acesse aqui](https://superpay.github.io/rest).
-
-## Integração SOAP
-Para maiores informações [acesse aqui](https://superpay.github.io/soap).
-
 
 # Contratação e informações meios de pagamento
 Na aba lateral direita está disponível exemplos para cada meio de pagamento em XML (para integração SOAP) e cURL (para integração REST).
