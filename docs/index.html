@@ -285,26 +285,43 @@
                   <li>
                     <a href="#adquirente-cielo" class="toc-h2 toc-link" data-title="Contratação e informações meios de pagamento">Adquirente Cielo</a>
                   </li>
+                  <li>
+                    <a href="#adquirente-rede" class="toc-h2 toc-link" data-title="Contratação e informações meios de pagamento">Adquirente Rede</a>
+                  </li>
+                  <li>
+                    <a href="#adquirente-bin-first-data" class="toc-h2 toc-link" data-title="Contratação e informações meios de pagamento">Adquirente Bin - First Data</a>
+                  </li>
+                  <li>
+                    <a href="#adquirente-getnet" class="toc-h2 toc-link" data-title="Contratação e informações meios de pagamento">Adquirente GetNet</a>
+                  </li>
+                  <li>
+                    <a href="#adquirente-stone" class="toc-h2 toc-link" data-title="Contratação e informações meios de pagamento">Adquirente Stone</a>
+                  </li>
+                  <li>
+                    <a href="#banco-banrisul" class="toc-h2 toc-link" data-title="Contratação e informações meios de pagamento">Banco Banrisul</a>
+                  </li>
+                  <li>
+                    <a href="#itau-shopline" class="toc-h2 toc-link" data-title="Contratação e informações meios de pagamento">Itaú ShopLine</a>
+                  </li>
+                  <li>
+                    <a href="#bradesco-shopfacil" class="toc-h2 toc-link" data-title="Contratação e informações meios de pagamento">Bradesco ShopFácil</a>
+                  </li>
+                  <li>
+                    <a href="#banco-do-brasil-online" class="toc-h2 toc-link" data-title="Contratação e informações meios de pagamento">Banco do Brasil Online</a>
+                  </li>
+                  <li>
+                    <a href="#boletos-offlines" class="toc-h2 toc-link" data-title="Contratação e informações meios de pagamento">Boletos Offlines</a>
+                  </li>
+                  <li>
+                    <a href="#safetypay" class="toc-h2 toc-link" data-title="Contratação e informações meios de pagamento">SafetyPay</a>
+                  </li>
+                  <li>
+                    <a href="#intermediario-financeiro" class="toc-h2 toc-link" data-title="Contratação e informações meios de pagamento">Intermediário Financeiro</a>
+                  </li>
               </ul>
           </li>
           <li>
-            <a href="#anexos" class="toc-h1 toc-link" data-title="Anexos">Anexos</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#releases" class="toc-h2 toc-link" data-title="Anexos">Releases</a>
-                  </li>
-                  <li>
-                    <a href="#modulo-magento" class="toc-h2 toc-link" data-title="Anexos">Módulo Magento</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#downloads" class="toc-h1 toc-link" data-title="Downloads">Downloads</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#formularios" class="toc-h2 toc-link" data-title="Downloads">Formulários</a>
-                  </li>
-              </ul>
+            <a href="#modulo-magento" class="toc-h1 toc-link" data-title="Módulo Magento">Módulo Magento</a>
           </li>
       </div>
         <ul class="toc-footer">
@@ -443,14 +460,14 @@ Também é possível o envio do SoftDescriptor por pedido, para isto solicite ao
 <p>Após a integração com o SuperPay, o estabelecimento deverá configurar as credenciais da Cielo no ambiente de produção do SuperPay e apontar sua loja para o ambiente real do Gateway. Após isto, a loja deverá enviar ao Suporte Cielo (cieloecommerce@cielo.com.br) a URL da loja com um produto de teste no valor de R$1,00.
 O suporte Cielo realizará os testes em ambiente real e caso esteja dentro das conformidades a loja estará apta a realizar vendas em produção.</p>
 
-<p><strong>Exemplos</strong></p>
+<p><strong>Exemplos Cartão de Crédito</strong></p>
 
 <p>REQUISIÇÃO</p>
 
 <p>Estrutura simplificada de envio para adquirente Cielo. Caso seu estabelecimento utilize <em>antifraude</em>, seguir a <a href="https://superpay.github.io/soap/#criando-uma-transacao-com-analise-de-fraude">estrutura completa</a>.</p>
 
 <blockquote>
-<p>Estrutra simplificada de envio Cielo:</p>
+<p>Estrutra simplificada SOAP de envio Cielo:</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code>
 <span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
@@ -477,10 +494,48 @@ O suporte Cielo realizará os testes em ambiente real e caso esteja dentro das c
     <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
   <span class="nt">&lt;/soapenv:Body&gt;</span>
 <span class="nt">&lt;/soapenv:Envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Estrutra simplificada REST de envio Cielo:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   "codigoEstabelecimento" : 1000000000000,
+   "codigoFormaPagamento" : 171,
+   "transacao" : {
+      "numeroTransacao" : 123,
+      "valor" : 100,
+      "parcelas" : 1,
+      "idioma" : 1
+   },
+   "dadosCartao" : {
+      "nomePortador" : "Teste Teste",
+      "numeroCartao" : "0000000000000001",
+      "codigoSeguranca" : "123",
+      "dataValidade" : "12/2017"
+   },
+   "itensDoPedido" : [
+  {
+      "quantidadeProduto" : 1,
+      "valorUnitarioProduto" : 100
+  }
+   ],
+   "dadosCobranca" : {
+      "nome" : "Teste Integração",
+      "documento" : "12312312312"
+   }
+}
+
 </code></pre>
 <p>RESPOSTA</p>
 
-<p>Estrtura de retorno adquirente Cielo. Os comentários no XML indicam a informação retornada da adquirente em cada campo.</p>
+<p>Estrtura de retorno adquirente Cielo. Os comentários indicam a informação retornada da adquirente em cada campo.</p>
 
 <blockquote>
 <p>Retorno:</p>
@@ -514,6 +569,181 @@ O suporte Cielo realizará os testes em ambiente real e caso esteja dentro das c
       <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
    <span class="nt">&lt;/soap:body&gt;</span>
 <span class="nt">&lt;/soap:envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 123,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 171,
+   "valor": 2000,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   &lt;!--Status que deverá ser tratado pelo eCommerce--&gt;
+   "statusTransacao": 1,
+   &lt;!--Código de autorização--&gt;
+   "autorizacao": "123456",
+   &lt;!--Código erro em caso de negação--&gt;
+   "codigoTransacaoOperadora": "0",
+   &lt;!--Data retorno adquirente--&gt;
+   "dataAprovacaoOperadora": "24/05/2017",
+   &lt;!--TID--&gt;
+   "numeroComprovanteVenda": "10069930690009F2122A",
+   "nsu": "428706",
+   &lt;!--Mensagem adquirente--&gt;
+   "mensagemVenda": "Operation Success",
+   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoCielo/PagamentoCielo.do?cod=14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
+   "cartoesUtilizados": ["000000*******0001"]
+}
+
+</code></pre>
+<p><strong>Exemplos Cartão de Débito</strong></p>
+
+<p>REQUISIÇÃO</p>
+
+<p>Estrutura simplificada de envio para adquirente Cielo.</p>
+
+<blockquote>
+<p>Estrutra simplificada SOAP de envio Cielo:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;soapenv:Header/&gt;</span>
+  <span class="nt">&lt;soapenv:Body&gt;</span>
+   <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
+     <span class="nt">&lt;transacao&gt;</span>
+     <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+     <span class="nt">&lt;codigoFormaPagamento&gt;</span>178<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+     <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+     <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+      <span class="nt">&lt;documentoComprador&gt;</span>12312312312<span class="nt">&lt;/documentoComprador&gt;</span>
+      <span class="nt">&lt;nomeComprador&gt;</span>Teste SuperPay<span class="nt">&lt;/nomeComprador&gt;</span>
+     <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+     <span class="nt">&lt;dataValidadeCartao&gt;</span>12/2026<span class="nt">&lt;/dataValidadeCartao&gt;</span>
+     <span class="nt">&lt;nomeTitularCartaoCredito&gt;</span>teste superpay<span class="nt">&lt;/nomeTitularCartaoCredito&gt;</span>
+     <span class="nt">&lt;numeroCartaoCredito&gt;</span>4444333322221111<span class="nt">&lt;/numeroCartaoCredito&gt;</span>
+     <span class="nt">&lt;codigoSeguranca&gt;</span>123<span class="nt">&lt;/codigoSeguranca&gt;</span>
+     <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+     <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
+     <span class="nt">&lt;urlCampainha&gt;</span>http://seusite.com.br/campainha<span class="nt">&lt;/urlCampainha&gt;</span>
+     <span class="nt">&lt;urlRedirecionamentoNaoPago&gt;</span>http://seusite.com.br/pago<span class="nt">&lt;/urlRedirecionamentoNaoPago&gt;</span>
+     <span class="nt">&lt;urlRedirecionamentoPago&gt;</span>http://seusite.com.br/naopago<span class="nt">&lt;/urlRedirecionamentoPago&gt;</span>
+     <span class="nt">&lt;/transacao&gt;</span>
+     <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+     <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+    <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
+  <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Estrutra simplificada REST de envio Cielo:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   "codigoEstabelecimento" : 1000000000000,
+   "codigoFormaPagamento" : 179,
+   "transacao" : {
+      "numeroTransacao" : 123,
+      "valor" : 100,
+      "parcelas" : 1,
+      "idioma" : 1,
+      "urlCampainha" : http://seusite.com.br/campainha,
+      "urlResultado" : http://seusite.com.br/retorno
+   },
+   "dadosCartao" : {
+      "nomePortador" : "Teste Teste",
+      "numeroCartao" : "0000000000000001",
+      "codigoSeguranca" : "123",
+      "dataValidade" : "12/2017"
+   },
+   "itensDoPedido" : [
+  {
+      "quantidadeProduto" : 1,
+      "valorUnitarioProduto" : 100
+  }
+   ],
+   "dadosCobranca" : {
+      "nome" : "Teste Integração",
+      "documento" : "12312312312"
+   }
+}
+
+</code></pre>
+<p>RESPOSTA</p>
+
+<p>Estrtura de retorno adquirente Cielo. Os comentários indicam a informação retornada da adquirente em cada campo.</p>
+
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="c">&lt;!--Código de autorização--&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;</span>0<span class="nt">&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>178<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="c">&lt;!--Código erro em caso de negação--&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="c">&lt;!--Data retorno adquirente--&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;</span>2017-09-27 13:41:04<span class="err">&lt;</span><span class="nt">&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="c">&lt;!--Mensagem adquirente--&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;&lt;/mensagemVenda&gt;</span>
+            <span class="c">&lt;!--TID--&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;</span>1006993069181F841001<span class="nt">&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="c">&lt;!--Status que deverá ser tratado pelo eCommerce--&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>5<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="c">&lt;!--URL para redirecionar o consumidor--&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>https://homologacao.superpay.com.br/checkout/PagamentoCielo/PagamentoVisaElectron.do?cod=150653046191764ffaa27-0572-43fc-874d-e0bb4c6bf<span class="nt">&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>200<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+
+</code></pre><pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 123,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 179,
+   "valor": 2000,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   &lt;!--Status que deverá ser tratado pelo eCommerce--&gt;
+   "statusTransacao": 5,
+   &lt;!--Código de autorização--&gt;
+   "autorizacao": "0",
+   &lt;!--Código erro em caso de negação--&gt;
+   "codigoTransacaoOperadora": "0",
+   &lt;!--Data retorno adquirente--&gt;
+   "dataAprovacaoOperadora": "24/05/2017",
+   &lt;!--TID--&gt;
+   "numeroComprovanteVenda": "10069930690009F2122A",
+   "nsu": "0",
+   &lt;!--Mensagem adquirente--&gt;
+   "mensagemVenda": "Operation Success",
+   &lt;!--URL para redirecionar o consumidor--&gt;
+   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoCielo/PagamentoVisaElectron.do?cod=14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
+   "cartoesUtilizados": ["000000*******0001"]
+}
+
 </code></pre>
 <p><strong>CHECKOUT CIELO (REDIRECIONADO)</strong></p>
 
@@ -624,7 +854,7 @@ O suporte Cielo realizará os testes em ambiente real e caso esteja dentro das c
 <p>Estrutura simplificada de envio para adquirente Cielo. Caso seu estabelecimento utilize <em>antifraude</em>, seguir a <a href="https://superpay.github.io/soap/#criando-uma-transacao-com-analise-de-fraude">estrutura completa</a>.</p>
 
 <blockquote>
-<p>Estrutra simplificada de envio Cielo:</p>
+<p>Estrutra simplificada SOAP de envio Cielo:</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code>
 <span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
@@ -647,10 +877,42 @@ O suporte Cielo realizará os testes em ambiente real e caso esteja dentro das c
     <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
   <span class="nt">&lt;/soapenv:Body&gt;</span>
 <span class="nt">&lt;/soapenv:Envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Estrutra simplificada REST de envio Cielo:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   "codigoEstabelecimento" : 1000000000000,
+   "codigoFormaPagamento" : 52,
+   "transacao" : {
+      "numeroTransacao" : 123,
+      "valor" : 100,
+      "parcelas" : 1,
+      "idioma" : 1
+   },
+   "itensDoPedido" : [
+  {
+      "quantidadeProduto" : 1,
+      "valorUnitarioProduto" : 100
+  }
+   ],
+   "dadosCobranca" : {
+      "nome" : "Teste Integração",
+      "documento" : "12312312312"
+   }
+}
+
 </code></pre>
 <p>RESPOSTA</p>
 
-<p>Estrtura de retorno adquirente Cielo. Os comentários no XML indicam a informação retornada da adquirente em cada campo.</p>
+<p>Estrtura de retorno adquirente Cielo. Os comentários indicam a informação retornada da adquirente em cada campo.</p>
 
 <blockquote>
 <p>Retorno:</p>
@@ -684,19 +946,2871 @@ O suporte Cielo realizará os testes em ambiente real e caso esteja dentro das c
       <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
    <span class="nt">&lt;/soap:body&gt;</span>
 <span class="nt">&lt;/soap:envelope&gt;</span>
-</code></pre><h1 id='anexos'>Anexos</h1><h2 id='releases'>Releases</h2>
-<p><strong>01/06/2017</strong></p>
 
-<p>Disponibilizada integração com API 3.0 da adquirente Cielo</p>
+</code></pre><pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 123,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 52,
+   "valor": 2000,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   &lt;!--Status que deverá ser tratado pelo eCommerce--&gt;
+   "statusTransacao": 5,
+   &lt;!--Código de autorização--&gt;
+   "autorizacao": "",
+   &lt;!--Código erro em caso de negação--&gt;
+   "codigoTransacaoOperadora": "",
+   &lt;!--Data retorno adquirente--&gt;
+   "dataAprovacaoOperadora": "",
+   &lt;!--TID--&gt;
+   "numeroComprovanteVenda": "",
+   "nsu": "",
+   &lt;!--Mensagem adquirente--&gt;
+   "mensagemVenda": "",
+   &lt;!--Redirecionar o consumidor--&gt;
+   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoCielo/PagamentoCielo.do?cod=14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
+   "cartoesUtilizados": ["000000*******0001"]
+}
 
-<p><strong>20/03/2017</strong></p>
+</code></pre><h2 id='adquirente-rede'>Adquirente Rede</h2>
+<p><strong>MODALIDADE WEBSERVICE</strong></p>
 
-<p>Disponível novo método de consulta em SOAP com campo de data e horário de retorno da Antifraude. Para maiores informações clique aqui.</p>
+<p><strong>Contratação</strong></p>
 
-<p><strong>12/01/2017</strong></p>
+<p>Contratando a solução da e-Rede será possível oferecer na sua loja:</p>
 
-<p>Boletos com carteira registrada.</p>
-<h2 id='modulo-magento'>Módulo Magento</h2>
+<ul>
+<li><p>Cartão de crédito aunteticado;</p></li>
+<li><p>Cartão de crédito Visa;</p></li>
+<li><p>Cartão de crédito MasterCard;</p></li>
+<li><p>Cartão de crédito Diners;</p></li>
+<li><p>Cartão de crédito Hiper;</p></li>
+<li><p>Cartão de crédito HierpCard;</p></li>
+<li><p>Cartão de crédito JCB;</p></li>
+<li><p>Cartão de crédito Credz;</p></li>
+<li><p>Cartão de débito Visa Electron;</p></li>
+<li><p>Cartão de débito Maestro;</p></li>
+</ul>
+
+<p>Ao final do processo de contratação, deve-se estar de posse das seguintes informações para ativação do e-Rede no Gateway:</p>
+
+<ul>
+<li>Filiação (PV);</li>
+<li>Token;</li>
+</ul>
+
+<p>O Superpay não participa das negociações entre o estabelecimento e bancos/adquirentes. Desta forma, taxas ou eventuais isenções são tratadas de forma direta entre os envolvidos.</p>
+
+<p>Informações sobre a contratação, <a href="https://www.userede.com.br/nossos-produtos/e-rede">acesse aqui</a></p>
+
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li><p>Para esta modalidade é necessário certificado SSL de segurança <strong>2048 bits</strong>;</p></li>
+<li><p>Esta operadora de cartão permite cadastrar uma informação para aparecer na fatura dos clientes quando realizarem compras sua loja, funcionalidade chamada de SoftDescriptor. Esta deverá possuir até 13 caracteres.
+Caso queira utilizar, envie ao Suporte SuperPay o nome desejado para configuração em seu estabelecimento.</p></li>
+</ul>
+
+<p>Também é possível o envio do SoftDescriptor por pedido, para isto solicite ao Suporte a ativação e envie a informação no campoLivre4 de cada transação;</p>
+
+<ul>
+<li>Para transações com <em>cartão de débito</em> ou <em>autenticada</em>, o eCommerce deverá enviar o &quot;userAgente&quot; (Identificador do browser utilizado pelo comprador no momento da compra) no campo <code>&lt;campoLivre1&gt;</code> e redirecionar o consumidor para o campo <code>&lt;urlPagamento&gt;</code> recebida no retorno, onde o mesmo deverá incluir sua senha ou token no ambiente do banco emissor. Apenas após esta etapa, a transação será concluída.</li>
+</ul>
+
+<p><strong>Exemplos Cartão de Crédito</strong></p>
+
+<p>REQUISIÇÃO</p>
+
+<p>Estrutura simplificada de envio para adquirente Rede. Caso seu estabelecimento utilize <em>antifraude</em>, seguir a <a href="https://superpay.github.io/soap/#criando-uma-transacao-com-analise-de-fraude">estrutura completa</a>.</p>
+
+<blockquote>
+<p>Estrutra simplificada SOAP de envio Rede:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;soapenv:Header/&gt;</span>
+  <span class="nt">&lt;soapenv:Body&gt;</span>
+   <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
+     <span class="nt">&lt;transacao&gt;</span>
+     <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+     <span class="nt">&lt;codigoFormaPagamento&gt;</span>190<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+     <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+     <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+      <span class="nt">&lt;documentoComprador&gt;</span>12312312312<span class="nt">&lt;/documentoComprador&gt;</span>
+      <span class="nt">&lt;nomeComprador&gt;</span>Teste SuperPay<span class="nt">&lt;/nomeComprador&gt;</span>
+     <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+     <span class="nt">&lt;dataValidadeCartao&gt;</span>02/2019<span class="nt">&lt;/dataValidadeCartao&gt;</span>
+     <span class="nt">&lt;nomeTitularCartaoCredito&gt;</span>teste superpay<span class="nt">&lt;/nomeTitularCartaoCredito&gt;</span>
+     <span class="nt">&lt;numeroCartaoCredito&gt;</span>4002479199570736<span class="nt">&lt;/numeroCartaoCredito&gt;</span>
+     <span class="nt">&lt;codigoSeguranca&gt;</span>123<span class="nt">&lt;/codigoSeguranca&gt;</span>
+     <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+     <span class="nt">&lt;valor&gt;</span>511100<span class="nt">&lt;/valor&gt;</span>
+     <span class="nt">&lt;/transacao&gt;</span>
+     <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+     <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+    <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
+  <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Estrutra simplificada REST de envio Rede:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   "codigoEstabelecimento" : 1000000000000,
+   "codigoFormaPagamento" : 191,
+   "transacao" : {
+      "numeroTransacao" : 123,
+      "valor" : 500000,
+      "parcelas" : 1,
+      "idioma" : 1
+   },
+   "dadosCartao" : {
+      "nomePortador" : "Teste Teste",
+      "numeroCartao" : "5899160000000005",
+      "codigoSeguranca" : "123",
+      "dataValidade" : "01/2019"
+   },
+   "itensDoPedido" : [
+  {
+      "quantidadeProduto" : 1,
+      "valorUnitarioProduto" : 500000
+  }
+   ],
+   "dadosCobranca" : {
+      "nome" : "Teste Integração",
+      "documento" : "12312312312"
+   }
+}
+
+</code></pre>
+<p>RESPOSTA</p>
+
+<p>Estrtura de retorno adquirente Rede. Os comentários indicam a informação retornada da adquirente em cada campo.</p>
+
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="c">&lt;!--Código de autorização--&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;</span>123456<span class="nt">&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>190<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="c">&lt;!--Código retorno Cielo--&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="c">&lt;!--Data retorno adquirente--&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;</span>24/05/2017<span class="nt">&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="c">&lt;!--Mensagem adquirente--&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;</span>00 - Success.<span class="nt">&lt;/mensagemVenda&gt;</span>
+            <span class="c">&lt;!--TID--&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;</span>10117092708342800232<span class="nt">&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="c">&lt;!--Status que deverá ser tratado pelo eCommerce--&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>1<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>14132971582229c00506d-e84d-4526-b902-92190d5aa808<span class="nt">&lt;urlpagamento&gt;&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>511100<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 123,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 191,
+   "valor": 500000,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   &lt;!--Status que deverá ser tratado pelo eCommerce--&gt;
+   "statusTransacao": 1,
+   &lt;!--Código de autorização--&gt;
+   "autorizacao": "123456",
+   &lt;!--Código retorno Cielo--&gt;
+   "codigoTransacaoOperadora": "0",
+   &lt;!--Data retorno adquirente--&gt;
+   "dataAprovacaoOperadora": "24/05/2017",
+   &lt;!--TID--&gt;
+   "numeroComprovanteVenda": "10117092708342800232",
+   "nsu": "428706",
+   &lt;!--Mensagem adquirente--&gt;
+   "mensagemVenda": "00 - Success",
+   "urlPagamento": "14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
+   "cartoesUtilizados": ["589916******0005"]
+}
+
+</code></pre>
+<p><strong>Exemplos Cartão de Débito</strong></p>
+
+<p>REQUISIÇÃO</p>
+
+<p>Estrutura simplificada de envio para adquirente Rede.</p>
+
+<blockquote>
+<p>Estrutra simplificada SOAP de envio Rede:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;soapenv:Header/&gt;</span>
+  <span class="nt">&lt;soapenv:Body&gt;</span>
+   <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
+     <span class="nt">&lt;transacao&gt;</span>
+     <span class="nt">&lt;campoLivre1&gt;</span>Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Mobile/7B405<span class="nt">&lt;/campoLivre1&gt;</span>
+     <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+     <span class="nt">&lt;codigoFormaPagamento&gt;</span>197<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+     <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+     <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+      <span class="nt">&lt;documentoComprador&gt;</span>12312312312<span class="nt">&lt;/documentoComprador&gt;</span>
+      <span class="nt">&lt;nomeComprador&gt;</span>Teste SuperPay<span class="nt">&lt;/nomeComprador&gt;</span>
+     <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+     <span class="nt">&lt;dataValidadeCartao&gt;</span>01/2019<span class="nt">&lt;/dataValidadeCartao&gt;</span>
+     <span class="nt">&lt;nomeTitularCartaoCredito&gt;</span>teste superpay<span class="nt">&lt;/nomeTitularCartaoCredito&gt;</span>
+     <span class="nt">&lt;numeroCartaoCredito&gt;</span>5899160000000005<span class="nt">&lt;/numeroCartaoCredito&gt;</span>
+     <span class="nt">&lt;codigoSeguranca&gt;</span>132<span class="nt">&lt;/codigoSeguranca&gt;</span>
+     <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+     <span class="nt">&lt;valor&gt;</span>500000<span class="nt">&lt;/valor&gt;</span>
+     <span class="nt">&lt;urlCampainha&gt;</span>http://seusite.com.br/campainha<span class="nt">&lt;/urlCampainha&gt;</span>
+     <span class="nt">&lt;urlRedirecionamentoNaoPago&gt;</span>http://seusite.com.br/pago<span class="nt">&lt;/urlRedirecionamentoNaoPago&gt;</span>
+     <span class="nt">&lt;urlRedirecionamentoPago&gt;</span>http://seusite.com.br/naopago<span class="nt">&lt;/urlRedirecionamentoPago&gt;</span>
+     <span class="nt">&lt;/transacao&gt;</span>
+     <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+     <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+    <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
+  <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Estrutra simplificada REST de envio Rede:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   "codigoEstabelecimento" : 1000000000000,
+   "codigoFormaPagamento" : 198,
+   "transacao" : {
+      "numeroTransacao" : 123,
+      "valor" : 511100,
+      "parcelas" : 1,
+      "idioma" : 1,
+      "urlCampainha" : http://seusite.com.br/campainha,
+      "urlResultado" : http://seusite.com.br/retorno,
+      "campoLivre1" : Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Mobile/7B405
+   },
+   "dadosCartao" : {
+      "nomePortador" : "Teste Teste",
+      "numeroCartao" : "4002479199570736",
+      "codigoSeguranca" : "132",
+      "dataValidade" : "01/2019"
+   },
+   "itensDoPedido" : [
+  {
+      "quantidadeProduto" : 1,
+      "valorUnitarioProduto" : 100
+  }
+   ],
+   "dadosCobranca" : {
+      "nome" : "Teste Integração",
+      "documento" : "12312312312"
+   }
+}
+
+</code></pre>
+<p>RESPOSTA</p>
+
+<p>Estrtura de retorno adquirente Rede. Os comentários indicam a informação retornada da adquirente em cada campo.</p>
+
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="c">&lt;!--Código de autorização--&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;</span>0<span class="nt">&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>197<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="c">&lt;!--Código erro em caso de negação--&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="c">&lt;!--Data retorno adquirente--&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;</span>2017-09-27 13:41:04<span class="err">&lt;</span><span class="nt">&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="c">&lt;!--Mensagem adquirente--&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;</span>220 - Transaction request with authentication received. Redirect URL sent.<span class="nt">&lt;/mensagemVenda&gt;</span>
+            <span class="c">&lt;!--TID--&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda/&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="c">&lt;!--Status que deverá ser tratado pelo eCommerce--&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>8<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="c">&lt;!--URL para redirecionar o consumidor--&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>https://homologacao.superpay.com.br/checkout/erede/pg.do?cod=1506533536609b7edee8b-7549-488a-9ae1-65f9f92a1b4c<span class="nt">&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>500000<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+
+</code></pre><pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 123,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 198,
+   "valor": 511100,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   &lt;!--Status que deverá ser tratado pelo eCommerce--&gt;
+   "statusTransacao": 8,
+   &lt;!--Código de autorização--&gt;
+   "autorizacao": "0",
+   &lt;!--Código de erro--&gt;
+   "codigoTransacaoOperadora": "0",
+   &lt;!--Data retorno adquirente--&gt;
+   "dataAprovacaoOperadora": "24/05/2017",
+   &lt;!--TID--&gt;
+   "numeroComprovanteVenda": "10069930690009F2122A",
+   "nsu": "0",
+   &lt;!--Mensagem adquirente--&gt;
+   "mensagemVenda": "00 - Success",
+   &lt;!--URL para redirecionar o consumidor--&gt;
+   "urlPagamento": "https://homologacao.superpay.com.br/checkout/erede/pg.do?cod=1506533536609b7edee8b-7549-488a-9ae1-65f9f92a1b4c",
+   "cartoesUtilizados": ["400247******0736"]
+}
+
+</code></pre><h2 id='adquirente-bin-first-data'>Adquirente Bin - First Data</h2>
+<p><strong>Contratação</strong></p>
+
+<p>Contratando a solução da Bin eCommerce será possível oferecer na sua loja:</p>
+
+<ul>
+<li>Cartão de crédito Visa;</li>
+<li>Cartão de crédito MasterCard;</li>
+<li>Cartão de crédito Cabal;</li>
+</ul>
+
+<p>Ao final do processo de contratação, deve-se estar de posse das seguintes informações para ativação do e-Rede no Gateway:</p>
+
+<ul>
+<li>Store Id;</li>
+<li>User Id;</li>
+<li>Password;</li>
+<li>Arquivo do certificado BIN;</li>
+<li>Senha do certificado;</li>
+<li>Terminal ID.</li>
+</ul>
+
+<p>O Superpay não participa das negociações entre o estabelecimento e bancos/adquirentes. Desta forma, taxas ou eventuais isenções são tratadas de forma direta entre os envolvidos.</p>
+
+<p>Informações sobre a contratação, <a href="https://www.bin.com.br/content/bin/pt_br/home/peca-ja/solicite-seu-credenciamento.html">acesse aqui</a></p>
+
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li><p>Para esta modalidade é necessário certificado SSL de segurança <strong>2048 bits</strong>;</p></li>
+<li><p>Integração apenas na modalidade WebService.</p></li>
+</ul>
+
+<p><strong>Exemplos</strong></p>
+
+<p>REQUISIÇÃO</p>
+
+<p>Estrutura simplificada de envio para adquirente Bin. Caso seu estabelecimento utilize <em>antifraude</em>, seguir a <a href="https://superpay.github.io/soap/#criando-uma-transacao-com-analise-de-fraude">estrutura completa</a>.</p>
+
+<blockquote>
+<p>Estrutra simplificada SOAP de envio Bin:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;soapenv:Header/&gt;</span>
+  <span class="nt">&lt;soapenv:Body&gt;</span>
+   <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
+     <span class="nt">&lt;transacao&gt;</span>
+     <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+     <span class="nt">&lt;codigoFormaPagamento&gt;</span>380<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+     <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+     <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+      <span class="nt">&lt;documentoComprador&gt;</span>12312312312<span class="nt">&lt;/documentoComprador&gt;</span>
+      <span class="nt">&lt;nomeComprador&gt;</span>Teste SuperPay<span class="nt">&lt;/nomeComprador&gt;</span>
+     <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+     <span class="nt">&lt;dataValidadeCartao&gt;</span>12/2026<span class="nt">&lt;/dataValidadeCartao&gt;</span>
+     <span class="nt">&lt;nomeTitularCartaoCredito&gt;</span>teste superpay<span class="nt">&lt;/nomeTitularCartaoCredito&gt;</span>
+     <span class="nt">&lt;numeroCartaoCredito&gt;</span>4488540010253330004<span class="nt">&lt;/numeroCartaoCredito&gt;</span>
+     <span class="nt">&lt;codigoSeguranca&gt;</span>123<span class="nt">&lt;/codigoSeguranca&gt;</span>
+     <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+     <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+     <span class="nt">&lt;/transacao&gt;</span>
+     <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+     <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+    <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
+  <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Estrutra simplificada REST de envio Bin:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   "codigoEstabelecimento" : 1000000000000,
+   "codigoFormaPagamento" : 381,
+   "transacao" : {
+      "numeroTransacao" : 123,
+      "valor" : 500000,
+      "parcelas" : 1,
+      "idioma" : 1
+   },
+   "dadosCartao" : {
+      "nomePortador" : "Teste Teste",
+      "numeroCartao" : "5547220000000102",
+      "codigoSeguranca" : "123",
+      "dataValidade" : "12/2017"
+   },
+   "itensDoPedido" : [
+  {
+      "quantidadeProduto" : 1,
+      "valorUnitarioProduto" : 100
+  }
+   ],
+   "dadosCobranca" : {
+      "nome" : "Teste Integração",
+      "documento" : "12312312312"
+   }
+}
+
+</code></pre>
+<p>RESPOSTA</p>
+
+<p>Estrtura de retorno adquirente Bin. Os comentários indicam a informação retornada da adquirente em cada campo.</p>
+
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="c">&lt;!--Código de autorização--&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;</span>657409<span class="nt">&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>380<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="c">&lt;!--Código de retorno BIN--&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>9113<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="c">&lt;!--Data retorno adquirente--&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;</span>2017-10-20 16:36:43<span class="nt">&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="c">&lt;!--Mensagem adquirente--&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;</span>APPROVAL 000009113<span class="nt">&lt;/mensagemVenda&gt;</span>
+            <span class="c">&lt;!--TID--&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;</span>Y:657409:4514266711:PPX :632615<span class="nt">&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="c">&lt;!--Status que deverá ser tratado pelo eCommerce--&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>1<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>14132971582229c00506d-e84d-4526-b902-92190d5aa808<span class="nt">&lt;urlpagamento&gt;&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 123,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 381,
+   "valor": 100,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   &lt;!--Status que deverá ser tratado pelo eCommerce--&gt;
+   "statusTransacao": 1,
+   &lt;!--Código de autorização--&gt;
+   "autorizacao": "657409",
+   &lt;!--Código retorno Bin--&gt;
+   "codigoTransacaoOperadora": "0",
+   &lt;!--Data retorno adquirente--&gt;
+   "dataAprovacaoOperadora": "20/10/2017 16:36:43",
+   &lt;!--TID--&gt;
+   "numeroComprovanteVenda": "Y:657409:4514266711:PPX :632615",
+   "nsu": "",
+   &lt;!--Mensagem adquirente--&gt;
+   "mensagemVenda": "APPROVAL 000009113",
+   "urlPagamento": "14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
+   "cartoesUtilizados": ["554722******0102"]
+}
+
+</code></pre><h2 id='adquirente-getnet'>Adquirente GetNet</h2>
+<p><strong>Contratação</strong></p>
+
+<p>Contratando a solução da GetNet eCommerce será possível oferecer na sua loja:</p>
+
+<ul>
+<li>Cartão de crédito Visa;</li>
+<li>Cartão de crédito MasterCard;</li>
+</ul>
+
+<p>Ao final do processo de contratação, deve-se estar de posse das seguintes informações para ativação do e-Rede no Gateway:</p>
+
+<ul>
+<li>Merchant Id;</li>
+<li>Terminal Id;</li>
+<li>Usuário;</li>
+<li>Senha.</li>
+</ul>
+
+<p>O Superpay não participa das negociações entre o estabelecimento e bancos/adquirentes. Desta forma, taxas ou eventuais isenções são tratadas de forma direta entre os envolvidos.</p>
+
+<p>Informações sobre a contratação, <a href="https://www.getnet.com.br/#/solucoes/e-commerce">acesse aqui</a></p>
+
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li><p>Para esta modalidade é necessário certificado SSL de segurança <strong>2048 bits</strong>;</p></li>
+<li><p>Integração apenas na modalidade WebService.</p></li>
+</ul>
+
+<p><strong>Exemplos</strong></p>
+
+<p>REQUISIÇÃO</p>
+
+<p>Estrutura simplificada de envio para adquirente GetNet. Caso seu estabelecimento utilize <em>antifraude</em>, seguir a <a href="https://superpay.github.io/soap/#criando-uma-transacao-com-analise-de-fraude">estrutura completa</a>.</p>
+
+<blockquote>
+<p>Estrutra simplificada SOAP de envio GetNet:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;soapenv:Header/&gt;</span>
+  <span class="nt">&lt;soapenv:Body&gt;</span>
+   <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
+     <span class="nt">&lt;transacao&gt;</span>
+     <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+     <span class="nt">&lt;codigoFormaPagamento&gt;</span>270<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+     <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+     <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+      <span class="nt">&lt;documentoComprador&gt;</span>12312312312<span class="nt">&lt;/documentoComprador&gt;</span>
+      <span class="nt">&lt;nomeComprador&gt;</span>Teste SuperPay<span class="nt">&lt;/nomeComprador&gt;</span>
+     <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+     <span class="nt">&lt;dataValidadeCartao&gt;</span>12/2026<span class="nt">&lt;/dataValidadeCartao&gt;</span>
+     <span class="nt">&lt;nomeTitularCartaoCredito&gt;</span>teste superpay<span class="nt">&lt;/nomeTitularCartaoCredito&gt;</span>
+     <span class="nt">&lt;numeroCartaoCredito&gt;</span>4012001038166662<span class="nt">&lt;/numeroCartaoCredito&gt;</span>
+     <span class="nt">&lt;codigoSeguranca&gt;</span>123<span class="nt">&lt;/codigoSeguranca&gt;</span>
+     <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+     <span class="nt">&lt;valor&gt;</span>10000<span class="nt">&lt;/valor&gt;</span>
+     <span class="nt">&lt;/transacao&gt;</span>
+     <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+     <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+    <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
+  <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Estrutra simplificada REST de envio GetNet:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   "codigoEstabelecimento" : 1000000000000,
+   "codigoFormaPagamento" : 271,
+   "transacao" : {
+      "numeroTransacao" : 123,
+      "valor" : 500000,
+      "parcelas" : 1,
+      "idioma" : 1
+   },
+   "dadosCartao" : {
+      "nomePortador" : "Teste Teste",
+      "numeroCartao" : "5453010000083303",
+      "codigoSeguranca" : "123",
+      "dataValidade" : "12/2017"
+   },
+   "itensDoPedido" : [
+  {
+      "quantidadeProduto" : 1,
+      "valorUnitarioProduto" : 100
+  }
+   ],
+   "dadosCobranca" : {
+      "nome" : "Teste Integração",
+      "documento" : "12312312312"
+   }
+}
+
+</code></pre>
+<p>RESPOSTA</p>
+
+<p>Estrtura de retorno adquirente GetNet. Os comentários indicam a informação retornada da adquirente em cada campo.</p>
+
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="c">&lt;!--Código de autorização--&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;</span>1234<span class="nt">&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>270<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="c">&lt;!--Código de retorno Getnet--&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="c">&lt;!--Data retorno adquirente--&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;</span>1016<span class="nt">&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="c">&lt;!--Mensagem adquirente--&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;</span>CAPTURED<span class="nt">&lt;/mensagemVenda&gt;</span>
+            <span class="c">&lt;!--TID--&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;</span>1662429594<span class="nt">&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="c">&lt;!--Status que deverá ser tratado pelo eCommerce--&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>1<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>14132971582229c00506d-e84d-4526-b902-92190d5aa808<span class="nt">&lt;urlpagamento&gt;&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>10000<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 123,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 271,
+   "valor": 100,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   &lt;!--Status que deverá ser tratado pelo eCommerce--&gt;
+   "statusTransacao": 1,
+   &lt;!--Código de autorização--&gt;
+   "autorizacao": "1234",
+   &lt;!--Código retorno GetNet--&gt;
+   "codigoTransacaoOperadora": "0",
+   &lt;!--Data retorno adquirente--&gt;
+   "dataAprovacaoOperadora": "1017",
+   &lt;!--TID--&gt;
+   "numeroComprovanteVenda": "1662429594",
+   "nsu": "",
+   &lt;!--Mensagem adquirente--&gt;
+   "mensagemVenda": "CAPTURED",
+   "urlPagamento": "14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
+   "cartoesUtilizados": ["545301******3303"]
+}
+
+</code></pre><h2 id='adquirente-stone'>Adquirente Stone</h2>
+<p><strong>Contratação</strong></p>
+
+<p>Contratando a solução da Stone eCommerce será possível oferecer na sua loja:</p>
+
+<ul>
+<li>Cartão de crédito Visa;</li>
+<li>Cartão de crédito MasterCard;</li>
+</ul>
+
+<p>Ao final do processo de contratação, deve-se estar de posse das seguintes informações para ativação do e-Rede no Gateway:</p>
+
+<ul>
+<li>Sale affiliation key;</li>
+<li>Stone Code;</li>
+</ul>
+
+<p>O Superpay não participa das negociações entre o estabelecimento e bancos/adquirentes. Desta forma, taxas ou eventuais isenções são tratadas de forma direta entre os envolvidos.</p>
+
+<p>Informações sobre a contratação, <a href="https://stone-pagamentos.typeform.com/to/A4caIq">acesse aqui</a></p>
+
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li><p>Para esta modalidade é necessário certificado SSL de segurança <strong>2048 bits</strong>;</p></li>
+<li><p>Integração apenas na modalidade WebService.</p></li>
+</ul>
+
+<p><strong>Exemplos</strong></p>
+
+<p>REQUISIÇÃO</p>
+
+<p>Estrutura simplificada de envio para adquirente Stone. Caso seu estabelecimento utilize <em>antifraude</em>, seguir a <a href="https://superpay.github.io/soap/#criando-uma-transacao-com-analise-de-fraude">estrutura completa</a>.</p>
+
+<blockquote>
+<p>Estrutra simplificada SOAP de envio Stone:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;soapenv:Header/&gt;</span>
+  <span class="nt">&lt;soapenv:Body&gt;</span>
+   <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
+     <span class="nt">&lt;transacao&gt;</span>
+     <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+     <span class="nt">&lt;codigoFormaPagamento&gt;</span>350<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+     <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+     <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+      <span class="nt">&lt;documentoComprador&gt;</span>12312312312<span class="nt">&lt;/documentoComprador&gt;</span>
+      <span class="nt">&lt;nomeComprador&gt;</span>Teste SuperPay<span class="nt">&lt;/nomeComprador&gt;</span>
+     <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+     <span class="nt">&lt;dataValidadeCartao&gt;</span>12/2026<span class="nt">&lt;/dataValidadeCartao&gt;</span>
+     <span class="nt">&lt;nomeTitularCartaoCredito&gt;</span>teste superpay<span class="nt">&lt;/nomeTitularCartaoCredito&gt;</span>
+     <span class="nt">&lt;numeroCartaoCredito&gt;</span>4444111122223333<span class="nt">&lt;/numeroCartaoCredito&gt;</span>
+     <span class="nt">&lt;codigoSeguranca&gt;</span>123<span class="nt">&lt;/codigoSeguranca&gt;</span>
+     <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+     <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+     <span class="nt">&lt;/transacao&gt;</span>
+     <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+     <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+    <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
+  <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Estrutra simplificada REST de envio Stone:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   "codigoEstabelecimento" : 1000000000000,
+   "codigoFormaPagamento" : 351,
+   "transacao" : {
+      "numeroTransacao" : 123,
+      "valor" : 500000,
+      "parcelas" : 1,
+      "idioma" : 1
+   },
+   "dadosCartao" : {
+      "nomePortador" : "Teste Teste",
+      "numeroCartao" : "5431111111111111",
+      "codigoSeguranca" : "123",
+      "dataValidade" : "12/2017"
+   },
+   "itensDoPedido" : [
+  {
+      "quantidadeProduto" : 1,
+      "valorUnitarioProduto" : 100
+  }
+   ],
+   "dadosCobranca" : {
+      "nome" : "Teste Integração",
+      "documento" : "12312312312"
+   }
+}
+
+</code></pre>
+<p>RESPOSTA</p>
+
+<p>Estrtura de retorno adquirente Stone. Os comentários indicam a informação retornada da adquirente em cada campo.</p>
+
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="c">&lt;!--Código de autorização--&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;</span>1234<span class="nt">&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>350<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="c">&lt;!--Código de retorno Stone--&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="c">&lt;!--Data retorno adquirente--&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;</span>2014-10-16 17:20:33-03:00<span class="nt">&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="c">&lt;!--Mensagem adquirente--&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;</span>Transação Aprovada<span class="nt">&lt;/mensagemVenda&gt;</span>
+            <span class="c">&lt;!--TID--&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;</span>1662429594<span class="nt">&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="c">&lt;!--Status que deverá ser tratado pelo eCommerce--&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>1<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>14132971582229c00506d-e84d-4526-b902-92190d5aa808<span class="nt">&lt;urlpagamento&gt;&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 123,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 351,
+   "valor": 100,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   &lt;!--Status que deverá ser tratado pelo eCommerce--&gt;
+   "statusTransacao": 1,
+   &lt;!--Código de autorização--&gt;
+   "autorizacao": "1234",
+   &lt;!--Código retorno Stone--&gt;
+   "codigoTransacaoOperadora": "0",
+   &lt;!--Data retorno adquirente--&gt;
+   "dataAprovacaoOperadora": "20/10/2017 16:36:43",
+   &lt;!--TID--&gt;
+   "numeroComprovanteVenda": "1662429594",
+   "nsu": "",
+   &lt;!--Mensagem adquirente--&gt;
+   "mensagemVenda": "Transação Aprovada",
+   "urlPagamento": "14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
+   "cartoesUtilizados": ["543111******1111"]
+}
+
+</code></pre><h2 id='banco-banrisul'>Banco Banrisul</h2>
+<p><strong>Contratação</strong></p>
+
+<p>Contratando a solução BanriCompras será possível oferecer na sua loja:</p>
+
+<ul>
+<li>Boleto sem registro;</li>
+<li>Pagamento pré datado;</li>
+<li>Pagamentos parcelados;</li>
+<li>Pagamentos á vista.</li>
+</ul>
+
+<p>Ao final do processo de contratação, deve-se estar de posse das seguintes informações para ativação do e-Rede no Gateway:</p>
+
+<ul>
+<li>Código do estabelecimento Banrisul;</li>
+<li>Código da rede;</li>
+<li>Senha de consulta.</li>
+</ul>
+
+<p>O Superpay não participa das negociações entre o estabelecimento e bancos/adquirentes. Desta forma, taxas ou eventuais isenções são tratadas de forma direta entre os envolvidos.</p>
+
+<p>Informações sobre a contratação, entre em contato com <em>banrisul_cartoes_atendimento_adquirencia@banrisul.com.br</em></p>
+
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li>Modalidades com redirecionamento;</li>
+<li>Para utilização das modalidades Banricompras, todos os campos referente aos dados do cliente devem ser preenchidos;</li>
+<li>Se não for informado uma data de vencimento do boleto, a data de vencimento que aparecerá no boleto será os dias de vencimento configurado internamente no Gateway;</li>
+<li>Processo de homologação junto ao Banrisul obrigatório para liberação em produção.</li>
+</ul>
+
+<p><strong>Configurações ambiente Banrisul</strong></p>
+
+<p>Para o Gateway de Pagamento funcionar corretamente, é necessário configurar algumas urls no ambiente do Banricompras.</p>
+
+<p>CAMPAINHA</p>
+
+<table><thead>
+<tr>
+<th>Ambiente</th>
+<th>Link Painel Banrisul</th>
+<th>Url Campainha</th>
+<th>Método para envio</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>HOMOLOGAÇÃO</td>
+<td>https://ww4.banrisul.com.br/banricompras/</td>
+<td>https://homologacao.superpay.com.br/checkout/Banrisul/NotificacaoBanrisul.do</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>PRODUÇÃO</td>
+<td>https://ww7.banrisul.com.br/banricompras/</td>
+<td>https://superpay2.superpay.com.br/checkout/Banrisul/NotificacaoBanrisul.do</td>
+<td>POST</td>
+</tr>
+</tbody></table>
+
+<p>PÁGINAS DE AVISO DE OPERAÇÃO</p>
+
+<table><thead>
+<tr>
+<th>Ambiente</th>
+<th>Link Painel Banrisul</th>
+<th>Url Sucesso</th>
+<th>Url Não Pago</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>HOMOLOGAÇÃO</td>
+<td>https://ww4.banrisul.com.br/banricompras/</td>
+<td>https://homologacao.superpay.com.br/checkout/Banrisul/RedirecionamentoBanrisulOk.do</td>
+<td>https://homologacao.superpay.com.br/superpay/Banrisul/RedirecionamentoBanrisulNoOk.do</td>
+</tr>
+<tr>
+<td>PRODUÇÃO</td>
+<td>https://ww7.banrisul.com.br/banricompras/</td>
+<td>https://superpay2.superpay.com.br/checkout/Banrisul/RedirecionamentoBanrisulOk.do</td>
+<td>https://superpay2.superpay.com.br/checkout/Banrisul/RedirecionamentoBanrisulNoOk.do</td>
+</tr>
+</tbody></table>
+
+<p><strong>Processo de Homologação</strong></p>
+
+<p>Após realizar a integração com o SuperPay em ambiente de testes e configurações no painel Banrisul, enviar para <em>tecnologia_homologacoes@banrisul.com.br</em> o link de acesso a página de testes, bem como o código de usuário e senha para login. Assim que o processo for finalizado pela equipe Banrisul, os mesmos enviarão os dados de produção para o estabelecimento.</p>
+
+<p><strong>Exemplos</strong></p>
+
+<p>REQUISIÇÃO</p>
+
+<p>Estrutura de envio para banco Banrisul. </p>
+
+<blockquote>
+<p>Estrutra SOAP de envio Banrisul:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
+         <span class="nt">&lt;transacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>23<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+               <span class="nt">&lt;bairroEnderecoComprador&gt;</span>Centro<span class="nt">&lt;/bairroEnderecoComprador&gt;</span>
+               <span class="nt">&lt;bairroEnderecoEntrega&gt;</span>Centro<span class="nt">&lt;/bairroEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;cepEnderecoComprador&gt;</span>09710240<span class="nt">&lt;/cepEnderecoComprador&gt;</span>
+               <span class="nt">&lt;cepEnderecoEntrega&gt;</span>09710240<span class="nt">&lt;/cepEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;cidadeEnderecoComprador&gt;</span>São Paulo<span class="nt">&lt;/cidadeEnderecoComprador&gt;</span>
+               <span class="nt">&lt;cidadeEnderecoEntrega&gt;</span>São Paulo<span class="nt">&lt;/cidadeEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;codigoCliente&gt;&lt;/codigoCliente&gt;</span>
+               <span class="nt">&lt;codigoTipoTelefoneComprador&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneComprador&gt;</span>
+               <span class="nt">&lt;codigoTipoTelefoneEntrega&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneEntrega&gt;</span>
+               <span class="nt">&lt;complementoEnderecoComprador&gt;&lt;/complementoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;complementoEnderecoEntrega&gt;&lt;/complementoEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;dataNascimentoComprador&gt;</span>01/01/1990<span class="nt">&lt;/dataNascimentoComprador&gt;</span>
+               <span class="nt">&lt;dddComprador&gt;</span>12<span class="nt">&lt;/dddComprador&gt;</span>
+               <span class="nt">&lt;dddEntrega&gt;</span>12<span class="nt">&lt;/dddEntrega&gt;</span>
+               <span class="nt">&lt;ddiComprador&gt;</span>55<span class="nt">&lt;/ddiComprador&gt;</span>
+               <span class="nt">&lt;ddiEntrega&gt;</span>55<span class="nt">&lt;/ddiEntrega&gt;</span>
+               <span class="nt">&lt;documentoComprador&gt;</span>12345678900<span class="nt">&lt;/documentoComprador&gt;</span>
+               <span class="nt">&lt;emailComprador&gt;</span>teste@teste.com.br<span class="nt">&lt;/emailComprador&gt;</span>
+               <span class="nt">&lt;enderecoComprador&gt;</span>Rua da Casa<span class="nt">&lt;/enderecoComprador&gt;</span>
+               <span class="nt">&lt;enderecoEntrega&gt;</span>Rua da Casa<span class="nt">&lt;/enderecoEntrega&gt;</span>
+               <span class="nt">&lt;estadoEnderecoComprador&gt;</span>sp<span class="nt">&lt;/estadoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;estadoEnderecoEntrega&gt;</span>sp<span class="nt">&lt;/estadoEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;nomeComprador&gt;</span>Nome do comprador<span class="nt">&lt;/nomeComprador&gt;</span>
+               <span class="nt">&lt;numeroEnderecoComprador&gt;</span>123<span class="nt">&lt;/numeroEnderecoComprador&gt;</span>
+               <span class="nt">&lt;numeroEnderecoEntrega&gt;</span>123<span class="nt">&lt;/numeroEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;paisComprador&gt;</span>brasil<span class="nt">&lt;/paisComprador&gt;</span>
+               <span class="nt">&lt;paisEntrega&gt;</span>brasil<span class="nt">&lt;/paisEntrega&gt;</span>
+               <span class="nt">&lt;sexoComprador&gt;</span>m<span class="nt">&lt;/sexoComprador&gt;</span>
+               <span class="nt">&lt;telefoneComprador&gt;</span>36535915<span class="nt">&lt;/telefoneComprador&gt;</span>
+               <span class="nt">&lt;telefoneEntrega&gt;</span>36535915<span class="nt">&lt;/telefoneEntrega&gt;</span>
+               <span class="nt">&lt;tipoCliente&gt;</span>1<span class="nt">&lt;/tipoCliente&gt;</span>
+            <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+            <span class="nt">&lt;IP&gt;</span>10.10.0.1<span class="nt">&lt;/IP&gt;</span>
+            <span class="nt">&lt;idioma&gt;</span>1<span class="nt">&lt;/idioma&gt;</span>
+            <span class="nt">&lt;itensDoPedido&gt;</span>
+               <span class="nt">&lt;codigoCategoria&gt;</span>1<span class="nt">&lt;/codigoCategoria&gt;</span>
+               <span class="nt">&lt;codigoProduto&gt;</span>1<span class="nt">&lt;/codigoProduto&gt;</span>
+               <span class="nt">&lt;nomeCategoria&gt;</span>Produto Teste<span class="nt">&lt;/nomeCategoria&gt;</span>
+               <span class="nt">&lt;nomeProduto&gt;</span>Produto Teste<span class="nt">&lt;/nomeProduto&gt;</span>
+               <span class="nt">&lt;quantidadeProduto&gt;</span>1<span class="nt">&lt;/quantidadeProduto&gt;</span>
+               <span class="nt">&lt;valorUnitarioProduto&gt;</span>100<span class="nt">&lt;/valorUnitarioProduto&gt;</span>
+            <span class="nt">&lt;/itensDoPedido&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>123456<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;origemTransacao&gt;&lt;/origemTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlCampainha&gt;</span>http://minhaloja.com.br/notificação.asp<span class="nt">&lt;/urlCampainha&gt;</span>
+            <span class="nt">&lt;urlRedirecionamentoNaoPago&gt;</span>http://www.pagamentonaopago.com.br<span class="nt">&lt;/urlRedirecionamentoNaoPago&gt;</span>
+            <span class="nt">&lt;urlRedirecionamentoPago&gt;</span>http://www.pagamentopago.com.br<span class="nt">&lt;/urlRedirecionamentoPago&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/transacao&gt;</span>
+         <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+         <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+      <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Estrutra  REST de envio Banrisul:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   codigoEstabelecimento: 1000000000000,
+   codigoFormaPagamento: 26,
+   transacao: {
+    numeroTransacao: 1,
+    valor: 2000,
+    valorDesconto: 0,
+    parcelas : 1,
+    urlCampainha : http://seusite.com.br/campainha,
+    urlResultado : http://seusite.com.br/retorno,
+    ip : "192.168.12.110",
+    idioma : 1,
+    dataVencimentoBoleto : "10/10/2018"
+   },
+   itensDoPedido: [
+  {
+    codigoProduto: 1,
+    nomeProduto: Blusa,
+    codigoCategoria: 1,
+    nomeCategoria : Roupa,
+    quantidadeProduto : 1,
+    valorUnitarioProduto : 2000
+  }
+   ],
+   dadosCobranca : {
+    codigoCliente : 1,
+    tipoCliente : 1,
+    nome : Teste SuperPay,
+    email : teste@teste.com,
+    dataNascimento : "",
+    sexo : "M",
+    documento : "12312321312",
+    endereco : {
+    logradouro : Rua Teste,
+    numero : 123,
+    complemento : "",
+    cep : 12345-678,
+    bairro : Bairro Teste,
+    cidade : Cidade Teste,
+    estado : SP,
+    pais : BR
+  },
+  telefone : [
+  {
+    tipoTelefone : 1,
+    ddi : 55,
+    ddd : 12,
+    telefone : 1234-5678
+  }
+  ]
+   },
+   dadosEntrega : {
+    nome : Teste SuperPay,
+    email : teste@teste.com,
+    endereco : {
+    logradouro : Rua teste,
+    numero : 123,
+    complemento : "",
+    cep : 12345-678,
+    bairro : Bairro Teste,
+    cidade : Cidade Teste,
+    estado : SP,
+    pais : BR
+  },
+  telefone : [
+  {
+    tipoTelefone : 1,
+    ddi : 55,
+    ddd : 12,
+    telefone : 1234-5678
+  }
+  ]
+   }
+}
+</code></pre>
+<p>RESPOSTA</p>
+
+<p>Estrtura de retorno adquirente Banrisul.</p>
+
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>23<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;&lt;/mensagemVenda&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1234<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>8<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>https://homologacao.superpay.com.br/checkout/Avista/PagamentoBanrisul.do?cod=141348960683a720e602-5631-4725-8f79-268c06795a3c<span class="nt">&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 1,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 26,
+   "valor": 2000,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   "statusTransacao": 8,
+   "autorizacao": ,
+   "codigoTransacaoOperadora": "0",
+   "dataAprovacaoOperadora": ,
+   "numeroComprovanteVenda": ,
+   "nsu": ,
+   "mensagemVenda": ,
+   "urlPagamento": "https://homologacao.superpay.com.br/checkout/Boleto/PagamentoBanrisul.do?cod=141348960683a720e602-5631-4725-8f79-268c06795a3c"
+}
+
+</code></pre><h2 id='itau-shopline'>Itaú ShopLine</h2>
+<p><strong>Contratação</strong></p>
+
+<p>Contratando a solução Itaú ShopLine será possível oferecer na sua loja:</p>
+
+<ul>
+<li>Boleto <em>sem</em> ou <em>com</em> registro, dependendo de seu contrato com o banco;</li>
+<li>Transferência eletrônica;</li>
+</ul>
+
+<p>Ao final do processo de contratação, deve-se estar de posse das seguintes informações para ativação do e-Rede no Gateway:</p>
+
+<ul>
+<li>Código da empresa;</li>
+<li>Chave de acesso.</li>
+</ul>
+
+<p>O Superpay não participa das negociações entre o estabelecimento e bancos/adquirentes. Desta forma, taxas ou eventuais isenções são tratadas de forma direta entre os envolvidos.</p>
+
+<p>Informações sobre a contratação, <a href="https://www.itau.com.br/empresas/recebimentos/shopline/">acesse aqui</a></p>
+
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li>Modalidades com redirecionamento;</li>
+<li>O tamanho do número do pedido deverá ser de no máximo <strong>8 dígitos</strong>;</li>
+<li>Para utilização das modalidades ShopLine, todos os campos referente aos dados do cliente devem ser preenchidos;</li>
+<li>Tempo padrão de consulta no banco para atualização do status no SuperPay: 120 dias;</li>
+<li>Se não for informado uma data de vencimento do boleto, a data de vencimento que aparecerá no boleto será os dias de vencimento configurado internamente no Gateway;</li>
+</ul>
+
+<p><strong>Configurações ambiente Itaú ShopLine</strong></p>
+
+<p>Para o Gateway de Pagamento funcionar corretamente, é necessário configurar URL de retorno no BankLine.</p>
+
+<p>Acesse o BankLine, aba Cobrança &gt; Itaú Shopline &gt; Informações Cadastrais e inclua a URL abaixo no campo &quot;URL Retorno&quot;</p>
+
+<aside class="notice">
+URL RETORNO: https://superpay2.superpay.com.br/checkout/
+</aside>
+
+<p><strong>Exemplos</strong></p>
+
+<p>REQUISIÇÃO</p>
+
+<p>Estrutura de envio para banco Itaú. </p>
+
+<blockquote>
+<p>Estrutra SOAP de envio Itaú:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
+         <span class="nt">&lt;transacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>17<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+               <span class="nt">&lt;bairroEnderecoComprador&gt;</span>Centro<span class="nt">&lt;/bairroEnderecoComprador&gt;</span>
+               <span class="nt">&lt;bairroEnderecoEntrega&gt;</span>Centro<span class="nt">&lt;/bairroEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;cepEnderecoComprador&gt;</span>09710240<span class="nt">&lt;/cepEnderecoComprador&gt;</span>
+               <span class="nt">&lt;cepEnderecoEntrega&gt;</span>09710240<span class="nt">&lt;/cepEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;cidadeEnderecoComprador&gt;</span>São Paulo<span class="nt">&lt;/cidadeEnderecoComprador&gt;</span>
+               <span class="nt">&lt;cidadeEnderecoEntrega&gt;</span>São Paulo<span class="nt">&lt;/cidadeEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;codigoCliente&gt;&lt;/codigoCliente&gt;</span>
+               <span class="nt">&lt;codigoTipoTelefoneComprador&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneComprador&gt;</span>
+               <span class="nt">&lt;codigoTipoTelefoneEntrega&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneEntrega&gt;</span>
+               <span class="nt">&lt;complementoEnderecoComprador&gt;&lt;/complementoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;complementoEnderecoEntrega&gt;&lt;/complementoEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;dataNascimentoComprador&gt;</span>01/01/1990<span class="nt">&lt;/dataNascimentoComprador&gt;</span>
+               <span class="nt">&lt;dddComprador&gt;</span>12<span class="nt">&lt;/dddComprador&gt;</span>
+               <span class="nt">&lt;dddEntrega&gt;</span>12<span class="nt">&lt;/dddEntrega&gt;</span>
+               <span class="nt">&lt;ddiComprador&gt;</span>55<span class="nt">&lt;/ddiComprador&gt;</span>
+               <span class="nt">&lt;ddiEntrega&gt;</span>55<span class="nt">&lt;/ddiEntrega&gt;</span>
+               <span class="nt">&lt;documentoComprador&gt;</span>12345678900<span class="nt">&lt;/documentoComprador&gt;</span>
+               <span class="nt">&lt;emailComprador&gt;</span>teste@teste.com.br<span class="nt">&lt;/emailComprador&gt;</span>
+               <span class="nt">&lt;enderecoComprador&gt;</span>Rua da Casa<span class="nt">&lt;/enderecoComprador&gt;</span>
+               <span class="nt">&lt;enderecoEntrega&gt;</span>Rua da Casa<span class="nt">&lt;/enderecoEntrega&gt;</span>
+               <span class="nt">&lt;estadoEnderecoComprador&gt;</span>sp<span class="nt">&lt;/estadoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;estadoEnderecoEntrega&gt;</span>sp<span class="nt">&lt;/estadoEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;nomeComprador&gt;</span>Nome do comprador<span class="nt">&lt;/nomeComprador&gt;</span>
+               <span class="nt">&lt;numeroEnderecoComprador&gt;</span>123<span class="nt">&lt;/numeroEnderecoComprador&gt;</span>
+               <span class="nt">&lt;numeroEnderecoEntrega&gt;</span>123<span class="nt">&lt;/numeroEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;paisComprador&gt;</span>brasil<span class="nt">&lt;/paisComprador&gt;</span>
+               <span class="nt">&lt;paisEntrega&gt;</span>brasil<span class="nt">&lt;/paisEntrega&gt;</span>
+               <span class="nt">&lt;sexoComprador&gt;</span>m<span class="nt">&lt;/sexoComprador&gt;</span>
+               <span class="nt">&lt;telefoneComprador&gt;</span>36535915<span class="nt">&lt;/telefoneComprador&gt;</span>
+               <span class="nt">&lt;telefoneEntrega&gt;</span>36535915<span class="nt">&lt;/telefoneEntrega&gt;</span>
+               <span class="nt">&lt;tipoCliente&gt;</span>1<span class="nt">&lt;/tipoCliente&gt;</span>
+            <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+            <span class="nt">&lt;IP&gt;</span>10.10.0.1<span class="nt">&lt;/IP&gt;</span>
+            <span class="nt">&lt;idioma&gt;</span>1<span class="nt">&lt;/idioma&gt;</span>
+            <span class="nt">&lt;itensDoPedido&gt;</span>
+               <span class="nt">&lt;codigoCategoria&gt;</span>1<span class="nt">&lt;/codigoCategoria&gt;</span>
+               <span class="nt">&lt;codigoProduto&gt;</span>1<span class="nt">&lt;/codigoProduto&gt;</span>
+               <span class="nt">&lt;nomeCategoria&gt;</span>Produto Teste<span class="nt">&lt;/nomeCategoria&gt;</span>
+               <span class="nt">&lt;nomeProduto&gt;</span>Produto Teste<span class="nt">&lt;/nomeProduto&gt;</span>
+               <span class="nt">&lt;quantidadeProduto&gt;</span>1<span class="nt">&lt;/quantidadeProduto&gt;</span>
+               <span class="nt">&lt;valorUnitarioProduto&gt;</span>100<span class="nt">&lt;/valorUnitarioProduto&gt;</span>
+            <span class="nt">&lt;/itensDoPedido&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;origemTransacao&gt;&lt;/origemTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlCampainha&gt;</span>http://minhaloja.com.br/notificação.asp<span class="nt">&lt;/urlCampainha&gt;</span>
+            <span class="nt">&lt;urlRedirecionamentoNaoPago&gt;</span>http://www.pagamentonaopago.com.br<span class="nt">&lt;/urlRedirecionamentoNaoPago&gt;</span>
+            <span class="nt">&lt;urlRedirecionamentoPago&gt;</span>http://www.pagamentopago.com.br<span class="nt">&lt;/urlRedirecionamentoPago&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+            <span class="nt">&lt;vencimentoBoleto&gt;</span>10/10/2018<span class="nt">&lt;/vencimentoBoleto&gt;</span>
+         <span class="nt">&lt;/transacao&gt;</span>
+         <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+         <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+      <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Estrutra  REST de envio Itaú:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   codigoEstabelecimento: 1000000000000,
+   codigoFormaPagamento: 16,
+   transacao: {
+    numeroTransacao: 1,
+    valor: 2000,
+    valorDesconto: 0,
+    parcelas : 1,
+    urlCampainha : http://seusite.com.br/campainha,
+    urlResultado : http://seusite.com.br/retorno,
+    ip : "192.168.12.110",
+    idioma : 1
+   },
+   itensDoPedido: [
+  {
+    codigoProduto: 1,
+    nomeProduto: Blusa,
+    codigoCategoria: 1,
+    nomeCategoria : Roupa,
+    quantidadeProduto : 1,
+    valorUnitarioProduto : 2000
+  }
+   ],
+   dadosCobranca : {
+    codigoCliente : 1,
+    tipoCliente : 1,
+    nome : Teste SuperPay,
+    email : teste@teste.com,
+    dataNascimento : "",
+    sexo : "M",
+    documento : "12312321312",
+    endereco : {
+    logradouro : Rua Teste,
+    numero : 123,
+    complemento : "",
+    cep : 12345-678,
+    bairro : Bairro Teste,
+    cidade : Cidade Teste,
+    estado : SP,
+    pais : BR
+  },
+  telefone : [
+  {
+    tipoTelefone : 1,
+    ddi : 55,
+    ddd : 12,
+    telefone : 1234-5678
+  }
+  ]
+   },
+   dadosEntrega : {
+    nome : Teste SuperPay,
+    email : teste@teste.com,
+    endereco : {
+    logradouro : Rua teste,
+    numero : 123,
+    complemento : "",
+    cep : 12345-678,
+    bairro : Bairro Teste,
+    cidade : Cidade Teste,
+    estado : SP,
+    pais : BR
+  },
+  telefone : [
+  {
+    tipoTelefone : 1,
+    ddi : 55,
+    ddd : 12,
+    telefone : 1234-5678
+  }
+  ]
+   }
+}
+</code></pre>
+<p>RESPOSTA</p>
+
+<p>Estrtura de retorno Itaú.</p>
+
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>17<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;&lt;/mensagemVenda&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>8<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>https://homologacao.superpay.com.br/checkout/PagamentoItauShopline/PagamentoItauShopline.do?cod=141348960683a720e602-5631-4725-8f79-268c06795a3c<span class="nt">&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 1,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 16,
+   "valor": 2000,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   "statusTransacao": 8,
+   "autorizacao": ,
+   "codigoTransacaoOperadora": "0",
+   "dataAprovacaoOperadora": ,
+   "numeroComprovanteVenda": ,
+   "nsu": ,
+   "mensagemVenda": ,
+   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoItauShopline/PagamentoItauShopline.do?cod=141348960683a720e602-5631-4725-8f79-268c06795a3c"
+}
+
+</code></pre><h2 id='bradesco-shopfacil'>Bradesco ShopFácil</h2>
+<p><strong>BOLETO</strong></p>
+
+<p><strong>Contratação</strong></p>
+
+<p>Contratando a solução Bradesco ShopFácil será possível oferecer na sua loja:</p>
+
+<ul>
+<li>Boleto <em>sem</em> ou <em>com</em> registro, dependendo de seu contrato com o banco;</li>
+</ul>
+
+<p>Ao final do processo de contratação, deve-se estar de posse das seguintes informações para ativação do e-Rede no Gateway:</p>
+
+<ul>
+<li>Merchantid;</li>
+<li>Email de acesso ao gerenciador;</li>
+<li>Chave de Acesso; (Gerada dentro do gerenciador do Bradesco, passo a passo abaixo);</li>
+<li>Número da Carteira.</li>
+</ul>
+
+<p>O Superpay não participa das negociações entre o estabelecimento e bancos/adquirentes. Desta forma, taxas ou eventuais isenções são tratadas de forma direta entre os envolvidos.</p>
+
+<p>Informações sobre a contratação, <a href="http://www.bradesco.com.br/html/corporate/produtos-servicos/parcerias-e-oportunidades/shopfacil-empresa.shtm">acesse aqui</a></p>
+
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li>Modalidades com redirecionamento;</li>
+<li>Para utilização das modalidades ShopFácil, todos os campos referente aos dados do cliente devem ser preenchidos;</li>
+<li>Se não for informado uma data de vencimento do boleto, a data de vencimento que aparecerá no boleto será os dias de vencimento configurado internamente no Gateway;</li>
+</ul>
+
+<p><strong>Configurações ambiente ShopFácil</strong></p>
+
+<p><em>Gerando chave de acesso</em></p>
+
+<p>Procedimento idêntico em ambos ambientes:</p>
+
+<table><thead>
+<tr>
+<th>Ambiente</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Homologação</td>
+<td><a href="https://homolog.meiosdepagamentobradesco.com.br/gerenciadorapi">https://homolog.meiosdepagamentobradesco.com.br/gerenciadorapi</a></td>
+</tr>
+<tr>
+<td>Produção</td>
+<td><a href="https://meiosdepagamentobradesco.com.br/gerenciadorapi">https://meiosdepagamentobradesco.com.br/gerenciadorapi</a></td>
+</tr>
+</tbody></table>
+
+<p>Após logar, acesse Configurações &gt; Meios de Pagamento &gt; Boleto Bancário, inclua uma palavra secreta para geração da chave.</p>
+
+<p><em>Configurando URL de notificação</em></p>
+
+<p>Após logar, acesse Configuração &gt; Meios de Pagamento &gt; Boleto Bancário, incluir no campo &quot;URL de notificação&quot;:</p>
+
+<table><thead>
+<tr>
+<th>Ambiente</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Homologação</td>
+<td>https://homologacao.superpay.com.br/checkout/bradesco/confirmaBoletoRegistro</td>
+</tr>
+<tr>
+<td>Produção</td>
+<td>https://superpay2.superpay.com.br/checkout/bradesco/confirmaBoletoRegistro</td>
+</tr>
+</tbody></table>
+
+<p><strong>Processo de Homologação</strong></p>
+
+<p>Procedimento deve ser realizado em duas etapas, ambiente de homologação e ambiente de Produção:</p>
+
+<p><em>Homologação</em></p>
+
+<p>Realizar as configurações no painel Bradesco conforme informado acima e solicitar ao Suporte SuperPay realizar a configuração do meio de pagamento em nosso ambiente de homologação, informando a ele os dados abaixo:</p>
+
+<ul>
+<li>Merchantid;</li>
+<li>Email de acesso ao gerenciador de homologação;</li>
+<li>Chave de acesso de homologação;</li>
+<li>Número da carteira;</li>
+</ul>
+
+<p>A loja virtual deverá estar apontando para o ambiente de homologação e depois disto basta enviar email kit@scopus.com.br com a URL da loja com um produto de R$1,00 disponível para testes e o CNPJ do estabelecimento.
+Depois que a equipe do Bradesco validar este ambiente, o estabelecimento receberá novos dados, desta vez os dados reais da loja. E o procedimento deverá ser repedito porém desta vez em ambiente de produção.</p>
+
+<p><em>Produção</em></p>
+
+<p>Realizar as configurações no painel Bradesco conforme informado acima e solicitar ao Suporte SuperPay realizar a configuração do meio de pagamento em nosso ambiente de produção, informando a ele os dados abaixo:</p>
+
+<ul>
+<li>Merchantid;</li>
+<li>Email de acesso ao gerenciador de homologação;</li>
+<li>Chave de acesso de homologação;</li>
+<li>Número da carteira;</li>
+</ul>
+
+<p>A loja virtual deverá estar apontando para o ambiente de produção e depois disto basta enviar email kit@scopus.com.br com a URL da loja com um produto de R$1,00 disponível para testes e o CNPJ do estabelecimento.
+Depois que a equipe do Bradesco validar este ambiente, o estabelecimento estará apto a realizar vendas em produção.</p>
+
+<p><strong>Exemplos</strong></p>
+
+<p>REQUISIÇÃO</p>
+
+<p>Estrutura de envio para banco Bradesco. </p>
+
+<blockquote>
+<p>Estrutra SOAP de envio Bradesco Boleto:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
+         <span class="nt">&lt;transacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>19<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+               <span class="nt">&lt;bairroEnderecoComprador&gt;</span>Centro<span class="nt">&lt;/bairroEnderecoComprador&gt;</span>
+               <span class="nt">&lt;bairroEnderecoEntrega&gt;</span>Centro<span class="nt">&lt;/bairroEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;cepEnderecoComprador&gt;</span>09710240<span class="nt">&lt;/cepEnderecoComprador&gt;</span>
+               <span class="nt">&lt;cepEnderecoEntrega&gt;</span>09710240<span class="nt">&lt;/cepEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;cidadeEnderecoComprador&gt;</span>São Paulo<span class="nt">&lt;/cidadeEnderecoComprador&gt;</span>
+               <span class="nt">&lt;cidadeEnderecoEntrega&gt;</span>São Paulo<span class="nt">&lt;/cidadeEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;codigoCliente&gt;&lt;/codigoCliente&gt;</span>
+               <span class="nt">&lt;codigoTipoTelefoneComprador&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneComprador&gt;</span>
+               <span class="nt">&lt;codigoTipoTelefoneEntrega&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneEntrega&gt;</span>
+               <span class="nt">&lt;complementoEnderecoComprador&gt;&lt;/complementoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;complementoEnderecoEntrega&gt;&lt;/complementoEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;dataNascimentoComprador&gt;</span>01/01/1990<span class="nt">&lt;/dataNascimentoComprador&gt;</span>
+               <span class="nt">&lt;dddComprador&gt;</span>12<span class="nt">&lt;/dddComprador&gt;</span>
+               <span class="nt">&lt;dddEntrega&gt;</span>12<span class="nt">&lt;/dddEntrega&gt;</span>
+               <span class="nt">&lt;ddiComprador&gt;</span>55<span class="nt">&lt;/ddiComprador&gt;</span>
+               <span class="nt">&lt;ddiEntrega&gt;</span>55<span class="nt">&lt;/ddiEntrega&gt;</span>
+               <span class="nt">&lt;documentoComprador&gt;</span>12345678900<span class="nt">&lt;/documentoComprador&gt;</span>
+               <span class="nt">&lt;emailComprador&gt;</span>teste@teste.com.br<span class="nt">&lt;/emailComprador&gt;</span>
+               <span class="nt">&lt;enderecoComprador&gt;</span>Rua da Casa<span class="nt">&lt;/enderecoComprador&gt;</span>
+               <span class="nt">&lt;enderecoEntrega&gt;</span>Rua da Casa<span class="nt">&lt;/enderecoEntrega&gt;</span>
+               <span class="nt">&lt;estadoEnderecoComprador&gt;</span>sp<span class="nt">&lt;/estadoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;estadoEnderecoEntrega&gt;</span>sp<span class="nt">&lt;/estadoEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;nomeComprador&gt;</span>Nome do comprador<span class="nt">&lt;/nomeComprador&gt;</span>
+               <span class="nt">&lt;numeroEnderecoComprador&gt;</span>123<span class="nt">&lt;/numeroEnderecoComprador&gt;</span>
+               <span class="nt">&lt;numeroEnderecoEntrega&gt;</span>123<span class="nt">&lt;/numeroEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;paisComprador&gt;</span>brasil<span class="nt">&lt;/paisComprador&gt;</span>
+               <span class="nt">&lt;paisEntrega&gt;</span>brasil<span class="nt">&lt;/paisEntrega&gt;</span>
+               <span class="nt">&lt;sexoComprador&gt;</span>m<span class="nt">&lt;/sexoComprador&gt;</span>
+               <span class="nt">&lt;telefoneComprador&gt;</span>36535915<span class="nt">&lt;/telefoneComprador&gt;</span>
+               <span class="nt">&lt;telefoneEntrega&gt;</span>36535915<span class="nt">&lt;/telefoneEntrega&gt;</span>
+               <span class="nt">&lt;tipoCliente&gt;</span>1<span class="nt">&lt;/tipoCliente&gt;</span>
+            <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+            <span class="nt">&lt;IP&gt;</span>10.10.0.1<span class="nt">&lt;/IP&gt;</span>
+            <span class="nt">&lt;idioma&gt;</span>1<span class="nt">&lt;/idioma&gt;</span>
+            <span class="nt">&lt;itensDoPedido&gt;</span>
+               <span class="nt">&lt;codigoCategoria&gt;</span>1<span class="nt">&lt;/codigoCategoria&gt;</span>
+               <span class="nt">&lt;codigoProduto&gt;</span>1<span class="nt">&lt;/codigoProduto&gt;</span>
+               <span class="nt">&lt;nomeCategoria&gt;</span>Produto Teste<span class="nt">&lt;/nomeCategoria&gt;</span>
+               <span class="nt">&lt;nomeProduto&gt;</span>Produto Teste<span class="nt">&lt;/nomeProduto&gt;</span>
+               <span class="nt">&lt;quantidadeProduto&gt;</span>1<span class="nt">&lt;/quantidadeProduto&gt;</span>
+               <span class="nt">&lt;valorUnitarioProduto&gt;</span>100<span class="nt">&lt;/valorUnitarioProduto&gt;</span>
+            <span class="nt">&lt;/itensDoPedido&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;origemTransacao&gt;&lt;/origemTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlCampainha&gt;</span>http://minhaloja.com.br/notificação.asp<span class="nt">&lt;/urlCampainha&gt;</span>
+            <span class="nt">&lt;urlRedirecionamentoNaoPago&gt;</span>http://www.pagamentonaopago.com.br<span class="nt">&lt;/urlRedirecionamentoNaoPago&gt;</span>
+            <span class="nt">&lt;urlRedirecionamentoPago&gt;</span>http://www.pagamentopago.com.br<span class="nt">&lt;/urlRedirecionamentoPago&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+            <span class="nt">&lt;vencimentoBoleto&gt;</span>10/10/2018<span class="nt">&lt;/vencimentoBoleto&gt;</span>
+         <span class="nt">&lt;/transacao&gt;</span>
+         <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+         <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+      <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Estrutra  REST de envio Bradesco Transferência:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   codigoEstabelecimento: 1000000000000,
+   codigoFormaPagamento: 18,
+   transacao: {
+    numeroTransacao: 1,
+    valor: 2000,
+    valorDesconto: 0,
+    parcelas : 1,
+    urlCampainha : http://seusite.com.br/campainha,
+    urlResultado : http://seusite.com.br/retorno,
+    ip : "192.168.12.110",
+    idioma : 1
+   },
+   itensDoPedido: [
+  {
+    codigoProduto: 1,
+    nomeProduto: Blusa,
+    codigoCategoria: 1,
+    nomeCategoria : Roupa,
+    quantidadeProduto : 1,
+    valorUnitarioProduto : 2000
+  }
+   ],
+   dadosCobranca : {
+    codigoCliente : 1,
+    tipoCliente : 1,
+    nome : Teste SuperPay,
+    email : teste@teste.com,
+    dataNascimento : "",
+    sexo : "M",
+    documento : "12312321312",
+    endereco : {
+    logradouro : Rua Teste,
+    numero : 123,
+    complemento : "",
+    cep : 12345-678,
+    bairro : Bairro Teste,
+    cidade : Cidade Teste,
+    estado : SP,
+    pais : BR
+  },
+  telefone : [
+  {
+    tipoTelefone : 1,
+    ddi : 55,
+    ddd : 12,
+    telefone : 1234-5678
+  }
+  ]
+   },
+   dadosEntrega : {
+    nome : Teste SuperPay,
+    email : teste@teste.com,
+    endereco : {
+    logradouro : Rua teste,
+    numero : 123,
+    complemento : "",
+    cep : 12345-678,
+    bairro : Bairro Teste,
+    cidade : Cidade Teste,
+    estado : SP,
+    pais : BR
+  },
+  telefone : [
+  {
+    tipoTelefone : 1,
+    ddi : 55,
+    ddd : 12,
+    telefone : 1234-5678
+  }
+  ]
+   }
+}
+</code></pre>
+<p>RESPOSTA</p>
+
+<p>Estrtura de retorno Bradesco:</p>
+
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>19<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;&lt;/mensagemVenda&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>8<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>https://homolog.meiosdepagamentobradesco.com.br/api/Bradesco?token=WGl1NURoSUJvc3NPZ1RPZ0Iwb3B3MWtvaU1FZXZ5MDFHZ0M1cy8zdUpTQkR5eFhtRHQ2VmR0Rmg5em9sbUtNTg..<span class="nt">&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 1,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 18,
+   "valor": 2000,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   "statusTransacao": 8,
+   "autorizacao": ,
+   "codigoTransacaoOperadora": "0",
+   "dataAprovacaoOperadora": ,
+   "numeroComprovanteVenda": ,
+   "nsu": ,
+   "mensagemVenda": ,
+   "urlPagamento": "https://homologacao.superpay.com.br/checkout/Transferencia/PagamentoBradescoShopFacil.do?cod=141348960683a720e602-5631-4725-8f79-268c06795a3c"
+}
+
+</code></pre><h2 id='banco-do-brasil-online'>Banco do Brasil Online</h2>
+<p><strong>Contratação</strong></p>
+
+<p>Contratando a solução BBOnline será possível oferecer na sua loja:</p>
+
+<ul>
+<li>Boleto <em>sem</em> ou <em>com</em> registro, dependendo de seu contrato com o banco;</li>
+<li>Transferência Eletrônica.</li>
+</ul>
+
+<p>Ao final do processo de contratação, deve-se estar de posse das seguintes informações para ativação do e-Rede no Gateway:</p>
+
+<ul>
+<li>Códido do convênio;</li>
+<li>Código cobrança.</li>
+</ul>
+
+<p>O Superpay não participa das negociações entre o estabelecimento e bancos/adquirentes. Desta forma, taxas ou eventuais isenções são tratadas de forma direta entre os envolvidos.</p>
+
+<p>Informações sobre a contratação, <a href="http://www.bb.com.br/portalbb/page100,116,2532,1,1,1,1.bb?codigoNoticia=5575&amp;codigoMenu=164&amp;codigoRet=5435&amp;bread=6_2">acesse aqui</a></p>
+
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li>Modalidades com redirecionamento;</li>
+<li>Para utilização das modalidades BBOnline, todos os campos referente aos dados do cliente devem ser preenchidos;</li>
+<li>Se não for informado uma data de vencimento do boleto, a data de vencimento que aparecerá no boleto será os dias de vencimento configurado internamente no Gateway;</li>
+</ul>
+
+<p><strong>Exemplos</strong></p>
+
+<p>REQUISIÇÃO</p>
+
+<p>Estrutura de envio para banco do Brasil. </p>
+
+<blockquote>
+<p>Estrutra SOAP de envio BBOnline Boleto:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
+         <span class="nt">&lt;transacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>20<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+               <span class="nt">&lt;bairroEnderecoComprador&gt;</span>Centro<span class="nt">&lt;/bairroEnderecoComprador&gt;</span>
+               <span class="nt">&lt;bairroEnderecoEntrega&gt;</span>Centro<span class="nt">&lt;/bairroEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;cepEnderecoComprador&gt;</span>09710240<span class="nt">&lt;/cepEnderecoComprador&gt;</span>
+               <span class="nt">&lt;cepEnderecoEntrega&gt;</span>09710240<span class="nt">&lt;/cepEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;cidadeEnderecoComprador&gt;</span>São Paulo<span class="nt">&lt;/cidadeEnderecoComprador&gt;</span>
+               <span class="nt">&lt;cidadeEnderecoEntrega&gt;</span>São Paulo<span class="nt">&lt;/cidadeEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;codigoCliente&gt;&lt;/codigoCliente&gt;</span>
+               <span class="nt">&lt;codigoTipoTelefoneComprador&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneComprador&gt;</span>
+               <span class="nt">&lt;codigoTipoTelefoneEntrega&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneEntrega&gt;</span>
+               <span class="nt">&lt;complementoEnderecoComprador&gt;&lt;/complementoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;complementoEnderecoEntrega&gt;&lt;/complementoEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;dataNascimentoComprador&gt;</span>01/01/1990<span class="nt">&lt;/dataNascimentoComprador&gt;</span>
+               <span class="nt">&lt;dddComprador&gt;</span>12<span class="nt">&lt;/dddComprador&gt;</span>
+               <span class="nt">&lt;dddEntrega&gt;</span>12<span class="nt">&lt;/dddEntrega&gt;</span>
+               <span class="nt">&lt;ddiComprador&gt;</span>55<span class="nt">&lt;/ddiComprador&gt;</span>
+               <span class="nt">&lt;ddiEntrega&gt;</span>55<span class="nt">&lt;/ddiEntrega&gt;</span>
+               <span class="nt">&lt;documentoComprador&gt;</span>12345678900<span class="nt">&lt;/documentoComprador&gt;</span>
+               <span class="nt">&lt;emailComprador&gt;</span>teste@teste.com.br<span class="nt">&lt;/emailComprador&gt;</span>
+               <span class="nt">&lt;enderecoComprador&gt;</span>Rua da Casa<span class="nt">&lt;/enderecoComprador&gt;</span>
+               <span class="nt">&lt;enderecoEntrega&gt;</span>Rua da Casa<span class="nt">&lt;/enderecoEntrega&gt;</span>
+               <span class="nt">&lt;estadoEnderecoComprador&gt;</span>sp<span class="nt">&lt;/estadoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;estadoEnderecoEntrega&gt;</span>sp<span class="nt">&lt;/estadoEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;nomeComprador&gt;</span>Nome do comprador<span class="nt">&lt;/nomeComprador&gt;</span>
+               <span class="nt">&lt;numeroEnderecoComprador&gt;</span>123<span class="nt">&lt;/numeroEnderecoComprador&gt;</span>
+               <span class="nt">&lt;numeroEnderecoEntrega&gt;</span>123<span class="nt">&lt;/numeroEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;paisComprador&gt;</span>brasil<span class="nt">&lt;/paisComprador&gt;</span>
+               <span class="nt">&lt;paisEntrega&gt;</span>brasil<span class="nt">&lt;/paisEntrega&gt;</span>
+               <span class="nt">&lt;sexoComprador&gt;</span>m<span class="nt">&lt;/sexoComprador&gt;</span>
+               <span class="nt">&lt;telefoneComprador&gt;</span>36535915<span class="nt">&lt;/telefoneComprador&gt;</span>
+               <span class="nt">&lt;telefoneEntrega&gt;</span>36535915<span class="nt">&lt;/telefoneEntrega&gt;</span>
+               <span class="nt">&lt;tipoCliente&gt;</span>1<span class="nt">&lt;/tipoCliente&gt;</span>
+            <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+            <span class="nt">&lt;IP&gt;</span>10.10.0.1<span class="nt">&lt;/IP&gt;</span>
+            <span class="nt">&lt;idioma&gt;</span>1<span class="nt">&lt;/idioma&gt;</span>
+            <span class="nt">&lt;itensDoPedido&gt;</span>
+               <span class="nt">&lt;codigoCategoria&gt;</span>1<span class="nt">&lt;/codigoCategoria&gt;</span>
+               <span class="nt">&lt;codigoProduto&gt;</span>1<span class="nt">&lt;/codigoProduto&gt;</span>
+               <span class="nt">&lt;nomeCategoria&gt;</span>Produto Teste<span class="nt">&lt;/nomeCategoria&gt;</span>
+               <span class="nt">&lt;nomeProduto&gt;</span>Produto Teste<span class="nt">&lt;/nomeProduto&gt;</span>
+               <span class="nt">&lt;quantidadeProduto&gt;</span>1<span class="nt">&lt;/quantidadeProduto&gt;</span>
+               <span class="nt">&lt;valorUnitarioProduto&gt;</span>100<span class="nt">&lt;/valorUnitarioProduto&gt;</span>
+            <span class="nt">&lt;/itensDoPedido&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;origemTransacao&gt;&lt;/origemTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlCampainha&gt;</span>http://minhaloja.com.br/notificação.asp<span class="nt">&lt;/urlCampainha&gt;</span>
+            <span class="nt">&lt;urlRedirecionamentoNaoPago&gt;</span>http://www.pagamentonaopago.com.br<span class="nt">&lt;/urlRedirecionamentoNaoPago&gt;</span>
+            <span class="nt">&lt;urlRedirecionamentoPago&gt;</span>http://www.pagamentopago.com.br<span class="nt">&lt;/urlRedirecionamentoPago&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+            <span class="nt">&lt;vencimentoBoleto&gt;</span>10/10/2018<span class="nt">&lt;/vencimentoBoleto&gt;</span>
+         <span class="nt">&lt;/transacao&gt;</span>
+         <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+         <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+      <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Estrutra  REST de envio BBOnline Transferênia:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   codigoEstabelecimento: 1000000000000,
+   codigoFormaPagamento: 21,
+   transacao: {
+    numeroTransacao: 1,
+    valor: 2000,
+    valorDesconto: 0,
+    parcelas : 1,
+    urlCampainha : http://seusite.com.br/campainha,
+    urlResultado : http://seusite.com.br/retorno,
+    ip : "192.168.12.110",
+    idioma : 1
+   },
+   itensDoPedido: [
+  {
+    codigoProduto: 1,
+    nomeProduto: Blusa,
+    codigoCategoria: 1,
+    nomeCategoria : Roupa,
+    quantidadeProduto : 1,
+    valorUnitarioProduto : 2000
+  }
+   ],
+   dadosCobranca : {
+    codigoCliente : 1,
+    tipoCliente : 1,
+    nome : Teste SuperPay,
+    email : teste@teste.com,
+    dataNascimento : "",
+    sexo : "M",
+    documento : "12312321312",
+    endereco : {
+    logradouro : Rua Teste,
+    numero : 123,
+    complemento : "",
+    cep : 12345-678,
+    bairro : Bairro Teste,
+    cidade : Cidade Teste,
+    estado : SP,
+    pais : BR
+  },
+  telefone : [
+  {
+    tipoTelefone : 1,
+    ddi : 55,
+    ddd : 12,
+    telefone : 1234-5678
+  }
+  ]
+   },
+   dadosEntrega : {
+    nome : Teste SuperPay,
+    email : teste@teste.com,
+    endereco : {
+    logradouro : Rua teste,
+    numero : 123,
+    complemento : "",
+    cep : 12345-678,
+    bairro : Bairro Teste,
+    cidade : Cidade Teste,
+    estado : SP,
+    pais : BR
+  },
+  telefone : [
+  {
+    tipoTelefone : 1,
+    ddi : 55,
+    ddd : 12,
+    telefone : 1234-5678
+  }
+  ]
+   }
+}
+</code></pre>
+<p>RESPOSTA</p>
+
+<p>Estrtura de retorno BBOnline:</p>
+
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>20<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;&lt;/mensagemVenda&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>8<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>https://homologacao.superpay.com.br/checkout/PagamentoBBOnline/PagamentoBBOnline.do?cod=147499950329455715d65-621f-4b80-896c-5d1a645fb9e0<span class="nt">&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 1,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 21,
+   "valor": 2000,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   "statusTransacao": 8,
+   "autorizacao": ,
+   "codigoTransacaoOperadora": "0",
+   "dataAprovacaoOperadora": ,
+   "numeroComprovanteVenda": ,
+   "nsu": ,
+   "mensagemVenda": ,
+   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoBBOnline/PagamentoBBOnline.do?cod=147499950329455715d65-621f-4b80-896c-5d1a645fb9e0"
+}
+
+</code></pre><h2 id='boletos-offlines'>Boletos Offlines</h2>
+<p><strong>BOLETOS REGISTRADOS</strong></p>
+
+<p>Com esta modalidade, os bancos possuem conehcimento do boleto desde sua geração, permitindo o lojista realizar protestos ao cliente caso o pagamento não for realizado.</p>
+
+<p><em>Para utilização de qualquer boleto com carteira registrada é preciso realizar a abertura de relacionamento entre o banco e VAN homologada com o SuperPay.</em></p>
+
+<p><strong>Santander</strong></p>
+
+<ul>
+<li>agência;</li>
+<li>conta;</li>
+<li>código do cedente;</li>
+<li>número da carteira;</li>
+<li>espécie de documento;  (Exemplos: DM, RM, ME, NP)</li>
+<li>código de transmissão.</li>
+</ul>
+
+<p><strong>Caixa Econômica Federal</strong></p>
+
+<ul>
+<li>agência;</li>
+<li>conta;</li>
+<li>código do convênio;</li>
+<li>número da carteira;</li>
+<li>código de operação;</li>
+<li>espécie de documento.  (Exemplos: DM, RM, ME, NP)</li>
+</ul>
+
+<p><strong>Itaú</strong></p>
+
+<ul>
+<li>agência;</li>
+<li>conta;</li>
+<li>número da carteira;</li>
+<li>espécie de documento.  (Exemplos: DM, RM, ME, NP)</li>
+</ul>
+
+<p><strong>Bradesco</strong></p>
+
+<ul>
+<li>agência;</li>
+<li>conta;</li>
+<li>número da carteira;</li>
+<li>espécie de documento.  (Exemplos: DM, RM, ME, NP)</li>
+</ul>
+
+<p><strong>Banco do Brasil</strong></p>
+
+<ul>
+<li>agência;</li>
+<li>conta;</li>
+<li>código do convênio;</li>
+<li>número da carteira;</li>
+<li>variação da carteira;</li>
+<li>espécie de documento.  (Exemplos: DM, RM, ME, NP);</li>
+<li>client ID;</li>
+<li>secret;</li>
+</ul>
+
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li>Para a geração de Boleto offlines, todos os campos referente aos dados do cliente devem ser preenchidos;</li>
+<li>Arquivo de registro e conciliação com layout de 400 posições para todos os bancos;</li>
+<li>Campo <code>&lt;estadoComprador&gt;</code> deve ser preenchido pela sigla;</li>
+<li>O tamanho do número do pedido, deverá possuir no máximo 8 dígitos;</li>
+<li>Se não for informado uma data de vencimento do boleto na requisição, a data de vencimento que aparecerá no boleto será os dias de vencimento configurados internamente no Gateway;</li>
+<li>A URL retornada no campo <code>&lt;urlPagamento&gt;</code> em SOAP e <code>&lt;url_acesso&gt;</code> em REST deverá ser repassada ao comprador para visualização/pagamento do boleto;</li>
+<li>A requisição e retorno do SuperPay para boletos registrados possuem a mesma estrutura dos sem registro, porém o status a ser retornado será 5 (transação em andamento) ao invés de 8 (aguardando pagamento);</li>
+<li>Para ativação do boleto registrado e Módulo de Conciliação entrar em contato com <em>comercial@superpay.com.br</em>;</li>
+<li>O Superpay não participa das negociações entre o estabelecimento e bancos/administradoras. Desta forma, taxas ou eventuais isenções são tratadas de forma direta entre os envolvidos.</li>
+</ul>
+
+<p><strong>BOLETOS SEM REGISTROS</strong></p>
+
+<p>O Gateway de Pagamento aceita boletos sem registro emitidos pelos seguintes bancos:</p>
+
+<ul>
+<li>Itaú;</li>
+<li>Bradesco;</li>
+<li>Banco do Brasil;</li>
+<li>Caixa;</li>
+<li>Santander.</li>
+</ul>
+
+<p>Ao final do processo de contratação, deve-se estar de posse das seguintes informações para ativação dos boletos no Gateway:</p>
+
+<ul>
+<li>Convênio;</li>
+<li>Agência;</li>
+<li>Conta;</li>
+<li>Número da Carteira;</li>
+<li>Espécie de Documento. (Exemplos: DM, RM, ME, NP)</li>
+</ul>
+
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li>Para a geração de Boleto offlines, todos os campos referente aos dados do cliente devem ser preenchidos.</li>
+<li>Campo <code>&lt;estadoComprador&gt;</code> deve ser preenchido pela sigla;</li>
+<li>O tamanho do número do pedido, deverá possuir no máximo 8 dígitos;</li>
+<li>Se não for informado uma data de vencimento do boleto na requisição, a data de vencimento que aparecerá no boleto será os dias de vencimento configurados internamente no Gateway;</li>
+<li>A URL retornada no campo <code>&lt;urlPagamento&gt;</code> em SOAP e <code>&lt;url_acesso&gt;</code> em REST deverá ser repassada ao comprador para visualização/pagamento do boleto;</li>
+<li>Conciliação de boletos não é realizada automaticamente, para tal deve ser contratado o Módulo de Conciliação do Gateway. Para informações entrar em contato com <em>comercial@superpay.com.br</em>;</li>
+<li>O Superpay não participa das negociações entre o estabelecimento e bancos/administradoras. Desta forma, taxas ou eventuais isenções são tratadas de forma direta entre os envolvidos.</li>
+</ul>
+
+<p><strong>Exemplos</strong></p>
+
+<p>REQUISIÇÃO</p>
+
+<p>Estrutura de envio para geração de boletos sem/com registro. </p>
+
+<blockquote>
+<p>Estrutra SOAP de envio Boleto Registrado:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
+         <span class="nt">&lt;transacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>29<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+               <span class="nt">&lt;bairroEnderecoComprador&gt;</span>Centro<span class="nt">&lt;/bairroEnderecoComprador&gt;</span>
+               <span class="nt">&lt;bairroEnderecoEntrega&gt;</span>Centro<span class="nt">&lt;/bairroEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;cepEnderecoComprador&gt;</span>09710240<span class="nt">&lt;/cepEnderecoComprador&gt;</span>
+               <span class="nt">&lt;cepEnderecoEntrega&gt;</span>09710240<span class="nt">&lt;/cepEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;cidadeEnderecoComprador&gt;</span>São Paulo<span class="nt">&lt;/cidadeEnderecoComprador&gt;</span>
+               <span class="nt">&lt;cidadeEnderecoEntrega&gt;</span>São Paulo<span class="nt">&lt;/cidadeEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;codigoCliente&gt;&lt;/codigoCliente&gt;</span>
+               <span class="nt">&lt;codigoTipoTelefoneComprador&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneComprador&gt;</span>
+               <span class="nt">&lt;codigoTipoTelefoneEntrega&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneEntrega&gt;</span>
+               <span class="nt">&lt;complementoEnderecoComprador&gt;&lt;/complementoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;complementoEnderecoEntrega&gt;&lt;/complementoEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;dataNascimentoComprador&gt;</span>01/01/1990<span class="nt">&lt;/dataNascimentoComprador&gt;</span>
+               <span class="nt">&lt;dddComprador&gt;</span>12<span class="nt">&lt;/dddComprador&gt;</span>
+               <span class="nt">&lt;dddEntrega&gt;</span>12<span class="nt">&lt;/dddEntrega&gt;</span>
+               <span class="nt">&lt;ddiComprador&gt;</span>55<span class="nt">&lt;/ddiComprador&gt;</span>
+               <span class="nt">&lt;ddiEntrega&gt;</span>55<span class="nt">&lt;/ddiEntrega&gt;</span>
+               <span class="nt">&lt;documentoComprador&gt;</span>12345678900<span class="nt">&lt;/documentoComprador&gt;</span>
+               <span class="nt">&lt;emailComprador&gt;</span>teste@teste.com.br<span class="nt">&lt;/emailComprador&gt;</span>
+               <span class="nt">&lt;enderecoComprador&gt;</span>Rua da Casa<span class="nt">&lt;/enderecoComprador&gt;</span>
+               <span class="nt">&lt;enderecoEntrega&gt;</span>Rua da Casa<span class="nt">&lt;/enderecoEntrega&gt;</span>
+               <span class="nt">&lt;estadoEnderecoComprador&gt;</span>sp<span class="nt">&lt;/estadoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;estadoEnderecoEntrega&gt;</span>sp<span class="nt">&lt;/estadoEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;nomeComprador&gt;</span>Nome do comprador<span class="nt">&lt;/nomeComprador&gt;</span>
+               <span class="nt">&lt;numeroEnderecoComprador&gt;</span>123<span class="nt">&lt;/numeroEnderecoComprador&gt;</span>
+               <span class="nt">&lt;numeroEnderecoEntrega&gt;</span>123<span class="nt">&lt;/numeroEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;paisComprador&gt;</span>brasil<span class="nt">&lt;/paisComprador&gt;</span>
+               <span class="nt">&lt;paisEntrega&gt;</span>brasil<span class="nt">&lt;/paisEntrega&gt;</span>
+               <span class="nt">&lt;sexoComprador&gt;</span>m<span class="nt">&lt;/sexoComprador&gt;</span>
+               <span class="nt">&lt;telefoneComprador&gt;</span>36535915<span class="nt">&lt;/telefoneComprador&gt;</span>
+               <span class="nt">&lt;telefoneEntrega&gt;</span>36535915<span class="nt">&lt;/telefoneEntrega&gt;</span>
+               <span class="nt">&lt;tipoCliente&gt;</span>1<span class="nt">&lt;/tipoCliente&gt;</span>
+            <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+            <span class="nt">&lt;IP&gt;</span>10.10.0.1<span class="nt">&lt;/IP&gt;</span>
+            <span class="nt">&lt;idioma&gt;</span>1<span class="nt">&lt;/idioma&gt;</span>
+            <span class="nt">&lt;itensDoPedido&gt;</span>
+               <span class="nt">&lt;codigoCategoria&gt;</span>1<span class="nt">&lt;/codigoCategoria&gt;</span>
+               <span class="nt">&lt;codigoProduto&gt;</span>1<span class="nt">&lt;/codigoProduto&gt;</span>
+               <span class="nt">&lt;nomeCategoria&gt;</span>Produto Teste<span class="nt">&lt;/nomeCategoria&gt;</span>
+               <span class="nt">&lt;nomeProduto&gt;</span>Produto Teste<span class="nt">&lt;/nomeProduto&gt;</span>
+               <span class="nt">&lt;quantidadeProduto&gt;</span>1<span class="nt">&lt;/quantidadeProduto&gt;</span>
+               <span class="nt">&lt;valorUnitarioProduto&gt;</span>100<span class="nt">&lt;/valorUnitarioProduto&gt;</span>
+            <span class="nt">&lt;/itensDoPedido&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;origemTransacao&gt;&lt;/origemTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlCampainha&gt;</span>http://minhaloja.com.br/notificação.asp<span class="nt">&lt;/urlCampainha&gt;</span>
+            <span class="nt">&lt;urlRedirecionamentoNaoPago&gt;</span>http://www.pagamentonaopago.com.br<span class="nt">&lt;/urlRedirecionamentoNaoPago&gt;</span>
+            <span class="nt">&lt;urlRedirecionamentoPago&gt;</span>http://www.pagamentopago.com.br<span class="nt">&lt;/urlRedirecionamentoPago&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+            <span class="nt">&lt;vencimentoBoleto&gt;</span>10/10/2018<span class="nt">&lt;/vencimentoBoleto&gt;</span>
+         <span class="nt">&lt;/transacao&gt;</span>
+         <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+         <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+      <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Estrutra  REST de envio Boleto sem registro:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   codigoEstabelecimento: 1000000000000,
+   codigoFormaPagamento: 30,
+   transacao: {
+    numeroTransacao: 1,
+    valor: 2000,
+    valorDesconto: 0,
+    parcelas : 1,
+    urlCampainha : http://seusite.com.br/campainha,
+    urlResultado : http://seusite.com.br/retorno,
+    ip : "192.168.12.110",
+    idioma : 1
+   },
+   itensDoPedido: [
+  {
+    codigoProduto: 1,
+    nomeProduto: Blusa,
+    codigoCategoria: 1,
+    nomeCategoria : Roupa,
+    quantidadeProduto : 1,
+    valorUnitarioProduto : 2000
+  }
+   ],
+   dadosCobranca : {
+    codigoCliente : 1,
+    tipoCliente : 1,
+    nome : Teste SuperPay,
+    email : teste@teste.com,
+    dataNascimento : "",
+    sexo : "M",
+    documento : "12312321312",
+    endereco : {
+    logradouro : Rua Teste,
+    numero : 123,
+    complemento : "",
+    cep : 12345-678,
+    bairro : Bairro Teste,
+    cidade : Cidade Teste,
+    estado : SP,
+    pais : BR
+  },
+  telefone : [
+  {
+    tipoTelefone : 1,
+    ddi : 55,
+    ddd : 12,
+    telefone : 1234-5678
+  }
+  ]
+   },
+   dadosEntrega : {
+    nome : Teste SuperPay,
+    email : teste@teste.com,
+    endereco : {
+    logradouro : Rua teste,
+    numero : 123,
+    complemento : "",
+    cep : 12345-678,
+    bairro : Bairro Teste,
+    cidade : Cidade Teste,
+    estado : SP,
+    pais : BR
+  },
+  telefone : [
+  {
+    tipoTelefone : 1,
+    ddi : 55,
+    ddd : 12,
+    telefone : 1234-5678
+  }
+  ]
+   }
+}
+</code></pre>
+<p>RESPOSTA</p>
+
+<p>Estrtura de retorno Boleto registrado:</p>
+
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>29<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;&lt;/mensagemVenda&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>5<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>https://homologacao.superpay.com.br/superpay/GeradorBoleto.do?cod=1413487983447baddcb56-0126-4353-9253-538f64d8c1d2<span class="nt">&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Retorno Boleto sem registro:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 1,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 30,
+   "valor": 2000,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   "statusTransacao": 8,
+   "autorizacao": ,
+   "codigoTransacaoOperadora": "0",
+   "dataAprovacaoOperadora": ,
+   "numeroComprovanteVenda": ,
+   "nsu": ,
+   "mensagemVenda": ,
+   "urlPagamento": "https://homologacao.superpay.com.br/superpay/GeradorBoleto.do?cod=1413487983447baddcb56-0126-4353-9253-538f64d"
+}
+
+</code></pre><h2 id='safetypay'>SafetyPay</h2>
+<p>Com este meio de pagamento é possível trabalhar com transferências entre vários bancos sem possuir contrato com cada um deles.</p>
+
+<p><strong>Contratação</strong></p>
+
+<p>Contratando a solução da SafetyPay para e-commerce será possível oferecer na sua loja:</p>
+
+<ul>
+<li>Transferência entre bancos;</li>
+</ul>
+
+<p>Ao final do processo de contratação, deve-se estar de posse das seguintes informações para ativação dos boletos no Gateway:</p>
+
+<ul>
+<li>API Key;</li>
+<li>Signature Key;</li>
+<li>Usuário;</li>
+<li>Senha.</li>
+</ul>
+
+<p>O Superpay não participa das negociações entre o estabelecimento e bancos/adquirentes. Desta forma, taxas ou eventuais isenções são tratadas de forma direta entre os envolvidos.</p>
+
+<p>Para contratar, <a href="http://www.safetypay.com/pt/produtos-e-solucoes/pagamento-online/">acesse aqui.</a></p>
+
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li>Modalidade com redirecionamento;</li>
+<li>A URL retornada no campo <code>&lt;urlPagamento&gt;</code> em SOAP e <code>&lt;url_acesso&gt;</code> em REST deverá ser repassada ao comprador para visualização/pagamento do boleto;</li>
+<li>Enviar todos campos referente aos dados do comprador.</li>
+</ul>
+
+<p><strong>Configuração ambiente SafetyPay</strong></p>
+
+<p>Configurar em seu painel safetyPay a URL de notificação do Gateway + seu código de estabelecimento SuperPay:</p>
+
+<table><thead>
+<tr>
+<th>Ambiente</th>
+<th>URL notificação</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Homologação</td>
+<td>https://homologacao.superpay.com.br/checkout/SafetyPay/Notificacao?codigoEstabelecimento={CODIGOSUPERPAY}</td>
+</tr>
+<tr>
+<td>Produção</td>
+<td>https://superpay2.superpay.com.br/checkout/SafetyPay/Notificacao?codigoEstabelecimento={CODIGOSUPERPAY}</td>
+</tr>
+</tbody></table>
+
+<p>Exemplo URL notificação:  https://superpay2.superpay.com.br/checkout/SafetyPay/Notificacao?codigoEstabelecimento=1000000000000</p>
+
+<p><strong>Exemplos</strong></p>
+
+<p>REQUISIÇÃO</p>
+
+<p>Estrutura de envio SafetyPay. </p>
+
+<blockquote>
+<p>Estrutra SOAP de envio SafetyPay:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
+         <span class="nt">&lt;transacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>155<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+               <span class="nt">&lt;bairroEnderecoComprador&gt;</span>Centro<span class="nt">&lt;/bairroEnderecoComprador&gt;</span>
+               <span class="nt">&lt;bairroEnderecoEntrega&gt;</span>Centro<span class="nt">&lt;/bairroEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;cepEnderecoComprador&gt;</span>09710240<span class="nt">&lt;/cepEnderecoComprador&gt;</span>
+               <span class="nt">&lt;cepEnderecoEntrega&gt;</span>09710240<span class="nt">&lt;/cepEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;cidadeEnderecoComprador&gt;</span>São Paulo<span class="nt">&lt;/cidadeEnderecoComprador&gt;</span>
+               <span class="nt">&lt;cidadeEnderecoEntrega&gt;</span>São Paulo<span class="nt">&lt;/cidadeEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;codigoCliente&gt;&lt;/codigoCliente&gt;</span>
+               <span class="nt">&lt;codigoTipoTelefoneComprador&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneComprador&gt;</span>
+               <span class="nt">&lt;codigoTipoTelefoneEntrega&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneEntrega&gt;</span>
+               <span class="nt">&lt;complementoEnderecoComprador&gt;&lt;/complementoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;complementoEnderecoEntrega&gt;&lt;/complementoEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;dataNascimentoComprador&gt;</span>01/01/1990<span class="nt">&lt;/dataNascimentoComprador&gt;</span>
+               <span class="nt">&lt;dddComprador&gt;</span>12<span class="nt">&lt;/dddComprador&gt;</span>
+               <span class="nt">&lt;dddEntrega&gt;</span>12<span class="nt">&lt;/dddEntrega&gt;</span>
+               <span class="nt">&lt;ddiComprador&gt;</span>55<span class="nt">&lt;/ddiComprador&gt;</span>
+               <span class="nt">&lt;ddiEntrega&gt;</span>55<span class="nt">&lt;/ddiEntrega&gt;</span>
+               <span class="nt">&lt;documentoComprador&gt;</span>12345678900<span class="nt">&lt;/documentoComprador&gt;</span>
+               <span class="nt">&lt;emailComprador&gt;</span>teste@teste.com.br<span class="nt">&lt;/emailComprador&gt;</span>
+               <span class="nt">&lt;enderecoComprador&gt;</span>Rua da Casa<span class="nt">&lt;/enderecoComprador&gt;</span>
+               <span class="nt">&lt;enderecoEntrega&gt;</span>Rua da Casa<span class="nt">&lt;/enderecoEntrega&gt;</span>
+               <span class="nt">&lt;estadoEnderecoComprador&gt;</span>sp<span class="nt">&lt;/estadoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;estadoEnderecoEntrega&gt;</span>sp<span class="nt">&lt;/estadoEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;nomeComprador&gt;</span>Nome do comprador<span class="nt">&lt;/nomeComprador&gt;</span>
+               <span class="nt">&lt;numeroEnderecoComprador&gt;</span>123<span class="nt">&lt;/numeroEnderecoComprador&gt;</span>
+               <span class="nt">&lt;numeroEnderecoEntrega&gt;</span>123<span class="nt">&lt;/numeroEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;paisComprador&gt;</span>brasil<span class="nt">&lt;/paisComprador&gt;</span>
+               <span class="nt">&lt;paisEntrega&gt;</span>brasil<span class="nt">&lt;/paisEntrega&gt;</span>
+               <span class="nt">&lt;sexoComprador&gt;</span>m<span class="nt">&lt;/sexoComprador&gt;</span>
+               <span class="nt">&lt;telefoneComprador&gt;</span>36535915<span class="nt">&lt;/telefoneComprador&gt;</span>
+               <span class="nt">&lt;telefoneEntrega&gt;</span>36535915<span class="nt">&lt;/telefoneEntrega&gt;</span>
+               <span class="nt">&lt;tipoCliente&gt;</span>1<span class="nt">&lt;/tipoCliente&gt;</span>
+            <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+            <span class="nt">&lt;IP&gt;</span>10.10.0.1<span class="nt">&lt;/IP&gt;</span>
+            <span class="nt">&lt;idioma&gt;</span>1<span class="nt">&lt;/idioma&gt;</span>
+            <span class="nt">&lt;itensDoPedido&gt;</span>
+               <span class="nt">&lt;codigoCategoria&gt;</span>1<span class="nt">&lt;/codigoCategoria&gt;</span>
+               <span class="nt">&lt;codigoProduto&gt;</span>1<span class="nt">&lt;/codigoProduto&gt;</span>
+               <span class="nt">&lt;nomeCategoria&gt;</span>Produto Teste<span class="nt">&lt;/nomeCategoria&gt;</span>
+               <span class="nt">&lt;nomeProduto&gt;</span>Produto Teste<span class="nt">&lt;/nomeProduto&gt;</span>
+               <span class="nt">&lt;quantidadeProduto&gt;</span>1<span class="nt">&lt;/quantidadeProduto&gt;</span>
+               <span class="nt">&lt;valorUnitarioProduto&gt;</span>100<span class="nt">&lt;/valorUnitarioProduto&gt;</span>
+            <span class="nt">&lt;/itensDoPedido&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;origemTransacao&gt;&lt;/origemTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlCampainha&gt;</span>http://minhaloja.com.br/notificação.asp<span class="nt">&lt;/urlCampainha&gt;</span>
+            <span class="nt">&lt;urlRedirecionamentoNaoPago&gt;</span>http://www.pagamentonaopago.com.br<span class="nt">&lt;/urlRedirecionamentoNaoPago&gt;</span>
+            <span class="nt">&lt;urlRedirecionamentoPago&gt;</span>http://www.pagamentopago.com.br<span class="nt">&lt;/urlRedirecionamentoPago&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/transacao&gt;</span>
+         <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+         <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+      <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Estrutra  REST de envio SafetyPay:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   codigoEstabelecimento: 1000000000000,
+   codigoFormaPagamento: 155,
+   transacao: {
+    numeroTransacao: 1,
+    valor: 2000,
+    valorDesconto: 0,
+    parcelas : 1,
+    urlCampainha : http://seusite.com.br/campainha,
+    urlResultado : http://seusite.com.br/retorno,
+    ip : "192.168.12.110",
+    idioma : 1
+   },
+   itensDoPedido: [
+  {
+    codigoProduto: 1,
+    nomeProduto: Blusa,
+    codigoCategoria: 1,
+    nomeCategoria : Roupa,
+    quantidadeProduto : 1,
+    valorUnitarioProduto : 2000
+  }
+   ],
+   dadosCobranca : {
+    codigoCliente : 1,
+    tipoCliente : 1,
+    nome : Teste SuperPay,
+    email : teste@teste.com,
+    dataNascimento : "",
+    sexo : "M",
+    documento : "12312321312",
+    endereco : {
+    logradouro : Rua Teste,
+    numero : 123,
+    complemento : "",
+    cep : 12345-678,
+    bairro : Bairro Teste,
+    cidade : Cidade Teste,
+    estado : SP,
+    pais : BR
+  },
+  telefone : [
+  {
+    tipoTelefone : 1,
+    ddi : 55,
+    ddd : 12,
+    telefone : 1234-5678
+  }
+  ]
+   },
+   dadosEntrega : {
+    nome : Teste SuperPay,
+    email : teste@teste.com,
+    endereco : {
+    logradouro : Rua teste,
+    numero : 123,
+    complemento : "",
+    cep : 12345-678,
+    bairro : Bairro Teste,
+    cidade : Cidade Teste,
+    estado : SP,
+    pais : BR
+  },
+  telefone : [
+  {
+    tipoTelefone : 1,
+    ddi : 55,
+    ddd : 12,
+    telefone : 1234-5678
+  }
+  ]
+   }
+}
+</code></pre>
+<p>RESPOSTA</p>
+
+<p>Estrtura de retorno SafetyPay:</p>
+
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>155<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;&lt;/mensagemVenda&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>8<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>https://homologacao.superpay.com.br/checkout/PagamentoSafetyPay/PagamentoSafetyPay.do?cod=141348960683a720e602-5631-4725-8f79-268c06795a3c<span class="nt">&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Retorno SafetyPay:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 1,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 155,
+   "valor": 2000,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   "statusTransacao": 8,
+   "autorizacao": ,
+   "codigoTransacaoOperadora": "0",
+   "dataAprovacaoOperadora": ,
+   "numeroComprovanteVenda": ,
+   "nsu": ,
+   "mensagemVenda": ,
+   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoSafetyPay/PagamentoSafetyPay.do?cod=141348960683a720e602-5631-4725-8f79-268c06795a3c"
+}
+
+</code></pre><h2 id='intermediario-financeiro'>Intermediário Financeiro</h2>
+<p><strong>Contratação</strong></p>
+
+<p>Abaixo segue lista de intermediário financeiro disponíveis através do Superpay:</p>
+
+<ul>
+<li>PagSeguro;</li>
+<li>PayPal.</li>
+</ul>
+
+<p>Ao final do processo de contratação, deve-se estar de posse das seguintes informações para ativação no Gateway:</p>
+
+<p><strong>PagSeguro</strong></p>
+
+<ul>
+<li>email</li>
+<li>token</li>
+</ul>
+
+<p>Contração <a href="https://pagseguro.uol.com.br/para_seu_negocio/venda_pela_internet.jhtml">acesse aqui</a></p>
+
+<p><strong>PayPal</strong></p>
+
+<ul>
+<li>assinatura</li>
+<li>email</li>
+<li>usuário</li>
+<li>senha</li>
+</ul>
+
+<p>Contração <a href="https://www.paypal.com/br/home">acesse aqui</a></p>
+
+<p>O Superpay não participa das negociações entre o estabelecimento e bancos/administradoras. Desta forma, taxas ou eventuais isenções são tratadas de forma direta entre os envolvidos.</p>
+
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li>Modalidade com redirecionamento;</li>
+<li>A URL retornada no campo <code>&lt;urlPagamento&gt;</code> em SOAP e <code>&lt;url_acesso&gt;</code> em REST deverá ser repassada ao comprador para abertura do intermediador;</li>
+<li>Enviar todos campos referente aos dados do comprador.</li>
+</ul>
+
+<p><strong>Configuração ambiente PagSeguro</strong></p>
+
+<p>Configurar em seu painel PagSeguro a URL de notificação do Gateway:</p>
+
+<table><thead>
+<tr>
+<th>Ambiente</th>
+<th>URL notificação</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Homologação</td>
+<td>https://homologacao.superpay.com.br/checkout/PagamentoPagSeguro/RetornoPagSeguro.do</td>
+</tr>
+<tr>
+<td>Produção</td>
+<td>https://superpay2.superpay.com.br/checkout/PagamentoPagSeguro/RetornoPagSeguro.do</td>
+</tr>
+</tbody></table>
+
+<p><strong>Exemplos</strong></p>
+
+<p>REQUISIÇÃO</p>
+
+<p>Estrutura de envio PayPal. </p>
+
+<blockquote>
+<p>Estrutra SOAP de envio PayPal:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:pag=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;pag:pagamentoTransacaoCompleta&gt;</span>
+         <span class="nt">&lt;transacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>111<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;dadosUsuarioTransacao&gt;</span>
+               <span class="nt">&lt;bairroEnderecoComprador&gt;</span>Centro<span class="nt">&lt;/bairroEnderecoComprador&gt;</span>
+               <span class="nt">&lt;bairroEnderecoEntrega&gt;</span>Centro<span class="nt">&lt;/bairroEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;cepEnderecoComprador&gt;</span>09710240<span class="nt">&lt;/cepEnderecoComprador&gt;</span>
+               <span class="nt">&lt;cepEnderecoEntrega&gt;</span>09710240<span class="nt">&lt;/cepEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;cidadeEnderecoComprador&gt;</span>São Paulo<span class="nt">&lt;/cidadeEnderecoComprador&gt;</span>
+               <span class="nt">&lt;cidadeEnderecoEntrega&gt;</span>São Paulo<span class="nt">&lt;/cidadeEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;codigoCliente&gt;&lt;/codigoCliente&gt;</span>
+               <span class="nt">&lt;codigoTipoTelefoneComprador&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneComprador&gt;</span>
+               <span class="nt">&lt;codigoTipoTelefoneEntrega&gt;</span>1<span class="nt">&lt;/codigoTipoTelefoneEntrega&gt;</span>
+               <span class="nt">&lt;complementoEnderecoComprador&gt;&lt;/complementoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;complementoEnderecoEntrega&gt;&lt;/complementoEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;dataNascimentoComprador&gt;</span>01/01/1990<span class="nt">&lt;/dataNascimentoComprador&gt;</span>
+               <span class="nt">&lt;dddComprador&gt;</span>12<span class="nt">&lt;/dddComprador&gt;</span>
+               <span class="nt">&lt;dddEntrega&gt;</span>12<span class="nt">&lt;/dddEntrega&gt;</span>
+               <span class="nt">&lt;ddiComprador&gt;</span>55<span class="nt">&lt;/ddiComprador&gt;</span>
+               <span class="nt">&lt;ddiEntrega&gt;</span>55<span class="nt">&lt;/ddiEntrega&gt;</span>
+               <span class="nt">&lt;documentoComprador&gt;</span>12345678900<span class="nt">&lt;/documentoComprador&gt;</span>
+               <span class="nt">&lt;emailComprador&gt;</span>teste@teste.com.br<span class="nt">&lt;/emailComprador&gt;</span>
+               <span class="nt">&lt;enderecoComprador&gt;</span>Rua da Casa<span class="nt">&lt;/enderecoComprador&gt;</span>
+               <span class="nt">&lt;enderecoEntrega&gt;</span>Rua da Casa<span class="nt">&lt;/enderecoEntrega&gt;</span>
+               <span class="nt">&lt;estadoEnderecoComprador&gt;</span>sp<span class="nt">&lt;/estadoEnderecoComprador&gt;</span>
+               <span class="nt">&lt;estadoEnderecoEntrega&gt;</span>sp<span class="nt">&lt;/estadoEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;nomeComprador&gt;</span>Nome do comprador<span class="nt">&lt;/nomeComprador&gt;</span>
+               <span class="nt">&lt;numeroEnderecoComprador&gt;</span>123<span class="nt">&lt;/numeroEnderecoComprador&gt;</span>
+               <span class="nt">&lt;numeroEnderecoEntrega&gt;</span>123<span class="nt">&lt;/numeroEnderecoEntrega&gt;</span>
+               <span class="nt">&lt;paisComprador&gt;</span>brasil<span class="nt">&lt;/paisComprador&gt;</span>
+               <span class="nt">&lt;paisEntrega&gt;</span>brasil<span class="nt">&lt;/paisEntrega&gt;</span>
+               <span class="nt">&lt;sexoComprador&gt;</span>m<span class="nt">&lt;/sexoComprador&gt;</span>
+               <span class="nt">&lt;telefoneComprador&gt;</span>36535915<span class="nt">&lt;/telefoneComprador&gt;</span>
+               <span class="nt">&lt;telefoneEntrega&gt;</span>36535915<span class="nt">&lt;/telefoneEntrega&gt;</span>
+               <span class="nt">&lt;tipoCliente&gt;</span>1<span class="nt">&lt;/tipoCliente&gt;</span>
+            <span class="nt">&lt;/dadosUsuarioTransacao&gt;</span>
+            <span class="nt">&lt;IP&gt;</span>10.10.0.1<span class="nt">&lt;/IP&gt;</span>
+            <span class="nt">&lt;idioma&gt;</span>1<span class="nt">&lt;/idioma&gt;</span>
+            <span class="nt">&lt;itensDoPedido&gt;</span>
+               <span class="nt">&lt;codigoCategoria&gt;</span>1<span class="nt">&lt;/codigoCategoria&gt;</span>
+               <span class="nt">&lt;codigoProduto&gt;</span>1<span class="nt">&lt;/codigoProduto&gt;</span>
+               <span class="nt">&lt;nomeCategoria&gt;</span>Produto Teste<span class="nt">&lt;/nomeCategoria&gt;</span>
+               <span class="nt">&lt;nomeProduto&gt;</span>Produto Teste<span class="nt">&lt;/nomeProduto&gt;</span>
+               <span class="nt">&lt;quantidadeProduto&gt;</span>1<span class="nt">&lt;/quantidadeProduto&gt;</span>
+               <span class="nt">&lt;valorUnitarioProduto&gt;</span>100<span class="nt">&lt;/valorUnitarioProduto&gt;</span>
+            <span class="nt">&lt;/itensDoPedido&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;origemTransacao&gt;&lt;/origemTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlCampainha&gt;</span>http://minhaloja.com.br/notificação.asp<span class="nt">&lt;/urlCampainha&gt;</span>
+            <span class="nt">&lt;urlRedirecionamentoNaoPago&gt;</span>http://www.pagamentonaopago.com.br<span class="nt">&lt;/urlRedirecionamentoNaoPago&gt;</span>
+            <span class="nt">&lt;urlRedirecionamentoPago&gt;</span>http://www.pagamentopago.com.br<span class="nt">&lt;/urlRedirecionamentoPago&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/transacao&gt;</span>
+         <span class="nt">&lt;usuario&gt;</span>superpay<span class="nt">&lt;/usuario&gt;</span>
+         <span class="nt">&lt;senha&gt;</span>superpay<span class="nt">&lt;/senha&gt;</span>
+      <span class="nt">&lt;/pag:pagamentoTransacaoCompleta&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Estrutra  REST de envio PagSeguro:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--header "Content-Type: application/json"
+--header "usuario:{"login":"superpay","senha":"superpay"}"
+--data-binary
+{
+   codigoEstabelecimento: 1000000000000,
+   codigoFormaPagamento: 39,
+   transacao: {
+    numeroTransacao: 1,
+    valor: 2000,
+    valorDesconto: 0,
+    parcelas : 1,
+    urlCampainha : http://seusite.com.br/campainha,
+    urlResultado : http://seusite.com.br/retorno,
+    ip : "192.168.12.110",
+    idioma : 1
+   },
+   itensDoPedido: [
+  {
+    codigoProduto: 1,
+    nomeProduto: Blusa,
+    codigoCategoria: 1,
+    nomeCategoria : Roupa,
+    quantidadeProduto : 1,
+    valorUnitarioProduto : 2000
+  }
+   ],
+   dadosCobranca : {
+    codigoCliente : 1,
+    tipoCliente : 1,
+    nome : Teste SuperPay,
+    email : teste@teste.com,
+    dataNascimento : "",
+    sexo : "M",
+    documento : "12312321312",
+    endereco : {
+    logradouro : Rua Teste,
+    numero : 123,
+    complemento : "",
+    cep : 12345-678,
+    bairro : Bairro Teste,
+    cidade : Cidade Teste,
+    estado : SP,
+    pais : BR
+  },
+  telefone : [
+  {
+    tipoTelefone : 1,
+    ddi : 55,
+    ddd : 12,
+    telefone : 1234-5678
+  }
+  ]
+   },
+   dadosEntrega : {
+    nome : Teste SuperPay,
+    email : teste@teste.com,
+    endereco : {
+    logradouro : Rua teste,
+    numero : 123,
+    complemento : "",
+    cep : 12345-678,
+    bairro : Bairro Teste,
+    cidade : Cidade Teste,
+    estado : SP,
+    pais : BR
+  },
+  telefone : [
+  {
+    tipoTelefone : 1,
+    ddi : 55,
+    ddd : 12,
+    telefone : 1234-5678
+  }
+  ]
+   }
+}
+</code></pre>
+<p>RESPOSTA</p>
+
+<p>Estrtura de retorno PayPal:</p>
+
+<blockquote>
+<p>Retorno:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code>
+<span class="nt">&lt;soap:envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:body&gt;</span>
+      <span class="nt">&lt;ns2:pagamentoTransacaoCompletaResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://pagamentos.webservices.superpay.ernet.com.br/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;autorizacao&gt;&lt;/autorizacao&gt;</span>
+            <span class="nt">&lt;codigoEstabelecimento&gt;</span>1000000000000<span class="nt">&lt;/codigoEstabelecimento&gt;</span>
+            <span class="nt">&lt;codigoFormaPagamento&gt;</span>111<span class="nt">&lt;/codigoFormaPagamento&gt;</span>
+            <span class="nt">&lt;codigoTransacaoOperadora&gt;</span>0<span class="nt">&lt;/codigoTransacaoOperadora&gt;</span>
+            <span class="nt">&lt;dataAprovacaoOperadora&gt;&lt;/dataAprovacaOperadora&gt;</span>
+            <span class="nt">&lt;mensagemVenda&gt;&lt;/mensagemVenda&gt;</span>
+            <span class="nt">&lt;numeroComprovanteVenda&gt;&lt;/numeroComprovanteVenda&gt;</span>
+            <span class="nt">&lt;numeroTransacao&gt;</span>1<span class="nt">&lt;/numeroTransacao&gt;</span>
+            <span class="nt">&lt;parcelas&gt;</span>1<span class="nt">&lt;/parcelas&gt;</span>
+            <span class="nt">&lt;statusTransacao&gt;</span>8<span class="nt">&lt;/statusTransacao&gt;</span>
+            <span class="nt">&lt;taxaEmbarque&gt;</span>0<span class="nt">&lt;/taxaEmbarque&gt;</span>
+            <span class="nt">&lt;urlPagamento&gt;</span>https://homologacao.superpay.com.br/checkout/PagamentoPayPal/PagamentoPayPal.do?cod=141348960683a720e602-5631-4725-8f79-268c06795a3c<span class="nt">&lt;/urlpagamento&gt;</span>
+            <span class="nt">&lt;valor&gt;</span>100<span class="nt">&lt;/valor&gt;</span>
+            <span class="nt">&lt;valorDesconto&gt;</span>0<span class="nt">&lt;/valorDesconto&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:pagamentoTransacaoCompletaResponse&gt;</span>
+   <span class="nt">&lt;/soap:body&gt;</span>
+<span class="nt">&lt;/soap:envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Retorno PagSeguro:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 1,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 39,
+   "valor": 2000,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   "statusTransacao": 8,
+   "autorizacao": ,
+   "codigoTransacaoOperadora": "0",
+   "dataAprovacaoOperadora": ,
+   "numeroComprovanteVenda": ,
+   "nsu": ,
+   "mensagemVenda": ,
+   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoPagSeguro/PagamentoPagSeguro.do?cod=1413489786995834a2f60-aa50-4615-92bd-45c46a7397a5"
+}
+
+</code></pre><h1 id='modulo-magento'>Módulo Magento</h1>
 <p><a href="https://superpay.acelerato.com/base-de-conhecimento/#/artigos/5">Baixe aqui seu Módulo</a></p>
 
 <p><strong>Particulariedades</strong></p>
@@ -738,10 +3852,6 @@ O suporte Cielo realizará os testes em ambiente real e caso esteja dentro das c
 <li>Escolher as bandeiras/bancos em &quot;Cartão de credito&quot; / &quot;Banco&quot;.</li>
 </ul></li>
 </ol>
-<h1 id='downloads'>Downloads</h1><h2 id='formularios'>Formulários</h2>
-<p><a href="https://superpay.acelerato.com/base-de-conhecimento/#/artigos/70">Formulário para criação de um novo estabelecimento</a></p>
-
-<p><a href="https://superpay.acelerato.com/base-de-conhecimento/#/artigos/71">Formulário para configuração das formas de pagamento</a></p>
 
       </div>
       <div class="dark-box">

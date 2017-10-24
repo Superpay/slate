@@ -196,10 +196,6 @@ curl
    },
    "itensDoPedido" : [
   {
-      "codigoProduto" : 1,
-      "nomeProduto" : "Produto 1",
-      "codigoCategoria" : 1,
-      "nomeCategoria" : "categoria",
       "quantidadeProduto" : 1,
       "valorUnitarioProduto" : 100
   }
@@ -248,6 +244,12 @@ numeroCartao | Numero do cartão de crédito, sem espaços ou traços | Numéric
 codigoSeguranca | Código de segurança do cartão (campo não é armazenado pelo SuperPay) | Numérico | Até 4 caracteres | Sim
 dataValidade | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres | Sim
 
+*itensDoPedido*
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+quantidadeProduto	|Quantidade comprada do produto	|Numérico	|Até 8 dígitos|	Sim
+valorUnitarioProduto	|Valor unitário do produto. Deve ser enviado sem pontos ou vírgulas|	Numérico|	Até 10 dígitos|	Sim
 
 *dadosCobranca*
 

@@ -671,10 +671,6 @@ curl
    },
    "itensDoPedido" : [
   {
-      "codigoProduto" : 1,
-      "nomeProduto" : "Produto 1",
-      "codigoCategoria" : 1,
-      "nomeCategoria" : "categoria",
       "quantidadeProduto" : 1,
       "valorUnitarioProduto" : 100
   }
@@ -805,6 +801,33 @@ nomePortador | Nome do titular do cartão de crédito (Exatamente como escrito n
 numeroCartao | Numero do cartão de crédito, sem espaços ou traços | Numérico | Até 22 caracteres | Sim
 codigoSeguranca | Código de segurança do cartão (campo não é armazenado pelo SuperPay) | Numérico | Até 4 caracteres | Sim
 dataValidade | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres | Sim</p>
+
+<p><em>itensDoPedido</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>quantidadeProduto</td>
+<td>Quantidade comprada do produto</td>
+<td>Numérico</td>
+<td>Até 8 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valorUnitarioProduto</td>
+<td>Valor unitário do produto. Deve ser enviado sem pontos ou vírgulas</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
 
 <p><em>dadosCobranca</em></p>
 
