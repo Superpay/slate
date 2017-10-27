@@ -1402,7 +1402,7 @@ O gateway possui um processo que verifica todos os dias se existem recorrências
 ```curl
 
 curl
---request POST https://homologacao.superpay.com.br/checkout/api/v3/transacao
+--request POST https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao
 --header "Content-Type: application/json"
 --curl -u usuario:senha .........
 --data-binary
