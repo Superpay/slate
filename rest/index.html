@@ -379,7 +379,7 @@
 <p>Tudo que você precisa para se integrar ao nosso Gateway.</p>
 <h2 id='introducao'>Introdução</h2>
 <p>Gateway de pagamento é uma solução tecnológica, que permite, facilmente, que quaisquer sistemas que possam se comunicar via WebService, realizem cobranças via boleto, cartão e transferências bancárias.
-Uma vez integrado ao SuperPay, seu sistema estará pronto para disponibilizar diversas Formas de Pagamento.</p>
+Uma vez integrado ao Yapay, seu sistema estará pronto para disponibilizar diversas Formas de Pagamento.</p>
 <h2 id='glossario'>Glossário</h2>
 <p>Principais termos utilizados no meio eCommerce:</p>
 
@@ -423,10 +423,10 @@ Uma vez integrado ao SuperPay, seu sistema estará pronto para disponibilizar di
 </tr>
 </tbody></table>
 <h1 id='fluxo-de-comunicacao'>Fluxo de Comunicação</h1>
-<p>A comunicação com o SuperPay ocorrerá após a finalização do pagamento no Checkout do Ecommerce, de forma transparente para o consumidor.
-Ao ser finalizado o pagamento dentro da loja, o Ecommerce deverá consumir os serviços WebServices do SuperPay encaminhando as informações da compra de acordo com a estrutura que será apresentada nesta documentação.</p>
+<p>A comunicação com o Yapay Gateway ocorrerá após a finalização do pagamento no Checkout do Ecommerce, de forma transparente para o consumidor.
+Ao ser finalizado o pagamento dentro da loja, o Ecommerce deverá consumir os serviços WebServices do Yapay encaminhando as informações da compra de acordo com a estrutura que será apresentada nesta documentação.</p>
 <h1 id='credencias-de-acesso'>Credencias de acesso</h1><h2 id='sandbox'>Sandbox</h2>
-<p>O SuperPay disponibiliza um ambiente totalmente gratuito para sua equipe de desenvolvimento realizar testes. Basta solicitar seu ambiente para nossa equipe comercial através do email [comercial@superpay.com.br] com as seguintes informações:</p>
+<p>O Yapay disponibiliza um ambiente totalmente gratuito para sua equipe de desenvolvimento realizar testes. Basta solicitar seu ambiente para nossa equipe comercial através do email [comercial@yapay.com.br] com as seguintes informações:</p>
 
 <ul>
 <li>Nome da Loja;</li>
@@ -623,19 +623,15 @@ Esta operadora não possui regras para aprovação ou negação dos pedidos, os 
 
 <p>Para testes com este meio de pagamento é preciso possuir cadastro com a instituição financeira.</p>
 <h2 id='producao'>Produção</h2>
-<p>Para receber suas credenciais do nosso ambiente de produção, basta acessar nosso site e realizar a contratação de um de nossos planos: <a href="http://www.superpay.com.br/planos">Planos SuperPay</a>
-Caso tenha dúvidas sobre, por gentileza entrar em contato com nossa equipe comercial através do email [comercial@superpay.com.br] ou pelo telefone 11 3544-0678</p>
+<p>Para receber suas credenciais do nosso ambiente de produção, basta acessar nosso site e realizar a contratação de um de nossos planos: <a href="colocar%20novo%20site">Planos SuperPay</a>
+Caso tenha dúvidas sobre, por gentileza entrar em contato com nossa equipe comercial através do email [comercial@yapay.com.br] ou pelo telefone 11 3544-0678</p>
 <h1 id='autenticacao'>Autenticação</h1>
-<p>Para autenticação conosco, é preciso enviar o usuário e senha no HEADER da requisição. Caso ainda não o possua, por gentileza enviar solicitação para nossa equipe de Suporte através do email [servicedesk@superpay.com.br].</p>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="s2">"usuario"</span><span class="p">:</span><span class="w">
-</span><span class="p">{</span><span class="s2">"login"</span><span class="p">:</span><span class="w"> </span><span class="s2">"login"</span><span class="p">,</span><span class="w"> </span><span class="s2">"senha"</span><span class="p">:</span><span class="w"> </span><span class="s2">"senha"</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h1 id='endpoint'>EndPoint</h1><h2 id='sandbox-2'>Sandbox</h2>
-<p><code>https://homologacao.superpay.com.br/checkout/api/v2/transacao</code></p>
+<p>Os dados para autenticação devem ser enviados no cabeçalho Authorization da requisição HTTP, seguindo o padrão de Basic Authentication do HTTP.
+A autenticação deverá conter o usuário e senha de seu estabelecimento. Caso ainda não o possua, por gentileza enviar solicitação para nossa equipe de Suporte através do email [servicedesk@yapay.com.br].</p>
+<h1 id='endpoint'>EndPoint</h1><h2 id='sandbox-2'>Sandbox</h2>
+<p><code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao</code></p>
 <h2 id='producao-2'>Produção</h2>
-<p><code>https://superpay2.superpay.com.br/checkout/api/v2/transacao</code></p>
+<p><code>https://gateway.yapay.com.br/checkout/api/v3/transacao</code></p>
 <h1 id='pagamentos-com-cartao-de-credito'>Pagamentos com Cartão de Crédito</h1><h2 id='criando-uma-transacao-simplificada'>Criando uma transação simplificada</h2>
 <p>Estrutura e exemplo de uma transação simples para cartão de crédito. As funcionalidades, como Análise de Fraude, Recorrência e demais formas de pagamento precisam de uma estrutura mais completa para um perfeito funcionamento. Consulte as demais estruturas e exemplos desta documentação.</p>
 
@@ -650,9 +646,9 @@ Para enviar a transação, utilize o método <code>POST</code>
 </blockquote>
 <pre class="highlight plaintext"><code>
 curl
---request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--request POST https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao
+--curl -u usuario:senha .........
 --header "Content-Type: application/json"
---header "usuario:{"login":"superpay","senha":"superpay"}"
 --data-binary
 {
    "codigoEstabelecimento" : 1000000000000,
@@ -682,7 +678,7 @@ curl
 }
 
 </code></pre>
-<p>Para autenticação, enviar <code>login</code> e <code>senha</code> no HEADER:</p>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code></p>
 
 <table><thead>
 <tr>
@@ -691,8 +687,8 @@ curl
 </tr>
 </thead><tbody>
 <tr>
-<td>login</td>
-<td>Login do estabelecimento</td>
+<td>usuario</td>
+<td>Usuário do estabelecimento</td>
 </tr>
 <tr>
 <td>senha</td>
@@ -711,7 +707,7 @@ curl
 </thead><tbody>
 <tr>
 <td>codigoEstabelecimento</td>
-<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+<td>Código que identifica o estabelecimento dentro do Yapay (fornecido pelo gateway)</td>
 <td>Numérico</td>
 <td>13 dígitos</td>
 <td>Sim</td>
@@ -799,7 +795,7 @@ Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
 nomePortador | Nome do titular do cartão de crédito (Exatamente como escrito no cartão) | Alfa Numérico | Até 16 dígitos | Sim
 numeroCartao | Numero do cartão de crédito, sem espaços ou traços | Numérico | Até 22 caracteres | Sim
-codigoSeguranca | Código de segurança do cartão (campo não é armazenado pelo SuperPay) | Numérico | Até 4 caracteres | Sim
+codigoSeguranca | Código de segurança do cartão (campo não é armazenado pelo Yapay) | Numérico | Até 4 caracteres | Sim
 dataValidade | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres | Sim</p>
 
 <p><em>itensDoPedido</em></p>
@@ -877,7 +873,7 @@ dataValidade | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7
    "numeroComprovanteVenda": "10069930690009F2122A",
    "nsu": "428706",
    "mensagemVenda": "Operation Success",
-   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoCielo/PagamentoCielo.do?cod=14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
+   "urlPagamento": "https://sandbox.gateway.yapay.com.br/checkout/PagamentoCielo/PagamentoCielo.do?cod=14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
    "cartoesUtilizados": ["000000*******0001"]
 }
 
@@ -1009,9 +1005,9 @@ Para enviar a transação, acione o método <code>POST</code>
 </blockquote>
 <pre class="highlight plaintext"><code>
 curl
---request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--request POST https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao
 --header "Content-Type: application/json"
---header "usuario:{"login":"superpay","senha":"superpay"}"
+--curl -u usuario:senha .........
 --data-binary
 {
    "codigoEstabelecimento" : 1000000000000,
@@ -1638,7 +1634,7 @@ dataValidade | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7
    "numeroComprovanteVenda": "10117092009151900057", 
    "nsu": "428706",
    "mensagemVenda": "00 - Success",
-   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoCielo/PagamentoCielo.do?cod=14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66", 
+   "urlPagamento": "https://sandbox.gateway.yapay.com.br/checkout/PagamentoCielo/PagamentoCielo.do?cod=14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66", 
    "cartoesUtilizados": ["400247******0736"]
 }
 
@@ -1755,7 +1751,7 @@ Os estabelecimentos com captura manual deverão acionar o método de captura em 
 <p><strong>REQUISIÇÃO</strong></p>
 
 <aside class="notice">
-Para enviar a transação, acione o método <code>POST</code>
+Para enviar a transação, acione o método <code>PUT</code>
 </aside>
 
 <blockquote>
@@ -1763,9 +1759,9 @@ Para enviar a transação, acione o método <code>POST</code>
 </blockquote>
 <pre class="highlight plaintext"><code>
 curl
---request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao/10000000000000/1234/capturar
+--request PUT https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao/1000000000000/1234/capturar
+--curl -u usuario:senha .........
 --header "Content-Type: application/json"
---header "usuario:{"login":"superpay","senha":"superpay"}"
 --data-binary
 
 </code></pre>
@@ -1828,7 +1824,7 @@ curl
    "numeroComprovanteVenda": "10069930690009F2122A",
    "nsu": "428706",
    "mensagemVenda": "Operation Success",
-   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoCielo/PagamentoCielo.do?cod=14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
+   "urlPagamento": "https://sandbox.gateway.yapay.com.br/checkout/PagamentoCielo/PagamentoCielo.do?cod=14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
    "cartoesUtilizados": ["000000*******0001"]
 }
 
@@ -1970,7 +1966,7 @@ curl
 <p><strong>REQUISIÇÃO</strong></p>
 
 <aside class="notice">
-Para enviar a transação, acione o método <code>POST</code>
+Para enviar a transação, acione o método <code>PUT</code>
 </aside>
 
 <blockquote>
@@ -1978,9 +1974,9 @@ Para enviar a transação, acione o método <code>POST</code>
 </blockquote>
 <pre class="highlight plaintext"><code>
 curl
---request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao/10000000000000/1234/cancelar
+--request PUT https://sandbox.gateway.yapay.com.br/checkout/api/v2/transacao/10000000000000/1234/cancelar
 --header "Content-Type: application/json"
---header "usuario:{"login":"superpay","senha":"superpay"}"
+--curl -u usuario:senha .........
 --data-binary
 
 </code></pre>
@@ -2035,7 +2031,7 @@ acao|   Ação a ser realizada. Enviar &quot;cancelar&quot; </p>
    "numeroComprovanteVenda": "10069930690009F2122A",
    "nsu": "428706",
    "mensagemVenda": "Operation Success",
-   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoCielo/PagamentoCielo.do?cod=14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
+   "urlPagamento": "https://sandbox.gateway.yapay.com.br/checkout/PagamentoCielo/PagamentoCielo.do?cod=14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
    "cartoesUtilizados": ["000000*******0001"]
 }
 
@@ -2161,9 +2157,9 @@ Para enviar a transação, acione o método <code>POST</code>
 </blockquote>
 <pre class="highlight plaintext"><code>
 curl
---request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--request POST https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao
 --header "Content-Type: application/json"
---header "usuario:{"login":"superpay","senha":"superpay"}"
+--curl -u usuario:senha .........
 --data-binary
 {
    "codigoEstabelecimento" : 1000000000000,
@@ -2199,7 +2195,7 @@ curl
 }
 
 </code></pre>
-<p>Para autenticação, enviar <code>login</code> e <code>senha</code> no HEADER:</p>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
 
 <table><thead>
 <tr>
@@ -2208,8 +2204,8 @@ curl
 </tr>
 </thead><tbody>
 <tr>
-<td>login</td>
-<td>Login do estabelecimento</td>
+<td>usuario</td>
+<td>Usuário do estabelecimento</td>
 </tr>
 <tr>
 <td>senha</td>
@@ -2367,7 +2363,7 @@ dataValidade | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7
    "numeroComprovanteVenda": "10069930690009F2122A",
    "nsu": "428706",
    "mensagemVenda": "Operation Success",
-   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoCielo/PagamentoVisaElectron.do?cod=14132971582229c00506d-e84d-4526-b902-92190d5aa808",
+   "urlPagamento": "https://sandbox.gateway.yapay.com.br/checkout/PagamentoCielo/PagamentoVisaElectron.do?cod=14132971582229c00506d-e84d-4526-b902-92190d5aa808",
    "cartoesUtilizados": ["000000*******0001"]
 }
 
@@ -2508,9 +2504,9 @@ Para enviar a transação, acione o método <code>POST</code>
 </blockquote>
 <pre class="highlight plaintext"><code>
 curl
---request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--request POST https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao
 --header "Content-Type: application/json"
---header "usuario:{"login":"superpay","senha":"superpay"}"
+--curl -u usuario:senha .........
 --data-binary
 {
    "codigoEstabelecimento" : 1000000000000,
@@ -3031,7 +3027,7 @@ Para geração do boleto o eCommerce deverá redirecionar o consumidor para a UR
    "numeroComprovanteVenda": "", 
    "nsu": "",
    "mensagemVenda": "",
-   "urlPagamento": "https://homologacao.superpay.com.br/checkout/Gerarboleto.do?cod=14956296486904d8312c6-d57a-499e-b53b-504047402e45"
+   "urlPagamento": "https://sandbox.gateway.yapay.com.br/checkout/Gerarboleto.do?cod=14956296486904d8312c6-d57a-499e-b53b-504047402e45"
 }
 
 </code></pre>
@@ -3150,9 +3146,9 @@ Para enviar a transação, acione o método <code>POST</code>
 </blockquote>
 <pre class="highlight plaintext"><code>
 curl
---request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--request POST https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao
 --header "Content-Type: application/json"
---header "usuario:{"login":"superpay","senha":"superpay"}"
+--curl -u usuario:senha .........
 --data-binary
 {
    "codigoEstabelecimento" : 1000000000000,
@@ -3638,7 +3634,7 @@ curl
    "numeroComprovanteVenda": "", 
    "nsu": "",
    "mensagemVenda": "",
-   "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoIatuShopLine/PagamentoItauShopLine.do?cod=132971582229c00506d-e84d-4526-b902-92190d5aa808"
+   "urlPagamento": "https://sandbox.gateway.yapay.com.br/checkout/PagamentoIatuShopLine/PagamentoItauShopLine.do?cod=132971582229c00506d-e84d-4526-b902-92190d5aa808"
 }
 
 </code></pre>
@@ -3739,10 +3735,10 @@ curl
 <aside class="notice">
 Esta funcionalidade está disponível em um EndPoint diferenciado:
 
-SANDBOX: <code> https://homologacao.superpay.com.br/checkout/api/v2/recorrencia</code>
+SANDBOX: <code> https://sandbox.gateway.yapay.com.br/checkout/api/v3/recorrencia</code>
 
 
-PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/api/v2/recorrencia</code>
+PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/recorrencia</code>
 </aside>
 <h2 id='criando-uma-transacao-recorrente'>Criando uma transação recorrente</h2>
 <p>Neste modelo, o SuperPay controla os pagamentos que foram cadastrados pelo estabelecimento, de acordo com sua periodicidade, valor e dia de cobrança.</p>
@@ -3764,9 +3760,9 @@ PRODUÇÃO: <code>https://superpay2.superpay.com.br/checkout/api/v2/recorrencia<
 </blockquote>
 <pre class="highlight plaintext"><code>
 curl
---request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--request POST https://homologacao.superpay.com.br/checkout/api/v3/transacao
 --header "Content-Type: application/json"
---header "usuario:{"login":"superpay","senha":"superpay"}"
+--curl -u usuario:senha .........
 --data-binary
 {
     "estabelecimento": "1000000000000",
@@ -4276,9 +4272,9 @@ curl
 </blockquote>
 <pre class="highlight plaintext"><code>
 curl
---request GET https://homologacao.superpay.com.br/checkout/api/v2/recorrencia/10000000000000/2/cancelar
+--request PUT https://sandbox.gateway.yapay.com.br/checkout/api/v3/recorrencia/10000000000000/2/cancelar
 --header "Content-Type: application/json"
---header "usuario:{"login":"superpay","senha":"superpay"}"
+--curl -u usuario:senha .........
 --data-binary
 
 </code></pre>
@@ -4440,9 +4436,9 @@ Para enviar a transação, acione o método <code>POST</code>
 </blockquote>
 <pre class="highlight plaintext"><code>
 curl
---request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--request POST https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao
 --header "Content-Type: application/json"
---header "usuario:{"login":"superpay","senha":"superpay"}"
+--curl -u usuario:senha .........
 --data-binary
 {
      "codigoEstabelecimento": 1000000000000,
@@ -4916,7 +4912,7 @@ curl
 </blockquote>
 <pre class="highlight plaintext"><code>
 --header "Content-Type: application/json"
-{"urlPagamento": "https://homologacao.superpay.com.br/checkout/checkout/redirecionaPagamento?codigoPagamento=150609150796704e7-5b25-4a41-a753-a09bfb66db8d&amp;tipoPagamento=0&amp;oneClick=false"}
+{"urlPagamento": "https://sandbox.gateway.yapay.com.br/checkout/checkout/redirecionaPagamento?codigoPagamento=150609150796704e7-5b25-4a41-a753-a09bfb66db8d&amp;tipoPagamento=0&amp;oneClick=false"}
 
 </code></pre>
 <table><thead>
@@ -4952,9 +4948,9 @@ Para enviar a transação, acione o método <code>POST</code>
 </blockquote>
 <pre class="highlight plaintext"><code>
 curl
---request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--request POST https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao
 --header "Content-Type: application/json"
---header "usuario:{"login":"superpay","senha":"superpay"}"
+--curl -u usuario:senha .........
 --data-binary
 {
      "codigoEstabelecimento": 1000000000000,
@@ -5435,7 +5431,7 @@ curl
 </blockquote>
 <pre class="highlight plaintext"><code>
 --header "Content-Type: application/json"
-{"urlPagamento": "https://homologacao.superpay.com.br/checkout/checkout/redirecionaPagamento?codigoPagamento=150609150796704e7-5b25-4a41-a753-a09bfb66db8d&amp;tipoPagamento=0&amp;oneClick=false"}
+{"urlPagamento": "https://sandbox.gateway.yapay.com.br/checkout/checkout/redirecionaPagamento?codigoPagamento=150609150796704e7-5b25-4a41-a753-a09bfb66db8d&amp;tipoPagamento=0&amp;oneClick=false"}
 
 </code></pre>
 <table><thead>
@@ -5472,9 +5468,9 @@ Para enviar a transação, acione o método <code>POST</code>
 </blockquote>
 <pre class="highlight plaintext"><code>
 curl
---request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--request POST https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao
 --header "Content-Type: application/json"
---header "usuario:{"login":"superpay","senha":"superpay"}"
+--curl -u usuario:senha .........
 --data-binary
 {
      "codigoEstabelecimento": 1000000000000,
@@ -5949,7 +5945,7 @@ curl
 </blockquote>
 <pre class="highlight plaintext"><code>
 --header "Content-Type: application/json"
-{"urlPagamento": "https://homologacao.superpay.com.br/checkout/checkout/redirecionaPagamento?codigoPagamento=150609150796704e7-5b25-4a41-a753-a09bfb66db8d&amp;tipoPagamento=0&amp;oneClick=false"}
+{"urlPagamento": "https://sandbox.gateway.yapay.com.br/checkout/checkout/redirecionaPagamento?codigoPagamento=150609150796704e7-5b25-4a41-a753-a09bfb66db8d&amp;tipoPagamento=0&amp;oneClick=false"}
 
 </code></pre>
 <table><thead>
@@ -5983,9 +5979,9 @@ Para enviar a transação, acione o método <code>POST</code>
 </blockquote>
 <pre class="highlight plaintext"><code>
 curl
---request POST https://homologacao.superpay.com.br/checkout/api/v2/transacao
+--request POST https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao
 --header "Content-Type: application/json"
---header "usuario:{"login":"superpay","senha":"superpay"}"
+--curl -u usuario:senha .........
 --data-binary
 {
      "codigoEstabelecimento": 1000000000000,
@@ -6506,7 +6502,7 @@ curl
 </blockquote>
 <pre class="highlight plaintext"><code>
 --header "Content-Type: application/json"
-{"urlPagamento": "https://homologacao.superpay.com.br/checkout/checkout/redirecionaPagamento?codigoPagamento=150609150796704e7-5b25-4a41-a753-a09bfb66db8d&amp;tipoPagamento=0&amp;oneClick=false"}
+{"urlPagamento": "https://sandbox.gateway.yapay.com.br/checkout/checkout/redirecionaPagamento?codigoPagamento=150609150796704e7-5b25-4a41-a753-a09bfb66db8d&amp;tipoPagamento=0&amp;oneClick=false"}
 
 </code></pre>
 <table><thead>
@@ -6532,9 +6528,9 @@ curl
 </blockquote>
 <pre class="highlight plaintext"><code>
 curl
---request GET https://homologacao.superpay.com.br/checkout/api/v2/transacao/10000000000000/1234
+--request GET https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao/10000000000000/1234
 --header "Content-Type: application/json"
---header "usuario:{"login":"superpay","senha":"superpay"}"
+--curl -u usuario:senha .........
 --data-binary
 
 </code></pre>
@@ -6601,7 +6597,7 @@ curl
     "numeroComprovanteVenda": "10069930690009F2122A",
     "nsu": "428706",
     "mensagemVenda": "Operation Success",
-    "urlPagamento": "https://homologacao.superpay.com.br/checkout/PagamentoCielo/PagamentoCielo.do?cod=14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
+    "urlPagamento": "https://sandbox.gateway.yapay.com.br/checkout/PagamentoCielo/PagamentoCielo.do?cod=14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
     "cartoesUtilizados": ["000000*******0001"]
 }
 
@@ -6717,9 +6713,9 @@ curl
 </blockquote>
 <pre class="highlight plaintext"><code>
 curl
---request GET https://homologacao.superpay.com.br/checkout/api/v2/recorrencia/10000000000000/2
+--request GET https://sandbox.gateway.yapay.com.br/checkout/api/v3/recorrencia/10000000000000/2
 --header "Content-Type: application/json"
---header "usuario:{"login":"superpay","senha":"superpay"}"
+--curl -u usuario:senha .........
 --data-binary
 
 </code></pre>
