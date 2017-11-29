@@ -64,23 +64,6 @@ Bandeira | Número do cartão | Código de segurança | Data de validade
 Qualquer | 0000000000000002 | 123| qualquer posteiror ao dia corrente
 
 
-*ELAVON*
-
-Para testar esta modalidade as seguintes regras abaixo devem ser utilizadas:
-
-* Para aprovação da venda, o valor total da venda deve  ser em valor inteiro, ou seja, sem centavos;
-* Para negação, basta enviar o valor total da venda quebrado, ou seja, com centavos;
-* Como o ambiente de testes da Elavon é compartilhado, sugerimos gerar o número do pedido baseado em YYMMDDHHMMSS (ano, mês, dia, hora, minuto, segundo).
-
-
-Bandeira | Número do cartão | Código de segurança | Data de validade 
-------| -------|------| -------
-Visa|	4444111122223333|	123|	Qualquer posterior ao dia corrente
-MasterCard|	5431111111111111|	123|	Qualquer posterior ao dia corrente
-Diners	|38000000000006|	123	|Qualquer posterior ao dia corrente
-Discover|	6011111111111117|	123|	Qualquer posterior ao dia corrente
-
-
 *E REDE*
 
 Utilize os cartões e valores abaixo para simular uma aprovação ou reprovação.
