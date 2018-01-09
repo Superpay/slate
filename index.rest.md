@@ -740,6 +740,198 @@ numeroComprovanteVenda | Número do comprovante de venda |Alfa Numérico | Até 
 mensagemVenda | Mensagem de retorno da adquirente |Alfa Numérico | Até 50 dígitos
 cartoesUtilizados | Número de cartão truncado utilizado na transação | Alfa Numérico | Até 20 dígitos
 
+## Cancelando parcialmente uma transação
+Através desta funcionalidade é possível cancelar uma venda parcialmente. Consulte abaixo as adquirentes que fornecem o cancelamento parcial e o prazo de cancelamento:
+
+Adquirente | Limite de cancelamento 
+------| ----------
+Cielo|	300 dias após a geração do pedido
+E Rede|	Pode variar conforme o ramo de atuação de cada estabelecimento
+
+
+**REQUISIÇÃO**
+
+<aside class="notice">
+Para enviar a transação, acione o método <code>PUT</code>
+</aside>
+
+> Exemplo cancelamento de transação:
+
+```curl
+
+curl
+--request PUT https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao/10000000000000/1234/cancelar?valor=1000
+--header "Content-Type: application/json"
+--curl -u usuario:senha .........
+--data-binary
+
+```
+
+Para autenticação, enviar `usuario` e `senha`:
+
+Campo | Descrição 
+------| ----------
+usuario | Login do estabelecimento
+senha | Senha do estabelecimento
+
+
+Campo | Descrição 
+------| ----------
+
+numeroTransacao |	Código que identifica a transação dentro do SuperPay
+codigoEstabelecimento|	Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)
+acao|	Ação a ser realizada. Enviar "cancelar" 
+valor | Valor a ser cancelado
+
+
+**RESPOSTA**
+
+> Exemplo retorno de cancelamento de transação:
+
+```curl
+
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 1234,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 170,
+   "valor": 2000,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   "statusTransacao": 27,
+   "autorizacao": "123456",
+   "codigoTransacaoOperadora": "0",
+   "dataAprovacaoOperadora": "2018-01-03 13:02:53",
+   "numeroComprovanteVenda": "10069930690009F2122A",
+   "nsu": "428706",
+   "mensagemVenda": "Operation Success",
+   "urlPagamento": "14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
+   "cartoesUtilizados": ["000000*******0001"]
+}
+
+```
+
+Campo | Descrição | Tipo | Tamanho 
+------| ----------|------| --------
+numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay | Numérico | 13 dígitos
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
+valor | Valor da transação.| Numérico | Até 10 dígitos
+valorDesconto | Valor desconto | Numérico | Até 10 dígitos
+taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
+parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
+urlPagamento | Para o modelo redirect. Essa será a URL de redirecionamento da operação |Alfa Numérico | Até 500 caracteres 
+statusTransacao | [Status atual da transação](https://superpay.github.io/rest/#status-de-transacao) | Numérico | Até 2 dígitos
+autorizacao | Código de autorização da adquirente | Numérico | Até 20 dígitos
+codigoTransacaoOperadora | Código da transação na adquirente | Numérico | Até 20 dígitos
+dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | Até 10 dígitos
+numeroComprovanteVenda | Número do comprovante de venda |Alfa Numérico | Até 20 dígitos
+mensagemVenda | Mensagem de retorno da adquirente |Alfa Numérico | Até 50 dígitos
+cartoesUtilizados | Número de cartão truncado utilizado na transação | Alfa Numérico | Até 20 dígitos
+
+# Pagamentos com único clique
+
+Através desta funcionalidade é possível armazenar os dados de cartão do cliente de forma segura (sempre será solicitado seu código de segurança) nos serviços do Gateway e eles não precisarão digitar todos os dados de cartão sempre que efetuarem uma compra.
+
+**Particulariedades**
+
+* Disponível apenas no plano Corporativo;
+* Disponível para cartões de crédito e débito.
+
+
+## Cadastro cartão
+
+Funcionalidade que permite o cadastramento de cartão para utilização nas futuras compras, assim o consumidor precisará incluir apenas o código de segurança para finalizar a compra.
+
+<aside class="notice">
+SANDBOX: <code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/</code>
+PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/</code>
+</aside>
+
+**REQUISIÇÃO**
+
+<aside class="notice">Para criar o token, acione o método <code>POST</code></aside>
+
+> Exemplo cadastro do cartão:
+
+```curl
+
+curl
+--request POST https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick
+--header "Content-Type: application/json"
+--curl -u usuario:senha
+--data-binary
+{
+ "codigoEstabelecimento": 1000000000000,
+ "formaPagamento": 170,
+ "nomeTitularCartaoCredito": "Teste OneClick",
+ "numeroCartaoCredito": "0000000000000001",
+ "dataValidadeCartao": "10/2020",
+ "emailComprador": "yapay@yapay.com.br"
+}
+```
+
+Para autenticação, enviar `usuario` e `senha` seguindo os padrões Basic Authentication:
+
+Campo | Descrição 
+------| ----------
+usuario | Usuário do estabelecimento
+senha | Senha do estabelecimento
+
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos | Sim
+nomeTitularCartao | Nome titular do cartão de crédito/débito | Alfa Numérico | Até 16 caracteres | Sim
+numeroCartaoCredito | Numero do cartão de crédito/débito, sem espaços ou traços	 | Numérico | Até 22 dígitos | Sim
+dataValidadeCartao | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres | Sim
+emailComprador | Email do comprador | Alfa Numérico | 20 caracteres | Não
+
+**RESPOSTA**
+
+> Exemplo retorno do cadastro:
+
+```curl
+
+--header "Content-Type: application/json
+{ 
+ "codigoEstabelecimento": 1000000000000,
+ "codigoFormaPagamento": 170,
+ "oneClick": 1,
+ "token": "1514483826864c3149224-67db-4557-8950-6a80f708c1c5",
+ "nomeTitularCartaoCredito": "Teste OneClick",
+ "numeroCartaoCredito": "000000******0001",
+ "dataValidadeCartao": "10/2020",
+ "emailComprador": "yapay@yapay.com.br"
+}
+
+
+Campo | Descrição | Tipo | Tamanho 
+------| ----------|------| --------
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos 
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
+oneClick | Retornará 1 para cadastro criado | Numérico | 1 dígito 
+token | Token criado | Alfa Numérico | Até 60 caracteres
+nomeTitularCartao | Nome titular do cartão de crédito/débito | Alfa Numérico | Até 16 caracteres
+numeroCartaoCredito | Numero do cartão de crédito/débito, sem espaços ou traços	 | Numérico | Até 22 dígitos
+dataValidadeCartao | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres
+emailComprador | Email do comprador | Alfa Numérico | 20 caracteres
+
+## Pagamento
+
+Com o Token recebido no momento do cadastro, é possível realizar o pagamento de uma venda juntamente com o código de segurança que o usuário irá inserir na página de Checkout.
+
+<aside class="notice">
+SANDBOX: <code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>`/autorizar</code>
+PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>`/autorizar</code>
+</aside>
+
+**REQUISIÇÃO**
+
+<aside class="notice">Para criar o token, acione o método <code>POST</code></aside>
+
+
 
 # Pagamentos com Cartão de Débito
 ## Criando uma transação simplificada
@@ -2761,6 +2953,7 @@ Código | Nome | Descrição
 23|Estorno Parcial|A venda estonada na adquirente parcialmente
 24|Estorno Não Autorizado|O Estorno não foi autorizado pela adquirente
 25|Falha no estorno|Falha ao enviar estorno para a operadora
+27|Cancelamento Parcial | Pedido parcialmente cancelado
 31|Transação já Paga|Transação já existente e finalizada na adquirente
 40|Aguardando Cancelamento |Processo de cancelamento em andamento
 

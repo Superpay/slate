@@ -272,13 +272,16 @@
                   <li>
                     <a href="#cancelando-uma-transacao" class="toc-h2 toc-link" data-title="Pagamentos com Cartão de Crédito">Cancelando uma transação</a>
                   </li>
+                  <li>
+                    <a href="#cancelando-parcialmente-uma-transacao" class="toc-h2 toc-link" data-title="Pagamentos com Cartão de Crédito">Cancelando parcialmente uma transação</a>
+                  </li>
               </ul>
           </li>
           <li>
-            <a href="#pagamentos-com-cartao-de-debito" class="toc-h1 toc-link" data-title="Pagamentos com Cartão de Débito">Pagamentos com Cartão de Débito</a>
+            <a href="#pagamentos-com-unico-clique" class="toc-h1 toc-link" data-title="Pagamentos com único clique">Pagamentos com único clique</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#criando-uma-transacao-simplificada-2" class="toc-h2 toc-link" data-title="Pagamentos com Cartão de Débito">Criando uma transação simplificada</a>
+                    <a href="#cadastro-cartao" class="toc-h2 toc-link" data-title="Pagamentos com único clique">Cadastro cartão</a>
                   </li>
               </ul>
           </li>
@@ -2144,27 +2147,376 @@ acao|   Ação a ser realizada. Enviar &quot;cancelar&quot; </p>
 <td>Até 20 dígitos</td>
 </tr>
 </tbody></table>
-<h1 id='pagamentos-com-cartao-de-debito'>Pagamentos com Cartão de Débito</h1><h2 id='criando-uma-transacao-simplificada-2'>Criando uma transação simplificada</h2>
-<p>Para pagamentos com cartão de débito é obrigatório a etapa de autenticação do consumidor na página do banco emissor de seu cartão. Sendo assim, após o envio dos dados da transação, o eCommerce deverá redirecionar o consumidor para o campo <code>urlPagamento</code> retornado pelo Gateway.</p>
+<h2 id='cancelando-parcialmente-uma-transacao'>Cancelando parcialmente uma transação</h2>
+<p>Através desta funcionalidade é possível cancelar uma venda parcialmente. Consulte abaixo as adquirentes que fornecem o cancelamento parcial e o prazo de cancelamento:</p>
 
-<p><strong>Particulariedades</strong></p>
-
-<ul>
-<li>Não disponível no fluxo de Antifraude;</li>
-<li>Pagamento com redirecionamento;</li>
-<li>Importante a utilização do recurso de Campainha.</li>
-</ul>
+<table><thead>
+<tr>
+<th>Adquirente</th>
+<th>Limite de cancelamento</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Cielo</td>
+<td>300 dias após a geração do pedido</td>
+</tr>
+<tr>
+<td>E Rede</td>
+<td>Pode variar conforme o ramo de atuação de cada estabelecimento</td>
+</tr>
+</tbody></table>
 
 <p><strong>REQUISIÇÃO</strong></p>
 
 <aside class="notice">
-Para enviar a transação, acione o método <code>POST</code>
+Para enviar a transação, acione o método <code>PUT</code>
 </aside>
 
 <blockquote>
-<p>Exemplo criação transação:</p>
+<p>Exemplo cancelamento de transação:</p>
 </blockquote>
 <pre class="highlight plaintext"><code>
+curl
+--request PUT https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao/10000000000000/1234/cancelar?valor=1000
+--header "Content-Type: application/json"
+--curl -u usuario:senha .........
+--data-binary
+
+</code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code>:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Login do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>numeroTransacao |   Código que identifica a transação dentro do SuperPay
+codigoEstabelecimento|  Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)
+acao|   Ação a ser realizada. Enviar &quot;cancelar&quot; 
+valor | Valor a ser cancelado</p>
+
+<p><strong>RESPOSTA</strong></p>
+
+<blockquote>
+<p>Exemplo retorno de cancelamento de transação:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 1234,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 170,
+   "valor": 2000,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   "statusTransacao": 27,
+   "autorizacao": "123456",
+   "codigoTransacaoOperadora": "0",
+   "dataAprovacaoOperadora": "2018-01-03 13:02:53",
+   "numeroComprovanteVenda": "10069930690009F2122A",
+   "nsu": "428706",
+   "mensagemVenda": "Operation Success",
+   "urlPagamento": "14956291484887110cf2a-9aeb-4b34-a869-1a61f0611b66",
+   "cartoesUtilizados": ["000000*******0001"]
+}
+
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 19 dígitos</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td><a href="https://superpay.github.io/rest/#forma-de-pagamento">Código da forma de pagamento</a></td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação.</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>valorDesconto</td>
+<td>Valor desconto</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>taxaEmbarque</td>
+<td>Valor taxa embarque</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>urlPagamento</td>
+<td>Para o modelo redirect. Essa será a URL de redirecionamento da operação</td>
+<td>Alfa Numérico</td>
+<td>Até 500 caracteres</td>
+</tr>
+<tr>
+<td>statusTransacao</td>
+<td><a href="https://superpay.github.io/rest/#status-de-transacao">Status atual da transação</a></td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>autorizacao</td>
+<td>Código de autorização da adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>codigoTransacaoOperadora</td>
+<td>Código da transação na adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>dataAprovacaoOperadora</td>
+<td>Data de aprovação na adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>numeroComprovanteVenda</td>
+<td>Número do comprovante de venda</td>
+<td>Alfa Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>mensagemVenda</td>
+<td>Mensagem de retorno da adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 50 dígitos</td>
+</tr>
+<tr>
+<td>cartoesUtilizados</td>
+<td>Número de cartão truncado utilizado na transação</td>
+<td>Alfa Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+</tbody></table>
+<h1 id='pagamentos-com-unico-clique'>Pagamentos com único clique</h1>
+<p>Através desta funcionalidade é possível armazenar os dados de cartão do cliente de forma segura (sempre será solicitado seu código de segurança) nos serviços do Gateway e eles não precisarão digitar todos os dados de cartão sempre que efetuarem uma compra.</p>
+
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li>Disponível apenas no plano Corporativo;</li>
+<li>Disponível para cartões de crédito e débito.</li>
+</ul>
+<h2 id='cadastro-cartao'>Cadastro cartão</h2>
+<p>Funcionalidade que permite o cadastramento de cartão para utilização nas futuras compras, assim o consumidor precisará incluir apenas o código de segurança para finalizar a compra.</p>
+
+<aside class="notice">
+SANDBOX: <code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/</code>
+PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/</code>
+</aside>
+
+<p><strong>REQUISIÇÃO</strong></p>
+
+<aside class="notice">Para criar o token, acione o método <code>POST</code></aside>
+
+<blockquote>
+<p>Exemplo cadastro do cartão:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick
+--header "Content-Type: application/json"
+--curl -u usuario:senha
+--data-binary
+{
+ "codigoEstabelecimento": 1000000000000,
+ "formaPagamento": 170,
+ "nomeTitularCartaoCredito": "Teste OneClick",
+ "numeroCartaoCredito": "0000000000000001",
+ "dataValidadeCartao": "10/2020",
+ "emailComprador": "yapay@yapay.com.br"
+}
+</code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code> seguindo os padrões Basic Authentication:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Usuário do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td><a href="https://superpay.github.io/rest/#forma-de-pagamento">Código da forma de pagamento</a></td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>nomeTitularCartao</td>
+<td>Nome titular do cartão de crédito/débito</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>numeroCartaoCredito</td>
+<td>Numero do cartão de crédito/débito, sem espaços ou traços</td>
+<td>Numérico</td>
+<td>Até 22 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>dataValidadeCartao</td>
+<td>Data de validade do cartão. Formato mm/yyyy</td>
+<td>Alfa Numérico</td>
+<td>7 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>emailComprador</td>
+<td>Email do comprador</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+<td>Não</td>
+</tr>
+</tbody></table>
+
+<p><strong>RESPOSTA</strong></p>
+
+<blockquote>
+<p>Exemplo retorno do cadastro:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json
+{ 
+ "codigoEstabelecimento": 1000000000000,
+ "codigoFormaPagamento": 170,
+ "oneClick": 1,
+ "token": "1514483826864c3149224-67db-4557-8950-6a80f708c1c5",
+ "nomeTitularCartaoCredito": "Teste OneClick",
+ "numeroCartaoCredito": "000000******0001",
+ "dataValidadeCartao": "10/2020",
+ "emailComprador": "yapay@yapay.com.br"
+}
+
+
+Campo | Descrição | Tipo | Tamanho 
+------| ----------|------| --------
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos 
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
+oneClick | Retornará 1 para cadastro criado | Numérico | 1 dígito 
+token | Token criado | Alfa Numérico | Até 60 caracteres
+nomeTitularCartao | Nome titular do cartão de crédito/débito | Alfa Numérico | Até 16 caracteres
+numeroCartaoCredito | Numero do cartão de crédito/débito, sem espaços ou traços     | Numérico | Até 22 dígitos
+dataValidadeCartao | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres
+emailComprador | Email do comprador | Alfa Numérico | 20 caracteres
+
+## Pagamento
+
+Com o Token recebido no momento do cadastro, é possível realizar o pagamento de uma venda juntamente com o código de segurança que o usuário irá inserir na página de Checkout.
+
+&lt;aside class="notice"&gt;
+SANDBOX: &lt;code&gt;https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/`&lt;token&gt;`/autorizar&lt;/code&gt;
+PRODUÇÃO: &lt;code&gt;https://gateway.yapay.com.br/checkout/api/v3/oneclick/`&lt;token&gt;`/autorizar&lt;/code&gt;
+&lt;/aside&gt;
+
+**REQUISIÇÃO**
+
+&lt;aside class="notice"&gt;Para criar o token, acione o método &lt;code&gt;POST&lt;/code&gt;&lt;/aside&gt;
+
+
+
+# Pagamentos com Cartão de Débito
+## Criando uma transação simplificada
+
+Para pagamentos com cartão de débito é obrigatório a etapa de autenticação do consumidor na página do banco emissor de seu cartão. Sendo assim, após o envio dos dados da transação, o eCommerce deverá redirecionar o consumidor para o campo &lt;code&gt;urlPagamento&lt;/code&gt; retornado pelo Gateway.
+
+
+**Particulariedades**
+
+* Não disponível no fluxo de Antifraude;
+* Pagamento com redirecionamento;
+* Importante a utilização do recurso de Campainha.
+
+
+**REQUISIÇÃO**
+
+&lt;aside class="notice"&gt;
+Para enviar a transação, acione o método &lt;code&gt;POST&lt;/code&gt;
+&lt;/aside&gt;
+
+&gt; Exemplo criação transação:
+
+```curl
+
 curl
 --request POST https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao
 --header "Content-Type: application/json"
@@ -7061,6 +7413,11 @@ numeroRecorrencia=1&amp;codigoEstabelecimento=1000000000000&amp;campoLivre=A&amp
 <td>25</td>
 <td>Falha no estorno</td>
 <td>Falha ao enviar estorno para a operadora</td>
+</tr>
+<tr>
+<td>27</td>
+<td>Cancelamento Parcial</td>
+<td>Pedido parcialmente cancelado</td>
 </tr>
 <tr>
 <td>31</td>
