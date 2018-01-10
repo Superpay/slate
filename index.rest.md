@@ -965,6 +965,7 @@ curl
         "tipoCliente" : 1
     }
  }
+```
 
 Para autenticação, enviar `usuario` e `senha` seguindo os padrões Basic Authentication:
 
@@ -1104,6 +1105,7 @@ telefone|	Nó reservado para dados de telefone do comprador|	-|	-|	-
    <!--Mensagem adquirente-->
    "mensagemVenda": "Operation Successful"
 }
+```
 
 Campo | Descrição | Tipo | Tamanho 
 ------| ----------|------| --------
@@ -1188,6 +1190,7 @@ emailComprador | Email do comprador | Alfa Numérico | 20 caracteres | Não
  "dataValidadeCartao": "10/2021",
  "emailComprador": "yapay@yapay.com.br"
 }
+```
 
 
 Campo | Descrição | Tipo | Tamanho 
@@ -3159,6 +3162,7 @@ curl
 --header "Content-Type: application/json"
 --curl -u usuario:senha
 --data-binary
+```
 
 
 **RESPOSTA**
@@ -3178,6 +3182,7 @@ curl
  "dataValidadeCartao": "10/2021",
  "emailComprador": "yapay@yapay.com.br"
 }
+```
 
 
 Campo | Descrição | Tipo | Tamanho 

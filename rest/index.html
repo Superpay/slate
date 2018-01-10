@@ -286,6 +286,17 @@
                   <li>
                     <a href="#pagamento" class="toc-h2 toc-link" data-title="Pagamentos com único clique">Pagamento</a>
                   </li>
+                  <li>
+                    <a href="#alterar-cartao" class="toc-h2 toc-link" data-title="Pagamentos com único clique">Alterar cartão</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#pagamentos-com-cartao-de-debito" class="toc-h1 toc-link" data-title="Pagamentos com Cartão de Débito">Pagamentos com Cartão de Débito</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#criando-uma-transacao-simplificada-2" class="toc-h2 toc-link" data-title="Pagamentos com Cartão de Débito">Criando uma transação simplificada</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -344,8 +355,16 @@
                   <li>
                     <a href="#consultar-token" class="toc-h2 toc-link" data-title="Consultas">Consultar Token</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#post-de-notificacao" class="toc-h1 toc-link" data-title="Post de Notificação">Post de Notificação</a>
+              <ul class="toc-list-h2">
                   <li>
-                    <a href="#notificacao-cobranca-recorrente" class="toc-h2 toc-link" data-title="Consultas">Notificação cobrança recorrente</a>
+                    <a href="#notificacao-vendas-comuns" class="toc-h2 toc-link" data-title="Post de Notificação">Notificação vendas comuns</a>
+                  </li>
+                  <li>
+                    <a href="#notificacao-cobranca-recorrente" class="toc-h2 toc-link" data-title="Post de Notificação">Notificação cobrança recorrente</a>
                   </li>
               </ul>
           </li>
@@ -2568,121 +2587,517 @@ curl
         "tipoCliente" : 1
     }
  }
+</code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code> seguindo os padrões Basic Authentication:</p>
 
-Para autenticação, enviar `usuario` e `senha` seguindo os padrões Basic Authentication:
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Usuário do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
 
-Campo | Descrição 
-------| ----------
-usuario | Usuário do estabelecimento
-senha | Senha do estabelecimento
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td><a href="https://superpay.github.io/rest/#forma-de-pagamento">Código da forma de pagamento</a></td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>transacao</td>
+<td>Nó reservado para informações da transação</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>dadosCartao</td>
+<td>Nó reservado para dados de cartão</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>itensDoPedido</td>
+<td>Nó reservado para informações dos produtos</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>dadosCobranca</td>
+<td>Nó reservado para informações dos dados de cobrança</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>telefone</td>
+<td>Nó reservado para informações de telefone</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>dadosEntrega</td>
+<td>Nó reservado para informações de dados de entrega</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
 
+<p><em>transacao</em></p>
 
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 19 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td>Código da forma de pagamento</td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação. Deve ser enviado sem pontos ou vírgulas</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>moeda</td>
+<td>Tipo da moeda. OBS: Disponível &#39;USD&quot; apenas para PayPal Internacional</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>tipoParcelamento</td>
+<td>Use &quot;E&quot; para estabelecimento, use &quot;A&quot; para administradora. Caso não for enviado será utilizado as configurações do seu estabelecimento</td>
+<td>Alfa Numérico</td>
+<td>1 caracter</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>valorDesconto</td>
+<td>Valor do desconto da transação. Campo apenas informativo</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>urlCampainha</td>
+<td>URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha</td>
+<td>Alfa Numérico</td>
+<td>Até 250 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>urlResultado</td>
+<td>Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL</td>
+<td>Alfa Numérico</td>
+<td>Até 250 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>ip</td>
+<td>Número do IP do usuário final/cliente. Formato xxx.xxx.xxx.xxx</td>
+<td>Alfa Numérico</td>
+<td>Até 15 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>idioma</td>
+<td>1 - Português 2 - Inglês 3 - Espanhol</td>
+<td>Numérico</td>
+<td>-</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>campoLivre1</td>
+<td>Campo Livre 1</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre2</td>
+<td>Campo Livre 2</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre3</td>
+<td>Campo Livre 3</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre4</td>
+<td>Campo Livre 4</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre5</td>
+<td>Campo Livre 5</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+<td>Não</td>
+</tr>
+</tbody></table>
+
+<p><em>dadosCartao</em>
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
-codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
-codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos | Sim
-transacao | Nó reservado para informações da transação | - | - | -
-dadosCartao | Nó reservado para dados de cartão | - | - | -
-itensDoPedido | Nó reservado para informações dos produtos | - | - | - 
-dadosCobranca | Nó reservado para informações dos dados de cobrança | - | - | -
-telefone |Nó reservado para informações de telefone | - | - | - 
-dadosEntrega | Nó reservado para informações de dados de entrega | - | - | -
+codigoSeguranca | Código de segurança do cartão (campo não é armazenado pelo SuperPay) | Numérico | Até 4 caracteres | Sim</p>
 
+<p><em>dadosCobranca</em></p>
 
-*transacao*
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nome</td>
+<td>Nome do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 100 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>documento</td>
+<td>Documento principal do comprado</td>
+<td>Alfa Numérico</td>
+<td>30 caracteres</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>documento2</td>
+<td>Documento principal do comprado</td>
+<td>Alfa Numérico</td>
+<td>30 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>codigoCliente</td>
+<td>Código do Comprador</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>dataNascimento</td>
+<td>Data Nascimento Comprador</td>
+<td>Alfa Numérico</td>
+<td>10 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>sexo</td>
+<td>Sexo Comprador</td>
+<td>Alfa Numérico</td>
+<td>2 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>tipoCliente</td>
+<td>Tipo do Cliente - 1 - Pessoa Física      2 - Pessoa Jurídica</td>
+<td>Numérico</td>
+<td>Até 8 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>endereco</td>
+<td>Nó reservado para dados de endereço do comprador</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>telefone</td>
+<td>Nó reservado para dados de telefone do comprador</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
 
-Campo | Descrição | Tipo | Tamanho | Obrigatório
-------| ----------|------| --------|------------
-numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos | Sim
-codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
-codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
-valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas | Numérico | Até 10 dígitos | Sim
-moeda | Tipo da moeda. OBS: Disponível 'USD" apenas para PayPal Internacional |    Alfa Numérico |    Até 10 caracteres |    Não
-tipoParcelamento |  Use "E" para estabelecimento, use "A" para administradora. Caso não for enviado será utilizado as configurações do seu estabelecimento |    Alfa Numérico |    1 caracter| Não
-valorDesconto | Valor do desconto da transação. Campo apenas informativo |    Numérico   |Até 10 dígitos   |Não
-parcelas | Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento | Numérico | Até 2 dígitos | Sim
-urlCampainha | URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha | Alfa Numérico | Até 250 caracteres | Não
-urlResultado | Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL | Alfa Numérico | Até 250 caracteres | Não
-ip  | Número do IP do usuário final/cliente. Formato xxx.xxx.xxx.xxx |    Alfa Numérico  |Até 15 caracteres |Não
-idioma| 1 - Português 2 - Inglês 3 - Espanhol|    Numérico|   - |    Sim
-campoLivre1|    Campo Livre 1|  Alfa Numérico| Até 16 caracteres| Não
-campoLivre2|    Campo Livre 2|  Alfa Numérico| Até 16 caracteres| Não
-campoLivre3|    Campo Livre 3|  Alfa Numérico| Até 16 caracteres| Não
-campoLivre4|    Campo Livre 4|  Alfa Numérico| Até 16 caracteres| Não
-campoLivre5|    Campo Livre 5|  Alfa Numérico| Até 16 caracteres| Não
+<p><em>itensDoPedido</em></p>
 
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoProduto</td>
+<td>Código único que identifica cada produto</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>codigoCategoria</td>
+<td>Código que identifica categoria do produto</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>nomeProduto</td>
+<td>Nome do Produto</td>
+<td>Alfa Numérico</td>
+<td>100 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>quantidadeProduto</td>
+<td>Quantidade comprada do produto</td>
+<td>Numérico</td>
+<td>Até 8 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valorUnitarioProduto</td>
+<td>Valor unitário do produto. Deve ser enviado sem pontos ou vírgulas</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>nomeCategoria</td>
+<td>Nome da categoria do produto</td>
+<td>Alfa Numérico</td>
+<td>100 caracteres</td>
+<td>Não</td>
+</tr>
+</tbody></table>
 
-*dadosCartao*
-Campo | Descrição | Tipo | Tamanho | Obrigatório
-------| ----------|------| --------|------------
-codigoSeguranca | Código de segurança do cartão (campo não é armazenado pelo SuperPay) | Numérico | Até 4 caracteres | Sim
+<p><em>endereco</em></p>
 
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>logradouro</td>
+<td>Endereço do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>numero</td>
+<td>Número do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>bairro</td>
+<td>Bairro do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>complemento</td>
+<td>Complemento do endereço</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>cidade</td>
+<td>Cidade do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>estado</td>
+<td>Estado do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>cep</td>
+<td>CEP do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>pais</td>
+<td>País do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+</tbody></table>
 
-*dadosCobranca*
+<p><em>telefone</em></p>
 
-Campo | Descrição | Tipo | Tamanho | Obrigatório
-------| ----------|------| --------|------------
-nome | Nome do comprador| Alfa Numérico | Até 100 caracteres | Sim
-documento | Documento principal do comprado| Alfa Numérico | 30 caracteres | Sim
-documento2 |Documento principal do comprado| Alfa Numérico | 30 caracteres | Não
-codigoCliente | Código do Comprador|   Alfa Numérico| 20 caracteres|  Não
-dataNascimento |    Data Nascimento Comprador|  Alfa Numérico| 10 caracteres   | Não
-sexo |  Sexo Comprador| Alfa Numérico| 2 caracteres    |Não
-tipoCliente|    Tipo do Cliente - 1 - Pessoa Física      2 - Pessoa Jurídica| Numérico|  Até 8 dígitos|    Sim
-endereco    |Nó reservado para dados de endereço do comprador|     -  | - |    - 
-telefone    |Nó reservado para dados de telefone do comprador  | - | -|     -
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tipoTelefone</td>
+<td>1 = Outros / 2 = Residencial / 3 = Comercial / 4 = Recados / 5 = Cobrança / 6 = Temporário</td>
+<td>Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>ddi</td>
+<td>Código DDI do telefone</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>ddd</td>
+<td>Código DDD do telefone</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>telefone</td>
+<td>Número do telefone</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+</tbody></table>
 
-*itensDoPedido*
+<p><em>dadosEntrega</em> </p>
 
-Campo | Descrição | Tipo | Tamanho | Obrigatório
-------| ----------|------| --------|------------
-codigoProduto|  Código único que identifica cada produto| Alfa Numérico|20 caracteres|   Não
-codigoCategoria|    Código que identifica categoria do produto|    Alfa Numérico| 20 caracteres|  Não
-nomeProduto|    Nome do Produto|    Alfa Numérico| 100 caracteres  |Não
-quantidadeProduto   |Quantidade comprada do produto |Numérico  |Até 8 dígitos|   Sim
-valorUnitarioProduto    |Valor unitário do produto. Deve ser enviado sem pontos ou vírgulas|  Numérico|  Até 10 dígitos|   Sim
-nomeCategoria   |Nome da categoria do produto|  Alfa Numérico  |100 caracteres| Não
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nome</td>
+<td>Nome do comprador</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>email</td>
+<td>E-mail do comprador</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>endereco</td>
+<td>Nó reservado para dados de endereço do comprador</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>telefone</td>
+<td>Nó reservado para dados de telefone do comprador</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
 
+<p><strong>RETORNO</strong></p>
 
-*endereco*
-
-Campo | Descrição | Tipo | Tamanho | Obrigatório
-------| ----------|------| --------|------------
-logradouro |    Endereço do comprador| Alfa Numérico| Não
-numero| Número do comprador|   Alfa Numérico| Não
-bairro  |Bairro do comprador|   Alfa Numérico| Não
-complemento|    Complemento do endereço    | Alfa Numérico |Não
-cidade| Cidade do comprador |Alfa Numérico |Não
-estado| Estado do comprador|    Alfa Numérico |    Não
-cep |CEP do comprador|  Alfa Numérico  |Não
-pais|   País do comprador| Alfa Numérico  |Não
-
-
-*telefone*
-
-Campo | Descrição | Tipo | Tamanho | Obrigatório
-------| ----------|------| --------|------------
-tipoTelefone|   1 = Outros / 2 = Residencial / 3 = Comercial / 4 = Recados / 5 = Cobrança / 6 = Temporário|   Numérico| Não
-ddi|    Código DDI do telefone|    Alfa Numérico  |Não
-ddd|    Código DDD do telefone|    Alfa Numérico| Não
-telefone|   Número do telefone|    Alfa Numérico| Não
-
-
-*dadosEntrega* 
-
-Campo | Descrição | Tipo | Tamanho | Obrigatório
-------| ----------|------| --------|------------
-nome    |Nome do comprador| Alfa Numérico| 20 caracteres   |Não
-email|  E-mail do comprador |Alfa Numérico |20 caracteres  |Não
-endereco|   Nó reservado para dados de endereço do comprador|  - |     - |     - 
-telefone|   Nó reservado para dados de telefone do comprador|  -|  -|  -
-
-**RETORNO**
-
-&gt; Exemplo retorno do pagamento:
-
-```curl
-
+<blockquote>
+<p>Exemplo retorno do pagamento:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
 --header "Content-Type: application/json
 {
    "numeroTransacao": 123,
@@ -2707,41 +3122,116 @@ telefone|   Nó reservado para dados de telefone do comprador|  -|  -|  -
    &lt;!--Mensagem adquirente--&gt;
    "mensagemVenda": "Operation Successful"
 }
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 19 dígitos</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td><a href="https://superpay.github.io/rest/#forma-de-pagamento">Código da forma de pagamento</a></td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação.</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>valorDesconto</td>
+<td>Valor desconto</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>oneClick</td>
+<td>1 para OneClick</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+</tr>
+<tr>
+<td>token</td>
+<td>Token utilizado para o pagamento</td>
+<td>Alfa Numérico</td>
+<td>Até 60 caracteres</td>
+</tr>
+<tr>
+<td>statusTransacao</td>
+<td><a href="https://superpay.github.io/rest/#status-de-transacao">Status atual da transação</a></td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>autorizacao</td>
+<td>Código de autorização da adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>codigoTransacaoOperadora</td>
+<td>Código da transação na adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>dataAprovacaoOperadora</td>
+<td>Data de retorno na adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+</tr>
+<tr>
+<td>numeroComprovanteVenda</td>
+<td>Número do comprovante de venda</td>
+<td>Alfa Numérico</td>
+<td>Até 20 caracteres</td>
+</tr>
+<tr>
+<td>mensagemVenda</td>
+<td>Mensagem de retorno da adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+</tr>
+</tbody></table>
+<h2 id='alterar-cartao'>Alterar cartão</h2>
+<p>Funcionalidade permite a alteração dos dados já cadastrados na base do Gateway.</p>
 
-Campo | Descrição | Tipo | Tamanho 
-------| ----------|------| --------
-numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos
-codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay | Numérico | 13 dígitos
-codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
-valor | Valor da transação.| Numérico | Até 10 dígitos
-valorDesconto | Valor desconto | Numérico | Até 10 dígitos
-parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
-oneClick | 1 para OneClick | Numérico | 1 dígito
-token | Token utilizado para o pagamento | Alfa Numérico | Até 60 caracteres
-statusTransacao | [Status atual da transação](https://superpay.github.io/rest/#status-de-transacao) | Numérico | Até 2 dígitos
-autorizacao | Código de autorização da adquirente | Numérico | Até 20 dígitos
-codigoTransacaoOperadora | Código da transação na adquirente | Numérico | Até 20 dígitos
-dataAprovacaoOperadora | Data de retorno na adquirente |Alfa Numérico | Até 10 caracteres
-numeroComprovanteVenda | Número do comprovante de venda |Alfa Numérico | Até 20 caracteres
-mensagemVenda | Mensagem de retorno da adquirente |Alfa Numérico | Até 50 caracteres
+<aside class="notice">
+SANDBOX: <code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>`/alterar</code>
+PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>`/alterar</code>
+</aside>
 
-## Alterar cartão
+<p><strong>REQUISIÇÃO</strong></p>
 
-Funcionalidade permite a alteração dos dados já cadastrados na base do Gateway.
+<aside class="notice">Para criar o token, acione o método <code>PUT</code></aside>
 
-&lt;aside class="notice"&gt;
-SANDBOX: &lt;code&gt;https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/`&lt;token&gt;`/alterar&lt;/code&gt;
-PRODUÇÃO: &lt;code&gt;https://gateway.yapay.com.br/checkout/api/v3/oneclick/`&lt;token&gt;`/alterar&lt;/code&gt;
-&lt;/aside&gt;
-
-**REQUISIÇÃO**
-
-&lt;aside class="notice"&gt;Para criar o token, acione o método &lt;code&gt;PUT&lt;/code&gt;&lt;/aside&gt;
-
-&gt; Exemplo alteração do cadastro:
-
-```curl
-
+<blockquote>
+<p>Exemplo alteração do cadastro:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
 curl
 --request PUT https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/1514483826864c3149224-67db-4557-8950-6a80f708c1c5/alterar
 --header "Content-Type: application/json"
@@ -2844,42 +3334,85 @@ curl
  "dataValidadeCartao": "10/2021",
  "emailComprador": "yapay@yapay.com.br"
 }
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td><a href="https://superpay.github.io/rest/#forma-de-pagamento">Código da forma de pagamento</a></td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+</tr>
+<tr>
+<td>oneClick</td>
+<td>Retornará 1 para cadastro criado</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+</tr>
+<tr>
+<td>token</td>
+<td>Token</td>
+<td>Alfa Numérico</td>
+<td>Até 60 caracteres</td>
+</tr>
+<tr>
+<td>nomeTitularCartao</td>
+<td>Nome titular do cartão de crédito/débito</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+</tr>
+<tr>
+<td>numeroCartaoCredito</td>
+<td>Numero do cartão de crédito/débito, sem espaços ou traços</td>
+<td>Numérico</td>
+<td>Até 22 dígitos</td>
+</tr>
+<tr>
+<td>dataValidadeCartao</td>
+<td>Data de validade do cartão. Formato mm/yyyy</td>
+<td>Alfa Numérico</td>
+<td>7 caracteres</td>
+</tr>
+<tr>
+<td>emailComprador</td>
+<td>Email do comprador</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+</tr>
+</tbody></table>
+<h1 id='pagamentos-com-cartao-de-debito'>Pagamentos com Cartão de Débito</h1><h2 id='criando-uma-transacao-simplificada-2'>Criando uma transação simplificada</h2>
+<p>Para pagamentos com cartão de débito é obrigatório a etapa de autenticação do consumidor na página do banco emissor de seu cartão. Sendo assim, após o envio dos dados da transação, o eCommerce deverá redirecionar o consumidor para o campo <code>urlPagamento</code> retornado pelo Gateway.</p>
 
+<p><strong>Particulariedades</strong></p>
 
-Campo | Descrição | Tipo | Tamanho 
-------| ----------|------| --------
-codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos 
-codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
-oneClick | Retornará 1 para cadastro criado | Numérico | 1 dígito 
-token | Token | Alfa Numérico | Até 60 caracteres
-nomeTitularCartao | Nome titular do cartão de crédito/débito | Alfa Numérico | Até 16 caracteres
-numeroCartaoCredito | Numero do cartão de crédito/débito, sem espaços ou traços     | Numérico | Até 22 dígitos
-dataValidadeCartao | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres
-emailComprador | Email do comprador | Alfa Numérico | 20 caracteres
+<ul>
+<li>Não disponível no fluxo de Antifraude;</li>
+<li>Pagamento com redirecionamento;</li>
+<li>Importante a utilização do recurso de Campainha.</li>
+</ul>
 
-# Pagamentos com Cartão de Débito
-## Criando uma transação simplificada
+<p><strong>REQUISIÇÃO</strong></p>
 
-Para pagamentos com cartão de débito é obrigatório a etapa de autenticação do consumidor na página do banco emissor de seu cartão. Sendo assim, após o envio dos dados da transação, o eCommerce deverá redirecionar o consumidor para o campo &lt;code&gt;urlPagamento&lt;/code&gt; retornado pelo Gateway.
+<aside class="notice">
+Para enviar a transação, acione o método <code>POST</code>
+</aside>
 
-
-**Particulariedades**
-
-* Não disponível no fluxo de Antifraude;
-* Pagamento com redirecionamento;
-* Importante a utilização do recurso de Campainha.
-
-
-**REQUISIÇÃO**
-
-&lt;aside class="notice"&gt;
-Para enviar a transação, acione o método &lt;code&gt;POST&lt;/code&gt;
-&lt;/aside&gt;
-
-&gt; Exemplo criação transação:
-
-```curl
-
+<blockquote>
+<p>Exemplo criação transação:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
 curl
 --request POST https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao
 --header "Content-Type: application/json"
@@ -7588,14 +8121,13 @@ curl
 --header "Content-Type: application/json"
 --curl -u usuario:senha
 --data-binary
+</code></pre>
+<p><strong>RESPOSTA</strong></p>
 
-
-**RESPOSTA**
-
-&gt; Exemplo retorno do cadastro:
-
-```curl
-
+<blockquote>
+<p>Exemplo retorno do cadastro:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
 --header "Content-Type: application/json
 { 
  "codigoEstabelecimento": 1000000000000,
@@ -7607,32 +8139,75 @@ curl
  "dataValidadeCartao": "10/2021",
  "emailComprador": "yapay@yapay.com.br"
 }
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td><a href="https://superpay.github.io/rest/#forma-de-pagamento">Código da forma de pagamento</a></td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+</tr>
+<tr>
+<td>oneClick</td>
+<td>Retornará 1 para cadastro criado</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+</tr>
+<tr>
+<td>token</td>
+<td>Token</td>
+<td>Alfa Numérico</td>
+<td>Até 60 caracteres</td>
+</tr>
+<tr>
+<td>nomeTitularCartao</td>
+<td>Nome titular do cartão de crédito/débito</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+</tr>
+<tr>
+<td>numeroCartaoCredito</td>
+<td>Numero do cartão de crédito/débito, sem espaços ou traços</td>
+<td>Numérico</td>
+<td>Até 22 dígitos</td>
+</tr>
+<tr>
+<td>dataValidadeCartao</td>
+<td>Data de validade do cartão. Formato mm/yyyy</td>
+<td>Alfa Numérico</td>
+<td>7 caracteres</td>
+</tr>
+<tr>
+<td>emailComprador</td>
+<td>Email do comprador</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+</tr>
+</tbody></table>
+<h1 id='post-de-notificacao'>Post de Notificação</h1><h2 id='notificacao-vendas-comuns'>Notificação vendas comuns</h2>
+<p>O sistema de campainha existe para notificar o estabelecimento sobre uma atualização de status na transação. Toda vez que ocorre qualquer alteração de status em uma transação, é feita uma chamada via <code>POST</code> ao campo “urlCampainha” (enviada como parâmetro junto da transação), essa chamada enviará alguns dados que identificarão a transação, e assim o estabelecimento saberá em qual transação houve uma mudança de status.</p>
 
+<p>Importante lembrar que a chamada de campainha não informa qual o status atual da transação e apenas que houve uma alteração, sendo assim, o estabelecimento deve realizar uma consulta (através da função de <a href="https://superpay.github.io/rest/#consultando-uma-transacao">consultaTransacao</a>) para verificar com mais detalhes a situação atual da transação.</p>
 
-Campo | Descrição | Tipo | Tamanho 
-------| ----------|------| --------
-codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos 
-codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
-oneClick | Retornará 1 para cadastro criado | Numérico | 1 dígito 
-token | Token | Alfa Numérico | Até 60 caracteres
-nomeTitularCartao | Nome titular do cartão de crédito/débito | Alfa Numérico | Até 16 caracteres
-numeroCartaoCredito | Numero do cartão de crédito/débito, sem espaços ou traços     | Numérico | Até 22 dígitos
-dataValidadeCartao | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres
-emailComprador | Email do comprador | Alfa Numérico | 20 caracteres
+<p><em>Caso a URL de campainha estiver em HTTPS, informar ao Suporte SuperPay, servicedesk@superpay.com.br</em></p>
 
-# Post de Notificação
-## Notificação vendas comuns
-
-O sistema de campainha existe para notificar o estabelecimento sobre uma atualização de status na transação. Toda vez que ocorre qualquer alteração de status em uma transação, é feita uma chamada via &lt;code&gt;POST&lt;/code&gt; ao campo “urlCampainha” (enviada como parâmetro junto da transação), essa chamada enviará alguns dados que identificarão a transação, e assim o estabelecimento saberá em qual transação houve uma mudança de status.
-
-Importante lembrar que a chamada de campainha não informa qual o status atual da transação e apenas que houve uma alteração, sendo assim, o estabelecimento deve realizar uma consulta (através da função de [consultaTransacao](https://superpay.github.io/rest/#consultando-uma-transacao)) para verificar com mais detalhes a situação atual da transação.
-
-*Caso a URL de campainha estiver em HTTPS, informar ao Suporte SuperPay, servicedesk@superpay.com.br*
-
-&gt; Exemplo de chamada:
-
-```curl
-
+<blockquote>
+<p>Exemplo de chamada:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
 POST HTTP
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 125
