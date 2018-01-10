@@ -931,7 +931,273 @@ PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>
 
 <aside class="notice">Para criar o token, acione o método <code>POST</code></aside>
 
+> Exemplo pagamento com token:
 
+```curl
+
+curl
+--request POST https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/1514483826864c3149224-67db-4557-8950-6a80f708c1c5/autorizar
+--header "Content-Type: application/json"
+--curl -u usuario:senha
+--data-binary
+ {
+    "codigoEstabelecimento" : 1000000000000,
+    "transacao" : {
+        "numeroTransacao" : 123,
+        "valor" : 100,
+        "parcelas" : 1,
+        "idioma" : 1
+    },
+    "dadosCartao" : {
+        "codigoSeguranca" : "123"
+    },
+    "itensDoPedido" : [
+    {
+        "quantidadeProduto" : 1,
+        "valorUnitarioProduto" : 100
+    }
+    ],
+    "dadosCobranca" : {
+        "nome" : "Teste Integração",
+        "documento" : "12312312312",
+        "tipoCliente" : 1
+    }
+ }
+
+Para autenticação, enviar `usuario` e `senha` seguindo os padrões Basic Authentication:
+
+Campo | Descrição 
+------| ----------
+usuario | Usuário do estabelecimento
+senha | Senha do estabelecimento
+
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos | Sim
+transacao | Nó reservado para informações da transação | - | - | -
+dadosCartao | Nó reservado para dados de cartão | - | - | -
+itensDoPedido | Nó reservado para informações dos produtos | - | - | - 
+dadosCobranca | Nó reservado para informações dos dados de cobrança | - | - | -
+telefone |Nó reservado para informações de telefone | - | - | - 
+dadosEntrega | Nó reservado para informações de dados de entrega | - | - | -
+
+
+*transacao*
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos | Sim
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
+codigoFormaPagamento | Código da forma de pagamento | Numérico | Até 3 dígitos | Sim
+valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas | Numérico | Até 10 dígitos | Sim
+moeda |	Tipo da moeda. OBS: Disponível 'USD" apenas para PayPal Internacional |	Alfa Numérico |	Até 10 caracteres |	Não
+tipoParcelamento |	Use "E" para estabelecimento, use "A" para administradora. Caso não for enviado será utilizado as configurações do seu estabelecimento |	Alfa Numérico |	1 caracter|	Não
+valorDesconto |	Valor do desconto da transação. Campo apenas informativo |	Numérico	|Até 10 dígitos	|Não
+parcelas | Quantidade de parcelas da transação. Verificar se forma de pagamento suporta parcelamento | Numérico | Até 2 dígitos | Sim
+urlCampainha | URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha | Alfa Numérico | Até 250 caracteres | Não
+urlResultado | Para o modelo de pagamento redirect, O SuperPay redirecionará para essa URL | Alfa Numérico | Até 250 caracteres | Não
+ip	| Número do IP do usuário final/cliente. Formato xxx.xxx.xxx.xxx |	Alfa Numérico	|Até 15 caracteres	|Não
+idioma|	1 - Português 2 - Inglês 3 - Espanhol|	Numérico|	 - |	Sim
+campoLivre1|	Campo Livre 1|	Alfa Numérico|	Até 16 caracteres|	Não
+campoLivre2|	Campo Livre 2|	Alfa Numérico|	Até 16 caracteres|	Não
+campoLivre3|	Campo Livre 3| 	Alfa Numérico|	Até 16 caracteres|	Não
+campoLivre4|	Campo Livre 4|	Alfa Numérico|	Até 16 caracteres|	Não
+campoLivre5|	Campo Livre 5|	Alfa Numérico|	Até 16 caracteres|	Não
+
+
+*dadosCartao*
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+codigoSeguranca | Código de segurança do cartão (campo não é armazenado pelo SuperPay) | Numérico | Até 4 caracteres | Sim
+
+
+*dadosCobranca*
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+nome | Nome do comprador| Alfa Numérico | Até 100 caracteres | Sim
+documento | Documento principal do comprado| Alfa Numérico | 30 caracteres | Sim
+documento2 |Documento principal do comprado| Alfa Numérico | 30 caracteres | Não
+codigoCliente |	Código do Comprador|	Alfa Numérico|	20 caracteres|	Não
+dataNascimento |	Data Nascimento Comprador|	Alfa Numérico|	10 caracteres	| Não
+sexo |	Sexo Comprador|	Alfa Numérico|	2 caracteres	|Não
+tipoCliente|	Tipo do Cliente - 1 - Pessoa Física      2 - Pessoa Jurídica|	Numérico|	Até 8 dígitos|	Sim
+endereco	|Nó reservado para dados de endereço do comprador|	 - 	| - |	 - 
+telefone	|Nó reservado para dados de telefone do comprador	| -	| -|	 -
+
+*itensDoPedido*
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+codigoProduto|	Código único que identifica cada produto|	Alfa Numérico|20 caracteres|	Não
+codigoCategoria|	Código que identifica categoria do produto|	Alfa Numérico|	20 caracteres|	Não
+nomeProduto|	Nome do Produto|	Alfa Numérico|	100 caracteres	|Não
+quantidadeProduto	|Quantidade comprada do produto	|Numérico	|Até 8 dígitos|	Sim
+valorUnitarioProduto	|Valor unitário do produto. Deve ser enviado sem pontos ou vírgulas|	Numérico|	Até 10 dígitos|	Sim
+nomeCategoria	|Nome da categoria do produto|	Alfa Numérico	|100 caracteres| Não
+
+
+*endereco*
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+logradouro |	Endereço do comprador|	Alfa Numérico|	Não
+numero|	Número do comprador|	Alfa Numérico|	Não
+bairro	|Bairro do comprador|	Alfa Numérico|	Não
+complemento|	Complemento do endereço	| Alfa Numérico |Não
+cidade|	Cidade do comprador	|Alfa Numérico	|Não
+estado|	Estado do comprador|	Alfa Numérico |	Não
+cep	|CEP do comprador|	Alfa Numérico	|Não
+pais|	País do comprador|	Alfa Numérico	|Não
+
+
+*telefone*
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+tipoTelefone|	1 = Outros / 2 = Residencial / 3 = Comercial / 4 = Recados / 5 = Cobrança / 6 = Temporário|	Numérico| Não
+ddi|	Código DDI do telefone|	Alfa Numérico	|Não
+ddd|	Código DDD do telefone|	Alfa Numérico|	Não
+telefone|	Número do telefone|	Alfa Numérico|	Não
+
+
+*dadosEntrega* 
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+nome	|Nome do comprador|	Alfa Numérico|	20 caracteres	|Não
+email|	E-mail do comprador	|Alfa Numérico	|20 caracteres	|Não
+endereco|	Nó reservado para dados de endereço do comprador|	 - |	 - |	 - 
+telefone|	Nó reservado para dados de telefone do comprador|	-|	-|	-
+
+**RETORNO**
+
+> Exemplo retorno do pagamento:
+
+```curl
+
+--header "Content-Type: application/json
+{
+   "numeroTransacao": 123,
+   "codigoEstabelecimento": "1000000000000",
+   "codigoFormaPagamento": 170,
+   "valor": 100,
+   "valorDesconto": 0,
+   "parcelas": 1,
+   "oneClick": 1,
+   <!--Token utiizado para o pagamento-->
+   "token": "1514483826864c3149224-67db-4557-8950-6a80f708c1c5",
+   <!--Status que deverá ser tratado pelo eCommerce-->
+   "statusTransacao": 1,
+   <!--Código de autorização-->
+   "autorizacao": "892358",
+   <!--Código de retorno operadora-->
+   "codigoTransacaoOperadora": "6",
+   <!--Data retorno adquirente-->
+   "dataAprovacaoOperadora": "2018-01-10 10:18:43",
+   <!--TID-->
+   "numeroComprovanteVenda": "0110101834052",
+   <!--Mensagem adquirente-->
+   "mensagemVenda": "Operation Successful"
+}
+
+Campo | Descrição | Tipo | Tamanho 
+------| ----------|------| --------
+numeroTransacao | Código que identifica a transação dentro do SuperPay | Numérico | Até 19 dígitos
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay | Numérico | 13 dígitos
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
+valor | Valor da transação.| Numérico | Até 10 dígitos
+valorDesconto | Valor desconto | Numérico | Até 10 dígitos
+parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
+oneClick | 1 para OneClick | Numérico | 1 dígito
+token | Token utilizado para o pagamento | Alfa Numérico | Até 60 caracteres
+statusTransacao | [Status atual da transação](https://superpay.github.io/rest/#status-de-transacao) | Numérico | Até 2 dígitos
+autorizacao | Código de autorização da adquirente | Numérico | Até 20 dígitos
+codigoTransacaoOperadora | Código da transação na adquirente | Numérico | Até 20 dígitos
+dataAprovacaoOperadora | Data de retorno na adquirente |Alfa Numérico | Até 10 caracteres
+numeroComprovanteVenda | Número do comprovante de venda |Alfa Numérico | Até 20 caracteres
+mensagemVenda | Mensagem de retorno da adquirente |Alfa Numérico | Até 50 caracteres
+
+## Alterar cartão
+
+Funcionalidade permite a alteração dos dados já cadastrados na base do Gateway.
+
+<aside class="notice">
+SANDBOX: <code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>`/alterar</code>
+PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>`/alterar</code>
+</aside>
+
+**REQUISIÇÃO**
+
+<aside class="notice">Para criar o token, acione o método <code>PUT</code></aside>
+
+> Exemplo alteração do cadastro:
+
+```curl
+
+curl
+--request PUT https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/1514483826864c3149224-67db-4557-8950-6a80f708c1c5/alterar
+--header "Content-Type: application/json"
+--curl -u usuario:senha
+--data-binary
+{
+ "codigoEstabelecimento": 1000000000000,
+ "formaPagamento": 170,
+ "nomeTitularCartaoCredito": "Teste OneClick",
+ "numeroCartaoCredito": "0000000000000002",
+ "dataValidadeCartao": "10/2021",
+ "emailComprador": "yapay@yapay.com.br"
+}
+```
+
+Para autenticação, enviar `usuario` e `senha` seguindo os padrões Basic Authentication:
+
+Campo | Descrição 
+------| ----------
+usuario | Usuário do estabelecimento
+senha | Senha do estabelecimento
+
+
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos | Sim
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos | Sim
+nomeTitularCartao | Nome titular do cartão de crédito/débito | Alfa Numérico | Até 16 caracteres | Sim
+numeroCartaoCredito | Numero do cartão de crédito/débito, sem espaços ou traços	 | Numérico | Até 22 dígitos | Sim
+dataValidadeCartao | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres | Sim
+emailComprador | Email do comprador | Alfa Numérico | 20 caracteres | Não
+
+**RESPOSTA**
+
+> Exemplo retorno do cadastro:
+
+```curl
+
+--header "Content-Type: application/json
+{ 
+ "codigoEstabelecimento": 1000000000000,
+ "codigoFormaPagamento": 170,
+ "oneClick": 1,
+ "token": "1514483826864c3149224-67db-4557-8950-6a80f708c1c5",
+ "nomeTitularCartaoCredito": "Teste OneClick",
+ "numeroCartaoCredito": "000000******0002",
+ "dataValidadeCartao": "10/2021",
+ "emailComprador": "yapay@yapay.com.br"
+}
+
+
+Campo | Descrição | Tipo | Tamanho 
+------| ----------|------| --------
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos 
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
+oneClick | Retornará 1 para cadastro criado | Numérico | 1 dígito 
+token | Token | Alfa Numérico | Até 60 caracteres
+nomeTitularCartao | Nome titular do cartão de crédito/débito | Alfa Numérico | Até 16 caracteres
+numeroCartaoCredito | Numero do cartão de crédito/débito, sem espaços ou traços	 | Numérico | Até 22 dígitos
+dataValidadeCartao | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres
+emailComprador | Email do comprador | Alfa Numérico | 20 caracteres
 
 # Pagamentos com Cartão de Débito
 ## Criando uma transação simplificada
@@ -2868,6 +3134,60 @@ dataAprovacaoOperadora|	Data de aprovação retornado pela operadora. Retornado 
 numeroComprovanteVenda|	Número do comprovante de venda retornado pela operadora. Retornado apenas se alguma cobrança já ocorreu
 mensagemVenda	|Mensagem de venda retornado pela operadora. Retornado apenas se alguma cobrança já ocorreu
 
+
+## Consultar Token
+
+Funcionalidade disponível para visualizar os dados cadastrados em um Token.
+
+<aside class="notice">
+SANDBOX: <code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>`</code>
+PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>`</code>
+</aside>
+
+**REQUISIÇÃO**
+
+<aside class="notice">Para criar o token, acione o método <code>GET</code></aside>
+
+> Exemplo consulta:
+
+```curl
+
+curl
+--request GET https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/1514483826864c3149224-67db-4557-8950-6a80f708c1c5
+--header "Content-Type: application/json"
+--curl -u usuario:senha
+--data-binary
+
+
+**RESPOSTA**
+
+> Exemplo retorno do cadastro:
+
+```curl
+
+--header "Content-Type: application/json
+{ 
+ "codigoEstabelecimento": 1000000000000,
+ "codigoFormaPagamento": 170,
+ "oneClick": 1,
+ "token": "1514483826864c3149224-67db-4557-8950-6a80f708c1c5",
+ "nomeTitularCartaoCredito": "Teste OneClick",
+ "numeroCartaoCredito": "000000******0002",
+ "dataValidadeCartao": "10/2021",
+ "emailComprador": "yapay@yapay.com.br"
+}
+
+
+Campo | Descrição | Tipo | Tamanho 
+------| ----------|------| --------
+codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos 
+codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
+oneClick | Retornará 1 para cadastro criado | Numérico | 1 dígito 
+token | Token | Alfa Numérico | Até 60 caracteres
+nomeTitularCartao | Nome titular do cartão de crédito/débito | Alfa Numérico | Até 16 caracteres
+numeroCartaoCredito | Numero do cartão de crédito/débito, sem espaços ou traços	 | Numérico | Até 22 dígitos
+dataValidadeCartao | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres
+emailComprador | Email do comprador | Alfa Numérico | 20 caracteres
 
 # Post de Notificação
 ## Notificação vendas comuns
