@@ -925,8 +925,8 @@ emailComprador | Email do comprador | Alfa Numérico | 20 caracteres
 Com o Token recebido no momento do cadastro, é possível realizar o pagamento de uma venda juntamente com o código de segurança que o usuário irá inserir na página de Checkout.
 
 <aside class="notice">
-SANDBOX: <code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/<token>/autorizar</code>
-PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/<<token>>/autorizar</code>
+SANDBOX: <code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/<<`token`>>/autorizar</code>
+PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/<<`token`>>/autorizar</code>
 </aside>
 
 **REQUISIÇÃO**
@@ -1130,8 +1130,8 @@ mensagemVenda | Mensagem de retorno da adquirente |Alfa Numérico | Até 50 cara
 Funcionalidade permite a alteração dos dados já cadastrados na base do Gateway.
 
 <aside class="notice">
-SANDBOX: <code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>`/alterar</code>
-PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>`/alterar</code>
+SANDBOX: <code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/<<`token`>>/alterar</code>
+PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/<<`token`>>/alterar</code>
 </aside>
 
 **REQUISIÇÃO**
@@ -3146,8 +3146,8 @@ mensagemVenda	|Mensagem de venda retornado pela operadora. Retornado apenas se a
 Funcionalidade disponível para visualizar os dados cadastrados em um Token.
 
 <aside class="notice">
-SANDBOX: <code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>`</code>
-PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>`</code>
+SANDBOX: <code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/<<`token`>></code>
+PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/<<`token`>></code>
 </aside>
 
 **REQUISIÇÃO**
