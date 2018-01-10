@@ -869,6 +869,7 @@ curl
  "dataValidadeCartao": "10/2020",
  "emailComprador": "yapay@yapay.com.br"
 }
+
 ```
 
 Para autenticação, enviar `usuario` e `senha` seguindo os padrões Basic Authentication:
@@ -906,6 +907,7 @@ emailComprador | Email do comprador | Alfa Numérico | 20 caracteres | Não
  "emailComprador": "yapay@yapay.com.br"
 }
 
+```
 
 Campo | Descrição | Tipo | Tamanho 
 ------| ----------|------| --------

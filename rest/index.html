@@ -283,6 +283,9 @@
                   <li>
                     <a href="#cadastro-cartao" class="toc-h2 toc-link" data-title="Pagamentos com único clique">Cadastro cartão</a>
                   </li>
+                  <li>
+                    <a href="#pagamento" class="toc-h2 toc-link" data-title="Pagamentos com único clique">Pagamento</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -2372,6 +2375,7 @@ curl
  "dataValidadeCartao": "10/2020",
  "emailComprador": "yapay@yapay.com.br"
 }
+
 </code></pre>
 <p>Para autenticação, enviar <code>usuario</code> e <code>senha</code> seguindo os padrões Basic Authentication:</p>
 
@@ -2462,35 +2466,80 @@ curl
  "emailComprador": "yapay@yapay.com.br"
 }
 
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td><a href="https://superpay.github.io/rest/#forma-de-pagamento">Código da forma de pagamento</a></td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+</tr>
+<tr>
+<td>oneClick</td>
+<td>Retornará 1 para cadastro criado</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+</tr>
+<tr>
+<td>token</td>
+<td>Token criado</td>
+<td>Alfa Numérico</td>
+<td>Até 60 caracteres</td>
+</tr>
+<tr>
+<td>nomeTitularCartao</td>
+<td>Nome titular do cartão de crédito/débito</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+</tr>
+<tr>
+<td>numeroCartaoCredito</td>
+<td>Numero do cartão de crédito/débito, sem espaços ou traços</td>
+<td>Numérico</td>
+<td>Até 22 dígitos</td>
+</tr>
+<tr>
+<td>dataValidadeCartao</td>
+<td>Data de validade do cartão. Formato mm/yyyy</td>
+<td>Alfa Numérico</td>
+<td>7 caracteres</td>
+</tr>
+<tr>
+<td>emailComprador</td>
+<td>Email do comprador</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+</tr>
+</tbody></table>
+<h2 id='pagamento'>Pagamento</h2>
+<p>Com o Token recebido no momento do cadastro, é possível realizar o pagamento de uma venda juntamente com o código de segurança que o usuário irá inserir na página de Checkout.</p>
 
-Campo | Descrição | Tipo | Tamanho 
-------| ----------|------| --------
-codigoEstabelecimento | Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway) | Numérico | 13 dígitos 
-codigoFormaPagamento | [Código da forma de pagamento](https://superpay.github.io/rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
-oneClick | Retornará 1 para cadastro criado | Numérico | 1 dígito 
-token | Token criado | Alfa Numérico | Até 60 caracteres
-nomeTitularCartao | Nome titular do cartão de crédito/débito | Alfa Numérico | Até 16 caracteres
-numeroCartaoCredito | Numero do cartão de crédito/débito, sem espaços ou traços     | Numérico | Até 22 dígitos
-dataValidadeCartao | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres
-emailComprador | Email do comprador | Alfa Numérico | 20 caracteres
+<aside class="notice">
+SANDBOX: <code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>`/autorizar</code>
+PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>`/autorizar</code>
+</aside>
 
-## Pagamento
+<p><strong>REQUISIÇÃO</strong></p>
 
-Com o Token recebido no momento do cadastro, é possível realizar o pagamento de uma venda juntamente com o código de segurança que o usuário irá inserir na página de Checkout.
+<aside class="notice">Para criar o token, acione o método <code>POST</code></aside>
 
-&lt;aside class="notice"&gt;
-SANDBOX: &lt;code&gt;https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/`&lt;token&gt;`/autorizar&lt;/code&gt;
-PRODUÇÃO: &lt;code&gt;https://gateway.yapay.com.br/checkout/api/v3/oneclick/`&lt;token&gt;`/autorizar&lt;/code&gt;
-&lt;/aside&gt;
-
-**REQUISIÇÃO**
-
-&lt;aside class="notice"&gt;Para criar o token, acione o método &lt;code&gt;POST&lt;/code&gt;&lt;/aside&gt;
-
-&gt; Exemplo pagamento com token:
-
-```curl
-
+<blockquote>
+<p>Exemplo pagamento com token:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
 curl
 --request POST https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/1514483826864c3149224-67db-4557-8950-6a80f708c1c5/autorizar
 --header "Content-Type: application/json"
