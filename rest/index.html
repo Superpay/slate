@@ -2547,8 +2547,8 @@ curl
 <p>Com o Token recebido no momento do cadastro, é possível realizar o pagamento de uma venda juntamente com o código de segurança que o usuário irá inserir na página de Checkout.</p>
 
 <aside class="notice">
-SANDBOX: <code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>`/autorizar</code>
-PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>`/autorizar</code>
+SANDBOX: <code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/<token>/autorizar</code>
+PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/<token>/autorizar</code>
 </aside>
 
 <p><strong>REQUISIÇÃO</strong></p>
@@ -2805,10 +2805,25 @@ curl
 </tr>
 </tbody></table>
 
-<p><em>dadosCartao</em>
-Campo | Descrição | Tipo | Tamanho | Obrigatório
-------| ----------|------| --------|------------
-codigoSeguranca | Código de segurança do cartão (campo não é armazenado pelo SuperPay) | Numérico | Até 4 caracteres | Sim</p>
+<p><em>dadosCartao</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoSeguranca</td>
+<td>Código de segurança do cartão (campo não é armazenado pelo SuperPay)</td>
+<td>Numérico</td>
+<td>Até 4 caracteres</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
 
 <p><em>dadosCobranca</em></p>
 

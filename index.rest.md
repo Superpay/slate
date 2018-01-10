@@ -925,8 +925,8 @@ emailComprador | Email do comprador | Alfa Numérico | 20 caracteres
 Com o Token recebido no momento do cadastro, é possível realizar o pagamento de uma venda juntamente com o código de segurança que o usuário irá inserir na página de Checkout.
 
 <aside class="notice">
-SANDBOX: <code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>`/autorizar</code>
-PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/`<token>`/autorizar</code>
+SANDBOX: <code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/<token>/autorizar</code>
+PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/<token>/autorizar</code>
 </aside>
 
 **REQUISIÇÃO**
@@ -1011,6 +1011,7 @@ campoLivre5|	Campo Livre 5|	Alfa Numérico|	Até 16 caracteres|	Não
 
 
 *dadosCartao*
+
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
 codigoSeguranca | Código de segurança do cartão (campo não é armazenado pelo SuperPay) | Numérico | Até 4 caracteres | Sim
