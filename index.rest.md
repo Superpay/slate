@@ -926,7 +926,7 @@ Com o Token recebido no momento do cadastro, é possível realizar o pagamento d
 
 <aside class="notice">
 SANDBOX: <code>https://sandbox.gateway.yapay.com.br/checkout/api/v3/oneclick/<token>/autorizar</code>
-PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/<token>/autorizar</code>
+PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/oneclick/<<token>>/autorizar</code>
 </aside>
 
 **REQUISIÇÃO**
