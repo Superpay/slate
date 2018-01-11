@@ -2170,18 +2170,28 @@ acao|   Ação a ser realizada. Enviar &quot;cancelar&quot; </p>
 <table><thead>
 <tr>
 <th>Adquirente</th>
+<th>Tecnologia</th>
 <th>Limite de cancelamento</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>Cielo</td>
+<td>API 3.0</td>
 <td>300 dias após a geração do pedido</td>
 </tr>
 <tr>
+<td>Rede</td>
 <td>E Rede</td>
 <td>Pode variar conforme o ramo de atuação de cada estabelecimento</td>
 </tr>
 </tbody></table>
+
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li>Disponível apenas no plano corporativo;</li>
+<li>Disponível apenas nas adquirentes Cielo ou Rede, nas tecnologias informadas acima.</li>
+</ul>
 
 <p><strong>REQUISIÇÃO</strong></p>
 
@@ -2196,7 +2206,7 @@ Para enviar a transação, acione o método <code>PUT</code>
 curl
 --request PUT https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao/10000000000000/1234/cancelar?valor=1000
 --header "Content-Type: application/json"
---curl -u usuario:senha .........
+--curl -u usuario:senha
 --data-binary
 
 </code></pre>
@@ -2224,12 +2234,23 @@ curl
 <th>Descrição</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+</tr>
+<tr>
+<td>acao</td>
+<td>Ação a ser realizada. Enviar &quot;cancelar&quot;</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor a ser cancelado</td>
+</tr>
 </tbody></table>
-
-<p>numeroTransacao |   Código que identifica a transação dentro do SuperPay
-codigoEstabelecimento|  Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)
-acao|   Ação a ser realizada. Enviar &quot;cancelar&quot; 
-valor | Valor a ser cancelado</p>
 
 <p><strong>RESPOSTA</strong></p>
 

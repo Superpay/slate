@@ -743,10 +743,15 @@ cartoesUtilizados | Número de cartão truncado utilizado na transação | Alfa 
 ## Cancelando parcialmente uma transação
 Através desta funcionalidade é possível cancelar uma venda parcialmente. Consulte abaixo as adquirentes que fornecem o cancelamento parcial e o prazo de cancelamento:
 
-Adquirente | Limite de cancelamento 
-------| ----------
-Cielo|	300 dias após a geração do pedido
-E Rede|	Pode variar conforme o ramo de atuação de cada estabelecimento
+Adquirente | Tecnologia | Limite de cancelamento 
+------| ---------- | --------------
+Cielo |	API 3.0 | 300 dias após a geração do pedido
+Rede | E Rede |	Pode variar conforme o ramo de atuação de cada estabelecimento
+
+**Particulariedades**
+
+* Disponível apenas no plano corporativo;
+* Disponível apenas nas adquirentes Cielo ou Rede, nas tecnologias informadas acima.
 
 
 **REQUISIÇÃO**
@@ -762,7 +767,7 @@ Para enviar a transação, acione o método <code>PUT</code>
 curl
 --request PUT https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao/10000000000000/1234/cancelar?valor=1000
 --header "Content-Type: application/json"
---curl -u usuario:senha .........
+--curl -u usuario:senha
 --data-binary
 
 ```
@@ -777,7 +782,6 @@ senha | Senha do estabelecimento
 
 Campo | Descrição 
 ------| ----------
-
 numeroTransacao |	Código que identifica a transação dentro do SuperPay
 codigoEstabelecimento|	Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)
 acao|	Ação a ser realizada. Enviar "cancelar" 
