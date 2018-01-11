@@ -825,7 +825,7 @@ valorDesconto | Valor desconto | Numérico | Até 10 dígitos
 taxaEmbarque | Valor taxa embarque | Numérico | Até 10 dígitos
 parcelas | Quantidade de parcelas da transação | Numérico | Até 2 dígitos
 urlPagamento | Para o modelo redirect. Essa será a URL de redirecionamento da operação |Alfa Numérico | Até 500 caracteres 
-statusTransacao | [Status atual da transação](https://superpay.github.io/rest/#status-de-transacao) | Numérico | Até 2 dígitos
+statusTransacao | [Status atual da transação](https://superpay.github.io/rest/#status-de-transacao) Retornado código 27 se o cancelamento parcial  ocorrer com sucesso | Numérico | Até 2 dígitos
 autorizacao | Código de autorização da adquirente | Numérico | Até 20 dígitos
 codigoTransacaoOperadora | Código da transação na adquirente | Numérico | Até 20 dígitos
 dataAprovacaoOperadora | Data de aprovação na adquirente |Alfa Numérico | Até 10 dígitos
@@ -3145,7 +3145,7 @@ numeroComprovanteVenda|	Número do comprovante de venda retornado pela operadora
 mensagemVenda	|Mensagem de venda retornado pela operadora. Retornado apenas se alguma cobrança já ocorreu
 
 
-## Consultar Token
+## Consultando Token
 
 Funcionalidade disponível para visualizar os dados cadastrados em um Token.
 
