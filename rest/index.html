@@ -267,6 +267,9 @@
                     <a href="#criando-uma-transacao-com-analise-de-fraude" class="toc-h2 toc-link" data-title="Pagamentos com Cartão de Crédito">Criando uma transação com Análise de Fraude</a>
                   </li>
                   <li>
+                    <a href="#criando-uma-transacao-com-multiplos-cartoes" class="toc-h2 toc-link" data-title="Pagamentos com Cartão de Crédito">Criando uma transação com Múltiplos cartões</a>
+                  </li>
+                  <li>
                     <a href="#capturando-uma-transacao" class="toc-h2 toc-link" data-title="Pagamentos com Cartão de Crédito">Capturando uma transação</a>
                   </li>
                   <li>
@@ -1774,6 +1777,754 @@ dataValidade | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7
 <td>Número de cartão truncado utilizado na transação</td>
 <td>Alfa Numérico</td>
 <td>Até 20 dígitos</td>
+</tr>
+</tbody></table>
+<h2 id='criando-uma-transacao-com-multiplos-cartoes'>Criando uma transação com Múltiplos cartões</h2>
+<p>Através desta estrutura é possível o envio de mais de um cartão de crédito para aprovação em uma mesma transação, dividindo o valor total do pedido entre os cartões.</p>
+
+<p><strong>Particulariedades</strong></p>
+
+<ul>
+<li>Disponível apenas no plano Corporativo;</li>
+<li>Disponível apenas para cartões de cŕedito na modalidade WS.</li>
+</ul>
+
+<p><strong>REQUISIÇÃO</strong></p>
+
+<aside class="notice">
+Para enviar a transação, acione o método <code>POST</code>
+</aside>
+
+<blockquote>
+<p>Exemplo criação transação:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request POST https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao
+--header "Content-Type: application/json"
+--curl -u usuario:senha .........
+--data-binary
+{
+   "codigoEstabelecimento" : 1000000000000,
+   "codigoFormaPagamento" : 999,
+   "dadosMultiplosCartoes": [
+    {
+        "nomePortador": "CARTAO 1",
+        "numeroCartao": "0000000000000001",
+        "codigoSeguranca": "321",
+        "dataValidade": "12/2024",
+        "codigoFormaPagamento": 170,
+        "parcelas": 1,
+        "valor": 500
+    },
+    {
+        "nomePortador": "CARTAO 2",
+        "numeroCartao": "0000000000000001",
+        "codigoSeguranca": "123",
+        "dataValidade": "12/2022",
+        "codigoFormaPagamento": 171,
+        "parcelas": 1,
+        "valor": 800
+    },
+   "transacao" : {
+      "numeroTransacao" : 1234,
+      "valorDesconto" : 0,
+      "urlCampainha" : "http://seusite.com.br/campainha",
+      "ip" : "192.168.12.110",
+      "idioma" : 1,
+      "campoLivre1" : "",
+      "campoLivre2" : "",
+      "campoLivre3" : "",
+      "campoLivre4" : "",
+      "campoLivre5" : ""
+   },
+   "itensDoPedido" : [
+  {
+      "codigoProduto" : 1,
+      "nomeProduto" : "Produto 1",
+      "codigoCategoria" : 1,
+      "nomeCategoria" : "categoria",
+      "quantidadeProduto" : 1,
+      "valorUnitarioProduto" : 2000
+  }
+   ],
+   "dadosCobranca" : {
+      "codigoCliente" : 1,
+      "tipoCliente" : 1,
+      "nome" : "Teste 123",
+      "email" : "teste@teste.com",
+      "dataNascimento" : "10/01/1975",
+      "sexo" : "M",
+      "documento" : "123.123.123-12",
+      "endereco" : {
+         "logradouro" : "Rua",
+         "numero" : "123",
+         "complemento" : "",
+         "cep" : "12345-678",
+         "bairro" : "Bairro",
+         "cidade" : "Cidade",
+         "estado" : "SP",
+         "pais" : "BR"
+        },
+      "telefone" : [
+        {
+         "tipoTelefone" : "1",
+         "ddi" : "55",
+         "ddd" : "12",
+         "telefone" : "1234-5678"
+        }
+      ]
+   },
+   "dadosEntrega" : { 
+      "nome" : "Teste 123",
+      "endereco" : {
+         "logradouro" : "Rua",
+         "numero" : "123",
+         "complemento" : "",
+         "cep" : "12345-678",
+         "bairro" : "Bairro",
+         "cidade" : "Cidade",
+         "estado" : "SP",
+         "pais" : "BR"
+        },
+      "telefone" : [
+        {
+         "tipoTelefone" : "1",
+         "ddi" : "55",
+         "ddd" : "12",
+         "telefone" : "1234-5678"
+        }
+      ]
+   }
+}
+
+</code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code> seguindo os patrões Basic Authentication:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Login do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay (fornecido pelo gateway)</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>codigoFormaPagamento</td>
+<td><a href="https://superpay.github.io/rest/#forma-de-pagamento">Código da forma de pagamento</a> Enviar 999</td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>transacao</td>
+<td>Nó reservado para informações da transação</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>dadosMultiplosCartoes</td>
+<td>Nó reservado para dados de cartão</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>itensDoPedido</td>
+<td>Nó reservado para informações dos produtos</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>dadosCobranca</td>
+<td>Nó reservado para informações dos dados de cobrança</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>telefone</td>
+<td>Nó reservado para informações de telefone</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>dadosEntrega</td>
+<td>Nó reservado para informações de dados de entrega</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<p><em>dadosMultiplosCartoes</em>
+Campo | Descrição | Tipo | Tamanho | Obrigatório
+------| ----------|------| --------|------------
+nomePortador | Nome do titular do cartão de crédito (Exatamente como escrito no cartão) | Alfa Numérico | Até 16 dígitos | Sim
+numeroCartao | Numero do cartão de crédito, sem espaços ou traços | Numérico | Até 22 caracteres | Sim
+codigoSeguranca | Código de segurança do cartão (campo não é armazenado pelo SuperPay) | Numérico | Até 4 caracteres | Sim
+dataValidade | Data de validade do cartão. Formato mm/yyyy | Alfa Numérico | 7 caracteres | Sim
+codigoFormaPagamento | <a href="https://superpay.github.io/rest/#forma-de-pagamento">Código da forma de pagamento</a>| Numérico | Até 3 dígitos | Sim
+parcelas | Quantidade de parcelas da transação. | Numérico | Até 2 dígitos | Sim
+valor | Valor da transação. Deve ser enviado sem pontos ou vírgulas | Numérico | Até 10 dígitos | Sim</p>
+
+<p><em>transacao</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 19 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>moeda</td>
+<td>Tipo da moeda. OBS: Disponível &#39;USD&quot; apenas para PayPal Internacional</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>tipoParcelamento</td>
+<td>Use &quot;E&quot; para estabelecimento, use &quot;A&quot; para administradora. Caso não for enviado será utilizado as configurações do seu estabelecimento</td>
+<td>Alfa Numérico</td>
+<td>1 caracter</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>valorDesconto</td>
+<td>Valor do desconto da transação. Campo apenas informativo</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>urlCampainha</td>
+<td>URL será sempre acionada quando o status do pedido mudar. Deve estar preparada para receber dados de campainha</td>
+<td>Alfa Numérico</td>
+<td>Até 250 caracteres</td>
+<td>Sugerimos o envio para pagamentos com captura manual</td>
+</tr>
+<tr>
+<td>ip</td>
+<td>Número do IP do usuário final/cliente. Formato xxx.xxx.xxx.xxx</td>
+<td>Alfa Numérico</td>
+<td>Até 15 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>idioma</td>
+<td>1 - Português 2 - Inglês 3 - Espanhol</td>
+<td>Numérico</td>
+<td>-</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>campoLivre1</td>
+<td>Campo Livre 1</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre2</td>
+<td>Campo Livre 2</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre3</td>
+<td>Campo Livre 3</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre4</td>
+<td>Campo Livre 4</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>campoLivre5</td>
+<td>Campo Livre 5</td>
+<td>Alfa Numérico</td>
+<td>Até 16 caracteres</td>
+<td>Não</td>
+</tr>
+</tbody></table>
+
+<p><em>dadosCobranca</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nome</td>
+<td>Nome do comprador</td>
+<td>Alfa Numérico</td>
+<td>Até 100 caracteres</td>
+<td>Não, mas sugerimos o envio para identificação do cliente</td>
+</tr>
+<tr>
+<td>documento</td>
+<td>Documento principal do comprado</td>
+<td>Alfa Numérico</td>
+<td>30 caracteres</td>
+<td>Não, mas sugerimos o envio para identificação do cliente</td>
+</tr>
+<tr>
+<td>documento2</td>
+<td>Documento principal do comprado</td>
+<td>Alfa Numérico</td>
+<td>30 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>email</td>
+<td>E-mail do comprador</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>codigoCliente</td>
+<td>Código do Comprador</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>dataNascimento</td>
+<td>Data Nascimento Comprador</td>
+<td>Alfa Numérico</td>
+<td>10 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>sexo</td>
+<td>Sexo Comprador</td>
+<td>Alfa Numérico</td>
+<td>2 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>tipoCliente</td>
+<td>Tipo do Cliente - 1 - Pessoa Física      2 - Pessoa Jurídica</td>
+<td>Numérico</td>
+<td>Até 8 dígitos</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>endereco</td>
+<td>Nó reservado para dados de endereço do comprador</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>telefone</td>
+<td>Nó reservado para dados de telefone do comprador</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<p>Observação: O envio do nó dadosCobranca é obrigatório.</p>
+
+<p><em>itensDoPedido</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoProduto</td>
+<td>Código único que identifica cada produto</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>codigoCategoria</td>
+<td>Código que identifica categoria do produto</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>nomeProduto</td>
+<td>Nome do Produto</td>
+<td>Alfa Numérico</td>
+<td>100 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>quantidadeProduto</td>
+<td>Quantidade comprada do produto</td>
+<td>Numérico</td>
+<td>Até 8 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>valorUnitarioProduto</td>
+<td>Valor unitário do produto. Deve ser enviado sem pontos ou vírgulas</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>nomeCategoria</td>
+<td>Nome da categoria do produto</td>
+<td>Alfa Numérico</td>
+<td>100 caracteres</td>
+<td>Não</td>
+</tr>
+</tbody></table>
+
+<p><em>endereco</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>logradouro</td>
+<td>Endereço do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>numero</td>
+<td>Número do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>bairro</td>
+<td>Bairro do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>complemento</td>
+<td>Complemento do endereço</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>cidade</td>
+<td>Cidade do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>estado</td>
+<td>Estado do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>cep</td>
+<td>CEP do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>pais</td>
+<td>País do comprador</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><em>telefone</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tipoTelefone</td>
+<td>1 = Outros / 2 = Residencial / 3 = Comercial / 4 = Recados / 5 = Cobrança / 6 = Temporário</td>
+<td>Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>ddi</td>
+<td>Código DDI do telefone</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>ddd</td>
+<td>Código DDD do telefone</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+<tr>
+<td>telefone</td>
+<td>Número do telefone</td>
+<td>Alfa Numérico</td>
+<td>Não</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><em>dadosEntrega</em> </p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Obrigatório</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nome</td>
+<td>Nome do comprador</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>email</td>
+<td>E-mail do comprador</td>
+<td>Alfa Numérico</td>
+<td>20 caracteres</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>endereco</td>
+<td>Nó reservado para dados de endereço do comprador</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>telefone</td>
+<td>Nó reservado para dados de telefone do comprador</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<p><strong>RESPOSTA</strong></p>
+
+<blockquote>
+<p>Exemplo retorno transação:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{
+   "numeroTransacao": 1234,
+   "codigoEstabelecimento": "1000000000000",
+   "multiploCartao": 1,
+   "statusTransacao": 1,
+   "detalhesMultiploCartao":    [
+         {
+         "codigoFormaPagamento": 170,
+         "valor": 500,
+         "valorDesconto": 0,
+         "parcelas": 1,
+         "autorizacao": "513663",
+         "codigoTransacaoOperadora": "6",
+         "dataAprovacaoOperadora": "2018-02-21 11:50:21",
+         "numeroComprovanteVenda": "0221115021704",
+         "mensagemVenda": "Operation Successful"
+         },
+         {
+         "codigoFormaPagamento": 171,
+         "valor": 800,
+         "valorDesconto": 0,
+         "parcelas": 1,
+         "autorizacao": "20307",
+         "codigoTransacaoOperadora": "6",
+         "dataAprovacaoOperadora": "2018-02-21 11:50:22",
+         "numeroComprovanteVenda": "0221115022682",
+         "mensagemVenda": "Operation Successful"
+         }
+   ]
+}
+
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numeroTransacao</td>
+<td>Código que identifica a transação dentro do SuperPay</td>
+<td>Numérico</td>
+<td>Até 19 dígitos</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código que identifica o estabelecimento dentro do SuperPay</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+</tr>
+<tr>
+<td>multiploCartao</td>
+<td>Retornará 1</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+</tr>
+<tr>
+<td>statusTransacao</td>
+<td><a href="https://superpay.github.io/rest/#status-de-transacao">Status atual da transação</a></td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>detalhesMultiploCartao</td>
+<td>Nó reservado para retornos de cartão</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<p><em>detalhesMultiploCartao</em></p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigoFormaPagamento</td>
+<td><a href="https://superpay.github.io/rest/#forma-de-pagamento">Código da forma de pagamento</a></td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da transação.</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>valorDesconto</td>
+<td>Valor desconto</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>parcelas</td>
+<td>Quantidade de parcelas da transação</td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
+</tr>
+<tr>
+<td>autorizacao</td>
+<td>Código de autorização da adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>codigoTransacaoOperadora</td>
+<td>Código da transação na adquirente</td>
+<td>Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>dataAprovacaoOperadora</td>
+<td>Data de aprovação na adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>numeroComprovanteVenda</td>
+<td>Número do comprovante de venda</td>
+<td>Alfa Numérico</td>
+<td>Até 20 dígitos</td>
+</tr>
+<tr>
+<td>mensagemVenda</td>
+<td>Mensagem de retorno da adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 50 dígitos</td>
 </tr>
 </tbody></table>
 <h2 id='capturando-uma-transacao'>Capturando uma transação</h2>
