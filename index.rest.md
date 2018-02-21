@@ -704,6 +704,7 @@ telefone |Nó reservado para informações de telefone | - | - | -
 dadosEntrega | Nó reservado para informações de dados de entrega | - | - | -
 
 *dadosMultiplosCartoes*
+
 Campo | Descrição | Tipo | Tamanho | Obrigatório
 ------| ----------|------| --------|------------
 nomePortador | Nome do titular do cartão de crédito (Exatamente como escrito no cartão) | Alfa Numérico | Até 16 dígitos | Sim
