@@ -6299,67 +6299,99 @@ curl
 <tr>
 <th>Campo</th>
 <th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>numeroRecorrencia</td>
 <td>Número da Recorrência</td>
+<td>Numérico</td>
+<td>Até 15 dígitos</td>
 </tr>
 <tr>
 <td>estabelecimento</td>
 <td>Código do estabelecimento, fornecido pelo SuperPay</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
 </tr>
 <tr>
 <td>valor</td>
 <td>Valor</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
 </tr>
 <tr>
 <td>codigoFormaPagamento</td>
-<td><a href="https://superpay.github.io/rest/#forma-de-pagamento">Código da forma de pagamento cadastrada</a></td>
+<td><a href="http://dev.yapay.com.br/gateway/rest/codigos-da-api-rest/#forma-de-pagamento">Código da forma de pagamento cadastrada</a></td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
 </tr>
 <tr>
 <td>numeroCobrancaTotal</td>
 <td>Quantidade máxima de cobranças</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
 </tr>
 <tr>
 <td>numeroCobrancaRestantes</td>
 <td>Quantidade de cobranças restantes</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
 </tr>
 <tr>
 <td>status</td>
-<td>Status atual da recorrência</td>
+<td>Status atual da recorrência, sendo 0 para recorrência cancelada e 1 para ativa</td>
+<td>Numérico</td>
+<td>1 dígito</td>
 </tr>
 <tr>
 <td>mensagem</td>
 <td>Mensagem da recorrência</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
 </tr>
 <tr>
 <td>numeroPedido</td>
 <td>Número da Cobrança Recorrente</td>
+<td>Numérico</td>
+<td>Até 19 dígitos</td>
 </tr>
 <tr>
 <td>statusTransacao</td>
-<td><a href="https://superpay.github.io/rest/#status-de-transacao">Status atual da transação recorrente</a></td>
+<td><a href="http://dev.yapay.com.br/gateway/rest/codigos-da-api-rest/#status-de-transacao">Status atual da transação recorrente</a></td>
+<td>Numérico</td>
+<td>Até 2 dígitos</td>
 </tr>
 <tr>
 <td>autorizacao</td>
 <td>Código de autorização da Adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 20 caracteres</td>
 </tr>
 <tr>
 <td>codigoTransacaoOperadora</td>
-<td>Código de erro da Adquirente</td>
+<td>Código de retorno da Adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 20 caracteres</td>
 </tr>
 <tr>
 <td>dataAprovacaoOperadora</td>
 <td>Data aprovação Adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
 </tr>
 <tr>
 <td>numeroComprovanteVenda</td>
 <td>Número Comprovante Adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 20 caracteres</td>
 </tr>
 <tr>
 <td>mensagemVenda</td>
 <td>Mensagem Venda Adquirente</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
 </tr>
 </tbody></table>
 <h2 id='cancelando-uma-recorrencia'>Cancelando uma recorrência</h2>

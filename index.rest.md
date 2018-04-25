@@ -2300,23 +2300,23 @@ tipoTelefone|	1 - Outros 2 - Residencial 3 - Comercial |	Numérico|	Até 2 dígi
 
 ```
 
-Campo | Descrição 
-------| ----------
-numeroRecorrencia|	Número da Recorrência
-estabelecimento|	Código do estabelecimento, fornecido pelo SuperPay
-valor|	Valor
-codigoFormaPagamento	|[Código da forma de pagamento cadastrada](https://superpay.github.io/rest/#forma-de-pagamento)
-numeroCobrancaTotal|	Quantidade máxima de cobranças
-numeroCobrancaRestantes	|Quantidade de cobranças restantes
-status|	Status atual da recorrência
-mensagem|	Mensagem da recorrência
-numeroPedido|	Número da Cobrança Recorrente
-statusTransacao|	[Status atual da transação recorrente](https://superpay.github.io/rest/#status-de-transacao)
-autorizacao|	Código de autorização da Adquirente
-codigoTransacaoOperadora|	Código de erro da Adquirente
-dataAprovacaoOperadora|	Data aprovação Adquirente
-numeroComprovanteVenda|	Número Comprovante Adquirente
-mensagemVenda	|Mensagem Venda Adquirente
+Campo | Descrição | Tipo | Tamanho
+------| ---------- | ------ | -------
+numeroRecorrencia|	Número da Recorrência | Numérico | Até 15 dígitos
+estabelecimento|	Código do estabelecimento, fornecido pelo SuperPay | Numérico | 13 dígitos
+valor|	Valor | Numérico | Até 10 dígitos
+codigoFormaPagamento	|[Código da forma de pagamento cadastrada](http://dev.yapay.com.br/gateway/rest/codigos-da-api-rest/#forma-de-pagamento) | Numérico | Até 3 dígitos
+numeroCobrancaTotal|	Quantidade máxima de cobranças | Numérico | Até 10 dígitos
+numeroCobrancaRestantes	|Quantidade de cobranças restantes | Numérico | Até 10 dígitos
+status|	Status atual da recorrência, sendo 0 para recorrência cancelada e 1 para ativa | Numérico | 1 dígito
+mensagem|	Mensagem da recorrência | Alfa Numérico | Até 50 caracteres
+numeroPedido|	Número da Cobrança Recorrente | Numérico | Até 19 dígitos
+statusTransacao|	[Status atual da transação recorrente](http://dev.yapay.com.br/gateway/rest/codigos-da-api-rest/#status-de-transacao) | Numérico | Até 2 dígitos
+autorizacao|	Código de autorização da Adquirente | Alfa Numérico | Até 20 caracteres
+codigoTransacaoOperadora|	Código de retorno da Adquirente | Alfa Numérico | Até 20 caracteres
+dataAprovacaoOperadora|	Data aprovação Adquirente | Alfa Numérico | Até 10 caracteres
+numeroComprovanteVenda|	Número Comprovante Adquirente | Alfa Numérico | Até 20 caracteres
+mensagemVenda	|Mensagem Venda Adquirente | Alfa Numérico | Até 50 caracteres
 
 
 ## Cancelando uma recorrência
