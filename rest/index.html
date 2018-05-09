@@ -6403,6 +6403,7 @@ Esta funcionalidade está disponível em um EndPoint diferenciado:
 
 SANDBOX: <code> https://sandbox.gateway.yapay.com.br/checkout/api/v3/recorrencia/agg/<<`codigoEstabelecimento>>`/<<`numeroRecorrencia`>>/atualizar</code>
 
+<br><br>
 
 PRODUÇÃO: <code>https://gateway.yapay.com.br/checkout/api/v3/recorrencia/agg/<<`codigoEstabelecimento>>`/<<`numeroRecorrencia`>>/atualizar</code>
 </aside>
@@ -6454,12 +6455,14 @@ curl
 <th>Campo</th>
 <th>Descrição</th>
 <th>Tipo</th>
+<th>Tamanho</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>diaCobranca</td>
 <td>Novo dia da cobrança recorrente</td>
 <td>Numérico</td>
+<td>Até 2 dígitos</td>
 </tr>
 </tbody></table>
 
@@ -6578,17 +6581,224 @@ curl
 </tr>
 <tr>
 <td>primeiraCobranca</td>
-<td>1 – Cobrança no mês corrente</td>
+<td>1 – Cobrança no mês corrente 2 – Cobrança no próximo mês Retorna apenas para SOAP</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+</tr>
+<tr>
+<td>detalhes</td>
+<td>-</td>
+<td>-</td>
 <td></td>
+</tr>
+<tr>
+<td>logs</td>
+<td>-</td>
+<td>-</td>
 <td></td>
+</tr>
+<tr>
+<td>periodicidadeCodigo</td>
+<td>Código da periodicidade</td>
+<td>Numérico</td>
+<td>1 dígito</td>
 </tr>
 </tbody></table>
 
-<p>2 – Cobrança no próximo mês
-Retorna apenas para SOAP | Numérico | 1 dígito
-detalhes | - | -
-logs | - | -
-periodicidadeCodigo | Código da periodicidade | Numérico | 1 dígito</p>
+<p><strong>Alterando valor de cobrança</strong></p>
+
+<aside class="notice">
+Para alterar a recorrência, acione o método <code>PUT</code>
+</aside>
+
+<p><strong>REQUISIÇÃO</strong></p>
+
+<blockquote>
+<p>Exemplo alteração de valor da cobrança:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+curl
+--request PUT https://sandbox.gateway.yapay.com.br/checkout/api/v3/recorrencia/agg/10000000000000/2/atualizar
+--header "Content-Type: application/json"
+--curl -u usuario:senha .........
+--data-binary
+  {
+   "valor": 20000
+  }
+
+</code></pre>
+<p>Para autenticação, enviar <code>usuario</code> e <code>senha</code> seguindo padrão Basic Authentication:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>usuario</td>
+<td>Login do estabelecimento</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha do estabelecimento</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>valor</td>
+<td>Novo valor da cobrança recorrente</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+</tbody></table>
+
+<p><strong>RESPOSTA</strong></p>
+
+<blockquote>
+<p>Exemplo retorno atualização valor de cobrança:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+--header "Content-Type: application/json"
+{
+   "tipo": "REST",
+   "periodicidade": "MENSAL",
+   "codigoEstabelecimento": "10000000000000",
+   "numero": 2,
+   "ativo": true,
+   "dataCriacao": "02/05/2018 13:22:25",
+   "formaPagamento": 170,
+   "formaPagamentoDescricao": "Visa Cielo API",
+   "valor": 20000,
+   "quantidadeCobranca": 0,
+   "diaCobranca": 20,
+   "mesCobranca": 0,
+   "primeiraCobranca": 0,
+   "detalhes": null,
+   "logs": null,
+   "periodicidadeCodigo": 3
+}
+
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tipo</td>
+<td>Tipo da integração</td>
+<td>Alfa Numérico</td>
+<td>4 caracteres</td>
+</tr>
+<tr>
+<td>periodicidade</td>
+<td>Periodicidade da cobrança</td>
+<td>Alfa Numérico</td>
+<td>Até 10 caracteres</td>
+</tr>
+<tr>
+<td>codigoEstabelecimento</td>
+<td>Código do estabelecimento</td>
+<td>Numérico</td>
+<td>13 dígitos</td>
+</tr>
+<tr>
+<td>numero</td>
+<td>Número da recorrência</td>
+<td>Numérico</td>
+<td>Até 15 dígitos</td>
+</tr>
+<tr>
+<td>ativo</td>
+<td>Status da recorrência</td>
+<td>Boleano</td>
+<td>Até 4 caracteres</td>
+</tr>
+<tr>
+<td>dataCriacao</td>
+<td>Data da criação da recorrência</td>
+<td>Alfa Numérico</td>
+<td>Até 20 caracteres</td>
+</tr>
+<tr>
+<td>formaPagamento</td>
+<td>Código da forma de pagamento</td>
+<td>Numérico</td>
+<td>Até 3 dígitos</td>
+</tr>
+<tr>
+<td>formaPagamentoDescricao</td>
+<td>Descrição da forma de pagamento</td>
+<td>Alfa Numérico</td>
+<td>Até 50 caracteres</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>Valor da Recorrência</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>quantidadeCobranca</td>
+<td>Quantidade de cobranças</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>numeroCobrancaRestantes</td>
+<td>Quantidade das cobranças restantes</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>diaCobranca</td>
+<td>Dia da cobrança</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>mesCobranca</td>
+<td>Mês da cobrança, retorna apenas para SOAP</td>
+<td>Numérico</td>
+<td>Até 10 dígitos</td>
+</tr>
+<tr>
+<td>primeiraCobranca</td>
+<td>1 – Cobrança no mês corrente 2 – Cobrança no próximo mês Retorna apenas para SOAP</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+</tr>
+<tr>
+<td>detalhes</td>
+<td>-</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>logs</td>
+<td>-</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>periodicidadeCodigo</td>
+<td>Código da periodicidade</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+</tr>
+</tbody></table>
 <h2 id='cancelando-uma-recorrencia'>Cancelando uma recorrência</h2>
 <p><strong>REQUISIÇÃO</strong></p>
 
